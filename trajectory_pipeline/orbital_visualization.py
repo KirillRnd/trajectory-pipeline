@@ -55,7 +55,7 @@ def render_orbital_mission(folder,output):
             for arc in traj.metadata['maneuver']['arcs']:
                 ts=np.unique(np.r_[arc['start_s'],a['t_s'][(a['t_s']>arc['start_s'])&(a['t_s']<arc['end_s'])],arc['end_s']])
                 coords=spline(ts)@projection;on=arc['active']
-                ax.plot(*coords.T,color='k',linestyle='-' if on else '--',linewidth=.6,
+                ax.plot(*coords.T,color='k',linestyle='-',linewidth=.6 if on else .12,
                         label=('Тяга включена' if on else 'Тяга выключена') if on not in labelled else None)
                 labelled.add(on)
         elif spec['kind']=='spiral':ax.plot(*xy.T,color='k',linewidth=.5,label='Участок на малой тяге')
