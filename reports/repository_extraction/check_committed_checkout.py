@@ -2,9 +2,10 @@ from pathlib import Path
 import hashlib, json, os, re, subprocess, sys, tempfile
 workspace=Path('/workspace')
 manifest=json.loads((workspace/'migration_manifest.json').read_text())
+revision=manifest['imported_git_revision']
 with tempfile.TemporaryDirectory(prefix='trajectory-checkout-') as folder:
     checkout=Path(folder)
-    archive=subprocess.Popen(['git','archive','HEAD'],cwd=workspace,stdout=subprocess.PIPE)
+    archive=subprocess.Popen(['git','archive',revision],cwd=workspace,stdout=subprocess.PIPE)
     extracted=subprocess.run(['tar','-xf','-','-C',folder],stdin=archive.stdout,check=True)
     archive.stdout.close()
     assert archive.wait()==0
@@ -37,7 +38,7 @@ with tempfile.TemporaryDirectory(prefix='trajectory-checkout-') as folder:
     assert ummp['passed']
     with (workspace/'runs/extraction-clean-help.log').open('w') as out:
         subprocess.run([sys.executable,'-m','trajectory_pipeline','--help'],check=True,stdout=out)
-    report=dict(source_revision=subprocess.check_output(['git','rev-parse','HEAD'],cwd=workspace,text=True).strip(),
+    report=dict(source_revision=subprocess.check_output(['git','rev-parse',revision],cwd=workspace,text=True).strip(),
                 isolated_committed_checkout=True,imported_files_verified=len(manifest['files']),
                 trajectory_array_hashes_verified=arrays,orbital_checks=checks,ummp=ummp)
     (workspace/'runs/extraction-clean-checkout.json').write_text(json.dumps(report,ensure_ascii=False,indent=2))
