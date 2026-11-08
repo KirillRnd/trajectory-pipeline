@@ -18,6 +18,11 @@ def _local_curve(arrays):
 
 def render_orbital_mission(folder,output):
     p=Path(folder);output=Path(output);output.mkdir(parents=True,exist_ok=True)
+    if (p/'capture_search.json').exists():
+        from .capture_search import verify_capture_search
+        check=verify_capture_search(p)
+        if not check['passed']:raise ValueError('Cannot render an unverified capture search selection')
+        return render_orbital_mission(p/check['selected_folder'],output)
     dep,arr,whole=[Trajectory.load(p/name) for name in ('departure','arrival','final')]
     if whole.metadata['impulses_sha256']!=sha256(p/'impulses.json'):raise ValueError('Impulse event checksum differs from the plotted mission')
     m=whole.metadata['mission'];modes=m['orbital_maneuvers'];events=json.loads((p/'impulses.json').read_text())
@@ -41,7 +46,19 @@ def render_orbital_mission(folder,output):
         a=traj.arrays;spec=modes[side]
         r=a['r_m'][0];h=np.cross(r,a['v_m_s'][0]);h/=np.linalg.norm(h);ex=r/np.linalg.norm(r);ey=np.cross(h,ex)
         xy=_local_curve(a)@np.column_stack([ex,ey])/1000.
-        if spec['kind']=='spiral':ax.plot(*xy.T,color='k',linewidth=.5,label='Участок на малой тяге')
+        if spec['kind']=='spiral' and 'arcs' in traj.metadata['maneuver']:
+            # Interpolate each actual arc separately; never infer active arcs
+            # from a different angle function during plotting.
+            spline=CubicHermiteSpline(a['t_s'],a['r_m'],a['v_m_s'])
+            projection=np.column_stack([ex,ey])/1000.
+            labelled=set()
+            for arc in traj.metadata['maneuver']['arcs']:
+                ts=np.unique(np.r_[arc['start_s'],a['t_s'][(a['t_s']>arc['start_s'])&(a['t_s']<arc['end_s'])],arc['end_s']])
+                coords=spline(ts)@projection;on=arc['active']
+                ax.plot(*coords.T,color='k',linestyle='-' if on else '--',linewidth=.6,
+                        label=('Тяга включена' if on else 'Тяга выключена') if on not in labelled else None)
+                labelled.add(on)
+        elif spec['kind']=='spiral':ax.plot(*xy.T,color='k',linewidth=.5,label='Участок на малой тяге')
         else:ax.plot(*xy.T,'k--',linewidth=1.5,label='Пассивная дуга')
         ax.add_patch(plt.Circle((0,0),spec['planet_radius_m']/1000.,color='#4589cc' if side=='departure' else '#d95a32',label=_label(body)))
         ax.scatter(*xy[0],s=35,facecolors='none',edgecolors='#1263bf',label='Начало')

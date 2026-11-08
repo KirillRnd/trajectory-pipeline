@@ -16,10 +16,13 @@ def validate_maneuvers(spec):
     if set(d)-{'kind',*ParkingDeparture.__dataclass_fields__}:raise ValueError('Unknown orbital departure parameter')
     ParkingDeparture(**{k:v for k,v in d.items() if k!='kind'}).validate()
     required=set(CaptureOrbit.__dataclass_fields__)
-    extra={'kind','plane','interface_side'}|({'excess_velocity_m_s','exhaust_velocity_m_s'} if a['kind']=='impulse' else set())
+    extra={'kind','plane','interface_side'}|({'excess_velocity_m_s','exhaust_velocity_m_s'} if a['kind']=='impulse' else {'capture_control','max_capture_days','arrival_propellant_budget_kg','spacecraft_propellant_budget_kg','duration_search'})
     if not required<=set(a) or set(a)-required-extra:raise ValueError('Missing or unknown orbital arrival parameter')
     if any(isinstance(a[k],bool) or not isinstance(a[k],(int,float)) or not np.isfinite(a[k]) for k in required):raise ValueError('Arrival dimensions must be finite numbers')
     CaptureOrbit(**{k:a[k] for k in required}).validate()
+    if a['kind']=='spiral':
+        from .capture_control import validate_capture_options
+        validate_capture_options(a)
     if a.get('plane','planet_orbit')!='planet_orbit' or a.get('interface_side','sunward')!='sunward':raise ValueError('Arrival supports the planet plane and sunward interface')
     if a['kind']=='impulse':
         for k in ('excess_velocity_m_s','exhaust_velocity_m_s'):

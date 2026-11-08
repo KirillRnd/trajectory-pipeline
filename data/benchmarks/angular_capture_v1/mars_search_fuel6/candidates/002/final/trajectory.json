@@ -1,0 +1,77 @@
+{
+  "case_id": "mars_capture_duration_search",
+  "epoch_jd": 2462832.4549706015,
+  "time_scale": "TDB",
+  "frame": "ECLIPJ2000",
+  "center": "Sun",
+  "stage": "orbital_mission",
+  "model": "patched central fields with explicit orbital maneuvers",
+  "status": "pending_verification",
+  "mission": {
+    "case_id": "mars_capture_duration_search",
+    "departure": "Earth",
+    "target": "Mars",
+    "launch_tdb": "2030-12-01T00:00:00",
+    "tof_days": 500,
+    "center": "Sun",
+    "mode": "rendezvous",
+    "position_tolerance_m": 1000,
+    "velocity_tolerance_m_s": 0.01,
+    "mass_kg": 156,
+    "departure_mode": "bounded_norm",
+    "vinf_max_m_s": 3000,
+    "vinf_vector_m_s": null,
+    "spacecraft": {
+      "thrust_N": 0.025,
+      "exhaust_velocity_m_s": 20000,
+      "dry_mass_kg": 60
+    },
+    "solver": {
+      "budget_s": 45,
+      "compare_seeds": true,
+      "departure_budget_s": 60,
+      "limit_budget_s": 60,
+      "pazov_budget_s": 90,
+      "psi_budget_s": 120,
+      "bounded_attempt_s": 20,
+      "orbital_seed_path": "data/benchmarks/angular_capture_v1/mars_fixed",
+      "orbital_budget_s": 900
+    },
+    "lunar": null,
+    "orbital_maneuvers": {
+      "departure": {
+        "interface_radius_m": 924881552.4165419,
+        "parking_altitude_m": 200000.0,
+        "planet_radius_m": 6378137.0,
+        "mu_m3_s2": 398600435600000.0,
+        "plane_mode": "free",
+        "kind": "impulse"
+      },
+      "arrival": {
+        "mu_m3_s2": 42828375662000.0,
+        "planet_radius_m": 3396190.0,
+        "periapsis_altitude_m": 400000.0,
+        "apoapsis_altitude_m": 30000000.0,
+        "interface_radius_m": 577230383.9421967,
+        "plane": "planet_orbit",
+        "interface_side": "sunward",
+        "kind": "spiral",
+        "capture_control": {
+          "mode": "angular",
+          "half_width_rad": 3.141592653589793
+        },
+        "max_capture_days": 1800.0,
+        "arrival_propellant_budget_kg": 6.0
+      }
+    },
+    "mass_reference": "initial_orbit"
+  },
+  "source_arrays_sha256": {
+    "departure": "a79593ef0e92a6c4e4116a21238dc166ff4dbc8421153f11e4e8bb69c57372e3",
+    "outer": "43b275063b35eb981370bad101b131d85795da01c014e9f2f8238ea08d16fbac",
+    "arrival": "617d3c3b75ccb7c0b95d85df87ad011e8ae97e04eddf343a93de0e25a6f7b4b2"
+  },
+  "impulses_sha256": "2b87e3c0bdf6114a8e48615ab5dd2798e8b6dcf307cb2c62e7bfccbefb555f84",
+  "schema_version": 1,
+  "arrays_sha256": "b9b9a3bbb9c8da1abbee853e3ceb28bf6d6513cfe03f1abdf56fc1559bbcfddc"
+}

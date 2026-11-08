@@ -40,7 +40,10 @@ def elements(rv,mu):
                 apoapsis_radius_m=float(a*(1+eccentricity)))
 
 
-def backward_capture(orbit,final_mass_kg,thrust_N,exhaust_velocity_m_s,*,max_days=2000.):
+def backward_capture(orbit,final_mass_kg,thrust_N,exhaust_velocity_m_s,*,max_days=2000.,control=None):
+    if control is not None:
+        from .angular_capture import backward_angular_capture
+        return backward_angular_capture(orbit,final_mass_kg,thrust_N,exhaust_velocity_m_s,control,max_days)
     orbit.validate()
     if min(final_mass_kg,thrust_N,exhaust_velocity_m_s)<=0:raise ValueError('Capture engine/mass must be positive')
     rp=orbit.planet_radius_m+orbit.periapsis_altitude_m
@@ -112,6 +115,8 @@ def orient_capture(capture,planet_state):
     result=dict(capture)
     result['relative_state_si']=np.c_[y[:,:3]@rotation.T,y[:,3:]@rotation.T]
     result['rotation_to_ecliptic']=rotation.tolist()
+    if 'reference_axis' in capture:
+        result['reference_axis']=(rotation@np.asarray(capture['reference_axis'])).tolist()
     return result
 
 
@@ -145,8 +150,13 @@ def correct_interface(seed,mission,*,budget_s=60.):
 
 
 def forward_capture(orbit,initial_state_si,initial_mass_kg,thrust_N,exhaust_velocity_m_s,
-                    burn_start_s,duration_s,*,sample_times=None):
+                    burn_start_s,duration_s,*,sample_times=None,control=None,reference_axis=None):
     """Independent forward replay, cross-product transverse axis, LSODA."""
+    if control is not None:
+        from .angular_capture import forward_angular_capture
+        if reference_axis is None:raise ValueError('Controlled capture needs its rotated reference axis')
+        return forward_angular_capture(orbit,initial_state_si,initial_mass_kg,thrust_N,exhaust_velocity_m_s,
+                                       burn_start_s,duration_s,control,reference_axis,sample_times=sample_times)
     scales=Scales(orbit.planet_radius_m+orbit.periapsis_altitude_m,orbit.mu_m3_s2)
     y=np.r_[scales.normalize_state(initial_state_si),1.]
     A=thrust_N/initial_mass_kg/scales.acceleration_m_s2

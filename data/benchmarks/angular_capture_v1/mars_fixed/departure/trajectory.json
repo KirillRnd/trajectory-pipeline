@@ -1,0 +1,98 @@
+{
+  "case_id": "mars_angular_2",
+  "epoch_jd": 2462832.8601065613,
+  "time_scale": "TDB",
+  "frame": "ECLIPJ2000",
+  "center": "Earth",
+  "model": "patched central-field orbital departure",
+  "status": "pending_verification",
+  "stage": "orbital_departure",
+  "mission": {
+    "case_id": "mars_angular_2",
+    "departure": "Earth",
+    "target": "Mars",
+    "launch_tdb": "2030-12-01T00:00:00",
+    "tof_days": 500,
+    "center": "Sun",
+    "mode": "rendezvous",
+    "position_tolerance_m": 1000,
+    "velocity_tolerance_m_s": 0.01,
+    "mass_kg": 156,
+    "departure_mode": "bounded_norm",
+    "vinf_max_m_s": 3000,
+    "vinf_vector_m_s": null,
+    "spacecraft": {
+      "thrust_N": 0.025,
+      "exhaust_velocity_m_s": 20000,
+      "dry_mass_kg": 60
+    },
+    "solver": {
+      "budget_s": 45,
+      "compare_seeds": true,
+      "departure_budget_s": 60,
+      "limit_budget_s": 60,
+      "pazov_budget_s": 90,
+      "psi_budget_s": 120,
+      "bounded_attempt_s": 20,
+      "orbital_seed_path": "data/benchmarks/orbital_modes_v1/dry60/mars_impulse_spiral_dry60",
+      "orbital_budget_s": 900
+    },
+    "lunar": null,
+    "orbital_maneuvers": {
+      "departure": {
+        "interface_radius_m": 924881552.4165419,
+        "parking_altitude_m": 200000.0,
+        "planet_radius_m": 6378137.0,
+        "mu_m3_s2": 398600435600000.0,
+        "plane_mode": "free",
+        "kind": "impulse"
+      },
+      "arrival": {
+        "mu_m3_s2": 42828375662000.0,
+        "planet_radius_m": 3396190.0,
+        "periapsis_altitude_m": 400000.0,
+        "apoapsis_altitude_m": 30000000.0,
+        "interface_radius_m": 577230383.9421967,
+        "plane": "planet_orbit",
+        "interface_side": "sunward",
+        "kind": "spiral",
+        "capture_control": {
+          "mode": "angular",
+          "half_width_rad": 2.0
+        },
+        "max_capture_days": 1800.0,
+        "arrival_propellant_budget_kg": 4.0
+      }
+    },
+    "mass_reference": "initial_orbit"
+  },
+  "maneuver": {
+    "kind": "impulse",
+    "duration_s": 314486.7930900766,
+    "injection": {
+      "duration_s": 314486.7930900766,
+      "delta_v_m_s": 3492.6753758138784,
+      "delta_v_vector_m_s": [
+        -2182.6697527684446,
+        2667.925749465105,
+        562.9442481342271
+      ],
+      "circular_velocity_m_s": [
+        -4864.601116881325,
+        5946.110062753617,
+        1254.655778659247
+      ],
+      "periapsis_speed_m_s": 11276.937063839654,
+      "circular_speed_m_s": 7784.261688025776,
+      "interface_speed_m_s": 2615.6832071135964,
+      "asymptotic_excess_m_s": 2445.3730771538158,
+      "orbit_normal_ecliptic": [
+        0.37242227367044645,
+        0.11024526165257323,
+        0.9214920685265234
+      ]
+    }
+  },
+  "schema_version": 1,
+  "arrays_sha256": "a4e2db99b48e67fa58f56e614af7f4afa0bef7bf292e9c8aa761d93aff6da7f8"
+}

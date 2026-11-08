@@ -98,6 +98,9 @@ def _segment(mission,side,solution,epoch,center,info):
 def run_orbital_pipeline(mission,output,resume=False):
     from .runtime import runtime_environment
     output=Path(output);mission.validate()
+    if mission.orbital_maneuvers['arrival'].get('duration_search') is not None:
+        from .capture_search import run_capture_search
+        return run_capture_search(mission,output,resume=resume)
     recovered_seed=None
     if mission.mass_reference!='initial_orbit':raise ValueError('Solve expects mass_kg at the initial orbit, not an internal resolved mission')
     if resume:
@@ -137,7 +140,7 @@ def run_orbital_pipeline(mission,output,resume=False):
         if recovered_seed is not None:current=recovered_seed
         elif seed_hint:
             seed_path=Path(seed_hint)
-            current=Trajectory.load(seed_path/('outer' if (seed_path/'outer').exists() else 'final'))
+            current=Trajectory.load(seed_path if (seed_path/'trajectory.json').exists() else seed_path/('outer' if (seed_path/'outer').exists() else 'final'))
         else:
             from .runner import run_pipeline
             summary['orbital_phase']='interplanetary_seed';write_json(output/'summary.json',summary)
@@ -160,9 +163,10 @@ def run_orbital_pipeline(mission,output,resume=False):
                 departure=outgoing_hyperbola(parking,current.arrays['v_m_s'][0]-earth[3:],normal)
                 departure.update(mass_kg=np.full(len(departure['t_s']),mission.mass_kg),thrust_N=np.zeros(len(departure['t_s'])))
             if a['kind']=='spiral':
+                summary['orbital_phase']='arrival_construction';write_json(output/'summary.json',summary)
                 def nominal(mf):
                     key=float(mf)
-                    if key not in cache:cache[key]=orient_capture(backward_capture(orbit,key,F,c),planet)
+                    if key not in cache:cache[key]=orient_capture(backward_capture(orbit,key,F,c,control=a.get('capture_control'),max_days=a.get('max_capture_days',2000.)),planet)
                     return cache[key]
                 if desired_mass<=dry:raise ValueError('dry_mass_constraint: no propellant remains for the arrival spiral')
                 low=nominal(dry)['entry_mass_kg']-desired_mass
@@ -202,8 +206,12 @@ def run_orbital_pipeline(mission,output,resume=False):
         state=np.r_[current.arrays['r_m'][-1],current.arrays['v_m_s'][-1]]-planet
         events=[]
         if a['kind']=='spiral':
-            physical=forward_capture(orbit,state,desired_mass,F,c,arrival['burn_start_s'],arrival['duration_s'],sample_times=arrival['t_s'])
+            physical=forward_capture(orbit,state,desired_mass,F,c,arrival['burn_start_s'],arrival['duration_s'],sample_times=arrival['t_s'],
+                                     control=arrival.get('control'),reference_axis=arrival.get('reference_axis'))
             arrival_info=dict(kind='spiral',burn_start_s=arrival['burn_start_s'],duration_s=arrival['duration_s'])
+            if 'control' in arrival:
+                arrival_info.update(control=arrival['control'],reference_axis=arrival['reference_axis'],arcs=physical['arcs'],
+                                    active_duration_s=physical['active_duration_s'])
             final_state=physical['relative_state_si'][-1];final_mass=float(physical['mass_kg'][-1])
         else:
             t=arrival['t_s'];replay=replay_transverse(state,desired_mass,orbit.mu_m3_s2,0.,c,arrival['duration_s'],t)
@@ -245,6 +253,7 @@ def run_orbital_pipeline(mission,output,resume=False):
         summary['orbital_phase']='verification';write_json(output/'summary.json',summary)
         check=verify_orbital_mission(output)
         write_json(output/'verification.json',check)
+        if not check.get('capture_budget',{}).get('passed',True):raise RuntimeError('capture_budget_constraint: '+str(check['capture_budget']['checks']))
         if not check['passed']:raise RuntimeError('Orbital mission acceptance failed: '+str(check))
         final=Trajectory.load(output/'final');final.metadata.update(status='verified_orbital_mission',verification=check)
         write_json(output/'final/trajectory.json',final.metadata)
@@ -256,6 +265,9 @@ def run_orbital_pipeline(mission,output,resume=False):
     except (ValueError,RuntimeError,TimeoutError) as exc:
         message=str(exc)
         summary.update(status='partial',error=message,stop_kind='dry_mass_constraint' if ('dry_mass_constraint' in message or 'dry mass constraint' in message) else 'orbital_'+summary['orbital_phase']+'_failed')
+        if 'capture_budget_constraint' in message:summary['stop_kind']='capture_budget_constraint'
+        if 'capture_duration_limit' in message:summary['stop_kind']='capture_duration_limit'
+        if 'capture_control:' in message:summary['stop_kind']='capture_control_domain'
         seed_summaries=sorted(output.glob('match_*/seed_chain/summary.json'))
         if seed_summaries:
             nested=json.loads(seed_summaries[-1].read_text())
@@ -272,6 +284,9 @@ def verify_orbital_mission(folder):
     from .data import sha256
     from .orbital_maneuvers import replay_departure_spiral
     p=Path(folder);m=Mission.load(p/'mission.json');d=m.orbital_maneuvers['departure'];a=m.orbital_maneuvers['arrival']
+    if a.get('duration_search') is not None:
+        from .capture_search import verify_capture_search
+        return verify_capture_search(p)
     if m.mass_reference!='initial_orbit':raise ValueError('Orbital root mass must refer to the initial orbit')
     root=json.loads((p/'request.json').read_text());payload={k:v for k,v in root.items() if k!='request_sha256'}
     if digest(payload)!=root['request_sha256'] or root['mission']!=specification(m) or root['configuration_sha256']!=configuration_hash(m):raise ValueError('Orbital root request mismatch')
@@ -322,10 +337,29 @@ def verify_orbital_mission(folder):
     info=arr.metadata['maneuver']
     phase_times=(dep.metadata['maneuver']['duration_s']==D['t_s'][-1] and info['duration_s']==A['t_s'][-1])
     if a['kind']=='spiral':
-        replay=forward_capture(orbit,arr_state[0],float(A['mass_kg'][0]),F,c,info['burn_start_s'],info['duration_s'],sample_times=A['t_s'])
+        replay=forward_capture(orbit,arr_state[0],float(A['mass_kg'][0]),F,c,info['burn_start_s'],info['duration_s'],sample_times=A['t_s'],
+                               control=a.get('capture_control'),reference_axis=info.get('reference_axis'))
         indices=np.searchsorted(replay['t_s'],A['t_s']);replayed=replay['relative_state_si'][indices];replayed_mass=replay['mass_kg'][indices]
         expected_fuel=F/c*(info['duration_s']-info['burn_start_s'])
         thrust_ok=np.array_equal(A['thrust_N'],np.where(A['t_s']>=info['burn_start_s'],F,0.))
+        if a.get('capture_control') is not None:
+            from dataclasses import asdict
+            from .capture_control import CaptureControl
+            from .angular_capture import schedule_throttle
+            if info.get('control')!=asdict(CaptureControl(**a['capture_control'])):raise ValueError('Capture control differs from request')
+            arcs=info['arcs'];independent=replay['arcs']
+            schedule_ok=(len(arcs)==len(independent) and all(x['active']==y['active'] and
+                         abs(x['start_s']-y['start_s'])<.05 and abs(x['end_s']-y['end_s'])<.05 for x,y in zip(arcs,independent)))
+            schedule_ok &= bool(arcs) and arcs[0]['start_s']==0 and abs(arcs[-1]['end_s']-info['duration_s'])<1e-6
+            schedule_ok &= all(x['end_s']>x['start_s'] and isinstance(x['active'],bool) for x in arcs)
+            schedule_ok &= all(abs(x['end_s']-y['start_s'])<1e-6 for x,y in zip(arcs[:-1],arcs[1:]))
+            active_time=sum(x['end_s']-x['start_s'] for x in arcs if x['active'])
+            schedule_ok &= abs(active_time-info['active_duration_s'])<1e-6
+            axis=np.asarray(info['reference_axis']);schedule_ok &= abs(np.linalg.norm(axis)-1)<1e-10
+            schedule_ok &= np.linalg.norm(axis-arr_state[-1,:3]/np.linalg.norm(arr_state[-1,:3]))<1e-4
+            expected_fuel=F/c*active_time
+            thrust_ok=schedule_ok and np.array_equal(A['thrust_N'],F*schedule_throttle(A['t_s'],arcs))
+            thrust_ok &= np.array_equal(A['active'],A['thrust_N']>0)
     else:
         replayed_all=replay_transverse(arr_state[0],float(A['mass_kg'][0]),orbit.mu_m3_s2,0.,c,info['duration_s'],A['t_s'])
         replayed=replayed_all[:,:6];replayed_mass=replayed_all[:,6];expected_fuel=0.;thrust_ok=np.all(A['thrust_N']==0)
@@ -371,12 +405,15 @@ def verify_orbital_mission(folder):
     orbit_error=max(abs(final_elements['periapsis_radius_m']-orbit.planet_radius_m-orbit.periapsis_altitude_m),
                     abs(final_elements['apoapsis_radius_m']-orbit.planet_radius_m-orbit.apoapsis_altitude_m))
     min_clearance=float(np.min(np.linalg.norm(A['r_m'],axis=1))-orbit.planet_radius_m)
+    if a['kind']=='spiral':min_clearance=min(min_clearance,float(replay['minimum_radius_m'])-orbit.planet_radius_m)
     outer_check=verify_bounded(outer);vendor=verify_kiam_psi(outer)
+    from .capture_control import capture_budget_check
+    budget=capture_budget_check(a,m.mass_kg,float(A['mass_kg'][0]),end_mass,float(A['t_s'][-1])) if a['kind']=='spiral' else dict(passed=True)
     passed=(audit['passed'] and outer_check['passed'] and vendor['passed'] and links and composition and circular and interface_radii and phase_times and dep_ok
             and left_r<.1 and left_v<1e-6 and left_m<1e-6 and right_r<.001 and right_v<1e-8 and right_m<1e-6
             and time_error<1e-4 and departure_mass_flow<1e-6 and arrival_flow<1e-6 and thrust_ok
             and arr_r<100. and arr_v<.01 and arr_m<1e-6 and event_ok and orbit_error<m.position_tolerance_m
-            and float(J['mass_kg'].min())>=dry-1e-6 and min_clearance>=orbit.periapsis_altitude_m-1000.)
+            and float(J['mass_kg'].min())>=dry-1e-6 and min_clearance>=orbit.periapsis_altitude_m-1000. and budget['passed'])
     return dict(passed=bool(passed),kind='four_orbital_modes',departure_kind=d['kind'],arrival_kind=a['kind'],
                 departure_join=dict(position_error_m=left_r,velocity_error_m_s=left_v,mass_error_kg=left_m),
                 arrival_join=dict(position_error_m=right_r,velocity_error_m_s=right_v,mass_error_kg=right_m),
@@ -388,5 +425,5 @@ def verify_orbital_mission(folder):
                 departure_propellant_kg=float(D['mass_kg'][0]-D['mass_kg'][-1]),interplanetary_propellant_kg=float(O['mass_kg'][0]-O['mass_kg'][-1]),
                 arrival_propellant_kg=float(A['mass_kg'][0]-end_mass),total_spacecraft_propellant_kg=float(m.mass_kg-end_mass),
                 departure_mass_flow_error_kg=departure_mass_flow,arrival_mass_flow_error_kg=arrival_flow,
-                outer_verification=outer_check,kiam_verification=vendor,
+                capture_budget=budget,outer_verification=outer_check,kiam_verification=vendor,
                 scope='Patched central fields; prescribed transverse spirals or explicit impulse events; external upper-stage mass excluded, no global optimality claim')

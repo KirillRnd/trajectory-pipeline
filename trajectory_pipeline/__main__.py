@@ -63,6 +63,15 @@ def main():
     pipeline.add_argument('mission')
     pipeline.add_argument('--output',required=True)
     pipeline.add_argument('--resume',action='store_true')
+    pipeline.add_argument('--capture-mode',choices=['continuous','angular'])
+    pipeline.add_argument('--capture-half-width-deg',type=float)
+    pipeline.add_argument('--capture-phase-reference',choices=['periapsis','fixed_axis'])
+    pipeline.add_argument('--capture-eccentricity-slope-deg',type=float)
+    pipeline.add_argument('--capture-phase-offset-deg',type=float)
+    pipeline.add_argument('--capture-search-widths-deg',type=float,nargs='+')
+    pipeline.add_argument('--capture-fuel-budget-kg',type=float,help='Propellant available for arrival spiral only')
+    pipeline.add_argument('--spacecraft-fuel-budget-kg',type=float,help='Total spacecraft propellant, excluding external upper stage')
+    pipeline.add_argument('--capture-max-days',type=float)
     physical_sweep=sub.add_parser('sweep-solve',help='Run the same complete pipeline on a declared matrix of real missions')
     physical_sweep.add_argument('matrix')
     physical_sweep.add_argument('--output',required=True)
@@ -168,7 +177,9 @@ def main():
     elif args.command=='solve':
         from .problem import Mission
         from .runner import run_pipeline
-        result,summary=run_pipeline(Mission.load(args.mission),args.output,resume=args.resume)
+        from .capture_control import apply_capture_flags
+        mission=apply_capture_flags(Mission.load(args.mission),args)
+        result,summary=run_pipeline(mission,args.output,resume=args.resume)
         print(json.dumps({k:v for k,v in summary.items() if k!='stages'},ensure_ascii=False,indent=2))
         return exit_code(summary['status'])
     elif args.command=='sweep-solve':
