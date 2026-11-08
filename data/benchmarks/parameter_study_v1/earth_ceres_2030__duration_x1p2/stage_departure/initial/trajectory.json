@@ -1,0 +1,191 @@
+{
+  "case_id": "earth_ceres_2030__duration_x1p2",
+  "epoch_jd": 2462533.5,
+  "time_scale": "TDB",
+  "center": "Sun",
+  "frame": "ECLIPJ2000",
+  "model": "IRT two-body minimum integral acceleration squared / 2",
+  "status": "verified_extremal",
+  "stage": "irt",
+  "mission": {
+    "case_id": "earth_ceres_2030__duration_x1p2",
+    "departure": "Earth",
+    "target": "Ceres",
+    "launch_tdb": "2030-02-01T00:00:00",
+    "tof_days": 1200.0,
+    "center": "Sun",
+    "mode": "rendezvous",
+    "position_tolerance_m": 1000,
+    "velocity_tolerance_m_s": 0.01,
+    "mass_kg": 156,
+    "departure_mode": "bounded_norm",
+    "vinf_max_m_s": 3000,
+    "vinf_vector_m_s": null,
+    "spacecraft": {
+      "thrust_N": 0.025,
+      "exhaust_velocity_m_s": 20000,
+      "dry_mass_kg": 90
+    },
+    "solver": {
+      "budget_s": 45,
+      "compare_seeds": true,
+      "departure_budget_s": 60,
+      "limit_budget_s": 60,
+      "pazov_budget_s": 90,
+      "psi_budget_s": 120,
+      "bounded_attempt_s": 20
+    },
+    "lunar": null
+  },
+  "scales": {
+    "distance_m": 147404465290.69543,
+    "mu_m3_s2": 1.32712440018e+20
+  },
+  "initial_state_si": [
+    -98134168181.14728,
+    109989823949.79,
+    -7108047.443185374,
+    -22723.79456291982,
+    -19947.933340757634,
+    0.4672238803893541
+  ],
+  "target_state_si": [
+    -78650528802.27141,
+    -413408034151.15424,
+    1284310797.066182,
+    16698.27492407238,
+    -4559.46367163067,
+    -3219.836145701976
+  ],
+  "costate_convention": "dimensionless [p_r,p_v], H=p_r*v+p_v*(g+u)-|u|^2/2, u=p_v",
+  "costates_initial": [
+    -0.025985640380620463,
+    0.029762699566309312,
+    0.005549476086505736,
+    -0.0293487917236786,
+    -0.025130850057654707,
+    0.00617797227148255
+  ],
+  "functional_dimensionless": 0.005902724993746761,
+  "chosen_seed": {
+    "source": "ILTT",
+    "lambda_turns": 1.5348868630445738,
+    "kappa": 2.8070659090703476,
+    "route": "shooting",
+    "independent_check": {
+      "position_residual_m": 104.78823322704326,
+      "velocity_residual_m_s": 3.4761900975918467e-06,
+      "free_velocity_transversality": 0.01556166363496164,
+      "difference_r_m": 132.9602134865095,
+      "difference_v_m_s": 4.972759215399588e-06
+    },
+    "nfev": 9,
+    "integrations": 9,
+    "optimizer_success": true,
+    "residual_norm": 1.19488292380017e-13,
+    "position_residual_m": 29.808843528306834,
+    "velocity_residual_m_s": 1.3840487692045472e-06,
+    "free_velocity_transversality": 0.015561663634631177,
+    "accepted": true
+  },
+  "title": "Earth → Ceres: ИРТ",
+  "ephemerides": {
+    "Earth": {
+      "body": "earth",
+      "start_jd": 2287184.5,
+      "stop_jd": 2688976.5,
+      "source": "KIAM 6.1.6 / bundled JPLEPH",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "center": "requested",
+      "interpolation": "KIAM native ephemeris",
+      "representation": "body center"
+    },
+    "Ceres": {
+      "body": "ceres",
+      "source": "https://ssd.jpl.nasa.gov/api/horizons.api",
+      "parameters": {
+        "format": "json",
+        "COMMAND": "'1;'",
+        "CENTER": "'500@10'",
+        "EPHEM_TYPE": "'VECTORS'",
+        "REF_PLANE": "'ECLIPTIC'",
+        "REF_SYSTEM": "'ICRF'",
+        "OUT_UNITS": "'KM-S'",
+        "VEC_CORR": "'NONE'",
+        "CSV_FORMAT": "'YES'",
+        "VEC_TABLE": "'2'",
+        "TIME_TYPE": "'TDB'",
+        "OBJ_DATA": "'YES'",
+        "START_TIME": "'2028-01-01'",
+        "STOP_TIME": "'2035-01-01'",
+        "STEP_SIZE": "'12 h'"
+      },
+      "center": "Sun",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "units": "m,m/s",
+      "start_jd": 2461771.5,
+      "stop_jd": 2464328.5,
+      "knots": 5115,
+      "max_step_days": 0.5,
+      "interpolation": "cubic Hermite, position and velocity from the same polynomial",
+      "arrays_sha256": "2b6ac907853d726b865b01d10a953907cbb203aa87356dfabc33d3114b686749",
+      "raw_sha256": "a5af177b8a121a4c8e19914da131159da1ec3b124411a6548676c6c68e6aea8c"
+    }
+  },
+  "overlays": [
+    {
+      "array": "departure_orbit_m",
+      "label": "Орбита Earth"
+    },
+    {
+      "array": "target_orbit_m",
+      "label": "Орбита Ceres",
+      "linestyle": "-.",
+      "color": ".65"
+    }
+  ],
+  "markers": [
+    {
+      "label": "Earth, старт",
+      "r_m": [
+        -98134168181.14728,
+        109989823949.79,
+        -7108047.443185374
+      ]
+    },
+    {
+      "label": "Earth, прибытие",
+      "r_m": [
+        -86757013012.20369,
+        -123882993925.29697,
+        9730355.703997226
+      ],
+      "hollow": true
+    },
+    {
+      "label": "Ceres",
+      "r_m": [
+        -78650528802.27141,
+        -413408034151.15424,
+        1284310797.066182
+      ],
+      "color": "#df1111",
+      "role": "target"
+    }
+  ],
+  "configuration_sha256": "b79189189109a27e3b41453deeb49c0971866ac95977630578070d8c71e69d6f",
+  "verification": {
+    "passed": true,
+    "method": "LSODA, independently implemented Hamiltonian RHS",
+    "position_residual_m": 104.7882402097185,
+    "velocity_residual_m_s": 3.476189884770485e-06,
+    "trajectory_difference_m": 132.96022111812633,
+    "velocity_difference_m_s": 4.972760353212701e-06,
+    "free_velocity_transversality": 0.01556166363496164,
+    "scope": "Numerical extremal and endpoint consistency; not proof of local/global optimality or N-body fidelity"
+  },
+  "schema_version": 1,
+  "arrays_sha256": "9526b7bc376391b5dc0f96b27ca8d2d412b5e33a52c68856dd3b74c414648bd5"
+}

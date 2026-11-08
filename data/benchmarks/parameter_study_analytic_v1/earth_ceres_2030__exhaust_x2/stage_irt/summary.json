@@ -1,0 +1,78 @@
+{
+  "case_id": "earth_ceres_2030__exhaust_x2",
+  "status": "completed_stage",
+  "stage": "irt",
+  "started_utc": "2026-11-05T16:35:09.649852+00:00",
+  "python": "3.12.16",
+  "runtime": {
+    "python": "3.12.16",
+    "executable": "/usr/local/bin/python",
+    "system": "Linux",
+    "machine": "x86_64",
+    "libc": [
+      "glibc",
+      "2.41"
+    ],
+    "kernel": "6.6.87.2-microsoft-standard-WSL2",
+    "container": true,
+    "runtime": "docker-linux",
+    "image_id": "sha256:17c8bdce3cd3c235b7a7245aa1315c0a764e7ad2beacfa26698fb17c41e75a2a",
+    "dependencies": {
+      "numpy": "2.2.5",
+      "scipy": "1.15.1",
+      "matplotlib": "3.10.0",
+      "pandas": "2.2.3",
+      "kiam-astro": "6.1.6",
+      "daceypy": "1.4.0",
+      "pillow": "13.0.0"
+    },
+    "thread_limits": {
+      "OPENBLAS_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1"
+    }
+  },
+  "source_sha256": {
+    "trajectory_pipeline/__init__.py": "b5d69a20b137a938a28e2478dbae0068c3e29e5f6dad0cc95672c5107c6b4842",
+    "trajectory_pipeline/__main__.py": "2e0fcc7dd86b76e04687a3794c6e07b586279ba169821ab9cea187d3c958b4a6",
+    "trajectory_pipeline/bangbang.py": "639d11da11f94b79af357681fb626a6a592067d22f2b976682134ce54ada67af",
+    "trajectory_pipeline/bounded.py": "3e4dbad7b53e149d3271eba584ff505e335b0b08c1237cf87ef33edef8d47f49",
+    "trajectory_pipeline/bounded_derivatives.py": "bb2f18f6202ea1ff072930b1887951a26a840112dbb0feff3c8cf063863b3e79",
+    "trajectory_pipeline/bounded_model.py": "f017ec4220701126800970dadddc323b38c2538cf8671b13132c7f875cc3d121",
+    "trajectory_pipeline/continuation.py": "14700fe3c5bc32044119902b40f266929439b8901f3455f4105b52ac1957e2a7",
+    "trajectory_pipeline/contract.py": "83a523bade3de9292c20dd10d2c1d1b154400bd46f31f727c42c6c97298dec90",
+    "trajectory_pipeline/data.py": "aebdc031ea5379bcf840081747f2adb833f918588510c8d9b4e81558d495e972",
+    "trajectory_pipeline/departure.py": "64ac75cd2650c1872f89a929743ff9ba124db09ba68f698c79adc8979f4daca1",
+    "trajectory_pipeline/ephemerides.py": "01b6f771b4adf3e7bac893d619787d4bbb823946cc0dce49b5f588dd8ffa8c95",
+    "trajectory_pipeline/gravity.py": "716b7dda8f5268c7c65c4014cb7d96bf8008140c6633dcbb0ee6594364d658ab",
+    "trajectory_pipeline/irt.py": "8c706db0392c52cb0f8c4d9461be635a8a423b30af20a1e4511b35e923e21b30",
+    "trajectory_pipeline/kiam_verification.py": "08bc4b66d22208063de9e2c194821d963cfa9af3731d30ce4845b4a52e06a61a",
+    "trajectory_pipeline/lunar.py": "721ee63036e945c1d6dd767985b9b32c0f48de23fbda78814e2c9fba970de904",
+    "trajectory_pipeline/matrix_report.py": "1e59e030f108dff2f1710859da8b6a859296a5b4591d63a866acb760180f618d",
+    "trajectory_pipeline/parameter_study.py": "7e3832d2b494cd99f7aa4af807d14296a4b9cb74121721103f2d7b76fb928bbf",
+    "trajectory_pipeline/pazov.py": "907bff7913bfd981ddcfa7d3878188d357eba84e5b26847a0319aec541f6b682",
+    "trajectory_pipeline/problem.py": "33231a1d2ede7bccc911409c5bf85320c8490e13068ba3af66fa74f07a0b07aa",
+    "trajectory_pipeline/psi.py": "eafb8a8469e789428eba9dfb6a9281097831d76357c1bd1c9ad7bf36bff73e10",
+    "trajectory_pipeline/reference.py": "8408fc0ce798a2147a5602c4d23a24536e90905b855a894ad7495e842caa062c",
+    "trajectory_pipeline/runner.py": "4ea2b018ab187bc9291101edbb6ac6bd09a5d5096a2347eb72453ce7e104fef9",
+    "trajectory_pipeline/runtime.py": "81dfded64ae214fc00e611dff44b66a9298edfc0cef367368792860c64eafdbb",
+    "trajectory_pipeline/verification.py": "710cd5bbc9b193d32a9536e26aec3769c5ccf1ec4f3fafd761b32b11f78d7af9",
+    "trajectory_pipeline/visualization.py": "db334e71600889fad60b9a0694573d1e34c617ab7f2ac837b1deaf6370d43c01",
+    "ILTT/ILTTToolbox.py": "7efe9c86615ca5972ef6bbb601e7e0ce56eb31dca456612871118648b0bd0a9e",
+    "ILTT/continuation_methods.py": "288680b2703460a0a9b67c3f33a00fc6f6ee908c33f9024c1fba0020dba77d6f"
+  },
+  "git_revision": "882fda7b78c8e87b0fc668c4d0c15b809c2e3d88",
+  "last_result": "irt",
+  "verification": {
+    "passed": true,
+    "method": "LSODA, independently implemented Hamiltonian RHS",
+    "position_residual_m": 161.04580990491303,
+    "velocity_residual_m_s": 8.978878244491626e-06,
+    "trajectory_difference_m": 175.73102807301518,
+    "velocity_difference_m_s": 9.652477237132706e-06,
+    "free_velocity_transversality": 0.02110018497232198,
+    "scope": "Numerical extremal and endpoint consistency; not proof of local/global optimality or N-body fidelity"
+  },
+  "functional_dimensionless": 0.006494025573701342,
+  "elapsed_s": 1.2081086040125228
+}

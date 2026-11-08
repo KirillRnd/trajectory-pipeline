@@ -1,0 +1,204 @@
+{
+  "case_id": "earth_mars_2030_dec01_leo200_capture",
+  "epoch_jd": 2462836.5,
+  "time_scale": "TDB",
+  "frame": "ECLIPJ2000",
+  "center": "Sun",
+  "stage": "capture_mission",
+  "status": "verified_capture",
+  "model": "patched heliocentric and planet-centered central fields",
+  "mission": {
+    "case_id": "earth_mars_2030_dec01_leo200_capture",
+    "departure": "Earth",
+    "target": "Mars",
+    "launch_tdb": "2030-12-01T00:00:00",
+    "tof_days": 500,
+    "center": "Sun",
+    "mode": "rendezvous",
+    "position_tolerance_m": 1000,
+    "velocity_tolerance_m_s": 0.01,
+    "mass_kg": 156,
+    "departure_mode": "bounded_norm",
+    "vinf_max_m_s": 3000,
+    "vinf_vector_m_s": null,
+    "spacecraft": {
+      "thrust_N": 0.025,
+      "exhaust_velocity_m_s": 20000,
+      "dry_mass_kg": 90
+    },
+    "solver": {
+      "budget_s": 45,
+      "compare_seeds": true,
+      "departure_budget_s": 60,
+      "limit_budget_s": 60,
+      "pazov_budget_s": 90,
+      "psi_budget_s": 120,
+      "bounded_attempt_s": 20,
+      "capture_seed_path": "runs/mars_dec2030_leo200_capture/warm_07",
+      "launch_seed_path": "data/benchmarks/examples/earth_mars_2030_dec01_capture_400x30000"
+    },
+    "lunar": null,
+    "capture": {
+      "mu_m3_s2": 42828375662000.0,
+      "planet_radius_m": 3396190.0,
+      "periapsis_altitude_m": 400000.0,
+      "apoapsis_altitude_m": 30000000.0,
+      "interface_radius_m": 577230383.9421967,
+      "plane": "planet_orbit",
+      "interface_side": "sunward"
+    },
+    "parking_departure": {
+      "interface_radius_m": 924881552.4165419,
+      "parking_altitude_m": 200000.0,
+      "planet_radius_m": 6378137.0,
+      "mu_m3_s2": 398600435600000.0,
+      "plane_mode": "free"
+    },
+    "departure_offset_state_si": [
+      -829102200.2419549,
+      -46986544.87025221,
+      407170347.8343401,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "title": "Земля → Mars: перелёт и скрутка",
+  "join_time_s": 43200000.0,
+  "capture_included": true,
+  "completion_scope": "planetary_orbit",
+  "source_outer_arrays_sha256": "7d786fbdfb4d8616911b22989f2ecce364121a821c9d4dff1c70265c83dd4118",
+  "source_capture_arrays_sha256": "331cfc1e0e7ad47c79f7670d1605433461b1787af57b62dfe216925a47f25ea0",
+  "overlays": [
+    {
+      "array": "departure_orbit_m",
+      "label": "Орбита Earth"
+    },
+    {
+      "array": "target_orbit_m",
+      "label": "Орбита Mars",
+      "linestyle": "-.",
+      "color": ".65"
+    }
+  ],
+  "markers": [
+    {
+      "label": "Earth, старт",
+      "r_m": [
+        53494688210.56662,
+        137115730337.54579,
+        396838012.30400634
+      ]
+    },
+    {
+      "label": "Вход в сферу Mars",
+      "r_m": [
+        94222100443.55666,
+        204351357857.09262,
+        1973344732.5456157
+      ],
+      "hollow": true
+    },
+    {
+      "label": "Конечная орбита у Mars",
+      "r_m": [
+        -128688855314.89926,
+        208110630765.23032,
+        7515328957.566289
+      ],
+      "color": "#df1111",
+      "role": "target"
+    }
+  ],
+  "schema_version": 1,
+  "arrays_sha256": "1a97fd85848a74dadfcd85174e34b58a966c29981bad2c5bf034b341e3dae9fc",
+  "verification": {
+    "passed": true,
+    "kind": "patched_planet_capture",
+    "join_position_error_m": 0.0,
+    "join_velocity_error_m_s": 0.0,
+    "join_mass_error_kg": 0.0,
+    "orbit_element_error_m": 0.9000374749302864,
+    "periapsis_altitude_m": 400000.07265900867,
+    "apoapsis_altitude_m": 29999999.099962525,
+    "capture_replay_position_error_m": 0.0,
+    "capture_replay_velocity_error_m_s": 0.0,
+    "total_fuel_kg": 33.88745206069839,
+    "interplanetary_fuel_kg": 25.403110385684045,
+    "capture_fuel_kg": 8.484341675014349,
+    "composition_position_error_m": 0.0,
+    "composition_velocity_error_m_s": 0.0,
+    "composition_mass_error_kg": 0.0,
+    "composition_time_error_s": 0.0,
+    "source_links_passed": true,
+    "hardware_passed": true,
+    "mass_balance_error_kg": 0.0,
+    "capture_mass_flow_error_kg": 1.474376176702208e-13,
+    "total_duration_days": 615.9005498837843,
+    "final_mass_kg": 122.1125479393016,
+    "outer_verification": {
+      "passed": true,
+      "position_residual_m": 0.9131407663820332,
+      "velocity_residual_m_s": 1.0938142388518682e-07,
+      "parameter_audit": {
+        "passed": true,
+        "configuration_sha256": "6f66adc97a8f945c885a96a01d93f997709f19aa6b4d60fe80c14b7d12250738",
+        "configuration_hash_version": 2,
+        "requested": {
+          "mass_kg": 156,
+          "thrust_N": 0.025,
+          "exhaust_velocity_m_s": 20000,
+          "dry_mass_kg": 90,
+          "launch_tdb": "2030-12-01T00:00:00",
+          "tof_days": 500,
+          "departure": "Earth",
+          "target": "Mars",
+          "mode": "rendezvous"
+        },
+        "recovered_model": {
+          "model_thrust_N": 0.025,
+          "thrust_to_requested_ratio": 1.0,
+          "alpha": 1.0,
+          "beta": 1.0,
+          "variable_mass": true,
+          "hardware_limit_reached": true,
+          "exhaust_velocity_m_s": 20000.0
+        },
+        "geometry": null,
+        "final_admission": true
+      },
+      "trajectory_difference_m": 0.8468177852357516,
+      "velocity_difference_m_s": 1.1902480921649261e-07,
+      "stored_throttle_error": 0.0,
+      "stored_throttle_minimum": 0.0,
+      "stored_throttle_maximum": 1.0,
+      "canonical_boundary_residual": 7.189138346906202e-12,
+      "method": "LSODA with independent bounded/mass equations",
+      "scope": "Numerical extremal and constraints; no global optimality proof",
+      "departure_norm_m_s": 2303.623095863587,
+      "switching_sign_violation": 6.322182944229416e-12,
+      "switching_node_residual": 6.322182944229416e-12,
+      "minimum_mass_kg": 130.59688961431584,
+      "fuel_kg": 25.403110385684165,
+      "mass_difference_kg": 2.424727085781342e-13,
+      "stored_thrust_error_N": 0.0,
+      "mass_balance_error_kg": 1.1723955140041653e-13
+    },
+    "kiam_outer_verification": {
+      "passed": true,
+      "source": "Unmodified KIAM Astro compiled Fortran equations and published control API",
+      "package_version": "6.1.6",
+      "samples": 99,
+      "maximum_dimensionless_rhs_error": 3.3306690738754696e-16,
+      "maximum_dimensionless_force_error": 1.0408340855860843e-17,
+      "maximum_third_body_decomposition_error": 0.0,
+      "nbody_gravity": {
+        "passed": true,
+        "applicable": false
+      },
+      "costate_map": "p_r,v(KIAM)=p_r,v/vex; p_m(KIAM)=1+p_m/vex; normalized initial mass=1",
+      "scope": "KIAM central mass-optimal equations/control, plus independent third-body decomposition when present; not a separate global optimization"
+    },
+    "scope": "State/velocity/mass-continuous patched central fields; prescribed legacy transverse capture law; no joint optimality or N-body claim"
+  }
+}

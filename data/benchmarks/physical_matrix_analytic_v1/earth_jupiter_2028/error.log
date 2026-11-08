@@ -1,0 +1,64 @@
+Traceback (most recent call last):
+  File "/workspace/trajectory_pipeline/runner.py", line 320, in run_pipeline
+    return _run_pipeline(mission,output,resume=resume)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/trajectory_pipeline/runner.py", line 276, in _run_pipeline
+    current,pazov_summary=run_pazov(current,output/'stage_pazov',target_alpha=float(mission.solver.get('pipeline_pazov_alpha',.5)),
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/trajectory_pipeline/pazov.py", line 43, in run_pazov
+    limited,state=continue_parameter(initial,output/'limit',correct_limit,profile=profile,
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/trajectory_pipeline/continuation.py", line 57, in continue_parameter
+    candidate=correct(trial,current,begin+budget)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/trajectory_pipeline/pazov.py", line 41, in correct_limit
+    return collocate(source,previous,make_model(start+(actual-start)*s),
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/trajectory_pipeline/bounded.py", line 346, in collocate
+    try:return _shoot_bounded(source,model,guess,times,face,min(deadline,perf_counter()+shooting_seconds),stage)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/trajectory_pipeline/bounded.py", line 240, in _shoot_bounded
+    opt=least_squares(residual,x0,method='trf',diff_step=1e-5,x_scale='jac',max_nfev=60,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/scipy/optimize/_lsq/least_squares.py", line 947, in least_squares
+    result = trf(fun_wrapped, jac_wrapped, x0, f0, J0, lb, ub, ftol, xtol,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/scipy/optimize/_lsq/trf.py", line 119, in trf
+    return trf_no_bounds(
+           ^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/scipy/optimize/_lsq/trf.py", line 536, in trf_no_bounds
+    J = jac(x, f)
+        ^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/scipy/optimize/_lsq/least_squares.py", line 904, in jac_wrapped
+    J = approx_derivative(fun, x, rel_step=diff_step, method=jac,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/scipy/optimize/_numdiff.py", line 523, in approx_derivative
+    return _dense_difference(fun_wrapped, x0, f0, h,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/scipy/optimize/_numdiff.py", line 596, in _dense_difference
+    df = fun(x1) - f0
+         ^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/scipy/optimize/_numdiff.py", line 474, in fun_wrapped
+    f = np.atleast_1d(fun(x, *args, **kwargs))
+                      ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/trajectory_pipeline/bounded.py", line 237, in residual
+    initial,sol=propagate(x)
+                ^^^^^^^^^^^^
+  File "/workspace/trajectory_pipeline/bounded.py", line 231, in propagate
+    sol=solve_ivp(ode,(0,times[-1]),y,method='DOP853',rtol=2e-12,atol=2e-14,t_eval=times if full else None)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/scipy/integrate/_ivp/ivp.py", line 655, in solve_ivp
+    message = solver.step()
+              ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/scipy/integrate/_ivp/base.py", line 197, in step
+    success, message = self._step_impl()
+                       ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/scipy/integrate/_ivp/rk.py", line 144, in _step_impl
+    y_new, f_new = rk_step(self.fun, t, y, self.f, h, self.A,
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/scipy/integrate/_ivp/rk.py", line 64, in rk_step
+    K[s] = fun(t + c * h, y + dy)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/scipy/integrate/_ivp/base.py", line 153, in fun
+    self.nfev += 1
+TypeError: unsupported operand type(s) for +=: 'cell' and 'int'

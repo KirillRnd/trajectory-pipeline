@@ -1,0 +1,16 @@
+name: Docker checks
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build the pinned Linux environment
+        run: docker compose build pipeline
+      - name: Test pipeline components and saved physical cases
+        run: docker compose run --rm -T --entrypoint python pipeline -m unittest discover -s tests -v
+      - name: Test the original Pazov component
+        run: docker compose run --rm -T --workdir /tmp -e PYTHONPATH=/workspace/components/pazov:/workspace --entrypoint python pipeline -m unittest discover -s /workspace/components/pazov/tests -v

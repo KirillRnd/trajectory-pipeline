@@ -1,0 +1,203 @@
+{
+  "case_id": "date_000004",
+  "mission": {
+    "case_id": "date_000004",
+    "departure": "Earth",
+    "target": "Venus",
+    "launch_tdb": "2032-11-03T00:00:00",
+    "tof_days": 390.8,
+    "center": "Sun",
+    "mode": "rendezvous",
+    "position_tolerance_m": 1000.0,
+    "velocity_tolerance_m_s": 0.01,
+    "mass_kg": 156.0,
+    "departure_mode": "bounded_norm",
+    "vinf_max_m_s": 3000.0,
+    "vinf_vector_m_s": null,
+    "spacecraft": {
+      "thrust_N": 0.025,
+      "exhaust_velocity_m_s": 20000.0,
+      "dry_mass_kg": 90.0
+    },
+    "solver": {
+      "budget_s": 45
+    },
+    "lunar": null
+  },
+  "scales": {
+    "distance_m": 148411369982.71588,
+    "mu_m3_s2": 1.32712440018e+20
+  },
+  "epoch_jd": 2463539.5,
+  "center": "Sun",
+  "time_scale": "TDB",
+  "frame": "ECLIPJ2000",
+  "body_initial_state_si": [
+    112578851264.70087,
+    96705413114.67902,
+    -7898493.821753853,
+    -19903.668201826058,
+    22493.162288229636,
+    -2.6030160949404006
+  ],
+  "target_state_si": [
+    -75615797160.45473,
+    -77402100456.81233,
+    3297356788.552687,
+    24802.77865321525,
+    -24638.019740233252,
+    -1769.9561762994606
+  ],
+  "configuration_sha256": "bc0a77efb673a38a0443c467861ef312ff37b519f3181de284620458dafb014d",
+  "stage": "psi",
+  "status": "verified_extremal",
+  "bounded_model": {
+    "a_max": 0.026597335061574457,
+    "alpha": 1.0,
+    "beta": 1.0,
+    "q": 0.03976768945199099,
+    "variable_mass": true,
+    "gravity_spec": null
+  },
+  "initial_state_si": [
+    112578851264.70087,
+    96705413114.67902,
+    -7898493.821753853,
+    -19579.03294542976,
+    20084.931027561906,
+    1337.8763817497356
+  ],
+  "costates_initial": [
+    -0.5039388108730728,
+    -0.36765294623524014,
+    -0.6813414232869422,
+    0.0,
+    0.0,
+    0.0,
+    -0.20378440566393882
+  ],
+  "model": "physical constant thrust and exhaust, variable mass",
+  "functional_dimensionless": 0.11759033776235334,
+  "hardware_limit_reached": true,
+  "title": "Earth → Venus: ПСИ 156 кг",
+  "costate_convention": "dimensionless [p_r,p_v,p_m] for normalized remaining mass",
+  "departure": {
+    "mode": "bounded_norm",
+    "bound_active": false,
+    "vector_m_s": [
+      324.63525639629734,
+      -2408.2312606677297,
+      1340.479397844676
+    ],
+    "norm_m_s": 2775.220868795635,
+    "bound_m_s": 3000.0
+  },
+  "switch_times_s": [
+    3628716.833893989,
+    19393575.9418146,
+    27587865.592488024
+  ],
+  "initial_throttle": 0.0,
+  "bangbang_corrector": {
+    "nfev": 7,
+    "residual_norm": 3.1985080194521215e-13,
+    "optimizer_success": true
+  },
+  "verification": {
+    "passed": true,
+    "position_residual_m": 0.43542972709448224,
+    "velocity_residual_m_s": 1.359815637371331e-07,
+    "parameter_audit": {
+      "passed": true,
+      "configuration_sha256": "bc0a77efb673a38a0443c467861ef312ff37b519f3181de284620458dafb014d",
+      "configuration_hash_version": 2,
+      "requested": {
+        "mass_kg": 156.0,
+        "thrust_N": 0.025,
+        "exhaust_velocity_m_s": 20000.0,
+        "dry_mass_kg": 90.0,
+        "launch_tdb": "2032-11-03T00:00:00",
+        "tof_days": 390.8,
+        "departure": "Earth",
+        "target": "Venus",
+        "mode": "rendezvous"
+      },
+      "recovered_model": {
+        "model_thrust_N": 0.025,
+        "thrust_to_requested_ratio": 1.0,
+        "alpha": 1.0,
+        "beta": 1.0,
+        "variable_mass": true,
+        "hardware_limit_reached": true,
+        "exhaust_velocity_m_s": 20000.0
+      },
+      "geometry": null,
+      "final_admission": true
+    },
+    "trajectory_difference_m": 1.05067894475326,
+    "velocity_difference_m_s": 1.6411898816628596e-07,
+    "stored_throttle_error": 0.0,
+    "stored_throttle_minimum": 0.0,
+    "stored_throttle_maximum": 1.0,
+    "canonical_boundary_residual": 6.114098134755613e-12,
+    "method": "LSODA with independent bounded/mass equations",
+    "scope": "Numerical extremal and constraints; no global optimality proof",
+    "departure_norm_m_s": 2775.220868795635,
+    "switching_sign_violation": 4.477561190358763e-11,
+    "switching_node_residual": 4.477561190358763e-11,
+    "minimum_mass_kg": 128.57235810570882,
+    "fuel_kg": 27.427641894291188,
+    "mass_difference_kg": 4.676259379721159e-13,
+    "stored_thrust_error_N": 0.0,
+    "mass_balance_error_kg": 4.547473508864641e-13
+  },
+  "parameter_audit": {
+    "passed": true,
+    "configuration_sha256": "bc0a77efb673a38a0443c467861ef312ff37b519f3181de284620458dafb014d",
+    "configuration_hash_version": 2,
+    "requested": {
+      "mass_kg": 156.0,
+      "thrust_N": 0.025,
+      "exhaust_velocity_m_s": 20000.0,
+      "dry_mass_kg": 90.0,
+      "launch_tdb": "2032-11-03T00:00:00",
+      "tof_days": 390.8,
+      "departure": "Earth",
+      "target": "Venus",
+      "mode": "rendezvous"
+    },
+    "recovered_model": {
+      "model_thrust_N": 0.025,
+      "thrust_to_requested_ratio": 1.0,
+      "alpha": 1.0,
+      "beta": 1.0,
+      "variable_mass": true,
+      "hardware_limit_reached": true,
+      "exhaust_velocity_m_s": 20000.0
+    },
+    "geometry": {
+      "epoch_jd": 2463539.5,
+      "arrival_jd": 2463930.3,
+      "departure_position_difference_m": 0.0,
+      "arrival_position_difference_m": 0.0
+    },
+    "final_admission": true
+  },
+  "kiam_verification": {
+    "passed": true,
+    "source": "Unmodified KIAM Astro compiled Fortran equations and published control API",
+    "package_version": "6.1.6",
+    "samples": 100,
+    "maximum_dimensionless_rhs_error": 2.6645352591003757e-15,
+    "maximum_dimensionless_force_error": 1.0408340855860843e-17,
+    "maximum_third_body_decomposition_error": 0.0,
+    "nbody_gravity": {
+      "passed": true,
+      "applicable": false
+    },
+    "costate_map": "p_r,v(KIAM)=p_r,v/vex; p_m(KIAM)=1+p_m/vex; normalized initial mass=1",
+    "scope": "KIAM central mass-optimal equations/control, plus independent third-body decomposition when present; not a separate global optimization"
+  },
+  "schema_version": 1,
+  "arrays_sha256": "c8be851b2623349d5c74a53943d9275b98919a25d26d2423ba4c38c1639ad63c"
+}

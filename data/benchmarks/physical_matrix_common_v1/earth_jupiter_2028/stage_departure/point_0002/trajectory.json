@@ -1,0 +1,206 @@
+{
+  "case_id": "earth_jupiter_2028",
+  "epoch_jd": 2461923.5,
+  "time_scale": "TDB",
+  "center": "Sun",
+  "frame": "ECLIPJ2000",
+  "model": "IRT two-body minimum integral acceleration squared / 2",
+  "status": "verified_extremal",
+  "stage": "departure",
+  "mission": {
+    "case_id": "earth_jupiter_2028",
+    "departure": "Earth",
+    "target": "Jupiter",
+    "launch_tdb": "2028-06-01T00:00:00",
+    "tof_days": 1100,
+    "center": "Sun",
+    "mode": "rendezvous",
+    "position_tolerance_m": 1000,
+    "velocity_tolerance_m_s": 0.01,
+    "mass_kg": 156,
+    "departure_mode": "bounded_norm",
+    "vinf_max_m_s": 3000,
+    "vinf_vector_m_s": null,
+    "spacecraft": {
+      "thrust_N": 0.025,
+      "exhaust_velocity_m_s": 20000,
+      "dry_mass_kg": 90
+    },
+    "solver": {
+      "budget_s": 45,
+      "compare_seeds": true,
+      "departure_budget_s": 60,
+      "limit_budget_s": 60,
+      "pazov_budget_s": 90,
+      "psi_budget_s": 120,
+      "bounded_attempt_s": 20
+    },
+    "lunar": null
+  },
+  "scales": {
+    "distance_m": 151698431252.37823,
+    "mu_m3_s2": 1.32712440018e+20
+  },
+  "initial_state_si": [
+    -50280672910.02913,
+    -143123261130.34283,
+    9978119.907125074,
+    28194.032985160196,
+    -7957.967624062692,
+    -143.5249540317208
+  ],
+  "target_state_si": [
+    -97540135833.60431,
+    -784364340916.2157,
+    5442745130.41997,
+    12821.36685975565,
+    -1007.091758965783,
+    -282.7105425459474
+  ],
+  "costate_convention": "dimensionless [p_r,p_v], H=p_r*v+p_v*(g+u)-|u|^2/2, u=p_v",
+  "costates_initial": [
+    -0.008202549187282826,
+    -0.013768049498744913,
+    0.0010973445034081263,
+    0.0018583318621781593,
+    0.006543144082192452,
+    -0.00046973693737425526
+  ],
+  "functional_dimensionless": 0.01831482706474274,
+  "chosen_seed": {
+    "source": "ILTT",
+    "lambda_turns": 1.1049793746328689,
+    "kappa": 5.136509293390544,
+    "route": "shooting",
+    "independent_check": {
+      "position_residual_m": 73.70571691865014,
+      "velocity_residual_m_s": 2.6338885384190653e-06,
+      "free_velocity_transversality": 0.07287574852836852,
+      "difference_r_m": 86.54001318386229,
+      "difference_v_m_s": 3.0587152441896514e-06
+    },
+    "nfev": 7,
+    "integrations": 7,
+    "optimizer_success": true,
+    "residual_norm": 1.0424658845118783e-13,
+    "position_residual_m": 26.44228287688752,
+    "velocity_residual_m_s": 1.0680154017003095e-06,
+    "free_velocity_transversality": 0.07287574852283987,
+    "accepted": true
+  },
+  "title": "Earth → Jupiter: ИРТ",
+  "ephemerides": {
+    "Earth": {
+      "body": "earth",
+      "start_jd": 2287184.5,
+      "stop_jd": 2688976.5,
+      "source": "KIAM 6.1.6 / bundled JPLEPH",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "center": "requested",
+      "interpolation": "KIAM native ephemeris",
+      "representation": "body center"
+    },
+    "Jupiter": {
+      "body": "jupiter",
+      "source": "https://ssd.jpl.nasa.gov/api/horizons.api",
+      "parameters": {
+        "format": "json",
+        "COMMAND": "'599'",
+        "CENTER": "'500@10'",
+        "EPHEM_TYPE": "'VECTORS'",
+        "REF_PLANE": "'ECLIPTIC'",
+        "REF_SYSTEM": "'ICRF'",
+        "OUT_UNITS": "'KM-S'",
+        "VEC_CORR": "'NONE'",
+        "CSV_FORMAT": "'YES'",
+        "VEC_TABLE": "'2'",
+        "TIME_TYPE": "'TDB'",
+        "OBJ_DATA": "'YES'",
+        "START_TIME": "'2028-01-01'",
+        "STOP_TIME": "'2035-01-01'",
+        "STEP_SIZE": "'6 h'"
+      },
+      "center": "Sun",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "units": "m,m/s",
+      "start_jd": 2461771.5,
+      "stop_jd": 2464328.5,
+      "knots": 10229,
+      "max_step_days": 0.25,
+      "interpolation": "cubic Hermite, position and velocity from the same polynomial",
+      "arrays_sha256": "8940a77cd2204b0638341ea7368b7a89de71783d1f4bb09e5c0a5b51ec8e8b71",
+      "raw_sha256": "a345f365106bf5923e5aa4384cb92153a7f2489aeeea7c75cacc43c0833ec764"
+    }
+  },
+  "overlays": [
+    {
+      "array": "departure_orbit_m",
+      "label": "Орбита Earth"
+    },
+    {
+      "array": "target_orbit_m",
+      "label": "Орбита Jupiter",
+      "linestyle": "-.",
+      "color": ".65"
+    }
+  ],
+  "markers": [
+    {
+      "label": "Earth, старт",
+      "r_m": [
+        -50280672910.02913,
+        -143123261130.34283,
+        9978119.907125074
+      ]
+    },
+    {
+      "label": "Earth, прибытие",
+      "r_m": [
+        -40057454077.76158,
+        -146402258195.16556,
+        10332331.793382892
+      ],
+      "hollow": true
+    },
+    {
+      "label": "Jupiter",
+      "r_m": [
+        -97540135833.60431,
+        -784364340916.2157,
+        5442745130.41997
+      ],
+      "color": "#df1111",
+      "role": "target"
+    }
+  ],
+  "verification": {
+    "passed": true,
+    "method": "LSODA, independently implemented Hamiltonian RHS",
+    "position_residual_m": 265.37109697744216,
+    "velocity_residual_m_s": 7.895619828050474e-06,
+    "trajectory_difference_m": 265.37108984891404,
+    "velocity_difference_m_s": 7.895619640545886e-06,
+    "free_velocity_transversality": 0.07072350534977509,
+    "scope": "Numerical extremal and endpoint consistency; not proof of local/global optimality or N-body fidelity"
+  },
+  "schema_version": 1,
+  "arrays_sha256": "926b775d2d04664df57b408bf9f380a38807cf62cb966e31f9fbdc0a8e63a3ad",
+  "departure": {
+    "parameter": 0.7,
+    "mode": "bounded_norm",
+    "bound_m_s": 2100.0,
+    "vector_m_s": [
+      572.3712537848478,
+      2015.3061238640894,
+      -144.68025074855046
+    ],
+    "norm_m_s": 2100.0000000000005,
+    "bound_active": true,
+    "pv0_norm": 0.006818121778074252,
+    "norm_error_m_s": 4.547473508864641e-13,
+    "transversality_cross_norm": 2.7939250479261703e-20,
+    "free_branch_failure": "Free-departure shooting budget reached"
+  }
+}

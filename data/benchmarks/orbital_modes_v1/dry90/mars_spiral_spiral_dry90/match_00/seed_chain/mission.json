@@ -1,0 +1,72 @@
+{
+  "case_id": "mars_spiral_spiral_dry90",
+  "departure": "Earth",
+  "target": "Mars",
+  "launch_tdb": "2030-12-01T00:00:00",
+  "tof_days": 500,
+  "center": "Sun",
+  "mode": "rendezvous",
+  "position_tolerance_m": 1000,
+  "velocity_tolerance_m_s": 0.01,
+  "mass_kg": 108.51264299252456,
+  "departure_mode": "fixed_vector",
+  "vinf_max_m_s": 3000,
+  "vinf_vector_m_s": [
+    -741.2996449481786,
+    -41.57402842671107,
+    389.42225175789827
+  ],
+  "spacecraft": {
+    "thrust_N": 0.025,
+    "exhaust_velocity_m_s": 20000,
+    "dry_mass_kg": 90
+  },
+  "solver": {
+    "budget_s": 45,
+    "compare_seeds": true,
+    "departure_budget_s": 60,
+    "limit_budget_s": 60,
+    "pazov_budget_s": 90,
+    "psi_budget_s": 120,
+    "bounded_attempt_s": 20,
+    "orbital_seed_path": "data/benchmarks/examples/earth_mars_2030_dec01_capture_400x30000"
+  },
+  "lunar": null,
+  "arrival_offset_state_si": [
+    -241685210.04556087,
+    -524173210.045953,
+    -5061744.897769959,
+    186.4158697305659,
+    -85.89092302519427,
+    -6.368909611781518
+  ],
+  "departure_offset_state_si": [
+    -421522916.97653306,
+    799275458.0139425,
+    197187876.60662553,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "orbital_maneuvers": {
+    "departure": {
+      "interface_radius_m": 924881552.4165419,
+      "parking_altitude_m": 200000.0,
+      "planet_radius_m": 6378137.0,
+      "mu_m3_s2": 398600435600000.0,
+      "plane_mode": "free",
+      "kind": "spiral"
+    },
+    "arrival": {
+      "mu_m3_s2": 42828375662000.0,
+      "planet_radius_m": 3396190.0,
+      "periapsis_altitude_m": 400000.0,
+      "apoapsis_altitude_m": 30000000.0,
+      "interface_radius_m": 577230383.9421967,
+      "plane": "planet_orbit",
+      "interface_side": "sunward",
+      "kind": "spiral"
+    }
+  },
+  "mass_reference": "interplanetary_departure"
+}

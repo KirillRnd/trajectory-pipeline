@@ -1,0 +1,224 @@
+{
+  "case_id": "earth_high_orbit_moon_2029_250mn",
+  "epoch_jd": 2462196.5,
+  "time_scale": "TDB",
+  "center": "Earth",
+  "frame": "ECLIPJ2000",
+  "model": "IRT Earth-Moon-Sun point masses",
+  "status": "verified_extremal",
+  "stage": "departure",
+  "mission": {
+    "case_id": "earth_high_orbit_moon_2029_250mn",
+    "departure": "Earth",
+    "target": "Moon",
+    "launch_tdb": "2029-03-01T00:00:00",
+    "tof_days": 12,
+    "center": "Earth",
+    "mode": "rendezvous",
+    "position_tolerance_m": 100,
+    "velocity_tolerance_m_s": 0.01,
+    "mass_kg": 156,
+    "departure_mode": "bounded_norm",
+    "vinf_max_m_s": 800,
+    "vinf_vector_m_s": null,
+    "spacecraft": {
+      "thrust_N": 0.25,
+      "exhaust_velocity_m_s": 20000,
+      "dry_mass_kg": 100
+    },
+    "solver": {
+      "budget_s": 60,
+      "bounded_attempt_s": 20
+    },
+    "lunar": {
+      "parking_radius_m": 150000000,
+      "parking_phase_deg": -60,
+      "arrival_radius_m": 20000000,
+      "arrival_phase_deg": 180
+    }
+  },
+  "scales": {
+    "distance_m": 150000000.0,
+    "mu_m3_s2": 398600435600000.0
+  },
+  "initial_state_si": [
+    -37203970.716413,
+    145311802.70086703,
+    -586991.2746994385,
+    -1855.5226448871495,
+    -720.9696318515984,
+    -175.53476414502978
+  ],
+  "target_state_si": [
+    323920879.4845402,
+    -200278179.28816688,
+    24618180.56379682,
+    277.56593209269465,
+    399.3762184515669,
+    30.64658483859351
+  ],
+  "costate_convention": "dimensionless [p_r,p_v], H=p_r*v+p_v*(g+u)-|u|^2/2, u=p_v",
+  "costates_initial": [
+    -0.001525643519414207,
+    9.864131646607883e-06,
+    -0.0002133329999636313,
+    -7.375000962863244e-29,
+    0.0,
+    -1.2206659493529758e-28
+  ],
+  "functional_dimensionless": 0.01459978830068275,
+  "chosen_seed": {
+    "source": "boundary Hermite collocation",
+    "lambda_turns": 1.367785812593699,
+    "kappa": 1.4352743651987572,
+    "route": "collocation",
+    "independent_check": {
+      "position_residual_m": 0.02193694592521026,
+      "velocity_residual_m_s": 9.827128946145602e-08,
+      "free_velocity_transversality": 0.17514660373457097,
+      "difference_r_m": 0.023245891129044786,
+      "difference_v_m_s": 1.0808907682292252e-07
+    },
+    "nfev": 3,
+    "integrations": 3,
+    "optimizer_success": true,
+    "residual_norm": 2.7193333986351316e-14,
+    "position_residual_m": 0.0027660481477833746,
+    "velocity_residual_m_s": 1.2684311435248429e-08,
+    "free_velocity_transversality": 0.17514660371291607,
+    "accepted": true
+  },
+  "title": "Околоземная орбита → Луна: ИРТ",
+  "ephemerides": {
+    "Earth": {
+      "body": "earth",
+      "start_jd": 2287184.5,
+      "stop_jd": 2688976.5,
+      "source": "KIAM 6.1.6 / bundled JPLEPH",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "center": "requested",
+      "interpolation": "KIAM native ephemeris",
+      "representation": "body center"
+    },
+    "Moon": {
+      "body": "moon",
+      "start_jd": 2287184.5,
+      "stop_jd": 2688976.5,
+      "source": "KIAM 6.1.6 / bundled JPLEPH",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "center": "requested",
+      "interpolation": "KIAM native ephemeris",
+      "representation": "body center"
+    }
+  },
+  "overlays": [
+    {
+      "array": "departure_orbit_m",
+      "label": "Опорная околоземная орбита",
+      "linestyle": ":",
+      "color": ".8"
+    },
+    {
+      "array": "target_orbit_m",
+      "label": "Орбита Луны",
+      "linestyle": "-.",
+      "color": ".65"
+    },
+    {
+      "array": "arrival_orbit_m",
+      "label": "Осцулирующая орбита у Луны",
+      "linestyle": ":",
+      "color": ".75"
+    }
+  ],
+  "markers": [
+    {
+      "label": "Старт с околоземной орбиты",
+      "r_m": [
+        -37203970.716413,
+        145311802.70086703,
+        -586991.2746994385
+      ]
+    },
+    {
+      "label": "Луна, прибытие",
+      "r_m": [
+        340896490.40393066,
+        -210774089.43959045,
+        25908337.14604412
+      ],
+      "color": "#df1111",
+      "role": "target"
+    },
+    {
+      "label": "Целевое состояние",
+      "r_m": [
+        323920879.4845402,
+        -200278179.28816688,
+        24618180.56379682
+      ],
+      "hollow": true
+    }
+  ],
+  "departure_quantity": "parking_orbit_delta_v",
+  "verification": {
+    "passed": true,
+    "method": "LSODA, independently implemented Hamiltonian RHS",
+    "position_residual_m": 0.07329378410414736,
+    "velocity_residual_m_s": 1.5691038718570257e-06,
+    "trajectory_difference_m": 0.07329377604100841,
+    "velocity_difference_m_s": 1.5691038718570257e-06,
+    "free_velocity_transversality": 0.22419992070515338,
+    "scope": "Numerical extremal and endpoint consistency; not proof of local/global optimality or N-body fidelity",
+    "clearance": {
+      "passed": true,
+      "collision_constraints_enforced": true,
+      "minimum_geocentric_radius_m": 146864441.17907068,
+      "minimum_selenocentric_radius_m": 20000000.029546652,
+      "required_geocentric_radius_m": 6578136.3,
+      "required_selenocentric_radius_m": 1837400.0
+    }
+  },
+  "schema_version": 1,
+  "arrays_sha256": "6055b6dc590a8ceb3251135282943d21217b98685c1dbc6f20f9a2016d7b5923",
+  "gravity_spec": {
+    "kind": "earth_moon_sun",
+    "ephemeris_file": "data/lunar_ephemerides/599fc9afde6c9da4/vectors.npz",
+    "ephemeris_sha256": "f0a7473f8a497f9a4842cf97256d34c96a391833d1c818d4c910f394511b9f2e",
+    "epoch_jd": 2462196.5,
+    "distance_m": 150000000.0,
+    "time_s": 92016.98603691442,
+    "mu_m3_s2": 398600435600000.0,
+    "moon_mu_ratio": 0.012300036899407743,
+    "sun_mu_ratio": 332946.0486369825,
+    "perturbation_scale": 1.0,
+    "earth_min_radius_m": 6578136.3,
+    "moon_min_radius_m": 1837400.0,
+    "ephemeris_source": {
+      "epoch_jd": 2462196.5,
+      "tof_s": 1036800.0,
+      "step_s": 900.0,
+      "source": "KIAM bundled JPLEPH",
+      "package_version": "6.1.6",
+      "center": "Earth",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB"
+    }
+  },
+  "departure": {
+    "parameter": 0.95,
+    "mode": "free",
+    "bound_m_s": 760.0,
+    "vector_m_s": [
+      -282.63351071123157,
+      -317.68368334431034,
+      -31.602652852100164
+    ],
+    "norm_m_s": 426.3840425103339,
+    "bound_active": false,
+    "pv0_norm": 1.4261597918649017e-28,
+    "requested_mode": "bounded_norm"
+  }
+}

@@ -1,0 +1,183 @@
+{
+  "case_id": "earth_high_orbit_moon_2029_250mn",
+  "status": "completed",
+  "phase": "final",
+  "stages": {
+    "irt": {
+      "case_id": "earth_high_orbit_moon_2029_250mn",
+      "status": "completed_stage",
+      "stage": "irt",
+      "started_utc": "2026-11-05T07:59:31.201420+00:00",
+      "python": "3.11.5",
+      "source_sha256": {
+        "trajectory_pipeline/__init__.py": "b5d69a20b137a938a28e2478dbae0068c3e29e5f6dad0cc95672c5107c6b4842",
+        "trajectory_pipeline/__main__.py": "13e5a587f2c89bc2b7306e11e36c5f7420571d175bfe779343efdb32c49ff40f",
+        "trajectory_pipeline/bangbang.py": "ef076412d5f3a34f5ead1a02f309108c1007eae0fcf9f6b55758188669d96279",
+        "trajectory_pipeline/bounded.py": "87de98400748ca1e7a2d89dd7da2b308ad9c9a8a8fa1d932fc87282a91d0b70b",
+        "trajectory_pipeline/bounded_model.py": "f017ec4220701126800970dadddc323b38c2538cf8671b13132c7f875cc3d121",
+        "trajectory_pipeline/continuation.py": "14700fe3c5bc32044119902b40f266929439b8901f3455f4105b52ac1957e2a7",
+        "trajectory_pipeline/data.py": "aebdc031ea5379bcf840081747f2adb833f918588510c8d9b4e81558d495e972",
+        "trajectory_pipeline/departure.py": "a10c992b80ffd4745e031ac007ce6f45fe15f5222ca25434cf489d3bac135de7",
+        "trajectory_pipeline/ephemerides.py": "01b6f771b4adf3e7bac893d619787d4bbb823946cc0dce49b5f588dd8ffa8c95",
+        "trajectory_pipeline/gravity.py": "716b7dda8f5268c7c65c4014cb7d96bf8008140c6633dcbb0ee6594364d658ab",
+        "trajectory_pipeline/irt.py": "8c706db0392c52cb0f8c4d9461be635a8a423b30af20a1e4511b35e923e21b30",
+        "trajectory_pipeline/kiam_verification.py": "08bc4b66d22208063de9e2c194821d963cfa9af3731d30ce4845b4a52e06a61a",
+        "trajectory_pipeline/lunar.py": "721ee63036e945c1d6dd767985b9b32c0f48de23fbda78814e2c9fba970de904",
+        "trajectory_pipeline/pazov.py": "19c4c65102bc6f67f489761bfd9042aede87c2dbe6bbe98d4f793a7a381f9155",
+        "trajectory_pipeline/problem.py": "2210125a2292bf99cf10b0d5856266489209231de9bdbf90c060f9f6cf70a4f7",
+        "trajectory_pipeline/psi.py": "4661b7d908364f3a0cd15543e0984e0c707f3748f7683370826c9692856556b2",
+        "trajectory_pipeline/reference.py": "8408fc0ce798a2147a5602c4d23a24536e90905b855a894ad7495e842caa062c",
+        "trajectory_pipeline/runner.py": "a7d25eacc99ba51588521814f60169ec815ae32ba2984fdb1a44a5c0d8fc83ce",
+        "trajectory_pipeline/verification.py": "710cd5bbc9b193d32a9536e26aec3769c5ccf1ec4f3fafd761b32b11f78d7af9",
+        "trajectory_pipeline/visualization.py": "9458cd1d6da01caca72f7288455c7b0e39885fd088e596c401dcad3b9154424a",
+        "ILTT/ILTTToolbox.py": "7efe9c86615ca5972ef6bbb601e7e0ce56eb31dca456612871118648b0bd0a9e",
+        "ILTT/continuation_methods.py": "288680b2703460a0a9b67c3f33a00fc6f6ee908c33f9024c1fba0020dba77d6f"
+      },
+      "git_revision": "c7574fd9280b71990d7c7e876d5c7fecc3116fd9",
+      "last_result": "irt",
+      "verification": {
+        "passed": true,
+        "method": "LSODA, independently implemented Hamiltonian RHS",
+        "position_residual_m": 0.04535019621232689,
+        "velocity_residual_m_s": 1.0341694570576015e-06,
+        "trajectory_difference_m": 0.04535019621232689,
+        "velocity_difference_m_s": 1.0341694570576015e-06,
+        "free_velocity_transversality": 0.24837834423983668,
+        "scope": "Numerical extremal and endpoint consistency; not proof of local/global optimality or N-body fidelity",
+        "clearance": {
+          "passed": true,
+          "collision_constraints_enforced": true,
+          "minimum_geocentric_radius_m": 149999999.99999997,
+          "minimum_selenocentric_radius_m": 19999999.9772227,
+          "required_geocentric_radius_m": 6578136.3,
+          "required_selenocentric_radius_m": 1837400.0
+        }
+      },
+      "functional_dimensionless": 0.03159602288650519,
+      "elapsed_s": 10.550636400002986
+    },
+    "departure": {
+      "status": "completed_stage",
+      "reached_parameter": 1.0,
+      "last_result": "stage_departure/point_0004"
+    },
+    "pazov": {
+      "status": "completed_stage",
+      "phase": "mixed_functional",
+      "hardware_limit_reached": true,
+      "target_alpha": 0.5,
+      "reached_alpha": 0.5,
+      "last_result": "functional/point_0004",
+      "verification": {
+        "passed": true,
+        "position_residual_m": 0.19572749444733364,
+        "velocity_residual_m_s": 4.404764263575385e-06,
+        "trajectory_difference_m": 0.1957274635035721,
+        "velocity_difference_m_s": 4.404764241806e-06,
+        "stored_throttle_error": 0.0,
+        "canonical_boundary_residual": 3.0006516835983904e-09,
+        "method": "LSODA with independent bounded/mass equations",
+        "scope": "Numerical extremal and constraints; no global optimality proof",
+        "departure_norm_m_s": 456.8022449660061,
+        "clearance": {
+          "passed": true,
+          "collision_constraints_enforced": true,
+          "minimum_geocentric_radius_m": 146162141.68579158,
+          "minimum_selenocentric_radius_m": 19999999.98707365,
+          "required_geocentric_radius_m": 6578136.3,
+          "required_selenocentric_radius_m": 1837400.0
+        }
+      },
+      "psi_input": "psi_source",
+      "psi_input_sha256": "3ff0a3abfdfdc8184cc63aa00ffce0ffe2d1b9d2d774ee8393fd9f7cbec56df2"
+    },
+    "psi": {
+      "status": "completed_stage",
+      "phase": "fuel",
+      "reached_alpha": 1.0,
+      "last_result": "fuel/point_0023",
+      "verification": {
+        "passed": true,
+        "position_residual_m": 0.03630194575890094,
+        "velocity_residual_m_s": 8.222872196938039e-07,
+        "trajectory_difference_m": 0.03685191817395657,
+        "velocity_difference_m_s": 8.319388272050203e-07,
+        "stored_throttle_error": 0.0,
+        "stored_throttle_minimum": 0.0,
+        "stored_throttle_maximum": 1.0,
+        "canonical_boundary_residual": 6.117635060289756e-10,
+        "method": "LSODA with independent bounded/mass equations",
+        "scope": "Numerical extremal and constraints; no global optimality proof",
+        "departure_norm_m_s": 457.9624632503582,
+        "clearance": {
+          "passed": true,
+          "collision_constraints_enforced": true,
+          "minimum_geocentric_radius_m": 145942228.19318014,
+          "minimum_selenocentric_radius_m": 20000000.01021028,
+          "required_geocentric_radius_m": 6578136.3,
+          "required_selenocentric_radius_m": 1837400.0
+        },
+        "switching_sign_violation": 6.219026418540188e-12,
+        "switching_node_residual": 6.219026418540188e-12,
+        "minimum_mass_kg": 150.01950726485623,
+        "fuel_kg": 5.980492735143782,
+        "mass_difference_kg": 1.056488230233299e-12,
+        "stored_thrust_error_N": 0.0,
+        "mass_balance_error_kg": 7.389644451905042e-13
+      }
+    }
+  },
+  "last_result": "final",
+  "verification": {
+    "passed": true,
+    "position_residual_m": 0.03630194575890094,
+    "velocity_residual_m_s": 8.222872196938039e-07,
+    "trajectory_difference_m": 0.03685191817395657,
+    "velocity_difference_m_s": 8.319388272050203e-07,
+    "stored_throttle_error": 0.0,
+    "stored_throttle_minimum": 0.0,
+    "stored_throttle_maximum": 1.0,
+    "canonical_boundary_residual": 6.117635060289756e-10,
+    "method": "LSODA with independent bounded/mass equations",
+    "scope": "Numerical extremal and constraints; no global optimality proof",
+    "departure_norm_m_s": 457.9624632503582,
+    "clearance": {
+      "passed": true,
+      "collision_constraints_enforced": true,
+      "minimum_geocentric_radius_m": 145942228.19318014,
+      "minimum_selenocentric_radius_m": 20000000.01021028,
+      "required_geocentric_radius_m": 6578136.3,
+      "required_selenocentric_radius_m": 1837400.0
+    },
+    "switching_sign_violation": 6.219026418540188e-12,
+    "switching_node_residual": 6.219026418540188e-12,
+    "minimum_mass_kg": 150.01950726485623,
+    "fuel_kg": 5.980492735143782,
+    "mass_difference_kg": 1.056488230233299e-12,
+    "stored_thrust_error_N": 0.0,
+    "mass_balance_error_kg": 7.389644451905042e-13
+  },
+  "kiam_verification": {
+    "passed": true,
+    "source": "Unmodified KIAM Astro compiled Fortran equations and published control API",
+    "package_version": "6.1.6",
+    "samples": 101,
+    "maximum_dimensionless_rhs_error": 1.1102230246251565e-16,
+    "maximum_dimensionless_force_error": 2.7755575615628914e-17,
+    "maximum_third_body_decomposition_error": 1.0658141036401503e-14,
+    "nbody_gravity": {
+      "passed": true,
+      "applicable": true,
+      "samples": 31,
+      "maximum_acceleration_error_m_s2": 1.504531045894615e-11,
+      "tolerance_m_s2": 1e-08,
+      "source": "Unmodified KIAM nbp_rv_earth Fortran, native JPLEPH",
+      "package_version": "6.1.6",
+      "scope": "Earth + direct/indirect Moon and Sun point masses; matched gravitational constants; includes local table interpolation error"
+    },
+    "costate_map": "p_r,v(KIAM)=p_r,v/vex; p_m(KIAM)=1+p_m/vex; normalized initial mass=1",
+    "scope": "KIAM central mass-optimal equations/control, plus independent third-body decomposition when present; not a separate global optimization"
+  },
+  "plots": "plots",
+  "arrays_sha256": "3b2b0c8bafc9bfcce20416e6786886a117291ec5663be5e36c8b0052b345da7f"
+}

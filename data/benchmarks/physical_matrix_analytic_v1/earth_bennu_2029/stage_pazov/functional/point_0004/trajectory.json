@@ -1,0 +1,254 @@
+{
+  "case_id": "earth_bennu_2029",
+  "epoch_jd": 2462288.5,
+  "time_scale": "TDB",
+  "center": "Sun",
+  "frame": "ECLIPJ2000",
+  "model": "Pazov bounded acceleration / mass homotopy",
+  "status": "verified_extremal",
+  "stage": "pazov",
+  "mission": {
+    "case_id": "earth_bennu_2029",
+    "departure": "Earth",
+    "target": "Bennu",
+    "launch_tdb": "2029-06-01T00:00:00",
+    "tof_days": 500,
+    "center": "Sun",
+    "mode": "rendezvous",
+    "position_tolerance_m": 1000,
+    "velocity_tolerance_m_s": 0.01,
+    "mass_kg": 156,
+    "departure_mode": "bounded_norm",
+    "vinf_max_m_s": 3000,
+    "vinf_vector_m_s": null,
+    "spacecraft": {
+      "thrust_N": 0.025,
+      "exhaust_velocity_m_s": 20000,
+      "dry_mass_kg": 90
+    },
+    "solver": {
+      "budget_s": 45,
+      "compare_seeds": true,
+      "departure_budget_s": 60,
+      "limit_budget_s": 60,
+      "pazov_budget_s": 90,
+      "psi_budget_s": 120,
+      "bounded_attempt_s": 20
+    },
+    "lunar": null
+  },
+  "scales": {
+    "distance_m": 151689062513.85464,
+    "mu_m3_s2": 1.32712440018e+20
+  },
+  "initial_state_si": [
+    -50903377214.119514,
+    -142893029153.419,
+    9689649.759159332,
+    25939.09123073095,
+    -9874.980658303351,
+    -1442.9193057246514
+  ],
+  "target_state_si": [
+    152720227734.72522,
+    -30433273024.34823,
+    -3763008205.792008,
+    213.58234905685538,
+    30098.63782892703,
+    3177.995986386415
+  ],
+  "costate_convention": "dimensionless [p_r,p_v], maximizing Hamiltonian",
+  "costates_initial": [
+    -0.10032656335485617,
+    -0.2138402850791149,
+    -0.7358355410275488,
+    6.336301878056686e-29,
+    0.0,
+    -1.689488596298267e-28
+  ],
+  "functional_dimensionless": 0.08508579301200106,
+  "chosen_seed": {
+    "source": "ILTT",
+    "lambda_turns": 1.6395373203836114,
+    "kappa": 1.1104211146655834,
+    "route": "shooting",
+    "independent_check": {
+      "position_residual_m": 3.829690459582608,
+      "velocity_residual_m_s": 7.579773363712043e-07,
+      "free_velocity_transversality": 0.05187895701836312,
+      "difference_r_m": 3.7096658258112667,
+      "difference_v_m_s": 7.756170892193791e-07
+    },
+    "nfev": 10,
+    "integrations": 10,
+    "optimizer_success": true,
+    "residual_norm": 6.3390175916692445e-15,
+    "position_residual_m": 0.8305867449415217,
+    "velocity_residual_m_s": 9.099428528627729e-08,
+    "free_velocity_transversality": 0.05187895701698062,
+    "accepted": true
+  },
+  "title": "Earth → Bennu: ограниченное ускорение",
+  "ephemerides": {
+    "Earth": {
+      "body": "earth",
+      "start_jd": 2287184.5,
+      "stop_jd": 2688976.5,
+      "source": "KIAM 6.1.6 / bundled JPLEPH",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "center": "requested",
+      "interpolation": "KIAM native ephemeris",
+      "representation": "body center"
+    },
+    "Bennu": {
+      "body": "bennu",
+      "source": "https://ssd.jpl.nasa.gov/api/horizons.api",
+      "parameters": {
+        "format": "json",
+        "COMMAND": "'101955;'",
+        "CENTER": "'500@10'",
+        "EPHEM_TYPE": "'VECTORS'",
+        "REF_PLANE": "'ECLIPTIC'",
+        "REF_SYSTEM": "'ICRF'",
+        "OUT_UNITS": "'KM-S'",
+        "VEC_CORR": "'NONE'",
+        "CSV_FORMAT": "'YES'",
+        "VEC_TABLE": "'2'",
+        "TIME_TYPE": "'TDB'",
+        "OBJ_DATA": "'YES'",
+        "START_TIME": "'2028-01-01'",
+        "STOP_TIME": "'2035-01-01'",
+        "STEP_SIZE": "'12 h'"
+      },
+      "center": "Sun",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "units": "m,m/s",
+      "start_jd": 2461771.5,
+      "stop_jd": 2464328.5,
+      "knots": 5115,
+      "max_step_days": 0.5,
+      "interpolation": "cubic Hermite, position and velocity from the same polynomial",
+      "arrays_sha256": "2d8bca45de8899f2918f3d7400cbf00bb06028f0df882205c864b9d833aae0f4",
+      "raw_sha256": "cfca7346313e1c81d3066a3a27a368d20a35a287eba1f51d5850be68e265b97b"
+    }
+  },
+  "overlays": [
+    {
+      "array": "departure_orbit_m",
+      "label": "Орбита Earth"
+    },
+    {
+      "array": "target_orbit_m",
+      "label": "Орбита Bennu",
+      "linestyle": "-.",
+      "color": ".65"
+    }
+  ],
+  "markers": [
+    {
+      "label": "Earth, старт",
+      "r_m": [
+        -50903377214.11952,
+        -142893029153.419,
+        9689649.759159332
+      ]
+    },
+    {
+      "label": "Earth, прибытие",
+      "r_m": [
+        140002712128.91962,
+        51685440922.021866,
+        -4562577.622655532
+      ],
+      "hollow": true
+    },
+    {
+      "label": "Bennu",
+      "r_m": [
+        152720227734.72522,
+        -30433273024.34823,
+        -3763008205.792008
+      ],
+      "color": "#df1111",
+      "role": "target"
+    }
+  ],
+  "configuration_sha256": "89113f7103e4a87a7c822dc8e47cfd8f14605d9be27f6722597bef75b2e7d233",
+  "configuration_hash_version": 2,
+  "verification": {
+    "passed": true,
+    "position_residual_m": 70.71007665472412,
+    "velocity_residual_m_s": 1.2559988533699562e-05,
+    "parameter_audit": {
+      "passed": true,
+      "configuration_sha256": "89113f7103e4a87a7c822dc8e47cfd8f14605d9be27f6722597bef75b2e7d233",
+      "configuration_hash_version": 2,
+      "requested": {
+        "mass_kg": 156,
+        "thrust_N": 0.025,
+        "exhaust_velocity_m_s": 20000,
+        "dry_mass_kg": 90,
+        "launch_tdb": "2029-06-01T00:00:00",
+        "tof_days": 500,
+        "departure": "Earth",
+        "target": "Bennu",
+        "mode": "rendezvous"
+      },
+      "recovered_model": {
+        "model_thrust_N": 0.025,
+        "thrust_to_requested_ratio": 1.0,
+        "alpha": 0.5,
+        "beta": 0.0,
+        "variable_mass": false,
+        "hardware_limit_reached": true
+      },
+      "geometry": null,
+      "final_admission": false
+    },
+    "trajectory_difference_m": 70.71007665472412,
+    "velocity_difference_m_s": 1.255998851169202e-05,
+    "stored_throttle_error": 0.0,
+    "stored_throttle_minimum": 0.0,
+    "stored_throttle_maximum": 1.0,
+    "canonical_boundary_residual": 6.305614305831391e-10,
+    "method": "LSODA with independent bounded/mass equations",
+    "scope": "Numerical extremal and constraints; no global optimality proof",
+    "departure_norm_m_s": 2187.537450852172
+  },
+  "schema_version": 1,
+  "arrays_sha256": "87bf3a6c0ec5d82b027a73966a2b84c9b8c6c35d27c5b31f0969d2ab9f30f80a",
+  "departure": {
+    "mode": "bounded_norm",
+    "bound_active": false,
+    "vector_m_s": [
+      -1627.1835402537545,
+      238.64706807601033,
+      -1442.4428592172378
+    ],
+    "norm_m_s": 2187.537450852172,
+    "bound_m_s": 3000
+  },
+  "bounded_model": {
+    "a_max": 0.027785122174597846,
+    "alpha": 0.5,
+    "beta": 0.0,
+    "q": 0.0,
+    "variable_mass": false,
+    "gravity_spec": null
+  },
+  "body_initial_state_si": [
+    -50903377214.119514,
+    -142893029153.419,
+    9689649.759159332,
+    27566.274770984706,
+    -10113.627726379362,
+    -0.47644650741358424
+  ],
+  "hardware_limit_reached": true,
+  "collocation_tolerance": 2e-08,
+  "collocation_derivatives": "analytic central-field",
+  "collocation_nodes": 1406,
+  "collocation_iterations": 14
+}

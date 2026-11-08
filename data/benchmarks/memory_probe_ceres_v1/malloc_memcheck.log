@@ -1,0 +1,32 @@
+==7== Memcheck, a memory error detector
+==7== Copyright (C) 2002-2024, and GNU GPL'd, by Julian Seward et al.
+==7== Using Valgrind-3.24.0 and LibVEX; rerun with -h for copyright info
+==7== Command: python -X faulthandler -m trajectory_pipeline diagnose-step data/benchmarks/parameter_study_analytic_v1/earth_ceres_2030__reference --phase fuel --output runs/memory_probe_ceres_v1/malloc --budget-scale 20 --native-prefix
+==7== Parent PID: 1
+==7== 
+==9== 
+==9== HEAP SUMMARY:
+==9==     in use at exit: 48,013,358 bytes in 376,318 blocks
+==9==   total heap usage: 3,589,437 allocs, 3,213,119 frees, 689,517,601 bytes allocated
+==9== 
+==9== For a detailed leak analysis, rerun with: --leak-check=full
+==9== 
+==9== For lists of detected and suppressed errors, rerun with: -s
+==9== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==7== Warning: set address range perms: large range [0x59ca0040, 0x822b5fc0) (undefined)
+==7== Warning: set address range perms: large range [0x822b6040, 0xaa8cbfc0) (undefined)
+==7== Warning: set address range perms: large range [0x301b5040, 0x444c0000) (undefined)
+==7== Warning: set address range perms: large range [0xaa8cc040, 0xbebd7000) (undefined)
+==7== Warning: set address range perms: large range [0x301b5028, 0x444c0018) (noaccess)
+==7== Warning: set address range perms: large range [0x59ca0028, 0x822b5fd8) (noaccess)
+==7== Warning: set address range perms: large range [0xaa8cc028, 0xbebd7018) (noaccess)
+==7== Warning: set address range perms: large range [0x822b6028, 0xaa8cbfd8) (noaccess)
+==7== 
+==7== HEAP SUMMARY:
+==7==     in use at exit: 8,855,865 bytes in 90,943 blocks
+==7==   total heap usage: 13,702,054 allocs, 13,611,111 frees, 15,528,115,038 bytes allocated
+==7== 
+==7== For a detailed leak analysis, rerun with: --leak-check=full
+==7== 
+==7== For lists of detected and suppressed errors, rerun with: -s
+==7== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

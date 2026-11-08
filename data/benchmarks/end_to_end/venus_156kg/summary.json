@@ -1,0 +1,127 @@
+{
+  "case_id": "earth_venus_2032",
+  "status": "completed",
+  "phase": "final",
+  "stages": {
+    "irt": {
+      "case_id": "earth_venus_2032",
+      "status": "completed_stage",
+      "stage": "irt",
+      "started_utc": "2026-11-05T07:03:58.468136+00:00",
+      "python": "3.11.5",
+      "source_sha256": {
+        "trajectory_pipeline/__init__.py": "b5d69a20b137a938a28e2478dbae0068c3e29e5f6dad0cc95672c5107c6b4842",
+        "trajectory_pipeline/__main__.py": "aff68326b655c874657f62a1dd3c2420e46768e34a96fb9e6c4239212ceccf13",
+        "trajectory_pipeline/bangbang.py": "ef076412d5f3a34f5ead1a02f309108c1007eae0fcf9f6b55758188669d96279",
+        "trajectory_pipeline/bounded.py": "27bc3b1abb607b286c94721e64ff24ed20a8d6c5da1bf27fd035692410934689",
+        "trajectory_pipeline/bounded_model.py": "ba20da85ca5f4a8790697eb033d8b86528a88e01e0265c3ece49435a9cf77a9f",
+        "trajectory_pipeline/continuation.py": "14700fe3c5bc32044119902b40f266929439b8901f3455f4105b52ac1957e2a7",
+        "trajectory_pipeline/data.py": "aebdc031ea5379bcf840081747f2adb833f918588510c8d9b4e81558d495e972",
+        "trajectory_pipeline/departure.py": "d0bab9a19bf0cf95cae1c88c0fa6adebdbcc0a963f85ce14a601dfd0f3225766",
+        "trajectory_pipeline/ephemerides.py": "01b6f771b4adf3e7bac893d619787d4bbb823946cc0dce49b5f588dd8ffa8c95",
+        "trajectory_pipeline/irt.py": "0575b4a320a61d1078248cda1f83252833487c689960382337c4ab83066c5041",
+        "trajectory_pipeline/kiam_verification.py": "a7247aa1ee110b0e3b61e65e2b1e62b6557db6178460ad506ff8246ccb961390",
+        "trajectory_pipeline/pazov.py": "5d7fb24d2b969bcbbc32293998dc5dee23894e4b00f8fea056e6e2707d2a58e6",
+        "trajectory_pipeline/problem.py": "434b251bb2c27ee66b8657a50bdf89ab8e2351a0db03d17d9038231768dad497",
+        "trajectory_pipeline/psi.py": "57e4a80860bd53fad6603a29845b94b3339758aee77ba62a71b07690a9b75dce",
+        "trajectory_pipeline/reference.py": "8408fc0ce798a2147a5602c4d23a24536e90905b855a894ad7495e842caa062c",
+        "trajectory_pipeline/runner.py": "0b31a9c0efbbcc1378840145c1f3d798f1875e23c410f7a22de4c9c375fc7b70",
+        "trajectory_pipeline/verification.py": "bff6bebaec3fcc1f9e378012e9019706591afff7be6538f761abe5a0975c06e9",
+        "trajectory_pipeline/visualization.py": "1b19fae0a76b934b04e885ec3498b9ec80cd75e4b42b7ce4f88fe85ecbc74211",
+        "ILTT/ILTTToolbox.py": "7efe9c86615ca5972ef6bbb601e7e0ce56eb31dca456612871118648b0bd0a9e",
+        "ILTT/continuation_methods.py": "288680b2703460a0a9b67c3f33a00fc6f6ee908c33f9024c1fba0020dba77d6f"
+      },
+      "git_revision": "87db78f3112a4137fbb62657b651c140886cb9e8",
+      "verification": {
+        "passed": true,
+        "method": "LSODA, independently implemented Hamiltonian RHS",
+        "position_residual_m": 44.43798404814577,
+        "velocity_residual_m_s": 1.5067089518778281e-05,
+        "trajectory_difference_m": 41.28769384108256,
+        "velocity_difference_m_s": 1.4004959422535926e-05,
+        "free_velocity_transversality": 0.015034658326768688,
+        "scope": "Numerical extremal and endpoint consistency; not proof of local/global optimality or N-body fidelity"
+      },
+      "functional_dimensionless": 0.004014317066724884,
+      "elapsed_s": 1.6198141000350006
+    },
+    "departure": {
+      "status": "completed_stage",
+      "reached_parameter": 1.0,
+      "last_result": "stage_departure/point_0004"
+    },
+    "pazov": {
+      "status": "completed_stage",
+      "phase": "mixed_functional",
+      "hardware_limit_reached": true,
+      "target_alpha": 0.5,
+      "reached_alpha": 0.5,
+      "last_result": "functional/point_0004",
+      "verification": {
+        "passed": true,
+        "position_residual_m": 24.08881282273068,
+        "velocity_residual_m_s": 7.566444917219393e-06,
+        "trajectory_difference_m": 24.088800090485243,
+        "velocity_difference_m_s": 7.566444909919914e-06,
+        "canonical_boundary_residual": 3.0062309449883e-10,
+        "method": "LSODA with independent bounded/mass equations",
+        "scope": "Numerical extremal and constraints; no global optimality proof",
+        "departure_norm_m_s": 2717.5369993172258
+      }
+    },
+    "psi": {
+      "status": "completed_stage",
+      "phase": "fuel",
+      "reached_alpha": 1.0,
+      "last_result": "fuel/point_0004",
+      "verification": {
+        "passed": true,
+        "position_residual_m": 0.9764982479488383,
+        "velocity_residual_m_s": 2.927377114908698e-07,
+        "trajectory_difference_m": 1.1074058828582873,
+        "velocity_difference_m_s": 2.7513061780406976e-07,
+        "canonical_boundary_residual": 1.3023825723688762e-11,
+        "method": "LSODA with independent bounded/mass equations",
+        "scope": "Numerical extremal and constraints; no global optimality proof",
+        "departure_norm_m_s": 2722.031217660233,
+        "switching_sign_violation": 3.012467722796837e-11,
+        "switching_node_residual": 3.012441661020268e-11,
+        "minimum_mass_kg": 128.34799522452212,
+        "fuel_kg": 27.652004775477877,
+        "mass_balance_error_kg": 1.5987211554602254e-13
+      }
+    }
+  },
+  "last_result": "final",
+  "verification": {
+    "passed": true,
+    "position_residual_m": 0.9764982479488383,
+    "velocity_residual_m_s": 2.927377114908698e-07,
+    "trajectory_difference_m": 1.1074058828582873,
+    "velocity_difference_m_s": 2.7513061780406976e-07,
+    "stored_throttle_error": 0.0,
+    "canonical_boundary_residual": 1.3023825723688762e-11,
+    "method": "LSODA with independent bounded/mass equations",
+    "scope": "Numerical extremal and constraints; no global optimality proof",
+    "departure_norm_m_s": 2722.031217660233,
+    "switching_sign_violation": 3.012467722796837e-11,
+    "switching_node_residual": 3.012441661020268e-11,
+    "minimum_mass_kg": 128.34799522452212,
+    "fuel_kg": 27.652004775477877,
+    "mass_difference_kg": 2.944311461305915e-13,
+    "stored_thrust_error_N": 0.0,
+    "mass_balance_error_kg": 1.5987211554602254e-13
+  },
+  "kiam_verification": {
+    "passed": true,
+    "source": "Unmodified KIAM Astro compiled Fortran equations and published control API",
+    "package_version": "6.1.6",
+    "samples": 100,
+    "maximum_dimensionless_rhs_error": 3.552713678800501e-15,
+    "maximum_dimensionless_force_error": 6.938893903907228e-18,
+    "costate_map": "p_r,v(KIAM)=p_r,v/vex; p_m(KIAM)=1+p_m/vex; normalized initial mass=1",
+    "scope": "Independent physical equations and control at interior samples, not a separate global optimization"
+  },
+  "plots": "plots",
+  "arrays_sha256": "dbece779d378bcb44ef351a8ec2637393db0ab2784841b8ce25a721b90725008"
+}

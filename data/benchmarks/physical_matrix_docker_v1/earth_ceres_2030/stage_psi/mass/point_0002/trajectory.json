@@ -1,0 +1,225 @@
+{
+  "case_id": "earth_ceres_2030",
+  "epoch_jd": 2462533.5,
+  "time_scale": "TDB",
+  "center": "Sun",
+  "frame": "ECLIPJ2000",
+  "model": "Pazov bounded acceleration / mass homotopy",
+  "status": "verified_extremal",
+  "stage": "psi_mass",
+  "mission": {
+    "case_id": "earth_ceres_2030",
+    "departure": "Earth",
+    "target": "Ceres",
+    "launch_tdb": "2030-02-01T00:00:00",
+    "tof_days": 1000,
+    "center": "Sun",
+    "mode": "rendezvous",
+    "position_tolerance_m": 1000,
+    "velocity_tolerance_m_s": 0.01,
+    "mass_kg": 156,
+    "departure_mode": "bounded_norm",
+    "vinf_max_m_s": 3000,
+    "vinf_vector_m_s": null,
+    "spacecraft": {
+      "thrust_N": 0.025,
+      "exhaust_velocity_m_s": 20000,
+      "dry_mass_kg": 90
+    },
+    "solver": {
+      "budget_s": 45,
+      "compare_seeds": true,
+      "departure_budget_s": 60,
+      "limit_budget_s": 60,
+      "pazov_budget_s": 90,
+      "psi_budget_s": 120,
+      "bounded_attempt_s": 20
+    },
+    "lunar": null
+  },
+  "scales": {
+    "distance_m": 147404465290.69543,
+    "mu_m3_s2": 1.32712440018e+20
+  },
+  "initial_state_si": [
+    -98134168181.14728,
+    109989823949.79,
+    -7108047.443185375,
+    -24487.481200124414,
+    -21603.252655794135,
+    1775.1016682133713
+  ],
+  "target_state_si": [
+    -318935657702.30316,
+    -230959789356.2342,
+    51347642259.02177,
+    9548.468422945985,
+    -15853.82918429627,
+    -2264.028857400425
+  ],
+  "costate_convention": "dimensionless [p_r,p_v,p_m] for normalized remaining mass",
+  "costates_initial": [
+    -0.1983346153979852,
+    0.23543281884134376,
+    0.20770092094421022,
+    -0.16229638591070367,
+    -0.15232430562858584,
+    0.16330381517455556,
+    -0.1419339250717191
+  ],
+  "functional_dimensionless": 0.16593279035138184,
+  "chosen_seed": {
+    "source": "ILTT",
+    "lambda_turns": 0.857755709580725,
+    "kappa": 2.807010516673173,
+    "route": "shooting",
+    "independent_check": {
+      "position_residual_m": 161.04581278811997,
+      "velocity_residual_m_s": 8.978879103561344e-06,
+      "free_velocity_transversality": 0.02110018497232198,
+      "difference_r_m": 175.73099867433888,
+      "difference_v_m_s": 9.652478567511317e-06
+    },
+    "nfev": 12,
+    "integrations": 12,
+    "optimizer_success": true,
+    "residual_norm": 1.0460830943465283e-13,
+    "position_residual_m": 15.185638607049981,
+    "velocity_residual_m_s": 6.737152817829898e-07,
+    "free_velocity_transversality": 0.0211001849719355,
+    "accepted": true
+  },
+  "title": "Earth → Ceres: ограниченное ускорение",
+  "ephemerides": {
+    "Earth": {
+      "body": "earth",
+      "start_jd": 2287184.5,
+      "stop_jd": 2688976.5,
+      "source": "KIAM 6.1.6 / bundled JPLEPH",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "center": "requested",
+      "interpolation": "KIAM native ephemeris",
+      "representation": "body center"
+    },
+    "Ceres": {
+      "body": "ceres",
+      "source": "https://ssd.jpl.nasa.gov/api/horizons.api",
+      "parameters": {
+        "format": "json",
+        "COMMAND": "'1;'",
+        "CENTER": "'500@10'",
+        "EPHEM_TYPE": "'VECTORS'",
+        "REF_PLANE": "'ECLIPTIC'",
+        "REF_SYSTEM": "'ICRF'",
+        "OUT_UNITS": "'KM-S'",
+        "VEC_CORR": "'NONE'",
+        "CSV_FORMAT": "'YES'",
+        "VEC_TABLE": "'2'",
+        "TIME_TYPE": "'TDB'",
+        "OBJ_DATA": "'YES'",
+        "START_TIME": "'2028-01-01'",
+        "STOP_TIME": "'2035-01-01'",
+        "STEP_SIZE": "'12 h'"
+      },
+      "center": "Sun",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "units": "m,m/s",
+      "start_jd": 2461771.5,
+      "stop_jd": 2464328.5,
+      "knots": 5115,
+      "max_step_days": 0.5,
+      "interpolation": "cubic Hermite, position and velocity from the same polynomial",
+      "arrays_sha256": "2b6ac907853d726b865b01d10a953907cbb203aa87356dfabc33d3114b686749",
+      "raw_sha256": "a5af177b8a121a4c8e19914da131159da1ec3b124411a6548676c6c68e6aea8c"
+    }
+  },
+  "overlays": [
+    {
+      "array": "departure_orbit_m",
+      "label": "Орбита Earth"
+    },
+    {
+      "array": "target_orbit_m",
+      "label": "Орбита Ceres",
+      "linestyle": "-.",
+      "color": ".65"
+    }
+  ],
+  "markers": [
+    {
+      "label": "Earth, старт",
+      "r_m": [
+        -98134168181.14728,
+        109989823949.79,
+        -7108047.443185374
+      ]
+    },
+    {
+      "label": "Earth, прибытие",
+      "r_m": [
+        122261727091.79056,
+        84538908739.61858,
+        -6610953.414402028
+      ],
+      "hollow": true
+    },
+    {
+      "label": "Ceres",
+      "r_m": [
+        -318935657702.30316,
+        -230959789356.2342,
+        51347642259.02177
+      ],
+      "color": "#df1111",
+      "role": "target"
+    }
+  ],
+  "verification": {
+    "passed": true,
+    "position_residual_m": 519.022821951436,
+    "velocity_residual_m_s": 1.935234196862384e-05,
+    "trajectory_difference_m": 519.022821951436,
+    "velocity_difference_m_s": 2.2023606057511643e-05,
+    "stored_throttle_error": 0.0,
+    "stored_throttle_minimum": 0.0,
+    "stored_throttle_maximum": 1.0,
+    "canonical_boundary_residual": 3.5810197328452763e-09,
+    "method": "LSODA with independent bounded/mass equations",
+    "scope": "Numerical extremal and constraints; no global optimality proof",
+    "departure_norm_m_s": 2999.999999999999,
+    "minimum_mass_kg": 109.99654301080128
+  },
+  "schema_version": 1,
+  "arrays_sha256": "0acdc88fe3e1b8905a06c749326a0382e8e3c754ad385d668859d2989854907d",
+  "departure": {
+    "mode": "bounded_norm",
+    "bound_active": true,
+    "vector_m_s": [
+      -1763.6866372045952,
+      -1655.3193150365005,
+      1774.634444332982
+    ],
+    "norm_m_s": 2999.999999999999,
+    "bound_m_s": 3000
+  },
+  "bounded_model": {
+    "a_max": 0.026237657322759737,
+    "alpha": 0.5,
+    "beta": 0.6000000000000001,
+    "q": 0.03936366772285469,
+    "variable_mass": true,
+    "gravity_spec": null
+  },
+  "body_initial_state_si": [
+    -98134168181.14728,
+    109989823949.79,
+    -7108047.443185375,
+    -22723.79456291982,
+    -19947.933340757634,
+    0.46722388038938334
+  ],
+  "hardware_limit_reached": true,
+  "collocation_tolerance": 2e-08
+}

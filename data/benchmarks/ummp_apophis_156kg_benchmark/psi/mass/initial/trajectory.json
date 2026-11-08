@@ -1,0 +1,221 @@
+{
+  "case_id": "apophis_156kg_historical_boundary",
+  "epoch_jd": 2462182.0,
+  "time_scale": "TDB",
+  "center": "Sun",
+  "frame": "ECLIPJ2000",
+  "model": "Pazov bounded acceleration / mass homotopy",
+  "status": "verified_extremal",
+  "stage": "psi_mass",
+  "mission": {
+    "case_id": "apophis_156kg_historical_boundary",
+    "departure": "Earth",
+    "target": "Apophis",
+    "launch_tdb": "2029-02-14T12:00:00",
+    "tof_days": 422.6618015373437,
+    "center": "Sun",
+    "mode": "rendezvous",
+    "position_tolerance_m": 1000.0,
+    "velocity_tolerance_m_s": 0.01,
+    "mass_kg": 156.0,
+    "departure_mode": "fixed_vector",
+    "vinf_max_m_s": 3000.0,
+    "vinf_vector_m_s": [
+      2685.458683706982,
+      -1178.776700839473,
+      631.5038777875994
+    ],
+    "spacecraft": {
+      "thrust_N": 0.025,
+      "exhaust_velocity_m_s": 20000.0,
+      "dry_mass_kg": 90.0
+    },
+    "solver": {
+      "budget_s": 45
+    },
+    "lunar": null
+  },
+  "scales": {
+    "distance_m": 147829272430.1957,
+    "mu_m3_s2": 1.3271243994000002e+20
+  },
+  "initial_state_si": [
+    -125110365209.94365,
+    78745731770.56009,
+    -5674023.456175689,
+    -13673.274352260903,
+    -26491.748515806274,
+    631.8656894074098
+  ],
+  "target_state_si": [
+    -157799640778.01517,
+    79446746756.84973,
+    -5275279680.872995,
+    -7555.50011494695,
+    -25298.357594645873,
+    782.4675547729757
+  ],
+  "costate_convention": "dimensionless [p_r,p_v,p_m] for normalized remaining mass",
+  "costates_initial": [
+    -0.23785199913085772,
+    0.19233842951419766,
+    -0.3544448537806176,
+    -0.0398940021683403,
+    -0.14283481874984502,
+    0.05550878711399894,
+    0.0
+  ],
+  "functional_dimensionless": 0.04349867233928157,
+  "chosen_seed": {
+    "source": "ILTT",
+    "lambda_turns": 1.0844516617712652,
+    "kappa": 1.1165974795549598,
+    "route": "shooting",
+    "independent_check": {
+      "position_residual_m": 4.183663391849378,
+      "velocity_residual_m_s": 6.817162841482465e-07,
+      "free_velocity_transversality": 0.036088675323681436,
+      "difference_r_m": 4.995216171692656,
+      "difference_v_m_s": 8.378156999552691e-07
+    },
+    "nfev": 10,
+    "integrations": 10,
+    "optimizer_success": true,
+    "residual_norm": 4.389430425482004e-15,
+    "position_residual_m": 0.8303023476061294,
+    "velocity_residual_m_s": 1.6345992443353605e-07,
+    "free_velocity_transversality": 0.036088675322693435,
+    "accepted": true
+  },
+  "title": "Earth → Apophis: ограниченное ускорение",
+  "ephemerides": {
+    "Earth": {
+      "reference_sha256": "d3389a001f164ecc480b9694f671b211a9742eea8c9abe7fe1f300ece2eb6e09",
+      "epoch_jd": 2462182,
+      "scope": "frozen historical boundary and plot overlay"
+    },
+    "Apophis": {
+      "reference_sha256": "d3389a001f164ecc480b9694f671b211a9742eea8c9abe7fe1f300ece2eb6e09",
+      "epoch_jd": 2462604.6618015375,
+      "scope": "frozen historical boundary and plot overlay"
+    }
+  },
+  "overlays": [
+    {
+      "array": "departure_orbit_m",
+      "label": "Орбита Earth"
+    },
+    {
+      "array": "target_orbit_m",
+      "label": "Орбита Apophis",
+      "linestyle": "-.",
+      "color": ".65"
+    }
+  ],
+  "markers": [
+    {
+      "label": "Earth, старт",
+      "r_m": [
+        -125110365209.94365,
+        78745731770.5601,
+        -5674023.456175689
+      ]
+    },
+    {
+      "label": "Earth, прибытие",
+      "r_m": [
+        -125109608384.11504,
+        78746902846.20244,
+        -5674040.194774581
+      ],
+      "hollow": true
+    },
+    {
+      "label": "Apophis",
+      "r_m": [
+        -157799640778.01517,
+        79446746756.84973,
+        -5275279680.872995
+      ],
+      "color": "#df1111",
+      "role": "target"
+    }
+  ],
+  "verification": {
+    "passed": true,
+    "position_residual_m": 171.46468667081336,
+    "velocity_residual_m_s": 2.682996490297772e-05,
+    "parameter_audit": {
+      "passed": true,
+      "configuration_sha256": "261e3fc9cadaebdb4dacf3b0c4097cc270c44b6c64953d6f875916e8ffe6923f",
+      "configuration_hash_version": 2,
+      "requested": {
+        "mass_kg": 156.0,
+        "thrust_N": 0.025,
+        "exhaust_velocity_m_s": 20000.0,
+        "dry_mass_kg": 90.0,
+        "launch_tdb": "2029-02-14T12:00:00",
+        "tof_days": 422.6618015373437,
+        "departure": "Earth",
+        "target": "Apophis",
+        "mode": "rendezvous"
+      },
+      "recovered_model": {
+        "model_thrust_N": 0.025,
+        "thrust_to_requested_ratio": 1.0,
+        "alpha": 0.5,
+        "beta": 0.0,
+        "variable_mass": true,
+        "hardware_limit_reached": true,
+        "exhaust_velocity_m_s": 20000.0
+      },
+      "geometry": null,
+      "final_admission": false
+    },
+    "trajectory_difference_m": 171.46468667081336,
+    "velocity_difference_m_s": 2.682996490297772e-05,
+    "stored_throttle_error": 0.0,
+    "stored_throttle_minimum": 0.0,
+    "stored_throttle_maximum": 1.0,
+    "canonical_boundary_residual": 1.4653229636127738e-09,
+    "method": "LSODA with independent bounded/mass equations",
+    "scope": "Numerical extremal and constraints; no global optimality proof",
+    "departure_norm_m_s": 3000.0000000000005,
+    "minimum_mass_kg": 156.0
+  },
+  "boundary_reference_sha256": "d3389a001f164ecc480b9694f671b211a9742eea8c9abe7fe1f300ece2eb6e09",
+  "schema_version": 1,
+  "arrays_sha256": "135e2b2a6b30b48844316cb39fb0ce8701d74f3d1be7ec6649aa28b8deb8b251",
+  "departure": {
+    "mode": "fixed_vector",
+    "bound_active": false,
+    "vector_m_s": [
+      2685.45868370698,
+      -1178.7767008394767,
+      631.5038777875995
+    ],
+    "norm_m_s": 3000.0000000000005,
+    "bound_m_s": 3000.0
+  },
+  "bounded_model": {
+    "a_max": 0.026389104649777784,
+    "alpha": 0.5,
+    "beta": 0.0,
+    "q": 0.039533954391942135,
+    "variable_mass": true,
+    "gravity_spec": null
+  },
+  "body_initial_state_si": [
+    -125110365209.94365,
+    78745731770.56009,
+    -5674023.456175689,
+    -16358.733035967884,
+    -25312.971814966797,
+    0.36181161981028254
+  ],
+  "hardware_limit_reached": true,
+  "collocation_tolerance": 2e-08,
+  "collocation_derivatives": "analytic central-field",
+  "collocation_nodes": 1189,
+  "collocation_iterations": 12
+}

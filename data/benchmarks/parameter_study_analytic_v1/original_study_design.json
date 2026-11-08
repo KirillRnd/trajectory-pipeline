@@ -1,0 +1,46 @@
+{
+  "base_matrix": "configs/physical_matrix.json",
+  "base_cases": [
+    "earth_venus_2032",
+    "earth_mars_2028",
+    "earth_apophis_2029",
+    "earth_ceres_2030"
+  ],
+  "variants": [
+    {
+      "name": "reference",
+      "multiply": {}
+    },
+    {
+      "name": "thrust_x2",
+      "multiply": {
+        "spacecraft.thrust_N": 2
+      }
+    },
+    {
+      "name": "exhaust_x2",
+      "multiply": {
+        "spacecraft.exhaust_velocity_m_s": 2
+      }
+    },
+    {
+      "name": "mass_x2",
+      "multiply": {
+        "mass_kg": 2,
+        "spacecraft.dry_mass_kg": 2
+      }
+    },
+    {
+      "name": "launch_plus_90d",
+      "multiply": {},
+      "launch_shift_days": 90
+    },
+    {
+      "name": "duration_x1p2",
+      "multiply": {
+        "tof_days": 1.2
+      }
+    }
+  ],
+  "purpose": "Balanced common-parameter study. Same six variants and solver policy for every base mission. Mass variant preserves dry-mass fraction. No case-specific solver or hardware tuning."
+}

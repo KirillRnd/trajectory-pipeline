@@ -1,0 +1,208 @@
+{
+  "case_id": "date_000000",
+  "mission": {
+    "case_id": "date_000000",
+    "departure": "Earth",
+    "target": "Mars",
+    "launch_tdb": "2030-11-28T00:00:00",
+    "tof_days": 500,
+    "center": "Sun",
+    "mode": "rendezvous",
+    "position_tolerance_m": 1000,
+    "velocity_tolerance_m_s": 0.01,
+    "mass_kg": 156,
+    "departure_mode": "bounded_norm",
+    "vinf_max_m_s": 3000,
+    "vinf_vector_m_s": null,
+    "spacecraft": {
+      "thrust_N": 0.025,
+      "exhaust_velocity_m_s": 20000,
+      "dry_mass_kg": 90
+    },
+    "solver": {
+      "budget_s": 45,
+      "compare_seeds": true,
+      "departure_budget_s": 60,
+      "limit_budget_s": 60,
+      "pazov_budget_s": 90,
+      "psi_budget_s": 120,
+      "bounded_attempt_s": 20
+    },
+    "lunar": null
+  },
+  "scales": {
+    "distance_m": 147607237992.47806,
+    "mu_m3_s2": 1.32712440018e+20
+  },
+  "epoch_jd": 2462833.5,
+  "center": "Sun",
+  "time_scale": "TDB",
+  "frame": "ECLIPJ2000",
+  "body_initial_state_si": [
+    61552198604.361374,
+    134161184606.17508,
+    -9990251.218946563,
+    -27573.02346518541,
+    12307.498052281331,
+    -1.7102273394761531
+  ],
+  "target_state_si": [
+    99892039527.32806,
+    201632478527.29416,
+    1777399738.9717133,
+    -20794.652941829052,
+    12816.970999909214,
+    778.2656004834635
+  ],
+  "configuration_sha256": "ab50080c2dcf316eaa4d59e12833cb60a1de9f05352cd34a412742af91161295",
+  "stage": "psi",
+  "status": "verified_extremal",
+  "bounded_model": {
+    "a_max": 0.026309893126452877,
+    "alpha": 1.0,
+    "beta": 1.0,
+    "q": 0.03944491989138243,
+    "variable_mass": true,
+    "gravity_spec": null
+  },
+  "initial_state_si": [
+    61552198604.361374,
+    134161184606.17508,
+    -9990251.218946563,
+    -29948.095891668065,
+    11411.096968752921,
+    1030.571941914507
+  ],
+  "costates_initial": [
+    0.03704199934610028,
+    0.16017108867318727,
+    0.09544798217256946,
+    0.0,
+    0.0,
+    0.0,
+    -0.1357807900248506
+  ],
+  "model": "physical constant thrust and exhaust, variable mass",
+  "functional_dimensionless": 0.11456102024165478,
+  "hardware_limit_reached": true,
+  "title": "Earth → Mars: ПСИ 156 кг",
+  "costate_convention": "dimensionless [p_r,p_v,p_m] for normalized remaining mass",
+  "departure": {
+    "mode": "bounded_norm",
+    "bound_active": false,
+    "vector_m_s": [
+      -2375.072426482653,
+      -896.4010835284098,
+      1032.2821692539833
+    ],
+    "norm_m_s": 2740.458065825641,
+    "bound_m_s": 3000
+  },
+  "switch_times_s": [
+    13604925.186130896,
+    35039923.43943625
+  ],
+  "initial_throttle": 0.0,
+  "bangbang_corrector": {
+    "nfev": 7,
+    "residual_norm": 4.7970395498007935e-14,
+    "optimizer_success": true
+  },
+  "verification": {
+    "passed": true,
+    "position_residual_m": 0.9515289779808617,
+    "velocity_residual_m_s": 1.3188008490933955e-07,
+    "parameter_audit": {
+      "passed": true,
+      "configuration_sha256": "ab50080c2dcf316eaa4d59e12833cb60a1de9f05352cd34a412742af91161295",
+      "configuration_hash_version": 2,
+      "requested": {
+        "mass_kg": 156,
+        "thrust_N": 0.025,
+        "exhaust_velocity_m_s": 20000,
+        "dry_mass_kg": 90,
+        "launch_tdb": "2030-11-28T00:00:00",
+        "tof_days": 500,
+        "departure": "Earth",
+        "target": "Mars",
+        "mode": "rendezvous"
+      },
+      "recovered_model": {
+        "model_thrust_N": 0.025,
+        "thrust_to_requested_ratio": 1.0,
+        "alpha": 1.0,
+        "beta": 1.0,
+        "variable_mass": true,
+        "hardware_limit_reached": true,
+        "exhaust_velocity_m_s": 20000.0
+      },
+      "geometry": null,
+      "final_admission": true
+    },
+    "trajectory_difference_m": 0.9458679217592944,
+    "velocity_difference_m_s": 1.4176305815704086e-07,
+    "stored_throttle_error": 0.0,
+    "stored_throttle_minimum": 0.0,
+    "stored_throttle_maximum": 1.0,
+    "canonical_boundary_residual": 7.837226263400643e-12,
+    "method": "LSODA with independent bounded/mass equations",
+    "scope": "Numerical extremal and constraints; no global optimality proof",
+    "departure_norm_m_s": 2740.458065825641,
+    "switching_sign_violation": 1.1087242332165406e-11,
+    "switching_node_residual": 1.1087242332165406e-11,
+    "minimum_mass_kg": 129.20625218336812,
+    "fuel_kg": 26.79374781663187,
+    "mass_difference_kg": 1.9051427102567686e-13,
+    "stored_thrust_error_N": 0.0,
+    "mass_balance_error_kg": 1.7408297026122455e-13
+  },
+  "parameter_audit": {
+    "passed": true,
+    "configuration_sha256": "ab50080c2dcf316eaa4d59e12833cb60a1de9f05352cd34a412742af91161295",
+    "configuration_hash_version": 2,
+    "requested": {
+      "mass_kg": 156,
+      "thrust_N": 0.025,
+      "exhaust_velocity_m_s": 20000,
+      "dry_mass_kg": 90,
+      "launch_tdb": "2030-11-28T00:00:00",
+      "tof_days": 500,
+      "departure": "Earth",
+      "target": "Mars",
+      "mode": "rendezvous"
+    },
+    "recovered_model": {
+      "model_thrust_N": 0.025,
+      "thrust_to_requested_ratio": 1.0,
+      "alpha": 1.0,
+      "beta": 1.0,
+      "variable_mass": true,
+      "hardware_limit_reached": true,
+      "exhaust_velocity_m_s": 20000.0
+    },
+    "geometry": {
+      "epoch_jd": 2462833.5,
+      "arrival_jd": 2463333.5,
+      "departure_position_difference_m": 0.0,
+      "arrival_position_difference_m": 0.0
+    },
+    "final_admission": true
+  },
+  "kiam_verification": {
+    "passed": true,
+    "source": "Unmodified KIAM Astro compiled Fortran equations and published control API",
+    "package_version": "6.1.6",
+    "samples": 101,
+    "maximum_dimensionless_rhs_error": 2.7755575615628914e-16,
+    "maximum_dimensionless_force_error": 6.938893903907228e-18,
+    "maximum_third_body_decomposition_error": 0.0,
+    "nbody_gravity": {
+      "passed": true,
+      "applicable": false
+    },
+    "costate_map": "p_r,v(KIAM)=p_r,v/vex; p_m(KIAM)=1+p_m/vex; normalized initial mass=1",
+    "scope": "KIAM central mass-optimal equations/control, plus independent third-body decomposition when present; not a separate global optimization"
+  },
+  "schema_version": 1,
+  "arrays_sha256": "ee03f0d63621ad38617a19ddec0053b2ec4938c0e06462a407ce00b7fabc5892"
+}

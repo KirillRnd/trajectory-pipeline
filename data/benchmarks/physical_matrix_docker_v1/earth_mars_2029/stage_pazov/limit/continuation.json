@@ -1,0 +1,175 @@
+{
+  "profile": {
+    "mission": {
+      "case_id": "earth_mars_2029",
+      "departure": "Earth",
+      "target": "Mars",
+      "launch_tdb": "2029-09-01T00:00:00",
+      "tof_days": 300,
+      "center": "Sun",
+      "mode": "rendezvous",
+      "position_tolerance_m": 1000,
+      "velocity_tolerance_m_s": 0.01,
+      "mass_kg": 156,
+      "departure_mode": "bounded_norm",
+      "vinf_max_m_s": 3000,
+      "vinf_vector_m_s": null,
+      "spacecraft": {
+        "thrust_N": 0.025,
+        "exhaust_velocity_m_s": 20000,
+        "dry_mass_kg": 90
+      },
+      "solver": {
+        "budget_s": 45,
+        "compare_seeds": true,
+        "departure_budget_s": 60,
+        "limit_budget_s": 60,
+        "pazov_budget_s": 90,
+        "psi_budget_s": 120,
+        "bounded_attempt_s": 20
+      },
+      "lunar": null
+    },
+    "source_arrays_sha256": "d343c9d92c62813d7eda6376321756272b3a9bb4c8daff074aa34bb5550afc56",
+    "target_a_max": 0.027526972045656697,
+    "min_step": 0.0001,
+    "max_step": 0.2,
+    "stage": "pazov_limit",
+    "budget_s": 60
+  },
+  "last_point": "point_0014",
+  "sessions": [
+    {
+      "started_utc": "2026-11-05T09:30:44.728150+00:00",
+      "source_sha256": {
+        "trajectory_pipeline/__init__.py": "b5d69a20b137a938a28e2478dbae0068c3e29e5f6dad0cc95672c5107c6b4842",
+        "trajectory_pipeline/__main__.py": "d50f27c08ae6a5c7616445310394bea029c7ef3555b1054cec3b14b65473a1aa",
+        "trajectory_pipeline/bangbang.py": "639d11da11f94b79af357681fb626a6a592067d22f2b976682134ce54ada67af",
+        "trajectory_pipeline/bounded.py": "2204ac2e22cd6ad1c8b4f6b5c0dd31f6f7c60932ee1f33496957aa315e6a1307",
+        "trajectory_pipeline/bounded_model.py": "f017ec4220701126800970dadddc323b38c2538cf8671b13132c7f875cc3d121",
+        "trajectory_pipeline/continuation.py": "14700fe3c5bc32044119902b40f266929439b8901f3455f4105b52ac1957e2a7",
+        "trajectory_pipeline/data.py": "aebdc031ea5379bcf840081747f2adb833f918588510c8d9b4e81558d495e972",
+        "trajectory_pipeline/departure.py": "a10c992b80ffd4745e031ac007ce6f45fe15f5222ca25434cf489d3bac135de7",
+        "trajectory_pipeline/ephemerides.py": "01b6f771b4adf3e7bac893d619787d4bbb823946cc0dce49b5f588dd8ffa8c95",
+        "trajectory_pipeline/gravity.py": "716b7dda8f5268c7c65c4014cb7d96bf8008140c6633dcbb0ee6594364d658ab",
+        "trajectory_pipeline/irt.py": "8c706db0392c52cb0f8c4d9461be635a8a423b30af20a1e4511b35e923e21b30",
+        "trajectory_pipeline/kiam_verification.py": "08bc4b66d22208063de9e2c194821d963cfa9af3731d30ce4845b4a52e06a61a",
+        "trajectory_pipeline/lunar.py": "721ee63036e945c1d6dd767985b9b32c0f48de23fbda78814e2c9fba970de904",
+        "trajectory_pipeline/matrix_report.py": "f4c32aee328201a90e18f7d77cf346b33dcdaa5b741d92e73a4fadeb706d4f30",
+        "trajectory_pipeline/pazov.py": "19c4c65102bc6f67f489761bfd9042aede87c2dbe6bbe98d4f793a7a381f9155",
+        "trajectory_pipeline/problem.py": "2210125a2292bf99cf10b0d5856266489209231de9bdbf90c060f9f6cf70a4f7",
+        "trajectory_pipeline/psi.py": "de824c4f1287282a73e5b8cc6cdb530a82073d8812da9cf81329c23b4edd3757",
+        "trajectory_pipeline/reference.py": "8408fc0ce798a2147a5602c4d23a24536e90905b855a894ad7495e842caa062c",
+        "trajectory_pipeline/runner.py": "33b2c5e26d04b0593efe9f6006bab4d5e73afe94d4e2a0930cdbfd7e6ea7068e",
+        "trajectory_pipeline/runtime.py": "81dfded64ae214fc00e611dff44b66a9298edfc0cef367368792860c64eafdbb",
+        "trajectory_pipeline/verification.py": "710cd5bbc9b193d32a9536e26aec3769c5ccf1ec4f3fafd761b32b11f78d7af9",
+        "trajectory_pipeline/visualization.py": "db334e71600889fad60b9a0694573d1e34c617ab7f2ac837b1deaf6370d43c01",
+        "ILTT/continuation_methods.py": "288680b2703460a0a9b67c3f33a00fc6f6ee908c33f9024c1fba0020dba77d6f"
+      }
+    }
+  ],
+  "status": "partial",
+  "reached_parameter": 0.4905761718750001,
+  "next_step": 0.0009887695312500002,
+  "history": [
+    {
+      "parameter": 0.2,
+      "step": 0.2,
+      "accepted": true,
+      "accepted_parameter": 0.2
+    },
+    {
+      "parameter": 0.4,
+      "step": 0.2,
+      "accepted": true,
+      "accepted_parameter": 0.4
+    },
+    {
+      "parameter": 0.6000000000000001,
+      "step": 0.2,
+      "accepted": false,
+      "message": "RuntimeError: active: The maximum number of mesh nodes is exceeded.; active shooting: Bounded shooting budget reached; free: Inactive departure branch is outside the allowed excess ball"
+    },
+    {
+      "parameter": 0.5,
+      "step": 0.1,
+      "accepted": false,
+      "message": "RuntimeError: active: The maximum number of mesh nodes is exceeded.; active shooting: Bounded shooting budget reached; free: Inactive departure branch is outside the allowed excess ball"
+    },
+    {
+      "parameter": 0.45,
+      "step": 0.05,
+      "accepted": true,
+      "accepted_parameter": 0.45
+    },
+    {
+      "parameter": 0.525,
+      "step": 0.07500000000000001,
+      "accepted": false,
+      "message": "RuntimeError: active: The maximum number of mesh nodes is exceeded.; active shooting: Bounded shooting replay failed: {'passed': False, 'position_residual_m': 2587736359.782868, 'velocity_residual_m_s': 914.560127670643, 'trajectory_difference_m': 35.72575023809257, 'velocity_difference_m_s': 5.049825428585709e-06, 'stored_throttle_error': 0.0, 'stored_throttle_minimum': 0.5828663396056515, 'stored_throttle_maximum': 1.0, 'canonical_boundary_residual': 0.04818732878301211, 'method': 'LSODA with independent bounded/mass equations', 'scope': 'Numerical extremal and constraints; no global optimality proof', 'departure_norm_m_s': 3851.882266325309}; free: Inactive departure branch is outside the allowed excess ball"
+    },
+    {
+      "parameter": 0.48750000000000004,
+      "step": 0.037500000000000006,
+      "accepted": true,
+      "accepted_parameter": 0.48750000000000004
+    },
+    {
+      "parameter": 0.5437500000000001,
+      "step": 0.05625000000000001,
+      "accepted": false,
+      "message": "RuntimeError: active: The maximum number of mesh nodes is exceeded.; active shooting: Bounded shooting replay failed: {'passed': False, 'position_residual_m': 3933243039.9084635, 'velocity_residual_m_s': 1408.4748020684397, 'trajectory_difference_m': 25.374140570509578, 'velocity_difference_m_s': 3.051629742798063e-06, 'stored_throttle_error': 0.0, 'stored_throttle_minimum': 0.653075138048524, 'stored_throttle_maximum': 1.0, 'canonical_boundary_residual': 0.07160823772120636, 'method': 'LSODA with independent bounded/mass equations', 'scope': 'Numerical extremal and constraints; no global optimality proof', 'departure_norm_m_s': 4162.785259078504}; free: Inactive departure branch is outside the allowed excess ball"
+    },
+    {
+      "parameter": 0.515625,
+      "step": 0.028125000000000004,
+      "accepted": false,
+      "message": "RuntimeError: active: The maximum number of mesh nodes is exceeded.; active shooting: Bounded shooting replay failed: {'passed': False, 'position_residual_m': 1811155599.1333761, 'velocity_residual_m_s': 633.270965949122, 'trajectory_difference_m': 46.173863966029906, 'velocity_difference_m_s': 6.878555820509743e-06, 'stored_throttle_error': 0.0, 'stored_throttle_minimum': 0.6487668585179736, 'stored_throttle_maximum': 1.0, 'canonical_boundary_residual': 0.034162658007660114, 'method': 'LSODA with independent bounded/mass equations', 'scope': 'Numerical extremal and constraints; no global optimality proof', 'departure_norm_m_s': 3638.0758570642124}; free: Inactive departure branch is outside the allowed excess ball"
+    },
+    {
+      "parameter": 0.5015625,
+      "step": 0.014062500000000002,
+      "accepted": false,
+      "message": "RuntimeError: active: The maximum number of mesh nodes is exceeded.; active shooting: Bounded shooting replay failed: {'passed': False, 'position_residual_m': 920476240.4812301, 'velocity_residual_m_s': 319.3021188429648, 'trajectory_difference_m': 33.19236631859925, 'velocity_difference_m_s': 5.043502166097922e-06, 'stored_throttle_error': 0.0, 'stored_throttle_minimum': 0.5900913432233347, 'stored_throttle_maximum': 1.0, 'canonical_boundary_residual': 0.018023052011029345, 'method': 'LSODA with independent bounded/mass equations', 'scope': 'Numerical extremal and constraints; no global optimality proof', 'departure_norm_m_s': 3366.116386123316}; free: Inactive departure branch is outside the allowed excess ball"
+    },
+    {
+      "parameter": 0.49453125000000003,
+      "step": 0.007031250000000001,
+      "accepted": false,
+      "message": "RuntimeError: active: The maximum number of mesh nodes is exceeded.; active shooting: Bounded shooting replay failed: {'passed': False, 'position_residual_m': 515954117.7481387, 'velocity_residual_m_s': 178.4037154365984, 'trajectory_difference_m': 22.521491852182066, 'velocity_difference_m_s': 3.6575845620854877e-06, 'stored_throttle_error': 0.0, 'stored_throttle_minimum': 0.5642516086255701, 'stored_throttle_maximum': 1.0, 'canonical_boundary_residual': 0.010358834015524043, 'method': 'LSODA with independent bounded/mass equations', 'scope': 'Numerical extremal and constraints; no global optimality proof', 'departure_norm_m_s': 3220.4352167896086}; free: Inactive departure branch is outside the allowed excess ball"
+    },
+    {
+      "parameter": 0.49101562500000007,
+      "step": 0.0035156250000000005,
+      "accepted": false,
+      "message": "RuntimeError: active: The maximum number of mesh nodes is exceeded.; active shooting: Bounded shooting replay failed: {'passed': False, 'position_residual_m': 300954754.90277517, 'velocity_residual_m_s': 103.84939269090063, 'trajectory_difference_m': 24.008787471148292, 'velocity_difference_m_s': 3.6285438582737366e-06, 'stored_throttle_error': 0.0, 'stored_throttle_minimum': 0.5655506186337929, 'stored_throttle_maximum': 1.0, 'canonical_boundary_residual': 0.006126949999789831, 'method': 'LSODA with independent bounded/mass equations', 'scope': 'Numerical extremal and constraints; no global optimality proof', 'departure_norm_m_s': 3133.834685721259}; free: Inactive departure branch is outside the allowed excess ball"
+    },
+    {
+      "parameter": 0.48925781250000006,
+      "step": 0.0017578125000000003,
+      "accepted": true,
+      "accepted_parameter": 0.48925781250000006
+    },
+    {
+      "parameter": 0.49189453125000004,
+      "step": 0.00263671875,
+      "accepted": false,
+      "message": "RuntimeError: active: The maximum number of mesh nodes is exceeded.; active shooting: Bounded shooting replay failed: {'passed': False, 'position_residual_m': 206173876.49269587, 'velocity_residual_m_s': 70.82512077300039, 'trajectory_difference_m': 23.03106089571108, 'velocity_difference_m_s': 3.395535728552141e-06, 'stored_throttle_error': 0.0, 'stored_throttle_minimum': 0.6754688967112042, 'stored_throttle_maximum': 1.0, 'canonical_boundary_residual': 0.00416950249911822, 'method': 'LSODA with independent bounded/mass equations', 'scope': 'Numerical extremal and constraints; no global optimality proof', 'departure_norm_m_s': 3091.480238552504}; free: Inactive departure branch is outside the allowed excess ball"
+    },
+    {
+      "parameter": 0.4905761718750001,
+      "step": 0.001318359375,
+      "accepted": true,
+      "accepted_parameter": 0.4905761718750001
+    },
+    {
+      "parameter": 0.49255371093750006,
+      "step": 0.0019775390625000003,
+      "accepted": false,
+      "message": "RuntimeError: active: The maximum number of mesh nodes is exceeded.; active shooting: Bounded shooting budget reached; free: Bounded collocation budget reached"
+    }
+  ],
+  "elapsed_s_current_session": 60.00539662298979,
+  "attempts_current_session": 16,
+  "stop_reason": "time_budget"
+}

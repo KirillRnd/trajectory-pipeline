@@ -1,0 +1,228 @@
+{
+  "case_id": "mars_spiral_impulse_dry90",
+  "epoch_jd": 2462836.5,
+  "time_scale": "TDB",
+  "center": "Sun",
+  "frame": "ECLIPJ2000",
+  "model": "IRT two-body minimum integral acceleration squared / 2",
+  "status": "verified_extremal",
+  "stage": "departure",
+  "mission": {
+    "case_id": "mars_spiral_impulse_dry90",
+    "departure": "Earth",
+    "target": "Mars",
+    "launch_tdb": "2030-12-01T00:00:00",
+    "tof_days": 500,
+    "center": "Sun",
+    "mode": "rendezvous",
+    "position_tolerance_m": 1000,
+    "velocity_tolerance_m_s": 0.01,
+    "mass_kg": 108.51264299252456,
+    "departure_mode": "fixed_vector",
+    "vinf_max_m_s": 3000,
+    "vinf_vector_m_s": [
+      -741.2996449481786,
+      -41.57402842671107,
+      389.42225175789827
+    ],
+    "spacecraft": {
+      "thrust_N": 0.025,
+      "exhaust_velocity_m_s": 20000,
+      "dry_mass_kg": 90
+    },
+    "solver": {
+      "budget_s": 45,
+      "compare_seeds": true,
+      "departure_budget_s": 60,
+      "limit_budget_s": 60,
+      "pazov_budget_s": 90,
+      "psi_budget_s": 120,
+      "bounded_attempt_s": 20,
+      "orbital_seed_path": "data/benchmarks/examples/earth_mars_2030_dec01_capture_400x30000"
+    },
+    "lunar": null,
+    "arrival_offset_state_si": [
+      -241685210.04556093,
+      -524173210.04595315,
+      -5061744.8977699615,
+      477.47132162726734,
+      959.3451869626072,
+      8.402851922919066
+    ],
+    "departure_offset_state_si": [
+      -421522916.97653306,
+      799275458.0139425,
+      197187876.60662553,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "orbital_maneuvers": {
+      "departure": {
+        "interface_radius_m": 924881552.4165419,
+        "parking_altitude_m": 200000.0,
+        "planet_radius_m": 6378137.0,
+        "mu_m3_s2": 398600435600000.0,
+        "plane_mode": "free",
+        "kind": "spiral"
+      },
+      "arrival": {
+        "mu_m3_s2": 42828375662000.0,
+        "planet_radius_m": 3396190.0,
+        "periapsis_altitude_m": 400000.0,
+        "apoapsis_altitude_m": 30000000.0,
+        "interface_radius_m": 577230383.9421967,
+        "plane": "planet_orbit",
+        "interface_side": "sunward",
+        "kind": "impulse",
+        "exhaust_velocity_m_s": 3200.0,
+        "excess_velocity_m_s": 1000.0
+      }
+    },
+    "mass_reference": "interplanetary_departure"
+  },
+  "scales": {
+    "distance_m": 147528591174.45822,
+    "mu_m3_s2": 1.32712440018e+20
+  },
+  "initial_state_si": [
+    53902267493.83205,
+    137961992340.43,
+    186855541.07629177,
+    -28929.43731146973,
+    10805.92226408218,
+    388.5391957074229
+  ],
+  "target_state_si": [
+    94222100443.53108,
+    204351357856.9722,
+    1973344732.544059,
+    -20609.450112794442,
+    13165.097147314473,
+    781.0217729332342
+  ],
+  "costate_convention": "dimensionless [p_r,p_v], H=p_r*v+p_v*(g+u)-|u|^2/2, u=p_v",
+  "costates_initial": [
+    0.0035742458247998354,
+    0.03790859000096887,
+    0.0017454823868638806,
+    -0.030277270460001206,
+    0.02513817418791892,
+    0.003347046122768916
+  ],
+  "functional_dimensionless": 0.002263911814515249,
+  "chosen_seed": {
+    "source": "ILTT",
+    "lambda_turns": 1.0014766537052624,
+    "kappa": 1.5488521070806067,
+    "route": "shooting",
+    "independent_check": {
+      "position_residual_m": 16.98791667750701,
+      "velocity_residual_m_s": 2.7072050758550823e-06,
+      "free_velocity_transversality": 0.02772976108362232,
+      "difference_r_m": 17.519620878533367,
+      "difference_v_m_s": 2.7805079806403946e-06
+    },
+    "nfev": 6,
+    "integrations": 6,
+    "optimizer_success": true,
+    "residual_norm": 1.0285890536596448e-14,
+    "position_residual_m": 0.668211624820261,
+    "velocity_residual_m_s": 7.593256745688408e-08,
+    "free_velocity_transversality": 0.02772976107835937,
+    "accepted": true
+  },
+  "title": "Earth → Mars: ИРТ",
+  "ephemerides": {
+    "Earth": {
+      "body": "earth",
+      "start_jd": 2287184.5,
+      "stop_jd": 2688976.5,
+      "source": "KIAM 6.1.6 / bundled JPLEPH",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "center": "requested",
+      "interpolation": "KIAM native ephemeris",
+      "representation": "body center"
+    },
+    "Mars": {
+      "body": "mars",
+      "start_jd": 2287184.5,
+      "stop_jd": 2688976.5,
+      "source": "KIAM 6.1.6 / bundled JPLEPH",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "center": "requested",
+      "interpolation": "KIAM native ephemeris",
+      "representation": "body center"
+    }
+  },
+  "overlays": [
+    {
+      "array": "departure_orbit_m",
+      "label": "Орбита Earth"
+    },
+    {
+      "array": "target_orbit_m",
+      "label": "Орбита Mars",
+      "linestyle": "-.",
+      "color": ".65"
+    }
+  ],
+  "markers": [
+    {
+      "label": "Earth, старт",
+      "r_m": [
+        53902267493.83205,
+        137961992340.43,
+        186855541.07629177
+      ]
+    },
+    {
+      "label": "Earth, прибытие",
+      "r_m": [
+        -136901660213.779,
+        -61414339306.4408,
+        5598041.957052673
+      ],
+      "hollow": true
+    },
+    {
+      "label": "Mars",
+      "r_m": [
+        94222100443.53108,
+        204351357856.9722,
+        1973344732.544059
+      ],
+      "color": "#df1111",
+      "role": "target"
+    }
+  ],
+  "configuration_sha256": "a9c45f0fed158ad671ad046cc5eb9fec472c49250a0bede405542f27dba46ee0",
+  "configuration_hash_version": 2,
+  "verification": {
+    "passed": true,
+    "method": "LSODA, independently implemented Hamiltonian RHS",
+    "position_residual_m": 10.311783551174928,
+    "velocity_residual_m_s": 1.6257909312194309e-06,
+    "trajectory_difference_m": 10.311783550889627,
+    "velocity_difference_m_s": 1.6257909312194309e-06,
+    "free_velocity_transversality": 0.021306297810909005,
+    "scope": "Numerical extremal and endpoint consistency; not proof of local/global optimality or N-body fidelity"
+  },
+  "schema_version": 1,
+  "arrays_sha256": "06556dcdfd37a903e6b84b7e14fe526b3b1af9ece1c25353977af027fcfdc042",
+  "departure": {
+    "parameter": 1.0,
+    "mode": "fixed_vector",
+    "bound_m_s": 3000.0,
+    "vector_m_s": [
+      -741.2996449481798,
+      -41.574028426710356,
+      389.42225175789827
+    ],
+    "norm_m_s": 838.3932571318272,
+    "bound_active": false,
+    "pv0_norm": 0.0394948556872684
+  }
+}

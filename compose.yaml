@@ -1,0 +1,31 @@
+services:
+  pipeline:
+    image: trajectory-pipeline:kiam-6.1.6-py312
+    platform: linux/amd64
+    build:
+      context: .
+      dockerfile: docker/pipeline.Dockerfile
+    init: true
+    network_mode: none
+    environment:
+      TRAJECTORY_IMAGE_ID: ${TRAJECTORY_IMAGE_ID:-unrecorded}
+    volumes:
+      - type: bind
+        source: .
+        target: /workspace
+        read_only: true
+      - type: bind
+        source: ./runs
+        target: /workspace/runs
+      - type: bind
+        source: ./output/pipeline
+        target: /workspace/output/pipeline
+  ephemerides:
+    extends:
+      service: pipeline
+    profiles: [ephemerides]
+    network_mode: bridge
+    volumes:
+      - type: bind
+        source: ./data/ephemerides
+        target: /workspace/data/ephemerides

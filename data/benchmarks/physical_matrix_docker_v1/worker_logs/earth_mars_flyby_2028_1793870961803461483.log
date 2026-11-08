@@ -1,0 +1,44 @@
+{
+  "case_id": "earth_mars_flyby_2028",
+  "status": "completed",
+  "phase": "final",
+  "last_result": "final",
+  "verification": {
+    "passed": true,
+    "position_residual_m": 3.3895000808589844,
+    "velocity_residual_m_s": 4187.087832540724,
+    "trajectory_difference_m": 3.392167131158693,
+    "velocity_difference_m_s": 3.541190975415743e-07,
+    "stored_throttle_error": 0.0,
+    "stored_throttle_minimum": 0.0,
+    "stored_throttle_maximum": 1.0,
+    "canonical_boundary_residual": 8.66038426649459e-11,
+    "method": "LSODA with independent bounded/mass equations",
+    "scope": "Numerical extremal and constraints; no global optimality proof",
+    "departure_norm_m_s": 2999.9999999999827,
+    "switching_sign_violation": 1.5646908993340315e-11,
+    "switching_node_residual": 1.5646517986793265e-11,
+    "minimum_mass_kg": 138.49036578420473,
+    "fuel_kg": 17.50963421579528,
+    "mass_difference_kg": 4.156675004196586e-13,
+    "stored_thrust_error_N": 0.0,
+    "mass_balance_error_kg": 3.197442310920451e-13
+  },
+  "kiam_verification": {
+    "passed": true,
+    "source": "Unmodified KIAM Astro compiled Fortran equations and published control API",
+    "package_version": "6.1.6",
+    "samples": 101,
+    "maximum_dimensionless_rhs_error": 5.273559366969494e-16,
+    "maximum_dimensionless_force_error": 6.938893903907228e-18,
+    "maximum_third_body_decomposition_error": 0.0,
+    "nbody_gravity": {
+      "passed": true,
+      "applicable": false
+    },
+    "costate_map": "p_r,v(KIAM)=p_r,v/vex; p_m(KIAM)=1+p_m/vex; normalized initial mass=1",
+    "scope": "KIAM central mass-optimal equations/control, plus independent third-body decomposition when present; not a separate global optimization"
+  },
+  "plots": "plots",
+  "arrays_sha256": "3cc006a03be64ab682d144e941e31b58c325ed6bb8fb000b8207feb22adb9630"
+}

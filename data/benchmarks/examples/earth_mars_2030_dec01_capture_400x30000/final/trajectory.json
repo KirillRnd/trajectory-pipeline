@@ -1,0 +1,99 @@
+{
+  "case_id": "earth_mars_2030_dec01_capture_400x30000",
+  "epoch_jd": 2462836.5,
+  "time_scale": "TDB",
+  "frame": "ECLIPJ2000",
+  "center": "Sun",
+  "stage": "capture_mission",
+  "status": "verified_capture",
+  "model": "patched heliocentric and planet-centered central fields",
+  "mission": {
+    "case_id": "earth_mars_2030_dec01_capture_400x30000",
+    "departure": "Earth",
+    "target": "Mars",
+    "launch_tdb": "2030-12-01T00:00:00",
+    "tof_days": 500,
+    "center": "Sun",
+    "mode": "rendezvous",
+    "position_tolerance_m": 1000,
+    "velocity_tolerance_m_s": 0.01,
+    "mass_kg": 156,
+    "departure_mode": "bounded_norm",
+    "vinf_max_m_s": 3000,
+    "vinf_vector_m_s": null,
+    "spacecraft": {
+      "thrust_N": 0.025,
+      "exhaust_velocity_m_s": 20000,
+      "dry_mass_kg": 90
+    },
+    "solver": {
+      "budget_s": 45,
+      "compare_seeds": true,
+      "departure_budget_s": 60,
+      "limit_budget_s": 60,
+      "pazov_budget_s": 90,
+      "psi_budget_s": 120,
+      "bounded_attempt_s": 20,
+      "capture_seed_path": "data/benchmarks/examples/earth_mars_2030_dec01_500d/final"
+    },
+    "lunar": null,
+    "capture": {
+      "mu_m3_s2": 42828375662000.0,
+      "planet_radius_m": 3396190.0,
+      "periapsis_altitude_m": 400000.0,
+      "apoapsis_altitude_m": 30000000.0,
+      "interface_radius_m": 577230383.9421967,
+      "plane": "planet_orbit",
+      "interface_side": "sunward"
+    }
+  },
+  "title": "Земля → Mars: перелёт и скрутка",
+  "join_time_s": 43200000.0,
+  "capture_included": true,
+  "completion_scope": "planetary_orbit",
+  "source_outer_arrays_sha256": "307085377a4ae1eccaa2cef80924920ce8edaa0fa42f63c2575e34fe0ab3da52",
+  "source_capture_arrays_sha256": "9ea34f68bb3ce43d6c830a15e2bcbe2e18d34c165d403abc192e96572d9d31a8",
+  "schema_version": 1,
+  "arrays_sha256": "7b16481ff5dcd65fc692e35b435c65ae825d675eff690607eb1bde80c020c420",
+  "overlays": [
+    {
+      "array": "departure_orbit_m",
+      "label": "Орбита Earth"
+    },
+    {
+      "array": "target_orbit_m",
+      "label": "Орбита Mars",
+      "linestyle": "-.",
+      "color": ".65"
+    }
+  ],
+  "markers": [
+    {
+      "label": "Earth, старт",
+      "r_m": [
+        54323790410.80858,
+        137162716882.41605,
+        -10332335.530333744
+      ]
+    },
+    {
+      "label": "Вход в сферу Mars",
+      "r_m": [
+        94222100443.519,
+        204351357856.90588,
+        1973344732.5431912
+      ],
+      "hollow": true
+    },
+    {
+      "label": "Конечная орбита у Mars",
+      "r_m": [
+        -128617139568.35748,
+        208149563981.21686,
+        7514387312.232755
+      ],
+      "color": "#df1111",
+      "role": "target"
+    }
+  ]
+}

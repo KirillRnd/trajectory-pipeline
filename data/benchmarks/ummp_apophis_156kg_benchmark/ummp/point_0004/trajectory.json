@@ -1,0 +1,236 @@
+{
+  "case_id": "apophis_156kg_historical_boundary",
+  "epoch_jd": 2462182.0,
+  "time_scale": "TDB",
+  "center": "Sun",
+  "frame": "ECLIPJ2000",
+  "model": "historical UMMP power law with full fuel-optimal costates",
+  "status": "verified_extremal",
+  "stage": "ummp",
+  "mission": {
+    "case_id": "apophis_156kg_historical_boundary",
+    "departure": "Earth",
+    "target": "Apophis",
+    "launch_tdb": "2029-02-14T12:00:00",
+    "tof_days": 422.6618015373437,
+    "center": "Sun",
+    "mode": "rendezvous",
+    "position_tolerance_m": 1000.0,
+    "velocity_tolerance_m_s": 0.01,
+    "mass_kg": 156.0,
+    "departure_mode": "fixed_vector",
+    "vinf_max_m_s": 3000.0,
+    "vinf_vector_m_s": [
+      2685.458683706982,
+      -1178.776700839473,
+      631.5038777875994
+    ],
+    "spacecraft": {
+      "thrust_N": 0.025,
+      "exhaust_velocity_m_s": 20000.0,
+      "dry_mass_kg": 90.0
+    },
+    "solver": {
+      "budget_s": 45
+    },
+    "lunar": null
+  },
+  "scales": {
+    "distance_m": 147829272430.1957,
+    "mu_m3_s2": 1.3271243994000002e+20
+  },
+  "initial_state_si": [
+    -125110365209.94365,
+    78745731770.56009,
+    -5674023.456175689,
+    -13673.274352260903,
+    -26491.748515806274,
+    631.8656894074098
+  ],
+  "target_state_si": [
+    -157799640778.01517,
+    79446746756.84973,
+    -5275279680.872995,
+    -7555.50011494695,
+    -25298.357594645873,
+    782.4675547729757
+  ],
+  "costate_convention": "dimensionless [p_r,p_v,p_m] for remaining mass; fuel objective weighted by baseline c/VU",
+  "costates_initial": [
+    -0.6058293966449285,
+    0.5019922903572404,
+    -1.1061720877174896,
+    -0.05606428066557311,
+    -0.30315277726491274,
+    0.1762183462600951,
+    -0.16179106273618668
+  ],
+  "functional_dimensionless": 0.148338376820463,
+  "chosen_seed": {
+    "source": "ILTT",
+    "lambda_turns": 1.0844516617712652,
+    "kappa": 1.1165974795549598,
+    "route": "shooting",
+    "independent_check": {
+      "position_residual_m": 4.183663391849378,
+      "velocity_residual_m_s": 6.817162841482465e-07,
+      "free_velocity_transversality": 0.036088675323681436,
+      "difference_r_m": 4.995216171692656,
+      "difference_v_m_s": 8.378156999552691e-07
+    },
+    "nfev": 10,
+    "integrations": 10,
+    "optimizer_success": true,
+    "residual_norm": 4.389430425482004e-15,
+    "position_residual_m": 0.8303023476061294,
+    "velocity_residual_m_s": 1.6345992443353605e-07,
+    "free_velocity_transversality": 0.036088675322693435,
+    "accepted": true
+  },
+  "title": "Earth → Apophis: УММП 156 кг",
+  "ephemerides": {
+    "Earth": {
+      "reference_sha256": "d3389a001f164ecc480b9694f671b211a9742eea8c9abe7fe1f300ece2eb6e09",
+      "epoch_jd": 2462182,
+      "scope": "frozen historical boundary and plot overlay"
+    },
+    "Apophis": {
+      "reference_sha256": "d3389a001f164ecc480b9694f671b211a9742eea8c9abe7fe1f300ece2eb6e09",
+      "epoch_jd": 2462604.6618015375,
+      "scope": "frozen historical boundary and plot overlay"
+    }
+  },
+  "overlays": [
+    {
+      "array": "departure_orbit_m",
+      "label": "Орбита Earth"
+    },
+    {
+      "array": "target_orbit_m",
+      "label": "Орбита Apophis",
+      "linestyle": "-.",
+      "color": ".65"
+    }
+  ],
+  "markers": [
+    {
+      "label": "Earth, старт",
+      "r_m": [
+        -125110365209.94365,
+        78745731770.5601,
+        -5674023.456175689
+      ]
+    },
+    {
+      "label": "Earth, прибытие",
+      "r_m": [
+        -125109608384.11504,
+        78746902846.20244,
+        -5674040.194774581
+      ],
+      "hollow": true
+    },
+    {
+      "label": "Apophis",
+      "r_m": [
+        -157799640778.01517,
+        79446746756.84973,
+        -5275279680.872995
+      ],
+      "color": "#df1111",
+      "role": "target"
+    }
+  ],
+  "boundary_reference_sha256": "d3389a001f164ecc480b9694f671b211a9742eea8c9abe7fe1f300ece2eb6e09",
+  "schema_version": 1,
+  "departure": {
+    "mode": "fixed_vector",
+    "bound_active": false,
+    "vector_m_s": [
+      2685.45868370698,
+      -1178.7767008394767,
+      631.5038777875995
+    ],
+    "norm_m_s": 3000.0000000000005,
+    "bound_m_s": 3000.0
+  },
+  "body_initial_state_si": [
+    -125110365209.94365,
+    78745731770.56009,
+    -5674023.456175689,
+    -16358.733035967884,
+    -25312.971814966797,
+    0.36181161981028254
+  ],
+  "collocation_tolerance": 2e-08,
+  "collocation_derivatives": "analytic central-field",
+  "collocation_nodes": 1189,
+  "collocation_iterations": 12,
+  "switch_times_s": [
+    5196244.465978596,
+    16148754.513568174,
+    22427297.768127456,
+    25210570.741725277,
+    35838358.03240183
+  ],
+  "initial_throttle": 0.0,
+  "bangbang_corrector": {
+    "nfev": 7,
+    "integrations": 92,
+    "residual_norm": 7.108192241786242e-14,
+    "optimizer_success": true
+  },
+  "ummp": {
+    "fraction": 1.0,
+    "engine": {
+      "power_at_au_W": 713.0,
+      "reserve_W": 60.0,
+      "degradation_per_year": 0.1,
+      "year_s": 31558149.7635456,
+      "mass_compensation": 1.3,
+      "power_exponent": 1.7,
+      "minimum_power_W": 200.0,
+      "maximum_power_W": 450.0
+    },
+    "source_psi_arrays_sha256": "e6be8ebb05ddaba3d3a75f50a55420280d8347b66680772adce04c505fd8cfed"
+  },
+  "verification": {
+    "passed": true,
+    "method": "independent segmented LSODA and quadrature of compensated mass flow",
+    "parameter_audit": {
+      "passed": true,
+      "configuration_sha256": "261e3fc9cadaebdb4dacf3b0c4097cc270c44b6c64953d6f875916e8ffe6923f",
+      "configuration_hash_version": 2,
+      "requested": {
+        "mass_kg": 156.0,
+        "thrust_N": 0.025,
+        "exhaust_velocity_m_s": 20000.0,
+        "dry_mass_kg": 90.0,
+        "launch_tdb": "2029-02-14T12:00:00",
+        "tof_days": 422.6618015373437,
+        "departure": "Earth",
+        "target": "Apophis",
+        "mode": "rendezvous"
+      },
+      "recovered_model": null,
+      "geometry": null,
+      "final_admission": false,
+      "scope": "mission and PSI baseline; UMMP hardware verified separately"
+    },
+    "position_residual_m": 0.8512436957637719,
+    "velocity_residual_m_s": 1.1087728340950262e-07,
+    "replay_position_error_m": 0.9662430343929421,
+    "replay_velocity_error_m_s": 1.260097957838632e-07,
+    "canonical_boundary_residual": 6.845387796014514e-12,
+    "terminal_mass_costate": -8.55889316698293e-14,
+    "switching_sign_violation": 4.915080755136104e-11,
+    "switching_node_residual": 4.915080755136104e-11,
+    "minimum_mass_kg": 121.33240435954146,
+    "fuel_kg": 34.66759564045855,
+    "mass_replay_error_kg": 8.971490217390965e-12,
+    "mass_balance_error_kg": 1.9539925233402755e-12,
+    "minimum_available_power_W": 345.08330669462214,
+    "maximum_thrust_N": 0.0252817
+  },
+  "arrays_sha256": "5a049ac60442b76e691c6b7798193c029b65cafbbf86d64a51be32495f4acdef"
+}

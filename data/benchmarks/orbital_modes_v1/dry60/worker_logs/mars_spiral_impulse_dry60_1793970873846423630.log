@@ -1,0 +1,127 @@
+orbital matching 0 0.0 0.0
+{
+  "case_id": "mars_spiral_impulse_dry60",
+  "status": "completed",
+  "phase": "final",
+  "orbital_phase": "verification",
+  "departure_kind": "spiral",
+  "arrival_kind": "impulse",
+  "completion_scope": "initial_orbit_to_final_orbit",
+  "last_verified_artifact": "/workspace/runs/orbital_modes_dry60_final/mars_spiral_impulse_dry60/match_00/accepted_seed",
+  "verification": {
+    "passed": true,
+    "kind": "four_orbital_modes",
+    "departure_kind": "spiral",
+    "arrival_kind": "impulse",
+    "departure_join": {
+      "position_error_m": 0.0,
+      "velocity_error_m_s": 0.0,
+      "mass_error_kg": 0.0
+    },
+    "arrival_join": {
+      "position_error_m": 0.0,
+      "velocity_error_m_s": 0.0,
+      "mass_error_kg": 0.0
+    },
+    "time_error_s": 0.0,
+    "composition_position_error_m": 0.0,
+    "composition_velocity_error_m_s": 0.0,
+    "composition_mass_error_kg": 0.0,
+    "composition_time_error_s": 0.0,
+    "source_links_passed": true,
+    "departure_replay": {
+      "passed": true,
+      "position_error_m": 29.267859535944755,
+      "velocity_error_m_s": 0.00011175899501449064,
+      "mass_error_kg": 3.6351366361486726e-11,
+      "method": "Independent angular-rate polar equations, LSODA; primary angular momentum equations, DOP853"
+    },
+    "arrival_replay": {
+      "position_error_m": 0.0,
+      "velocity_error_m_s": 0.0,
+      "mass_error_kg": 0.0
+    },
+    "events_passed": true,
+    "impulse_residuals": [
+      {
+        "state_velocity_error": 0.0,
+        "scalar_mass_time_error": 0.0
+      }
+    ],
+    "orbit_element_error_m": 0.002687164582312107,
+    "initial_orbit_mass_kg": 156,
+    "interplanetary_initial_mass_kg": 108.51264299252456,
+    "final_mass_kg": 75.60571942047174,
+    "departure_propellant_kg": 47.48735700747544,
+    "interplanetary_propellant_kg": 24.087583068226294,
+    "arrival_propellant_kg": 8.819340503826524,
+    "total_spacecraft_propellant_kg": 80.39428057952826,
+    "departure_mass_flow_error_kg": 1.2363443602225743e-12,
+    "arrival_mass_flow_error_kg": 0.0,
+    "outer_verification": {
+      "passed": true,
+      "position_residual_m": 1.4081497765503634,
+      "velocity_residual_m_s": 1.662023819404563e-07,
+      "parameter_audit": {
+        "passed": true,
+        "configuration_sha256": "4dc5fe9eb1c9eef23c87761e72884ac9a502f7f243e2261838f83b65bbba2e05",
+        "configuration_hash_version": 2,
+        "requested": {
+          "mass_kg": 108.51264299252456,
+          "thrust_N": 0.025,
+          "exhaust_velocity_m_s": 20000,
+          "dry_mass_kg": 60,
+          "launch_tdb": "2030-12-01T00:00:00",
+          "tof_days": 500,
+          "departure": "Earth",
+          "target": "Mars",
+          "mode": "rendezvous"
+        },
+        "recovered_model": {
+          "model_thrust_N": 0.025,
+          "thrust_to_requested_ratio": 1.0,
+          "alpha": 1.0,
+          "beta": 1.0,
+          "variable_mass": true,
+          "hardware_limit_reached": true,
+          "exhaust_velocity_m_s": 20000.0
+        },
+        "geometry": null,
+        "final_admission": true
+      },
+      "trajectory_difference_m": 1.6061873498793393,
+      "velocity_difference_m_s": 1.666981302682137e-07,
+      "stored_throttle_error": 0.0,
+      "stored_throttle_minimum": 0.0,
+      "stored_throttle_maximum": 1.0,
+      "canonical_boundary_residual": 1.1553280317330411e-11,
+      "method": "LSODA with independent bounded/mass equations",
+      "scope": "Numerical extremal and constraints; no global optimality proof",
+      "departure_norm_m_s": 838.3932571318272,
+      "switching_sign_violation": 3.281449821561736e-11,
+      "switching_node_residual": 3.281449821561736e-11,
+      "minimum_mass_kg": 84.42505992429834,
+      "fuel_kg": 24.087583068226223,
+      "mass_difference_kg": 8.433126429926129e-14,
+      "stored_thrust_error_N": 0.0,
+      "mass_balance_error_kg": 8.881784197001252e-14
+    },
+    "kiam_verification": {
+      "passed": true,
+      "source": "Unmodified KIAM Astro compiled Fortran equations and published control API",
+      "package_version": "6.1.6",
+      "samples": 101,
+      "maximum_dimensionless_rhs_error": 8.881784197001252e-16,
+      "maximum_dimensionless_force_error": 1.3877787807814457e-17,
+      "maximum_third_body_decomposition_error": 0.0,
+      "nbody_gravity": {
+        "passed": true,
+        "applicable": false
+      },
+      "costate_map": "p_r,v(KIAM)=p_r,v/vex; p_m(KIAM)=1+p_m/vex; normalized initial mass=1",
+      "scope": "KIAM central mass-optimal equations/control, plus independent third-body decomposition when present; not a separate global optimization"
+    },
+    "scope": "Patched central fields; prescribed transverse spirals or explicit impulse events; external upper-stage mass excluded, no global optimality claim"
+  },
+  "arrays_sha256": "5957e09cb5a763862952d42ad729094fc77e040daff3b8197be3b8096607b087"
+}

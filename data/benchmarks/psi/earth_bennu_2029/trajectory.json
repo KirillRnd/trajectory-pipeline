@@ -1,0 +1,230 @@
+{
+  "case_id": "earth_bennu_2029",
+  "epoch_jd": 2462288.5,
+  "time_scale": "TDB",
+  "center": "Sun",
+  "frame": "ECLIPJ2000",
+  "model": "physical constant thrust and exhaust, variable mass",
+  "status": "verified_extremal",
+  "stage": "psi",
+  "mission": {
+    "case_id": "earth_bennu_2029",
+    "departure": "Earth",
+    "target": "Bennu",
+    "launch_tdb": "2029-06-01T00:00:00",
+    "tof_days": 500,
+    "center": "Sun",
+    "mode": "rendezvous",
+    "position_tolerance_m": 1000.0,
+    "velocity_tolerance_m_s": 0.01,
+    "mass_kg": 156.0,
+    "departure_mode": "bounded_norm",
+    "vinf_max_m_s": 3000.0,
+    "spacecraft": {
+      "thrust_N": 0.025,
+      "exhaust_velocity_m_s": 20000.0,
+      "dry_mass_kg": 90.0
+    },
+    "solver": {
+      "budget_s": 45
+    }
+  },
+  "scales": {
+    "distance_m": 151689062513.85464,
+    "mu_m3_s2": 1.32712440018e+20
+  },
+  "initial_state_si": [
+    -50903377214.119514,
+    -142893029153.419,
+    9689649.759159332,
+    26111.478084660892,
+    -9690.750366270504,
+    -1333.1838601010993
+  ],
+  "target_state_si": [
+    152720227734.72522,
+    -30433273024.34823,
+    -3763008205.792008,
+    213.58234905685538,
+    30098.63782892703,
+    3177.995986386415
+  ],
+  "costate_convention": "dimensionless [p_r,p_v,p_m] for normalized remaining mass",
+  "costates_initial": [
+    -0.09478893938326184,
+    -0.19338821691007368,
+    -0.8487505823614931,
+    -8.745937089754366e-25,
+    2.0694582557115413e-26,
+    4.624304491115559e-25,
+    -0.1756998905480896
+  ],
+  "functional_dimensionless": 0.14143538486656657,
+  "chosen_seed": {
+    "source": "ILTT",
+    "lambda_turns": 1.2395373203836115,
+    "kappa": 1.1104211146655834,
+    "route": "shooting",
+    "nfev": 10,
+    "integrations": 10,
+    "optimizer_success": true,
+    "residual_norm": 5.68433599919877e-15,
+    "position_residual_m": 0.8305680724283143,
+    "velocity_residual_m_s": 9.098644369289064e-08,
+    "free_velocity_transversality": 0.05187895701698234,
+    "accepted": true
+  },
+  "title": "Earth → Bennu: ПСИ 156 кг",
+  "ephemerides": {
+    "Earth": {
+      "body": "earth",
+      "start_jd": 2287184.5,
+      "stop_jd": 2688976.5,
+      "source": "KIAM 6.1.6 / bundled JPLEPH",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "center": "requested",
+      "interpolation": "KIAM native ephemeris",
+      "representation": "body center"
+    },
+    "Bennu": {
+      "body": "bennu",
+      "source": "https://ssd.jpl.nasa.gov/api/horizons.api",
+      "parameters": {
+        "format": "json",
+        "COMMAND": "'101955;'",
+        "CENTER": "'500@10'",
+        "EPHEM_TYPE": "'VECTORS'",
+        "REF_PLANE": "'ECLIPTIC'",
+        "REF_SYSTEM": "'ICRF'",
+        "OUT_UNITS": "'KM-S'",
+        "VEC_CORR": "'NONE'",
+        "CSV_FORMAT": "'YES'",
+        "VEC_TABLE": "'2'",
+        "TIME_TYPE": "'TDB'",
+        "OBJ_DATA": "'YES'",
+        "START_TIME": "'2028-01-01'",
+        "STOP_TIME": "'2035-01-01'",
+        "STEP_SIZE": "'12 h'"
+      },
+      "center": "Sun",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "units": "m,m/s",
+      "start_jd": 2461771.5,
+      "stop_jd": 2464328.5,
+      "knots": 5115,
+      "max_step_days": 0.5,
+      "interpolation": "cubic Hermite, position and velocity from the same polynomial",
+      "arrays_sha256": "2d8bca45de8899f2918f3d7400cbf00bb06028f0df882205c864b9d833aae0f4",
+      "raw_sha256": "cfca7346313e1c81d3066a3a27a368d20a35a287eba1f51d5850be68e265b97b"
+    }
+  },
+  "overlays": [
+    {
+      "array": "departure_orbit_m",
+      "label": "Орбита Earth"
+    },
+    {
+      "array": "target_orbit_m",
+      "label": "Орбита Bennu",
+      "linestyle": "-.",
+      "color": ".65"
+    }
+  ],
+  "markers": [
+    {
+      "label": "Earth, старт",
+      "r_m": [
+        -50903377214.11952,
+        -142893029153.419,
+        9689649.759159332
+      ]
+    },
+    {
+      "label": "Earth, прибытие",
+      "r_m": [
+        140002712128.91962,
+        51685440922.021866,
+        -4562577.622655532
+      ],
+      "hollow": true
+    },
+    {
+      "label": "Bennu",
+      "r_m": [
+        152720227734.72522,
+        -30433273024.34823,
+        -3763008205.792008
+      ],
+      "color": "#df1111",
+      "role": "target"
+    }
+  ],
+  "verification": {
+    "passed": true,
+    "position_residual_m": 0.7112133023572645,
+    "velocity_residual_m_s": 1.2218564812935826e-07,
+    "trajectory_difference_m": 0.6995313709851608,
+    "velocity_difference_m_s": 1.246825298551915e-07,
+    "canonical_boundary_residual": 6.259188684223141e-12,
+    "method": "LSODA with independent bounded/mass equations",
+    "scope": "Numerical extremal and constraints; no global optimality proof",
+    "departure_norm_m_s": 2017.763046167453,
+    "switching_sign_violation": 1.1050736193220967e-12,
+    "switching_node_residual": 1.1050736193220967e-12,
+    "minimum_mass_kg": 123.36892641071964,
+    "fuel_kg": 32.63107358928036,
+    "mass_balance_error_kg": 1.4921397450962104e-13
+  },
+  "schema_version": 1,
+  "arrays_sha256": "db2b2a314c9add95c9a190bf7fe6a15645e386f61607e8dac9f76893cebed2a0",
+  "departure": {
+    "mode": "bounded_norm",
+    "bound_active": false,
+    "vector_m_s": [
+      -1454.7966863238144,
+      422.87736010885783,
+      -1332.7074135936857
+    ],
+    "norm_m_s": 2017.763046167453,
+    "bound_m_s": 3000.0
+  },
+  "bounded_model": {
+    "a_max": 0.027785122174597846,
+    "alpha": 1.0,
+    "beta": 1.0,
+    "q": 0.04109235189196995,
+    "variable_mass": true
+  },
+  "body_initial_state_si": [
+    -50903377214.119514,
+    -142893029153.419,
+    9689649.759159332,
+    27566.274770984706,
+    -10113.627726379362,
+    -0.47644650741358424
+  ],
+  "bangbang_corrector": {
+    "nfev": 5,
+    "residual_norm": 4.242442339248263e-13,
+    "optimizer_success": true
+  },
+  "hardware_limit_reached": true,
+  "switch_times_s": [
+    4925338.102820879,
+    24816340.078239072,
+    36986143.10399379
+  ],
+  "initial_throttle": 0.0,
+  "kiam_verification": {
+    "passed": true,
+    "source": "Unmodified KIAM Astro compiled Fortran equations and published control API",
+    "package_version": "6.1.6",
+    "samples": 101,
+    "maximum_dimensionless_rhs_error": 1.3426759704060487e-15,
+    "maximum_dimensionless_force_error": 6.938893903907228e-18,
+    "costate_map": "p_r,v(KIAM)=p_r,v/vex; p_m(KIAM)=1+p_m/vex; normalized initial mass=1",
+    "scope": "Independent physical equations and control at interior samples, not a separate global optimization"
+  }
+}

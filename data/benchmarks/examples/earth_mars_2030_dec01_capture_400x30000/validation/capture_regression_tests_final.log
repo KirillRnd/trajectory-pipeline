@@ -1,0 +1,52 @@
+ Container asteroid_venus_ai-pipeline-run-ef7063c0eb01 Creating 
+ Container asteroid_venus_ai-pipeline-run-ef7063c0eb01 Created 
+........................../workspace/ILTT/continuation_methods.py:957: DeprecationWarning: `trapz` is deprecated. Use `trapezoid` instead, or one of the numerical integration functions in `scipy.integrate`.
+  return float(np.trapz(integrand, sol.t))
+earth_venus_2032: started
+earth_venus_2032: failed (psi), 0.0 s
+earth_mars_2028: started
+earth_mars_2028: partial (psi), 0.0 s
+.............capi_return is NULL
+Call-back cb_f_in_lsoda__user__routines failed.
+E.
+======================================================================
+ERROR: test_tampered_joint_velocity_and_mass_are_rejected (test_planetary_capture.MarsCaptureTests.test_tampered_joint_velocity_and_mass_are_rejected) (key='mass_kg')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/tests/test_planetary_capture.py", line 43, in test_tampered_joint_velocity_and_mass_are_rejected
+    self.assertFalse(verify_capture_mission(target)['passed'])
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/trajectory_pipeline/capture_pipeline.py", line 31, in verify_capture_mission
+    replay=forward_capture(orbit,np.r_[inner.arrays['r_m'][0],inner.arrays['v_m_s'][0]],inner.arrays['mass_kg'][0],
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/trajectory_pipeline/planetary_capture.py", line 174, in forward_capture
+    sol=solve_ivp(rhs,(left,right),y,method='LSODA',rtol=5e-13,atol=5e-14,dense_output=True,events=peri)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/scipy/integrate/_ivp/ivp.py", line 655, in solve_ivp
+    message = solver.step()
+              ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/scipy/integrate/_ivp/base.py", line 197, in step
+    success, message = self._step_impl()
+                       ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/scipy/integrate/_ivp/lsoda.py", line 161, in _step_impl
+    solver._y, solver.t = integrator.run(
+                          ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/scipy/integrate/_ode.py", line 1358, in run
+    y1, t, istate = self.runner(*args)
+                    ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/scipy/integrate/_ivp/base.py", line 154, in fun
+    return self.fun_single(t, y)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/scipy/integrate/_ivp/base.py", line 23, in fun_wrapped
+    return np.asarray(fun(t, y), dtype=dtype)
+                      ^^^^^^^^^
+  File "/workspace/trajectory_pipeline/planetary_capture.py", line 170, in rhs
+    transverse=np.cross(np.cross(r,v),r);transverse/=np.sqrt(np.dot(transverse,transverse))
+                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+IndexError: arrays used as indices must be of integer (or boolean) type
+
+----------------------------------------------------------------------
+Ran 41 tests in 34.760s
+
+FAILED (errors=1)
+
