@@ -18,7 +18,7 @@ CASE=ROOT/'data/benchmarks/examples/earth_mars_2030_dec01_leo200_capture'
 class ParkingDepartureTests(unittest.TestCase):
     def test_actual_end_to_end_launch_and_capture(self):
         check=verify_launch_mission(CASE)
-        self.assertTrue(check['passed'])
+        self.assertTrue(check['passed'],check)
         self.assertLess(check['join_position_error_m'],.05)
         self.assertLess(check['join_velocity_error_m_s'],1e-6)
         self.assertGreater(check['delta_v_m_s'],3300.)

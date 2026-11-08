@@ -3,16 +3,30 @@ from time import perf_counter
 import unittest
 import numpy as np
 from components.pazov import OptimalControlSolver
-from trajectory_pipeline.data import Trajectory
+from trajectory_pipeline.data import Trajectory,Scales
 from trajectory_pipeline.bounded import canonical,collocate,verify_bounded
 from trajectory_pipeline.bounded_model import BoundedModel
 from trajectory_pipeline.kiam_verification import verify_kiam_psi
-from trajectory_pipeline.bangbang import solve_bangbang
+from trajectory_pipeline.bangbang import solve_bangbang,_sampling_times
 
 ROOT=Path(__file__).resolve().parents[1]
 
 
 class PhysicalTests(unittest.TestCase):
+    def test_real_switch_grid_survives_dimensional_rounding(self):
+        source=Trajectory.load(ROOT/'data/benchmarks/psi/earth_bennu_2029')
+        scale=Scales(**source.metadata['scales']).time_s
+        times=source.arrays['t_s']/scale
+        edges=np.r_[0,np.asarray(source.metadata['switch_times_s'])/scale,times[-1]]
+        # Nearby meshes arise when the same real switching time is normalized
+        # on different hosts. Preserve the new event and the exported clock.
+        samples=np.r_[times,np.nextafter(edges[1:-1],np.inf),np.nextafter(edges[1:-1],0.)]
+        merged=_sampling_times(samples,edges,scale)
+        self.assertTrue(np.all(np.diff(merged*scale)>0))
+        self.assertTrue(np.isin(edges,merged).all())
+        expected_seconds=np.unique(np.r_[samples,edges]*scale)
+        np.testing.assert_array_equal(merged*scale,expected_seconds)
+
     def test_exact_free_departure_recovery_on_real_bennu(self):
         source=Trajectory.load(ROOT/'data/benchmarks/psi/earth_bennu_2029')
         self.assertFalse(source.metadata['departure']['bound_active'])

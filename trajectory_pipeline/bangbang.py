@@ -10,6 +10,18 @@ from .bounded_model import origin_and_boundary,boundary_residual
 from .r_transform import costate_chart
 
 
+def _sampling_times(times, arc_edges, time_scale_s):
+    """Merge in the stored clock, preserving exact switch nodes on collisions.
+
+    Distinct normalized floats may round to the same SI second. A previous
+    mesh point must not displace the new switch or create a repeated time.
+    """
+    samples=times[~np.isin(times*time_scale_s,arc_edges*time_scale_s)]
+    merged=np.unique(np.r_[samples,arc_edges])
+    _,indices=np.unique(merged*time_scale_s,return_index=True)
+    return merged[indices]
+
+
 def solve_bangbang(source,previous,model,deadline,stage,*,costate_frame=None,
                    assemble_result=assemble, verify_result=verify_bounded):
     if model.alpha!=1:
@@ -117,7 +129,7 @@ def solve_bangbang(source,previous,model,deadline,stage,*,costate_frame=None,
             opt=least_squares(residual,np.linalg.solve(chart,x0),method='trf',bounds=(lower,upper),diff_step=1e-6 if model.gravity is not None else 1e-5,
                               x_scale='jac',max_nfev=80,xtol=1e-11,ftol=1e-11,gtol=1e-11)
             initial,final,nodes,arc_edges,solutions=integrate(chart@opt.x,dense=True)
-            evaluation=np.unique(np.r_[times,arc_edges])
+            evaluation=_sampling_times(times,arc_edges,scales.time_s)
             y=np.empty((model.dimension,len(evaluation)))
             control=np.empty(len(evaluation))
             for k,sol in enumerate(solutions):
