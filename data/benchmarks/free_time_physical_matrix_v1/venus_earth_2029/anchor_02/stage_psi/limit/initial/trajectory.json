@@ -1,0 +1,240 @@
+{
+  "case_id": "venus_earth_2029",
+  "epoch_jd": 2462137.5,
+  "time_scale": "TDB",
+  "center": "Sun",
+  "frame": "ECLIPJ2000",
+  "model": "physical constant thrust and exhaust, variable mass",
+  "status": "verified_extremal",
+  "stage": "psi_mass",
+  "mission": {
+    "case_id": "venus_earth_2029",
+    "departure": "Venus",
+    "target": "Earth",
+    "launch_tdb": "2029-01-01T00:00:00",
+    "tof_days": 363.89852560231446,
+    "center": "Sun",
+    "mode": "rendezvous",
+    "position_tolerance_m": 1000,
+    "velocity_tolerance_m_s": 0.01,
+    "mass_kg": 156,
+    "departure_mode": "bounded_norm",
+    "vinf_max_m_s": 3000,
+    "vinf_vector_m_s": null,
+    "spacecraft": {
+      "thrust_N": 0.025,
+      "exhaust_velocity_m_s": 20000,
+      "dry_mass_kg": 90
+    },
+    "solver": {
+      "budget_s": 45,
+      "compare_seeds": true,
+      "departure_budget_s": 60,
+      "limit_budget_s": 60,
+      "pazov_budget_s": 90,
+      "psi_budget_s": 120,
+      "bounded_attempt_s": 20,
+      "free_time_budget_s": 120
+    },
+    "lunar": null
+  },
+  "scales": {
+    "distance_m": 108350733287.82648,
+    "mu_m3_s2": 1.32712440018e+20
+  },
+  "initial_state_si": [
+    -64664766417.52286,
+    -86901759600.91876,
+    2536447602.659876,
+    28080.63136621112,
+    -18542.156994853718,
+    -297.4717366730684
+  ],
+  "target_state_si": [
+    -23166426365.86572,
+    145273738421.87698,
+    -9485635.184987431,
+    -29910.371216821713,
+    -4793.368881022986,
+    -0.41094530818569475
+  ],
+  "costate_convention": "dimensionless [p_r,p_v,p_m] for normalized remaining mass",
+  "costates_initial": [
+    0.09601958600442426,
+    0.11408673883583917,
+    -0.08074194867091847,
+    0.002467909737651636,
+    0.027195363445376274,
+    0.01720437357804074,
+    -0.1465749551308698
+  ],
+  "functional_dimensionless": 0.10748133594971053,
+  "chosen_seed": {
+    "source": "ILTT",
+    "lambda_turns": 1.6680713392528768,
+    "kappa": 1.38140499759202,
+    "route": "shooting",
+    "independent_check": {
+      "position_residual_m": 74.20298726765036,
+      "velocity_residual_m_s": 1.763993976384818e-05,
+      "free_velocity_transversality": 0.06580825454039343,
+      "difference_r_m": 75.87875343416619,
+      "difference_v_m_s": 1.8008494308631178e-05
+    },
+    "nfev": 33,
+    "integrations": 33,
+    "optimizer_success": true,
+    "residual_norm": 5.305343098020392e-15,
+    "position_residual_m": 1.9222093520117864,
+    "velocity_residual_m_s": 3.9915879840735304e-07,
+    "free_velocity_transversality": 0.06580825453322461,
+    "accepted": true
+  },
+  "title": "Venus → Earth: ПСИ 156 кг",
+  "ephemerides": {
+    "Venus": {
+      "body": "venus",
+      "start_jd": 2287184.5,
+      "stop_jd": 2688976.5,
+      "source": "KIAM 6.1.6 / bundled JPLEPH",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "center": "requested",
+      "interpolation": "KIAM native ephemeris",
+      "representation": "body center"
+    },
+    "Earth": {
+      "body": "earth",
+      "start_jd": 2287184.5,
+      "stop_jd": 2688976.5,
+      "source": "KIAM 6.1.6 / bundled JPLEPH",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "center": "requested",
+      "interpolation": "KIAM native ephemeris",
+      "representation": "body center"
+    }
+  },
+  "overlays": [
+    {
+      "array": "departure_orbit_m",
+      "label": "Орбита Venus"
+    },
+    {
+      "array": "target_orbit_m",
+      "label": "Орбита Earth",
+      "linestyle": "-.",
+      "color": ".65"
+    }
+  ],
+  "markers": [
+    {
+      "label": "Venus, старт",
+      "r_m": [
+        -64664766417.522865,
+        -86901759600.91876,
+        2536447602.659876
+      ]
+    },
+    {
+      "label": "Venus, прибытие",
+      "r_m": [
+        -9515476934.009827,
+        107179291548.67337,
+        2022554869.5269253
+      ],
+      "hollow": true
+    },
+    {
+      "label": "Earth",
+      "r_m": [
+        -23166426365.86572,
+        145273738421.87698,
+        -9485635.184987431
+      ],
+      "color": "#df1111",
+      "role": "target"
+    }
+  ],
+  "configuration_sha256": "384d1e4bc259e79fc0fbf38201a037fa15a992d5fbd9cca3423b8ab555cef334",
+  "configuration_hash_version": 2,
+  "verification": {
+    "passed": true,
+    "position_residual_m": 62.58806490678549,
+    "velocity_residual_m_s": 1.4807813585799898e-05,
+    "parameter_audit": {
+      "passed": true,
+      "configuration_sha256": "384d1e4bc259e79fc0fbf38201a037fa15a992d5fbd9cca3423b8ab555cef334",
+      "configuration_hash_version": 2,
+      "requested": {
+        "mass_kg": 156,
+        "thrust_N": 0.025,
+        "exhaust_velocity_m_s": 20000,
+        "dry_mass_kg": 90,
+        "launch_tdb": "2029-01-01T00:00:00",
+        "tof_days": 363.89852560231446,
+        "departure": "Venus",
+        "target": "Earth",
+        "mode": "rendezvous"
+      },
+      "recovered_model": {
+        "model_thrust_N": 0.06347257051678391,
+        "thrust_to_requested_ratio": 2.5389028206713564,
+        "alpha": 0.5,
+        "beta": 1.0,
+        "variable_mass": true,
+        "hardware_limit_reached": false,
+        "exhaust_velocity_m_s": 20000.0
+      },
+      "geometry": null,
+      "final_admission": false
+    },
+    "trajectory_difference_m": 75.36258867072225,
+    "velocity_difference_m_s": 1.939568557635851e-05,
+    "stored_throttle_error": 5.440092820663267e-15,
+    "stored_throttle_minimum": 0.0,
+    "stored_throttle_maximum": 1.0,
+    "canonical_boundary_residual": 7.162036153454225e-10,
+    "method": "LSODA with independent bounded/mass equations",
+    "scope": "Numerical extremal and constraints; no global optimality proof",
+    "departure_norm_m_s": 3000.0000000000027,
+    "minimum_mass_kg": 98.34121805632748,
+    "fuel_kg": 57.65878194367253,
+    "mass_difference_kg": 8.73485417329789e-09,
+    "stored_thrust_error_N": 3.400058012914542e-16
+  },
+  "schema_version": 1,
+  "arrays_sha256": "750c8634ae5fe32962b9ef70bce7fa7508928c4151e70417586009f782da28d7",
+  "departure": {
+    "mode": "bounded_norm",
+    "bound_active": true,
+    "vector_m_s": [
+      229.3959200496247,
+      2527.849914224298,
+      1599.1723868991771
+    ],
+    "norm_m_s": 3000.0000000000027,
+    "bound_m_s": 3000
+  },
+  "bounded_model": {
+    "a_max": 0.03599262851617373,
+    "alpha": 0.5,
+    "beta": 1.0,
+    "q": 0.06298301666525694,
+    "variable_mass": true,
+    "gravity_spec": null
+  },
+  "body_initial_state_si": [
+    -64664766417.52286,
+    -86901759600.91876,
+    2536447602.659876,
+    27851.235446161496,
+    -21070.006909078016,
+    -1896.6441235722455
+  ],
+  "hardware_limit_reached": false,
+  "collocation_tolerance": 2e-08,
+  "collocation_derivatives": "analytic central-field",
+  "collocation_nodes": 1569,
+  "collocation_iterations": 13
+}

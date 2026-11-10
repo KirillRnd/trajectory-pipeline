@@ -1,0 +1,208 @@
+{
+  "case_id": "earth_2015re36_2028",
+  "epoch_jd": 2462015.5,
+  "time_scale": "TDB",
+  "center": "Sun",
+  "frame": "ECLIPJ2000",
+  "model": "IRT two-body minimum integral acceleration squared / 2",
+  "status": "verified_extremal",
+  "stage": "departure",
+  "mission": {
+    "case_id": "earth_2015re36_2028",
+    "departure": "Earth",
+    "target": "2015RE36",
+    "launch_tdb": "2028-09-01T00:00:00",
+    "tof_days": 420.8012446900539,
+    "center": "Sun",
+    "mode": "rendezvous",
+    "position_tolerance_m": 1000,
+    "velocity_tolerance_m_s": 0.01,
+    "mass_kg": 156,
+    "departure_mode": "bounded_norm",
+    "vinf_max_m_s": 3000,
+    "vinf_vector_m_s": null,
+    "spacecraft": {
+      "thrust_N": 0.025,
+      "exhaust_velocity_m_s": 20000,
+      "dry_mass_kg": 90
+    },
+    "solver": {
+      "budget_s": 45,
+      "compare_seeds": true,
+      "departure_budget_s": 60,
+      "limit_budget_s": 60,
+      "pazov_budget_s": 90,
+      "psi_budget_s": 120,
+      "bounded_attempt_s": 20,
+      "free_time_budget_s": 120
+    },
+    "lunar": null
+  },
+  "scales": {
+    "distance_m": 150968970758.12402,
+    "mu_m3_s2": 1.32712440018e+20
+  },
+  "initial_state_si": [
+    140648650887.5903,
+    -54859704048.15376,
+    2648967.169738398,
+    10179.916872098538,
+    27054.16663664839,
+    -5.662256362414446
+  ],
+  "target_state_si": [
+    59726969773.94923,
+    251440975736.10632,
+    -356733255.6207994,
+    -18701.777264200122,
+    -117.20225674737013,
+    -0.9079779267607465
+  ],
+  "costate_convention": "dimensionless [p_r,p_v], H=p_r*v+p_v*(g+u)-|u|^2/2, u=p_v",
+  "costates_initial": [
+    -0.07759229234840599,
+    0.06720260143185071,
+    -7.585896709535785e-05,
+    -0.018672877411371285,
+    -0.07203224461999332,
+    -0.00033957328584715505
+  ],
+  "functional_dimensionless": 0.03474922317676348,
+  "chosen_seed": {
+    "source": "ILTT",
+    "lambda_turns": 1.3327452245438796,
+    "kappa": 1.2979693798868228,
+    "route": "shooting",
+    "independent_check": {
+      "position_residual_m": 21.980154136592915,
+      "velocity_residual_m_s": 2.9189058299701945e-06,
+      "free_velocity_transversality": 0.17244189094696744,
+      "difference_r_m": 28.83108735878259,
+      "difference_v_m_s": 3.8146371909611476e-06
+    },
+    "nfev": 16,
+    "integrations": 16,
+    "optimizer_success": true,
+    "residual_norm": 2.154340749513546e-14,
+    "position_residual_m": 6.851757525804902,
+    "velocity_residual_m_s": 8.972999153311994e-07,
+    "free_velocity_transversality": 0.17244189095524143,
+    "accepted": true
+  },
+  "title": "Earth → 2015RE36: ИРТ",
+  "ephemerides": {
+    "Earth": {
+      "body": "earth",
+      "start_jd": 2287184.5,
+      "stop_jd": 2688976.5,
+      "source": "KIAM 6.1.6 / bundled JPLEPH",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "center": "requested",
+      "interpolation": "KIAM native ephemeris",
+      "representation": "body center"
+    },
+    "2015RE36": {
+      "body": "2015re36",
+      "source": "https://ssd.jpl.nasa.gov/api/horizons.api",
+      "parameters": {
+        "format": "json",
+        "COMMAND": "'2015 RE36;'",
+        "CENTER": "'500@10'",
+        "EPHEM_TYPE": "'VECTORS'",
+        "REF_PLANE": "'ECLIPTIC'",
+        "REF_SYSTEM": "'ICRF'",
+        "OUT_UNITS": "'KM-S'",
+        "VEC_CORR": "'NONE'",
+        "CSV_FORMAT": "'YES'",
+        "VEC_TABLE": "'2'",
+        "TIME_TYPE": "'TDB'",
+        "OBJ_DATA": "'YES'",
+        "START_TIME": "'2028-01-01'",
+        "STOP_TIME": "'2035-01-01'",
+        "STEP_SIZE": "'12 h'"
+      },
+      "center": "Sun",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "units": "m,m/s",
+      "start_jd": 2461771.5,
+      "stop_jd": 2464328.5,
+      "knots": 5115,
+      "max_step_days": 0.5,
+      "interpolation": "cubic Hermite, position and velocity from the same polynomial",
+      "arrays_sha256": "a160991f09945927685d8a0c60c556c92457ba6997ee51bad8008299de058ccc",
+      "raw_sha256": "6090aa4f19c74acddb7a84cbb24daf9a896dd0babd79cd8d9aecb68ed81cd8ea"
+    }
+  },
+  "overlays": [
+    {
+      "array": "departure_orbit_m",
+      "label": "Орбита Earth"
+    },
+    {
+      "array": "target_orbit_m",
+      "label": "Орбита 2015RE36",
+      "linestyle": "-.",
+      "color": ".65"
+    }
+  ],
+  "markers": [
+    {
+      "label": "Earth, старт",
+      "r_m": [
+        140648650887.5903,
+        -54859704048.15376,
+        2648967.169738398
+      ]
+    },
+    {
+      "label": "Earth, прибытие",
+      "r_m": [
+        124360274502.63821,
+        81505621854.53157,
+        -6247745.825626992
+      ],
+      "hollow": true
+    },
+    {
+      "label": "2015RE36",
+      "r_m": [
+        59726969773.94923,
+        251440975736.10632,
+        -356733255.6207994
+      ],
+      "color": "#df1111",
+      "role": "target"
+    }
+  ],
+  "configuration_sha256": "4e3b78ac9b122d208b4e65ac01619935aee40dbb3f4481b239e645c00f474674",
+  "configuration_hash_version": 2,
+  "verification": {
+    "passed": true,
+    "method": "LSODA, independently implemented Hamiltonian RHS",
+    "position_residual_m": 63.307483233596194,
+    "velocity_residual_m_s": 8.344263486019348e-06,
+    "trajectory_difference_m": 63.3074775718208,
+    "velocity_difference_m_s": 8.344263525277075e-06,
+    "free_velocity_transversality": 0.16718836175441834,
+    "scope": "Numerical extremal and endpoint consistency; not proof of local/global optimality or N-body fidelity"
+  },
+  "schema_version": 1,
+  "arrays_sha256": "1e957c727e3d48f2cdb53265ae6505b17dc08b768c46d8070a95e1ee8d95d7ec",
+  "departure": {
+    "parameter": 0.2,
+    "mode": "bounded_norm",
+    "bound_m_s": 600.0,
+    "vector_m_s": [
+      -150.5594915459933,
+      -580.7963007510734,
+      -2.737980876402865
+    ],
+    "norm_m_s": 599.9999999999991,
+    "bound_active": true,
+    "pv0_norm": 0.07441394980668017,
+    "norm_error_m_s": 9.094947017729282e-13,
+    "transversality_cross_norm": 2.764758131201902e-18
+  }
+}

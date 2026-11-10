@@ -25,6 +25,9 @@ def _stop(case,summary,outcome=None):
 def report_matrix(source,output):
     source=Path(source)
     missions=json.loads((source/'matrix.json').read_text(encoding='utf-8'))
+    if missions and all(m.get('time_policy') is not None for m in missions):
+        from .free_time_report import report_free_time_matrix
+        return report_free_time_matrix(source,output)
     rows=[];details=[];counts=Counter()
     common_keys=('mass_kg','spacecraft','vinf_max_m_s','departure_mode','position_tolerance_m','velocity_tolerance_m_s','solver')
     common={key:missions[0][key] for key in common_keys}

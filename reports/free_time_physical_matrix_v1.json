@@ -1,0 +1,1724 @@
+{
+  "cases": 15,
+  "counts": {
+    "completed": 5,
+    "partial": 9,
+    "failed": 1
+  },
+  "identical_settings": true,
+  "common_conditions": {
+    "mass_kg": 156,
+    "spacecraft": {
+      "thrust_N": 0.025,
+      "exhaust_velocity_m_s": 20000,
+      "dry_mass_kg": 90
+    },
+    "vinf_max_m_s": 3000,
+    "departure_mode": "bounded_norm",
+    "position_tolerance_m": 1000,
+    "velocity_tolerance_m_s": 0.01,
+    "solver": {
+      "budget_s": 45,
+      "compare_seeds": true,
+      "departure_budget_s": 60,
+      "limit_budget_s": 60,
+      "pazov_budget_s": 90,
+      "psi_budget_s": 120,
+      "bounded_attempt_s": 20,
+      "free_time_budget_s": 120
+    }
+  },
+  "matrix_sha256": "3089d1a25c6759be782abd9e84a10d43b95ba11d69f723c271af22d59da08ad6",
+  "environment": {
+    "python": "3.12.16",
+    "executable": "/usr/local/bin/python",
+    "system": "Linux",
+    "machine": "x86_64",
+    "libc": [
+      "glibc",
+      "2.41"
+    ],
+    "kernel": "6.6.87.2-microsoft-standard-WSL2",
+    "container": true,
+    "runtime": "docker-linux",
+    "image_id": "unrecorded",
+    "dependencies": {
+      "numpy": "2.2.5",
+      "scipy": "1.15.1",
+      "matplotlib": "3.10.0",
+      "pandas": "2.2.3",
+      "kiam-astro": "6.1.6",
+      "daceypy": "1.4.0",
+      "pillow": "13.0.0"
+    },
+    "thread_limits": {
+      "OPENBLAS_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1"
+    }
+  },
+  "rows": [
+    {
+      "case_id": "earth_venus_2032",
+      "departure": "Earth",
+      "target": "Venus",
+      "launch_tdb": "2032-11-01T00:00:00",
+      "mode": "rendezvous",
+      "seed_tof_days": 390.8,
+      "bounds_days": [
+        195.4,
+        586.2
+      ],
+      "status": "completed",
+      "phase": "final",
+      "tof_days": 410.9696560096026,
+      "fuel_kg": 26.86008745703935,
+      "verification": {
+        "passed": true,
+        "position_residual_m": 1.5304418313805743,
+        "velocity_residual_m_s": 4.976575568771559e-07,
+        "parameter_audit": {
+          "passed": true,
+          "configuration_sha256": "594da558f8aceaf7e91d1f9dd22303f264522304fa0665f2844dc6c0aa8f1d63",
+          "configuration_hash_version": 2,
+          "requested": {
+            "mass_kg": 156,
+            "thrust_N": 0.025,
+            "exhaust_velocity_m_s": 20000,
+            "dry_mass_kg": 90,
+            "launch_tdb": "2032-11-01T00:00:00",
+            "tof_days": 410.9696560096026,
+            "departure": "Earth",
+            "target": "Venus",
+            "mode": "rendezvous"
+          },
+          "recovered_model": {
+            "model_thrust_N": 0.025,
+            "thrust_to_requested_ratio": 1.0,
+            "alpha": 1.0,
+            "beta": 1.0,
+            "variable_mass": true,
+            "hardware_limit_reached": true,
+            "exhaust_velocity_m_s": 20000.0
+          },
+          "geometry": null,
+          "final_admission": true
+        },
+        "trajectory_difference_m": 1.2976079117836492,
+        "velocity_difference_m_s": 4.3941595621376337e-07,
+        "stored_throttle_error": 0.0,
+        "stored_throttle_minimum": 0.0,
+        "stored_throttle_maximum": 1.0,
+        "canonical_boundary_residual": 1.993464143700236e-11,
+        "method": "LSODA with independent bounded/mass equations",
+        "scope": "Numerical extremal and constraints; no global optimality proof",
+        "departure_norm_m_s": 2788.5940481724783,
+        "switching_sign_violation": 5.452788233672001e-11,
+        "switching_node_residual": 5.452827326336855e-11,
+        "minimum_mass_kg": 129.13991254296064,
+        "fuel_kg": 26.86008745703935,
+        "mass_difference_kg": 3.4638958368304884e-13,
+        "stored_thrust_error_N": 0.0,
+        "mass_balance_error_kg": 2.4868995751603507e-14
+      },
+      "kiam_verification": {
+        "passed": true,
+        "source": "Unmodified KIAM Astro compiled Fortran equations and published control API",
+        "package_version": "6.1.6",
+        "samples": 101,
+        "maximum_dimensionless_rhs_error": 2.4424906541753444e-15,
+        "maximum_dimensionless_force_error": 6.938893903907228e-18,
+        "maximum_third_body_decomposition_error": 0.0,
+        "nbody_gravity": {
+          "passed": true,
+          "applicable": false
+        },
+        "costate_map": "p_r,v(KIAM)=p_r,v/vex; p_m(KIAM)=1+p_m/vex; normalized initial mass=1",
+        "scope": "KIAM central mass-optimal equations/control, plus independent third-body decomposition when present; not a separate global optimization"
+      },
+      "reason": null,
+      "attempts": [
+        {
+          "anchor": "anchor_00",
+          "fixed_time": {
+            "case_id": "earth_venus_2032",
+            "status": "completed",
+            "module": "final",
+            "block": "Финальная проверка",
+            "stop_kind": "completed",
+            "reason": "",
+            "last_rejection": "",
+            "last_verified_artifact": "runs/free_time_physical_matrix_v1/earth_venus_2032/anchor_00/final",
+            "last_model": null,
+            "physically_unreachable_proven": false,
+            "stop_label": "ПСИ принята"
+          },
+          "release": {
+            "seed_tof_days": 390.8,
+            "anchor_status": "completed",
+            "phase": "final",
+            "error": null,
+            "status": "completed",
+            "resolved_tof_days": 410.9696560096026
+          }
+        }
+      ],
+      "time_optimization": {
+        "method": "constrained_shooting_SLSQP",
+        "seed_tof_days": 390.8,
+        "resolved_tof_days": 410.9696560096026,
+        "bounds_days": [
+          195.4,
+          586.2
+        ],
+        "optimizer_success": true,
+        "iterations": 12,
+        "objective": "propellant",
+        "global_optimality": false
+      },
+      "arrays_sha256": "2d1f3aea0ba1d3854afe74c22cc3ada3b9be6cc72bccd7135011e375fb7a1b0d",
+      "metadata_sha256": "10ea6bc02b372651774e0c16851a46305fe139bf353a321954fcee49c1eeb7c9"
+    },
+    {
+      "case_id": "earth_mars_2028",
+      "departure": "Earth",
+      "target": "Mars",
+      "launch_tdb": "2028-11-01T00:00:00",
+      "mode": "rendezvous",
+      "seed_tof_days": 500,
+      "bounds_days": [
+        250.0,
+        750.0
+      ],
+      "status": "completed",
+      "phase": "final",
+      "tof_days": 710.4392796106765,
+      "fuel_kg": 22.216344503499982,
+      "verification": {
+        "passed": true,
+        "position_residual_m": 2.389661933702329,
+        "velocity_residual_m_s": 2.379537060639284e-07,
+        "parameter_audit": {
+          "passed": true,
+          "configuration_sha256": "c289395d3d9892fbcc6b97df958c567606a5d85f2951d818fa929ec7899fcae8",
+          "configuration_hash_version": 2,
+          "requested": {
+            "mass_kg": 156,
+            "thrust_N": 0.025,
+            "exhaust_velocity_m_s": 20000,
+            "dry_mass_kg": 90,
+            "launch_tdb": "2028-11-01T00:00:00",
+            "tof_days": 710.4392796106765,
+            "departure": "Earth",
+            "target": "Mars",
+            "mode": "rendezvous"
+          },
+          "recovered_model": {
+            "model_thrust_N": 0.025,
+            "thrust_to_requested_ratio": 1.0,
+            "alpha": 1.0,
+            "beta": 1.0,
+            "variable_mass": true,
+            "hardware_limit_reached": true,
+            "exhaust_velocity_m_s": 20000.0
+          },
+          "geometry": null,
+          "final_admission": true
+        },
+        "trajectory_difference_m": 2.3043974582567706,
+        "velocity_difference_m_s": 2.291372516248814e-07,
+        "stored_throttle_error": 0.0,
+        "stored_throttle_minimum": 0.0,
+        "stored_throttle_maximum": 1.0,
+        "canonical_boundary_residual": 1.7984403339274097e-11,
+        "method": "LSODA with independent bounded/mass equations",
+        "scope": "Numerical extremal and constraints; no global optimality proof",
+        "departure_norm_m_s": 2999.9999999999995,
+        "switching_sign_violation": 3.208990731647649e-11,
+        "switching_node_residual": 3.208990731647649e-11,
+        "minimum_mass_kg": 133.78365549650002,
+        "fuel_kg": 22.216344503499982,
+        "mass_difference_kg": 2.078337502098293e-13,
+        "stored_thrust_error_N": 0.0,
+        "mass_balance_error_kg": 2.2382096176443156e-13
+      },
+      "kiam_verification": {
+        "passed": true,
+        "source": "Unmodified KIAM Astro compiled Fortran equations and published control API",
+        "package_version": "6.1.6",
+        "samples": 100,
+        "maximum_dimensionless_rhs_error": 2.220446049250313e-16,
+        "maximum_dimensionless_force_error": 6.938893903907228e-18,
+        "maximum_third_body_decomposition_error": 0.0,
+        "nbody_gravity": {
+          "passed": true,
+          "applicable": false
+        },
+        "costate_map": "p_r,v(KIAM)=p_r,v/vex; p_m(KIAM)=1+p_m/vex; normalized initial mass=1",
+        "scope": "KIAM central mass-optimal equations/control, plus independent third-body decomposition when present; not a separate global optimization"
+      },
+      "reason": null,
+      "attempts": [
+        {
+          "anchor": "anchor_00",
+          "fixed_time": {
+            "case_id": "earth_mars_2028",
+            "status": "completed",
+            "module": "final",
+            "block": "Финальная проверка",
+            "stop_kind": "completed",
+            "reason": "",
+            "last_rejection": "",
+            "last_verified_artifact": "runs/free_time_physical_matrix_v1/earth_mars_2028/anchor_00/final",
+            "last_model": null,
+            "physically_unreachable_proven": false,
+            "stop_label": "ПСИ принята"
+          },
+          "release": {
+            "seed_tof_days": 500,
+            "anchor_status": "completed",
+            "phase": "time_release",
+            "error": "Free-duration integration budget reached",
+            "status": "partial"
+          }
+        },
+        {
+          "anchor": "anchor_01",
+          "fixed_time": {
+            "case_id": "earth_mars_2028",
+            "status": "partial",
+            "module": "psi",
+            "block": "ПСИ: физический предел тяги",
+            "stop_kind": "minimum_step",
+            "reason": "minimum_step",
+            "last_rejection": "RuntimeError: active: The maximum number of mesh nodes is exceeded.; active shooting: Bounded shooting replay failed: {'passed': False, 'position_residual_m': 648823.5637296173, 'velocity_residual_m_s': 0.217393852091302, 'parameter_audit': {'passed': True, 'configuration_sha256': 'ac659634705ad80090731e9a83631b0f041338d7e0445fdff774667cfc7eea5b', 'configuration_hash_version': 2, 'requested': {'mass_kg': 156, 'thrust_N': 0.025, 'exhaust_velocity_m_s': 20000, 'dry_mass_kg': 90, 'launch_tdb': '2028-11-01T00:00:00', 'tof_days': 303.84646922620584, 'departure': 'Earth', 'target': 'Mars', 'mode': 'rendezvous'}, 'recovered_model': {'model_thrust_N': np.float64(0.044741750509542405), 'thrust_to_requested_ratio': np.float64(1.7896700203816962), 'alpha': 0.5, 'beta': 1.0, 'variable_mass': True, 'hardware_limit_reached': False, 'exhaust_velocity_m_s': np.float64(20000.0)}, 'geometry': None, 'final_admission': False}, 'trajectory_difference_m': 4.134817666401032, 'velocity_difference_m_s': 5.351218691826589e-07, 'stored_throttle_error': 0.0, 'stored_throttle_minimum': 1.0, 'stored_throttle_maximum': 1.0, 'canonical_boundary_residual': 8.54633206836956e-06, 'method': 'LSODA with independent bounded/mass equations', 'scope': 'Numerical extremal and constraints; no global optimality proof', 'departure_norm_m_s': 3000.030933865236, 'minimum_mass_kg': 97.27122898851877, 'fuel_kg': 58.72877101148123, 'mass_difference_kg': 4.503064587879635e-13, 'stored_thrust_error_N': 0.0}; free: Inactive departure branch is outside the allowed excess ball",
+            "last_verified_artifact": "runs/free_time_physical_matrix_v1/earth_mars_2028/anchor_01/stage_psi/limit/point_0014",
+            "last_model": {
+              "alpha": 0.5,
+              "beta": 1.0,
+              "variable_mass": true,
+              "model_thrust_N": 0.04474648153475631,
+              "requested_thrust_N": 0.025,
+              "thrust_ratio": 1.7898592613902524
+            },
+            "physically_unreachable_proven": false,
+            "checkpoint": "runs/free_time_physical_matrix_v1/earth_mars_2028/anchor_01/stage_psi/limit/continuation.json",
+            "accepted_parameter": 0.484130859375,
+            "next_step": 6.179809570312501e-05,
+            "stop_label": "Решение не получено при минимальном шаге"
+          },
+          "release": {
+            "seed_tof_days": 303.84646922620584,
+            "anchor_status": "partial",
+            "phase": "psi",
+            "error": null,
+            "status": "partial"
+          }
+        },
+        {
+          "anchor": "anchor_02",
+          "fixed_time": {
+            "case_id": "earth_mars_2028",
+            "status": "completed",
+            "module": "final",
+            "block": "Финальная проверка",
+            "stop_kind": "completed",
+            "reason": "",
+            "last_rejection": "",
+            "last_verified_artifact": "runs/free_time_physical_matrix_v1/earth_mars_2028/anchor_02/final",
+            "last_model": null,
+            "physically_unreachable_proven": false,
+            "stop_label": "ПСИ принята"
+          },
+          "release": {
+            "seed_tof_days": 696.6016988733437,
+            "anchor_status": "completed",
+            "phase": "final",
+            "error": null,
+            "status": "completed",
+            "resolved_tof_days": 710.4392796106765
+          }
+        }
+      ],
+      "time_optimization": {
+        "method": "constrained_shooting_SLSQP",
+        "seed_tof_days": 696.6016988733437,
+        "resolved_tof_days": 710.4392796106765,
+        "bounds_days": [
+          250.0,
+          750.0
+        ],
+        "optimizer_success": true,
+        "iterations": 13,
+        "objective": "propellant",
+        "global_optimality": false
+      },
+      "arrays_sha256": "849bc277acf7926b094feb452f7c7a663a4ab2690a8731ba04f5203cc72d0dd4",
+      "metadata_sha256": "62c06aa9656d5aad09a5163f19c3309396952f3f1939d71080771d463fcd2e26"
+    },
+    {
+      "case_id": "earth_apophis_2029",
+      "departure": "Earth",
+      "target": "Apophis",
+      "launch_tdb": "2029-02-14T12:00:00",
+      "mode": "rendezvous",
+      "seed_tof_days": 422.6618015373437,
+      "bounds_days": [
+        211.33090076867185,
+        633.9927023060155
+      ],
+      "status": "completed",
+      "phase": "final",
+      "tof_days": 422.6618015373437,
+      "fuel_kg": 18.64035109613448,
+      "verification": {
+        "passed": true,
+        "position_residual_m": 0.9376402315936139,
+        "velocity_residual_m_s": 1.215017608383077e-07,
+        "parameter_audit": {
+          "passed": true,
+          "configuration_sha256": "6f3b994664f8787458e80d26fdbff449a93a01cb9da57a2db1322883b36fb739",
+          "configuration_hash_version": 2,
+          "requested": {
+            "mass_kg": 156,
+            "thrust_N": 0.025,
+            "exhaust_velocity_m_s": 20000,
+            "dry_mass_kg": 90,
+            "launch_tdb": "2029-02-14T12:00:00",
+            "tof_days": 422.6618015373437,
+            "departure": "Earth",
+            "target": "Apophis",
+            "mode": "rendezvous"
+          },
+          "recovered_model": {
+            "model_thrust_N": 0.025,
+            "thrust_to_requested_ratio": 1.0,
+            "alpha": 1.0,
+            "beta": 1.0,
+            "variable_mass": true,
+            "hardware_limit_reached": true,
+            "exhaust_velocity_m_s": 20000.0
+          },
+          "geometry": null,
+          "final_admission": true
+        },
+        "trajectory_difference_m": 0.9418894732058104,
+        "velocity_difference_m_s": 1.4088967145874956e-07,
+        "stored_throttle_error": 0.0,
+        "stored_throttle_minimum": 0.0,
+        "stored_throttle_maximum": 1.0,
+        "canonical_boundary_residual": 7.53413787316146e-12,
+        "method": "LSODA with independent bounded/mass equations",
+        "scope": "Numerical extremal and constraints; no global optimality proof",
+        "departure_norm_m_s": 3000.000000000022,
+        "switching_sign_violation": 7.533566441797516e-12,
+        "switching_node_residual": 7.533566441797516e-12,
+        "minimum_mass_kg": 137.35964890386552,
+        "fuel_kg": 18.64035109613448,
+        "mass_difference_kg": 8.659739592076221e-14,
+        "stored_thrust_error_N": 0.0,
+        "mass_balance_error_kg": 1.0658141036401503e-14
+      },
+      "kiam_verification": {
+        "passed": true,
+        "source": "Unmodified KIAM Astro compiled Fortran equations and published control API",
+        "package_version": "6.1.6",
+        "samples": 101,
+        "maximum_dimensionless_rhs_error": 6.661338147750939e-16,
+        "maximum_dimensionless_force_error": 6.938893903907228e-18,
+        "maximum_third_body_decomposition_error": 0.0,
+        "nbody_gravity": {
+          "passed": true,
+          "applicable": false
+        },
+        "costate_map": "p_r,v(KIAM)=p_r,v/vex; p_m(KIAM)=1+p_m/vex; normalized initial mass=1",
+        "scope": "KIAM central mass-optimal equations/control, plus independent third-body decomposition when present; not a separate global optimization"
+      },
+      "reason": null,
+      "attempts": [
+        {
+          "anchor": "anchor_00",
+          "fixed_time": {
+            "case_id": "earth_apophis_2029",
+            "status": "completed",
+            "module": "final",
+            "block": "Финальная проверка",
+            "stop_kind": "completed",
+            "reason": "",
+            "last_rejection": "",
+            "last_verified_artifact": "runs/free_time_physical_matrix_v1/earth_apophis_2029/anchor_00/final",
+            "last_model": null,
+            "physically_unreachable_proven": false,
+            "stop_label": "ПСИ принята"
+          },
+          "release": {
+            "seed_tof_days": 422.6618015373437,
+            "anchor_status": "completed",
+            "phase": "final",
+            "error": null,
+            "status": "completed",
+            "resolved_tof_days": 422.6618015373437
+          }
+        }
+      ],
+      "time_optimization": {
+        "method": "constrained_shooting_SLSQP",
+        "seed_tof_days": 422.6618015373437,
+        "resolved_tof_days": 422.6618015373437,
+        "bounds_days": [
+          211.33090076867185,
+          633.9927023060155
+        ],
+        "optimizer_success": true,
+        "iterations": 1,
+        "objective": "propellant",
+        "global_optimality": false
+      },
+      "arrays_sha256": "e19f9efdca8d3eea3362f03e0f02458f4ba1cd5f5280a35d6e1828f3b503fec6",
+      "metadata_sha256": "6ff51cc05641783510fa3a12b09e5e0d99fdf1cf9a55a2025b4ad069c921806d"
+    },
+    {
+      "case_id": "earth_eros_2029",
+      "departure": "Earth",
+      "target": "Eros",
+      "launch_tdb": "2029-03-01T00:00:00",
+      "mode": "rendezvous",
+      "seed_tof_days": 400,
+      "bounds_days": [
+        200.0,
+        600.0
+      ],
+      "status": "partial",
+      "phase": "psi",
+      "tof_days": null,
+      "fuel_kg": null,
+      "verification": null,
+      "kiam_verification": null,
+      "reason": "No independently accepted free-duration result; see time_history.json",
+      "attempts": [
+        {
+          "anchor": "anchor_00",
+          "fixed_time": {
+            "case_id": "earth_eros_2029",
+            "status": "partial",
+            "module": "psi",
+            "block": "ПСИ: введение массы",
+            "stop_kind": "stage_time_budget",
+            "reason": "time_budget",
+            "last_rejection": "RuntimeError: active: Bounded collocation budget reached; active shooting: Bounded shooting budget reached; free: Bounded collocation budget reached",
+            "last_verified_artifact": "runs/free_time_physical_matrix_v1/earth_eros_2029/anchor_00/stage_psi/mass/point_0011",
+            "last_model": {
+              "alpha": 0.5,
+              "beta": 0.9875,
+              "variable_mass": true,
+              "model_thrust_N": 0.08174391532506176,
+              "requested_thrust_N": 0.025,
+              "thrust_ratio": 3.2697566130024702
+            },
+            "physically_unreachable_proven": false,
+            "checkpoint": "runs/free_time_physical_matrix_v1/earth_eros_2029/anchor_00/stage_psi/mass/continuation.json",
+            "accepted_parameter": 0.9875,
+            "next_step": 0.010546875,
+            "stop_label": "Исчерпан бюджет этапа"
+          },
+          "release": {
+            "seed_tof_days": 400,
+            "anchor_status": "partial",
+            "phase": "psi",
+            "error": null,
+            "status": "partial"
+          }
+        },
+        {
+          "anchor": "anchor_01",
+          "fixed_time": {
+            "case_id": "earth_eros_2029",
+            "status": "partial",
+            "module": "psi",
+            "block": "ПСИ: введение массы",
+            "stop_kind": "stage_time_budget",
+            "reason": "time_budget",
+            "last_rejection": "RuntimeError: active: Nonpositive mass or central collision during propagation; active shooting: Bounded shooting budget reached; free: Nonpositive mass or central collision during propagation; free shooting: Bounded shooting budget reached",
+            "last_verified_artifact": "runs/free_time_physical_matrix_v1/earth_eros_2029/anchor_01/stage_psi/mass/point_0023",
+            "last_model": {
+              "alpha": 0.5,
+              "beta": 0.7643476486206056,
+              "variable_mass": true,
+              "model_thrust_N": 1.1023564157443717,
+              "requested_thrust_N": 0.025,
+              "thrust_ratio": 44.09425662977487
+            },
+            "physically_unreachable_proven": false,
+            "checkpoint": "runs/free_time_physical_matrix_v1/earth_eros_2029/anchor_01/stage_psi/mass/continuation.json",
+            "accepted_parameter": 0.7643476486206056,
+            "next_step": 0.002815675735473633,
+            "stop_label": "Исчерпан бюджет этапа"
+          },
+          "release": {
+            "seed_tof_days": 208.77195205852303,
+            "anchor_status": "partial",
+            "phase": "psi",
+            "error": null,
+            "status": "partial"
+          }
+        },
+        {
+          "anchor": "anchor_02",
+          "fixed_time": {
+            "case_id": "earth_eros_2029",
+            "status": "partial",
+            "module": "psi",
+            "block": "ПСИ: введение массы",
+            "stop_kind": "stage_time_budget",
+            "reason": "time_budget",
+            "last_rejection": "RuntimeError: active: Bounded collocation budget reached; free: Bounded collocation budget reached",
+            "last_verified_artifact": "runs/free_time_physical_matrix_v1/earth_eros_2029/anchor_02/stage_psi/mass/point_0013",
+            "last_model": {
+              "alpha": 0.5,
+              "beta": 0.999609375,
+              "variable_mass": true,
+              "model_thrust_N": 0.049477792395978624,
+              "requested_thrust_N": 0.025,
+              "thrust_ratio": 1.9791116958391448
+            },
+            "physically_unreachable_proven": false,
+            "checkpoint": "runs/free_time_physical_matrix_v1/earth_eros_2029/anchor_02/stage_psi/mass/continuation.json",
+            "accepted_parameter": 0.999609375,
+            "next_step": 0.003955078125000001,
+            "stop_label": "Исчерпан бюджет этапа"
+          },
+          "release": {
+            "seed_tof_days": 590.451888451091,
+            "anchor_status": "partial",
+            "phase": "psi",
+            "error": null,
+            "status": "partial"
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "earth_bennu_2029",
+      "departure": "Earth",
+      "target": "Bennu",
+      "launch_tdb": "2029-06-01T00:00:00",
+      "mode": "rendezvous",
+      "seed_tof_days": 500,
+      "bounds_days": [
+        250.0,
+        750.0
+      ],
+      "status": "partial",
+      "phase": "psi",
+      "tof_days": null,
+      "fuel_kg": null,
+      "verification": null,
+      "kiam_verification": null,
+      "reason": "No independently accepted free-duration result; see time_history.json",
+      "attempts": [
+        {
+          "anchor": "anchor_00",
+          "fixed_time": {
+            "case_id": "earth_bennu_2029",
+            "status": "completed",
+            "module": "final",
+            "block": "Финальная проверка",
+            "stop_kind": "completed",
+            "reason": "",
+            "last_rejection": "",
+            "last_verified_artifact": "runs/free_time_physical_matrix_v1/earth_bennu_2029/anchor_00/final",
+            "last_model": null,
+            "physically_unreachable_proven": false,
+            "stop_label": "ПСИ принята"
+          },
+          "release": {
+            "seed_tof_days": 500,
+            "anchor_status": "completed",
+            "phase": "time_release",
+            "error": "free: Free-duration physical replay failed: {'passed': False, 'position_residual_m': 3.2750421245100108, 'velocity_residual_m_s': 5.937236481157715e-07, 'parameter_audit': {'passed': True, 'configuration_sha256': '9e17bcf8d38518b55f620194bf7bd3b6a39198c6972d3787b26e0c76450236f7', 'configuration_hash_version': 2, 'requested': {'mass_kg': 156, 'thrust_N': 0.025, 'exhaust_velocity_m_s': 20000, 'dry_mass_kg': 90, 'launch_tdb': '2029-06-01T00:00:00', 'tof_days': 537.3333007678337, 'departure': 'Earth', 'target': 'Bennu', 'mode': 'rendezvous'}, 'recovered_model': {'model_thrust_N': np.float64(0.025), 'thrust_to_requested_ratio': np.float64(1.0), 'alpha': 1.0, 'beta': 1.0, 'variable_mass': True, 'hardware_limit_reached': True, 'exhaust_velocity_m_s': np.float64(20000.0)}, 'geometry': None, 'final_admission': True}, 'trajectory_difference_m': 2.972412337151836, 'velocity_difference_m_s': 5.644930188615647e-07, 'stored_throttle_error': 0.0, 'stored_throttle_minimum': 0.0, 'stored_throttle_maximum': 1.0, 'canonical_boundary_residual': 2.961308639909066e-11, 'method': 'LSODA with independent bounded/mass equations', 'scope': 'Numerical extremal and constraints; no global optimality proof', 'departure_norm_m_s': 1749.7151826598595, 'switching_sign_violation': 0.14890401101553571, 'switching_node_residual': 3.222407160650797e-11, 'minimum_mass_kg': 124.4776574903166, 'fuel_kg': 31.522342509683394, 'mass_difference_kg': 2.424727085781342e-13, 'stored_thrust_error_N': 0.0, 'mass_balance_error_kg': np.float64(1.5276668818842154e-13)}; active: Free-duration optimizer: Positive directional derivative for linesearch",
+            "status": "partial"
+          }
+        },
+        {
+          "anchor": "anchor_01",
+          "fixed_time": {
+            "case_id": "earth_bennu_2029",
+            "status": "partial",
+            "module": "psi",
+            "block": "ПСИ: физический предел тяги",
+            "stop_kind": "stage_time_budget",
+            "reason": "time_budget",
+            "last_rejection": "RuntimeError: active: The maximum number of mesh nodes is exceeded.; active shooting: Bounded shooting budget reached; free: Bounded collocation budget reached",
+            "last_verified_artifact": "runs/free_time_physical_matrix_v1/earth_bennu_2029/anchor_01/stage_psi/limit/point_0007",
+            "last_model": {
+              "alpha": 0.5,
+              "beta": 1.0,
+              "variable_mass": true,
+              "model_thrust_N": 0.026582364582748947,
+              "requested_thrust_N": 0.025,
+              "thrust_ratio": 1.0632945833099579
+            },
+            "physically_unreachable_proven": false,
+            "checkpoint": "runs/free_time_physical_matrix_v1/earth_bennu_2029/anchor_01/stage_psi/limit/continuation.json",
+            "accepted_parameter": 0.7375,
+            "next_step": 0.0008789062500000001,
+            "stop_label": "Исчерпан бюджет этапа"
+          },
+          "release": {
+            "seed_tof_days": 338.78411439227165,
+            "anchor_status": "partial",
+            "phase": "psi",
+            "error": null,
+            "status": "partial"
+          }
+        },
+        {
+          "anchor": "anchor_02",
+          "fixed_time": {
+            "case_id": "earth_bennu_2029",
+            "status": "partial",
+            "module": "psi",
+            "block": "ПСИ: точное управление",
+            "stop_kind": "stage_time_budget",
+            "reason": "time_budget",
+            "last_rejection": "RuntimeError: free: Bounded collocation budget reached; active: Bounded collocation budget reached",
+            "last_verified_artifact": "runs/free_time_physical_matrix_v1/earth_bennu_2029/anchor_02/stage_psi/fuel/point_0011",
+            "last_model": {
+              "alpha": 0.7154296875,
+              "beta": 1.0,
+              "variable_mass": true,
+              "model_thrust_N": 0.025,
+              "requested_thrust_N": 0.025,
+              "thrust_ratio": 1.0
+            },
+            "physically_unreachable_proven": false,
+            "checkpoint": "runs/free_time_physical_matrix_v1/earth_bennu_2029/anchor_02/stage_psi/fuel/continuation.json",
+            "accepted_parameter": 0.43085937500000004,
+            "next_step": 0.00032958984375,
+            "stop_label": "Исчерпан бюджет этапа"
+          },
+          "release": {
+            "seed_tof_days": 661.2158856077284,
+            "anchor_status": "partial",
+            "phase": "psi",
+            "error": null,
+            "status": "partial"
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "earth_ryugu_2028",
+      "departure": "Earth",
+      "target": "Ryugu",
+      "launch_tdb": "2028-06-01T00:00:00",
+      "mode": "rendezvous",
+      "seed_tof_days": 600,
+      "bounds_days": [
+        300.0,
+        900.0
+      ],
+      "status": "completed",
+      "phase": "final",
+      "tof_days": 656.3187285322039,
+      "fuel_kg": 17.32092170073716,
+      "verification": {
+        "passed": true,
+        "position_residual_m": 6.4169036749613095,
+        "velocity_residual_m_s": 1.256846104804456e-06,
+        "parameter_audit": {
+          "passed": true,
+          "configuration_sha256": "b5170e01cac4f1856dca8e49b695203c3288616a890dff29d39232e3d8d4c4e7",
+          "configuration_hash_version": 2,
+          "requested": {
+            "mass_kg": 156,
+            "thrust_N": 0.025,
+            "exhaust_velocity_m_s": 20000,
+            "dry_mass_kg": 90,
+            "launch_tdb": "2028-06-01T00:00:00",
+            "tof_days": 656.3187285322039,
+            "departure": "Earth",
+            "target": "Ryugu",
+            "mode": "rendezvous"
+          },
+          "recovered_model": {
+            "model_thrust_N": 0.025,
+            "thrust_to_requested_ratio": 1.0,
+            "alpha": 1.0,
+            "beta": 1.0,
+            "variable_mass": true,
+            "hardware_limit_reached": true,
+            "exhaust_velocity_m_s": 20000.0
+          },
+          "geometry": null,
+          "final_admission": true
+        },
+        "trajectory_difference_m": 6.08252610353431,
+        "velocity_difference_m_s": 1.2018088869152461e-06,
+        "stored_throttle_error": 0.0,
+        "stored_throttle_minimum": 0.0,
+        "stored_throttle_maximum": 1.0,
+        "canonical_boundary_residual": 5.995832679490447e-11,
+        "method": "LSODA with independent bounded/mass equations",
+        "scope": "Numerical extremal and constraints; no global optimality proof",
+        "departure_norm_m_s": 2999.9999999996594,
+        "switching_sign_violation": 8.968094219365949e-13,
+        "switching_node_residual": 8.9655971863103e-13,
+        "minimum_mass_kg": 138.67907829926284,
+        "fuel_kg": 17.32092170073716,
+        "mass_difference_kg": 3.810285420513537e-13,
+        "stored_thrust_error_N": 0.0,
+        "mass_balance_error_kg": 3.232969447708456e-13
+      },
+      "kiam_verification": {
+        "passed": true,
+        "source": "Unmodified KIAM Astro compiled Fortran equations and published control API",
+        "package_version": "6.1.6",
+        "samples": 101,
+        "maximum_dimensionless_rhs_error": 8.326672684688674e-16,
+        "maximum_dimensionless_force_error": 6.938893903907228e-18,
+        "maximum_third_body_decomposition_error": 0.0,
+        "nbody_gravity": {
+          "passed": true,
+          "applicable": false
+        },
+        "costate_map": "p_r,v(KIAM)=p_r,v/vex; p_m(KIAM)=1+p_m/vex; normalized initial mass=1",
+        "scope": "KIAM central mass-optimal equations/control, plus independent third-body decomposition when present; not a separate global optimization"
+      },
+      "reason": null,
+      "attempts": [
+        {
+          "anchor": "anchor_00",
+          "fixed_time": {
+            "case_id": "earth_ryugu_2028",
+            "status": "completed",
+            "module": "final",
+            "block": "Финальная проверка",
+            "stop_kind": "completed",
+            "reason": "",
+            "last_rejection": "",
+            "last_verified_artifact": "runs/free_time_physical_matrix_v1/earth_ryugu_2028/anchor_00/final",
+            "last_model": null,
+            "physically_unreachable_proven": false,
+            "stop_label": "ПСИ принята"
+          },
+          "release": {
+            "seed_tof_days": 600,
+            "anchor_status": "completed",
+            "phase": "final",
+            "error": null,
+            "status": "completed",
+            "resolved_tof_days": 656.3187285322039
+          }
+        }
+      ],
+      "time_optimization": {
+        "method": "constrained_shooting_SLSQP",
+        "seed_tof_days": 600,
+        "resolved_tof_days": 656.3187285322039,
+        "bounds_days": [
+          300.0,
+          900.0
+        ],
+        "optimizer_success": true,
+        "iterations": 27,
+        "objective": "propellant",
+        "global_optimality": false
+      },
+      "arrays_sha256": "826f1fb15f841ebbf67aa8a55c6d8f572e9fc884f6b2f0dd3de97d6a93b36f58",
+      "metadata_sha256": "eb9adb68f895420033014cc88ac4da93049e44c92c2d9163b56904d808356af7"
+    },
+    {
+      "case_id": "earth_polyhymnia_2029",
+      "departure": "Earth",
+      "target": "Polyhymnia",
+      "launch_tdb": "2029-03-01T00:00:00",
+      "mode": "rendezvous",
+      "seed_tof_days": 900,
+      "bounds_days": [
+        450.0,
+        1350.0
+      ],
+      "status": "partial",
+      "phase": "psi",
+      "tof_days": null,
+      "fuel_kg": null,
+      "verification": null,
+      "kiam_verification": null,
+      "reason": "No independently accepted free-duration result; see time_history.json",
+      "attempts": [
+        {
+          "anchor": "anchor_00",
+          "fixed_time": {
+            "case_id": "earth_polyhymnia_2029",
+            "status": "partial",
+            "module": "psi",
+            "block": "ПСИ: введение массы",
+            "stop_kind": "stage_time_budget",
+            "reason": "time_budget",
+            "last_rejection": "RuntimeError: active: Bounded collocation budget reached; free: Bounded collocation budget reached",
+            "last_verified_artifact": "runs/free_time_physical_matrix_v1/earth_polyhymnia_2029/anchor_00/stage_psi/mass/point_0013",
+            "last_model": {
+              "alpha": 0.5,
+              "beta": 0.999609375,
+              "variable_mass": true,
+              "model_thrust_N": 0.03825683158611321,
+              "requested_thrust_N": 0.025,
+              "thrust_ratio": 1.5302732634445284
+            },
+            "physically_unreachable_proven": false,
+            "checkpoint": "runs/free_time_physical_matrix_v1/earth_polyhymnia_2029/anchor_00/stage_psi/mass/continuation.json",
+            "accepted_parameter": 0.999609375,
+            "next_step": 0.003955078125000001,
+            "stop_label": "Исчерпан бюджет этапа"
+          },
+          "release": {
+            "seed_tof_days": 900,
+            "anchor_status": "partial",
+            "phase": "psi",
+            "error": null,
+            "status": "partial"
+          }
+        },
+        {
+          "anchor": "anchor_01",
+          "fixed_time": {
+            "case_id": "earth_polyhymnia_2029",
+            "status": "partial",
+            "module": "psi",
+            "block": "ПСИ: введение массы",
+            "stop_kind": "stage_time_budget",
+            "reason": "time_budget",
+            "last_rejection": "RuntimeError: active: Bounded collocation budget reached; active shooting: Bounded shooting replay failed: {'passed': False, 'position_residual_m': 38.27197485255987, 'velocity_residual_m_s': 2.418496364320585e-06, 'parameter_audit': {'passed': True, 'configuration_sha256': '75079105ec345363fe46199403db22588a54fb696d3db939f92c43b68637ec38', 'configuration_hash_version': 2, 'requested': {'mass_kg': 156, 'thrust_N': 0.025, 'exhaust_velocity_m_s': 20000, 'dry_mass_kg': 90, 'launch_tdb': '2029-03-01T00:00:00', 'tof_days': 594.3137813289023, 'departure': 'Earth', 'target': 'Polyhymnia', 'mode': 'rendezvous'}, 'recovered_model': {'model_thrust_N': np.float64(0.05687681660286155), 'thrust_to_requested_ratio': np.float64(2.275072664114462), 'alpha': 0.5, 'beta': 1.0, 'variable_mass': True, 'hardware_limit_reached': False, 'exhaust_velocity_m_s': np.float64(20000.0)}, 'geometry': None, 'final_admission': False}, 'trajectory_difference_m': 34.44464576546362, 'velocity_difference_m_s': 2.0121368253649457e-06, 'stored_throttle_error': 3.885780586188048e-15, 'stored_throttle_minimum': 0.0, 'stored_throttle_maximum': 1.0, 'canonical_boundary_residual': 2.712790651648365e-10, 'method': 'LSODA with independent bounded/mass equations', 'scope': 'Numerical extremal and constraints; no global optimality proof', 'departure_norm_m_s': 3000.0000000000036, 'minimum_mass_kg': 81.78794870017408, 'fuel_kg': 74.21205129982592, 'mass_difference_kg': 6.337890212648745e-09, 'stored_thrust_error_N': 2.220446049250313e-16}; free: Bounded collocation budget reached",
+            "last_verified_artifact": "runs/free_time_physical_matrix_v1/earth_polyhymnia_2029/anchor_01/stage_psi/mass/point_0013",
+            "last_model": {
+              "alpha": 0.5,
+              "beta": 0.999609375,
+              "variable_mass": true,
+              "model_thrust_N": 0.05687681660286155,
+              "requested_thrust_N": 0.025,
+              "thrust_ratio": 2.275072664114462
+            },
+            "physically_unreachable_proven": false,
+            "checkpoint": "runs/free_time_physical_matrix_v1/earth_polyhymnia_2029/anchor_01/stage_psi/mass/continuation.json",
+            "accepted_parameter": 0.999609375,
+            "next_step": 0.0019775390625000003,
+            "stop_label": "Исчерпан бюджет этапа"
+          },
+          "release": {
+            "seed_tof_days": 594.3137813289023,
+            "anchor_status": "partial",
+            "phase": "psi",
+            "error": null,
+            "status": "partial"
+          }
+        },
+        {
+          "anchor": "anchor_02",
+          "fixed_time": {
+            "case_id": "earth_polyhymnia_2029",
+            "status": "partial",
+            "module": "psi",
+            "block": "ПСИ: введение массы",
+            "stop_kind": "stage_time_budget",
+            "reason": "time_budget",
+            "last_rejection": "RuntimeError: active: Bounded collocation budget reached; active shooting: Bounded shooting budget reached; free: Bounded collocation budget reached",
+            "last_verified_artifact": "runs/free_time_physical_matrix_v1/earth_polyhymnia_2029/anchor_02/stage_psi/mass/point_0014",
+            "last_model": {
+              "alpha": 0.5,
+              "beta": 0.9458984375000002,
+              "variable_mass": true,
+              "model_thrust_N": 0.02767214722878891,
+              "requested_thrust_N": 0.025,
+              "thrust_ratio": 1.1068858891515563
+            },
+            "physically_unreachable_proven": false,
+            "checkpoint": "runs/free_time_physical_matrix_v1/earth_polyhymnia_2029/anchor_02/stage_psi/mass/continuation.json",
+            "accepted_parameter": 0.9458984375000002,
+            "next_step": 0.035595703125,
+            "stop_label": "Исчерпан бюджет этапа"
+          },
+          "release": {
+            "seed_tof_days": 1196.4667210313455,
+            "anchor_status": "partial",
+            "phase": "psi",
+            "error": null,
+            "status": "partial"
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "earth_ceres_2030",
+      "departure": "Earth",
+      "target": "Ceres",
+      "launch_tdb": "2030-02-01T00:00:00",
+      "mode": "rendezvous",
+      "seed_tof_days": 1000,
+      "bounds_days": [
+        500.0,
+        1500.0
+      ],
+      "status": "partial",
+      "phase": "psi",
+      "tof_days": null,
+      "fuel_kg": null,
+      "verification": null,
+      "kiam_verification": null,
+      "reason": "No independently accepted free-duration result; see time_history.json",
+      "attempts": [
+        {
+          "anchor": "anchor_00",
+          "fixed_time": {
+            "case_id": "earth_ceres_2030",
+            "status": "partial",
+            "module": "psi",
+            "block": "ПСИ: точное управление",
+            "stop_kind": "stage_time_budget",
+            "reason": "time_budget",
+            "last_rejection": "RuntimeError: active: Bounded collocation budget reached; active shooting: Bounded shooting budget reached; free: The maximum number of mesh nodes is exceeded.; free shooting: Bounded shooting budget reached",
+            "last_verified_artifact": "runs/free_time_physical_matrix_v1/earth_ceres_2030/anchor_00/stage_psi/fuel/point_0007",
+            "last_model": {
+              "alpha": 0.51484375,
+              "beta": 1.0,
+              "variable_mass": true,
+              "model_thrust_N": 0.025,
+              "requested_thrust_N": 0.025,
+              "thrust_ratio": 1.0
+            },
+            "physically_unreachable_proven": false,
+            "checkpoint": "runs/free_time_physical_matrix_v1/earth_ceres_2030/anchor_00/stage_psi/fuel/continuation.json",
+            "accepted_parameter": 0.029687500000000002,
+            "next_step": 0.0035156250000000005,
+            "stop_label": "Исчерпан бюджет этапа"
+          },
+          "release": {
+            "seed_tof_days": 1000,
+            "anchor_status": "partial",
+            "phase": "psi",
+            "error": null,
+            "status": "partial"
+          }
+        },
+        {
+          "anchor": "anchor_01",
+          "fixed_time": {
+            "case_id": "earth_ceres_2030",
+            "status": "partial",
+            "module": "psi",
+            "block": "ПСИ: введение массы",
+            "stop_kind": "stage_time_budget",
+            "reason": "time_budget",
+            "last_rejection": "RuntimeError: active: Bounded collocation budget reached; active shooting: Bounded shooting replay failed: {'passed': False, 'position_residual_m': 61.44570811187406, 'velocity_residual_m_s': 3.464493302143938e-06, 'parameter_audit': {'passed': True, 'configuration_sha256': 'f1c16c80fb2a6d75ee27a5a9ccbc328cd9bb30dcdcda630794039ee0b30bee79', 'configuration_hash_version': 2, 'requested': {'mass_kg': 156, 'thrust_N': 0.025, 'exhaust_velocity_m_s': 20000, 'dry_mass_kg': 90, 'launch_tdb': '2030-02-01T00:00:00', 'tof_days': 711.3552499793979, 'departure': 'Earth', 'target': 'Ceres', 'mode': 'rendezvous'}, 'recovered_model': {'model_thrust_N': np.float64(0.03848660264805843), 'thrust_to_requested_ratio': np.float64(1.539464105922337), 'alpha': 0.5, 'beta': 1.0, 'variable_mass': True, 'hardware_limit_reached': False, 'exhaust_velocity_m_s': np.float64(20000.0)}, 'geometry': None, 'final_admission': False}, 'trajectory_difference_m': 56.84406603969048, 'velocity_difference_m_s': 3.0250863171525475e-06, 'stored_throttle_error': 0.0, 'stored_throttle_minimum': 0.0, 'stored_throttle_maximum': 1.0, 'canonical_boundary_residual': 4.415959892610772e-10, 'method': 'LSODA with independent bounded/mass equations', 'scope': 'Numerical extremal and constraints; no global optimality proof', 'departure_norm_m_s': 2999.999999999997, 'minimum_mass_kg': 82.05894520294946, 'fuel_kg': 73.94105479705054, 'mass_difference_kg': 1.5355415605711187e-08, 'stored_thrust_error_N': 0.0}; free: Bounded collocation budget reached",
+            "last_verified_artifact": "runs/free_time_physical_matrix_v1/earth_ceres_2030/anchor_01/stage_psi/mass/point_0013",
+            "last_model": {
+              "alpha": 0.5,
+              "beta": 0.999609375,
+              "variable_mass": true,
+              "model_thrust_N": 0.03848660264805843,
+              "requested_thrust_N": 0.025,
+              "thrust_ratio": 1.539464105922337
+            },
+            "physically_unreachable_proven": false,
+            "checkpoint": "runs/free_time_physical_matrix_v1/earth_ceres_2030/anchor_01/stage_psi/mass/continuation.json",
+            "accepted_parameter": 0.999609375,
+            "next_step": 0.007910156250000001,
+            "stop_label": "Исчерпан бюджет этапа"
+          },
+          "release": {
+            "seed_tof_days": 711.3552499793979,
+            "anchor_status": "partial",
+            "phase": "psi",
+            "error": null,
+            "status": "partial"
+          }
+        },
+        {
+          "anchor": "anchor_02",
+          "fixed_time": {
+            "case_id": "earth_ceres_2030",
+            "status": "partial",
+            "module": "psi",
+            "block": "ПСИ: введение массы",
+            "stop_kind": "stage_time_budget",
+            "reason": "time_budget",
+            "last_rejection": "RuntimeError: active: Bounded collocation budget reached; active shooting: Bounded shooting budget reached; free: The maximum number of mesh nodes is exceeded.; free shooting: Bounded shooting budget reached",
+            "last_verified_artifact": "runs/free_time_physical_matrix_v1/earth_ceres_2030/anchor_02/stage_psi/mass/initial",
+            "last_model": {
+              "alpha": 0.203125,
+              "beta": 0.0,
+              "variable_mass": true,
+              "model_thrust_N": 0.025,
+              "requested_thrust_N": 0.025,
+              "thrust_ratio": 1.0
+            },
+            "physically_unreachable_proven": false,
+            "checkpoint": "runs/free_time_physical_matrix_v1/earth_ceres_2030/anchor_02/stage_psi/mass/continuation.json",
+            "accepted_parameter": 0.0,
+            "next_step": 0.0015625,
+            "stop_label": "Исчерпан бюджет этапа"
+          },
+          "release": {
+            "seed_tof_days": 1288.644750020602,
+            "anchor_status": "partial",
+            "phase": "psi",
+            "error": null,
+            "status": "partial"
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "earth_mercury_2029",
+      "departure": "Earth",
+      "target": "Mercury",
+      "launch_tdb": "2029-01-01T00:00:00",
+      "mode": "rendezvous",
+      "seed_tof_days": 300,
+      "bounds_days": [
+        150.0,
+        450.0
+      ],
+      "status": "partial",
+      "phase": "psi",
+      "tof_days": null,
+      "fuel_kg": null,
+      "verification": null,
+      "kiam_verification": null,
+      "reason": "No independently accepted free-duration result; see time_history.json",
+      "attempts": [
+        {
+          "anchor": "anchor_00",
+          "fixed_time": {
+            "case_id": "earth_mercury_2029",
+            "status": "partial",
+            "module": "psi",
+            "block": "ПСИ: введение массы",
+            "stop_kind": "stage_time_budget",
+            "reason": "time_budget",
+            "last_rejection": "RuntimeError: active: Bounded collocation budget reached; active shooting: Bounded shooting budget reached; free: Bounded collocation budget reached",
+            "last_verified_artifact": "runs/free_time_physical_matrix_v1/earth_mercury_2029/anchor_00/stage_psi/mass/point_0013",
+            "last_model": {
+              "alpha": 0.5,
+              "beta": 0.9445312499999999,
+              "variable_mass": true,
+              "model_thrust_N": 0.15378254264287824,
+              "requested_thrust_N": 0.025,
+              "thrust_ratio": 6.151301705715129
+            },
+            "physically_unreachable_proven": false,
+            "checkpoint": "runs/free_time_physical_matrix_v1/earth_mercury_2029/anchor_00/stage_psi/mass/continuation.json",
+            "accepted_parameter": 0.9445312499999999,
+            "next_step": 0.037500000000000006,
+            "stop_label": "Исчерпан бюджет этапа"
+          },
+          "release": {
+            "seed_tof_days": 300,
+            "anchor_status": "partial",
+            "phase": "psi",
+            "error": null,
+            "status": "partial"
+          }
+        },
+        {
+          "anchor": "anchor_01",
+          "fixed_time": {
+            "case_id": "earth_mercury_2029",
+            "status": "partial",
+            "module": "psi",
+            "block": "ПСИ: введение массы",
+            "stop_kind": "stage_time_budget",
+            "reason": "time_budget",
+            "last_rejection": "RuntimeError: active: Bounded collocation budget reached; active shooting: Bounded shooting budget reached; free: Bounded collocation budget reached",
+            "last_verified_artifact": "runs/free_time_physical_matrix_v1/earth_mercury_2029/anchor_01/stage_psi/mass/point_0013",
+            "last_model": {
+              "alpha": 0.5,
+              "beta": 0.999609375,
+              "variable_mass": true,
+              "model_thrust_N": 0.18164826023483907,
+              "requested_thrust_N": 0.025,
+              "thrust_ratio": 7.265930409393563
+            },
+            "physically_unreachable_proven": false,
+            "checkpoint": "runs/free_time_physical_matrix_v1/earth_mercury_2029/anchor_01/stage_psi/mass/continuation.json",
+            "accepted_parameter": 0.999609375,
+            "next_step": 0.007910156250000001,
+            "stop_label": "Исчерпан бюджет этапа"
+          },
+          "release": {
+            "seed_tof_days": 232.85552126270434,
+            "anchor_status": "partial",
+            "phase": "psi",
+            "error": null,
+            "status": "partial"
+          }
+        },
+        {
+          "anchor": "anchor_02",
+          "fixed_time": {
+            "case_id": "earth_mercury_2029",
+            "status": "partial",
+            "module": "psi",
+            "block": "ПСИ: введение массы",
+            "stop_kind": "stage_time_budget",
+            "reason": "time_budget",
+            "last_rejection": "RuntimeError: active: Bounded collocation budget reached; active shooting: Bounded shooting budget reached; free: Nonpositive mass or central collision during propagation; free shooting: Bounded shooting budget reached",
+            "last_verified_artifact": "runs/free_time_physical_matrix_v1/earth_mercury_2029/anchor_02/stage_psi/mass/point_0014",
+            "last_model": {
+              "alpha": 0.5,
+              "beta": 0.9666992187500001,
+              "variable_mass": true,
+              "model_thrust_N": 0.11619939249779952,
+              "requested_thrust_N": 0.025,
+              "thrust_ratio": 4.647975699911981
+            },
+            "physically_unreachable_proven": false,
+            "checkpoint": "runs/free_time_physical_matrix_v1/earth_mercury_2029/anchor_02/stage_psi/mass/continuation.json",
+            "accepted_parameter": 0.9666992187500001,
+            "next_step": 0.0177978515625,
+            "stop_label": "Исчерпан бюджет этапа"
+          },
+          "release": {
+            "seed_tof_days": 367.1444787372957,
+            "anchor_status": "partial",
+            "phase": "psi",
+            "error": null,
+            "status": "partial"
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "earth_jupiter_2028",
+      "departure": "Earth",
+      "target": "Jupiter",
+      "launch_tdb": "2028-06-01T00:00:00",
+      "mode": "rendezvous",
+      "seed_tof_days": 1100,
+      "bounds_days": [
+        550.0,
+        1650.0
+      ],
+      "status": "partial",
+      "phase": "psi",
+      "tof_days": null,
+      "fuel_kg": null,
+      "verification": null,
+      "kiam_verification": null,
+      "reason": "No independently accepted free-duration result; see time_history.json",
+      "attempts": [
+        {
+          "anchor": "anchor_00",
+          "fixed_time": {
+            "case_id": "earth_jupiter_2028",
+            "status": "partial",
+            "module": "psi",
+            "block": "ПСИ: введение массы",
+            "stop_kind": "stage_time_budget",
+            "reason": "time_budget",
+            "last_rejection": "RuntimeError: active: Bounded collocation budget reached; active shooting: Bounded shooting budget reached; free: Bounded collocation budget reached",
+            "last_verified_artifact": "runs/free_time_physical_matrix_v1/earth_jupiter_2028/anchor_00/stage_psi/mass/point_0010",
+            "last_model": {
+              "alpha": 0.5,
+              "beta": 0.9875,
+              "variable_mass": true,
+              "model_thrust_N": 0.048246622793893246,
+              "requested_thrust_N": 0.025,
+              "thrust_ratio": 1.9298649117557298
+            },
+            "physically_unreachable_proven": false,
+            "checkpoint": "runs/free_time_physical_matrix_v1/earth_jupiter_2028/anchor_00/stage_psi/mass/continuation.json",
+            "accepted_parameter": 0.9875,
+            "next_step": 0.007031250000000001,
+            "stop_label": "Исчерпан бюджет этапа"
+          },
+          "release": {
+            "seed_tof_days": 1100,
+            "anchor_status": "partial",
+            "phase": "psi",
+            "error": null,
+            "status": "partial"
+          }
+        },
+        {
+          "anchor": "anchor_01",
+          "fixed_time": {
+            "case_id": "earth_jupiter_2028",
+            "status": "partial",
+            "module": "psi",
+            "block": "ПСИ: введение массы",
+            "stop_kind": "stage_time_budget",
+            "reason": "time_budget",
+            "last_rejection": "RuntimeError: active: Bounded collocation budget reached; active shooting: Bounded shooting budget reached; free: The maximum number of mesh nodes is exceeded.; free shooting: Bounded shooting budget reached",
+            "last_verified_artifact": "runs/free_time_physical_matrix_v1/earth_jupiter_2028/anchor_01/stage_psi/mass/point_0009",
+            "last_model": {
+              "alpha": 0.32500000000000007,
+              "beta": 0.37734375000000003,
+              "variable_mass": true,
+              "model_thrust_N": 0.025,
+              "requested_thrust_N": 0.025,
+              "thrust_ratio": 1.0
+            },
+            "physically_unreachable_proven": false,
+            "checkpoint": "runs/free_time_physical_matrix_v1/earth_jupiter_2028/anchor_01/stage_psi/mass/continuation.json",
+            "accepted_parameter": 0.37734375000000003,
+            "next_step": 0.04746093750000001,
+            "stop_label": "Исчерпан бюджет этапа"
+          },
+          "release": {
+            "seed_tof_days": 1630.956623607457,
+            "anchor_status": "partial",
+            "phase": "psi",
+            "error": null,
+            "status": "partial"
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "venus_earth_2029",
+      "departure": "Venus",
+      "target": "Earth",
+      "launch_tdb": "2029-01-01T00:00:00",
+      "mode": "rendezvous",
+      "seed_tof_days": 250,
+      "bounds_days": [
+        125.0,
+        375.0
+      ],
+      "status": "partial",
+      "phase": "psi",
+      "tof_days": null,
+      "fuel_kg": null,
+      "verification": null,
+      "kiam_verification": null,
+      "reason": "No independently accepted free-duration result; see time_history.json",
+      "attempts": [
+        {
+          "anchor": "anchor_00",
+          "fixed_time": {
+            "case_id": "venus_earth_2029",
+            "status": "partial",
+            "module": "psi",
+            "block": "ПСИ: введение массы",
+            "stop_kind": "stage_time_budget",
+            "reason": "time_budget",
+            "last_rejection": "RuntimeError: active: Bounded collocation budget reached; free: Bounded collocation budget reached",
+            "last_verified_artifact": "runs/free_time_physical_matrix_v1/venus_earth_2029/anchor_00/stage_psi/mass/point_0021",
+            "last_model": {
+              "alpha": 0.5,
+              "beta": 0.9966011047363285,
+              "variable_mass": true,
+              "model_thrust_N": 0.6453428136079501,
+              "requested_thrust_N": 0.025,
+              "thrust_ratio": 25.813712544318
+            },
+            "physically_unreachable_proven": false,
+            "checkpoint": "runs/free_time_physical_matrix_v1/venus_earth_2029/anchor_00/stage_psi/mass/continuation.json",
+            "accepted_parameter": 0.9966011047363285,
+            "next_step": 0.001877117156982422,
+            "stop_label": "Исчерпан бюджет этапа"
+          },
+          "release": {
+            "seed_tof_days": 250,
+            "anchor_status": "partial",
+            "phase": "psi",
+            "error": null,
+            "status": "partial"
+          }
+        },
+        {
+          "anchor": "anchor_01",
+          "fixed_time": {
+            "case_id": "venus_earth_2029",
+            "status": "partial",
+            "module": "psi",
+            "block": "ПСИ: введение массы",
+            "stop_kind": "stage_time_budget",
+            "reason": "time_budget",
+            "last_rejection": "RuntimeError: active: Nonpositive mass or central collision during propagation; active shooting: Bounded shooting budget reached; free: Bounded collocation budget reached",
+            "last_verified_artifact": "runs/free_time_physical_matrix_v1/venus_earth_2029/anchor_01/stage_psi/mass/point_0028",
+            "last_model": {
+              "alpha": 0.5,
+              "beta": 0.7514279305934907,
+              "variable_mass": true,
+              "model_thrust_N": 1.7601007447834116,
+              "requested_thrust_N": 0.025,
+              "thrust_ratio": 70.40402979133646
+            },
+            "physically_unreachable_proven": false,
+            "checkpoint": "runs/free_time_physical_matrix_v1/venus_earth_2029/anchor_01/stage_psi/mass/continuation.json",
+            "accepted_parameter": 0.7514279305934907,
+            "next_step": 0.002375726401805878,
+            "stop_label": "Исчерпан бюджет этапа"
+          },
+          "release": {
+            "seed_tof_days": 135.973118470468,
+            "anchor_status": "partial",
+            "phase": "psi",
+            "error": null,
+            "status": "partial"
+          }
+        },
+        {
+          "anchor": "anchor_02",
+          "fixed_time": {
+            "case_id": "venus_earth_2029",
+            "status": "partial",
+            "module": "psi",
+            "block": "ПСИ: физический предел тяги",
+            "stop_kind": "stage_time_budget",
+            "reason": "time_budget",
+            "last_rejection": "RuntimeError: active: Bounded collocation budget reached; active shooting: Bounded shooting budget reached; free: Bounded collocation budget reached",
+            "last_verified_artifact": "runs/free_time_physical_matrix_v1/venus_earth_2029/anchor_02/stage_psi/limit/point_0013",
+            "last_model": {
+              "alpha": 0.5,
+              "beta": 1.0,
+              "variable_mass": true,
+              "model_thrust_N": 0.04699774417732127,
+              "requested_thrust_N": 0.025,
+              "thrust_ratio": 1.8799097670928506
+            },
+            "physically_unreachable_proven": false,
+            "checkpoint": "runs/free_time_physical_matrix_v1/venus_earth_2029/anchor_02/stage_psi/limit/continuation.json",
+            "accepted_parameter": 0.42822265625,
+            "next_step": 0.00032958984375,
+            "stop_label": "Исчерпан бюджет этапа"
+          },
+          "release": {
+            "seed_tof_days": 363.89852560231446,
+            "anchor_status": "partial",
+            "phase": "psi",
+            "error": null,
+            "status": "partial"
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "earth_mars_flyby_2028",
+      "departure": "Earth",
+      "target": "Mars",
+      "launch_tdb": "2028-11-01T00:00:00",
+      "mode": "flyby",
+      "seed_tof_days": 500,
+      "bounds_days": [
+        250.0,
+        750.0
+      ],
+      "status": "completed",
+      "phase": "final",
+      "tof_days": 306.9815310032382,
+      "fuel_kg": 2.8542646297548093,
+      "verification": {
+        "passed": true,
+        "position_residual_m": 1.065413886124728,
+        "velocity_residual_m_s": 3019.8254568206853,
+        "parameter_audit": {
+          "passed": true,
+          "configuration_sha256": "d25d6eb5a097f1b04d6cdee4c3b4acfb5ec06414b8ddaf4a5757e691a21b7050",
+          "configuration_hash_version": 2,
+          "requested": {
+            "mass_kg": 156,
+            "thrust_N": 0.025,
+            "exhaust_velocity_m_s": 20000,
+            "dry_mass_kg": 90,
+            "launch_tdb": "2028-11-01T00:00:00",
+            "tof_days": 306.9815310032382,
+            "departure": "Earth",
+            "target": "Mars",
+            "mode": "flyby"
+          },
+          "recovered_model": {
+            "model_thrust_N": 0.025,
+            "thrust_to_requested_ratio": 1.0,
+            "alpha": 1.0,
+            "beta": 1.0,
+            "variable_mass": true,
+            "hardware_limit_reached": true,
+            "exhaust_velocity_m_s": 20000.0
+          },
+          "geometry": null,
+          "final_admission": true
+        },
+        "trajectory_difference_m": 1.0964518358373048,
+        "velocity_difference_m_s": 1.4801423686548133e-07,
+        "stored_throttle_error": 0.0,
+        "stored_throttle_minimum": 0.0,
+        "stored_throttle_maximum": 1.0,
+        "canonical_boundary_residual": 3.382926462173393e-11,
+        "method": "LSODA with independent bounded/mass equations",
+        "scope": "Numerical extremal and constraints; no global optimality proof",
+        "departure_norm_m_s": 3000.0000000000005,
+        "switching_sign_violation": 5.524922509830789e-13,
+        "switching_node_residual": 5.524922509830789e-13,
+        "minimum_mass_kg": 153.14573537024518,
+        "fuel_kg": 2.8542646297548093,
+        "mass_difference_kg": 1.0391687510491465e-13,
+        "stored_thrust_error_N": 0.0,
+        "mass_balance_error_kg": 8.260059303211165e-14
+      },
+      "kiam_verification": {
+        "passed": true,
+        "source": "Unmodified KIAM Astro compiled Fortran equations and published control API",
+        "package_version": "6.1.6",
+        "samples": 100,
+        "maximum_dimensionless_rhs_error": 5.551115123125783e-16,
+        "maximum_dimensionless_force_error": 6.938893903907228e-18,
+        "maximum_third_body_decomposition_error": 0.0,
+        "nbody_gravity": {
+          "passed": true,
+          "applicable": false
+        },
+        "costate_map": "p_r,v(KIAM)=p_r,v/vex; p_m(KIAM)=1+p_m/vex; normalized initial mass=1",
+        "scope": "KIAM central mass-optimal equations/control, plus independent third-body decomposition when present; not a separate global optimization"
+      },
+      "reason": null,
+      "attempts": [
+        {
+          "anchor": "anchor_00",
+          "fixed_time": {
+            "case_id": "earth_mars_flyby_2028",
+            "status": "completed",
+            "module": "final",
+            "block": "Финальная проверка",
+            "stop_kind": "completed",
+            "reason": "",
+            "last_rejection": "",
+            "last_verified_artifact": "runs/free_time_physical_matrix_v1/earth_mars_flyby_2028/anchor_00/final",
+            "last_model": null,
+            "physically_unreachable_proven": false,
+            "stop_label": "ПСИ принята"
+          },
+          "release": {
+            "seed_tof_days": 500,
+            "anchor_status": "completed",
+            "phase": "final",
+            "error": null,
+            "status": "completed",
+            "resolved_tof_days": 306.9815310032382
+          }
+        }
+      ],
+      "time_optimization": {
+        "method": "constrained_shooting_SLSQP",
+        "seed_tof_days": 500,
+        "resolved_tof_days": 306.9815310032382,
+        "bounds_days": [
+          250.0,
+          750.0
+        ],
+        "optimizer_success": true,
+        "iterations": 32,
+        "objective": "propellant",
+        "global_optimality": false
+      },
+      "arrays_sha256": "b034f7b6f14fa111b85101e8f378a5a62a3760d6c71c53892e08ff1df21f6a9f",
+      "metadata_sha256": "69df68d208430bd3f81a423b1ce275869594cf95abc088264bd9f95adfe14bee"
+    },
+    {
+      "case_id": "earth_2015re36_2028",
+      "departure": "Earth",
+      "target": "2015RE36",
+      "launch_tdb": "2028-09-01T00:00:00",
+      "mode": "rendezvous",
+      "seed_tof_days": 600,
+      "bounds_days": [
+        300.0,
+        900.0
+      ],
+      "status": "partial",
+      "phase": "psi",
+      "tof_days": null,
+      "fuel_kg": null,
+      "verification": null,
+      "kiam_verification": null,
+      "reason": "No independently accepted free-duration result; see time_history.json",
+      "attempts": [
+        {
+          "anchor": "anchor_00",
+          "fixed_time": {
+            "case_id": "earth_2015re36_2028",
+            "status": "partial",
+            "module": "psi",
+            "block": "ПСИ: физический предел тяги",
+            "stop_kind": "stage_time_budget",
+            "reason": "time_budget",
+            "last_rejection": "RuntimeError: active: Bounded collocation budget reached; active shooting: Bounded shooting budget reached; free: The maximum number of mesh nodes is exceeded.; free shooting: Bounded shooting budget reached",
+            "last_verified_artifact": "runs/free_time_physical_matrix_v1/earth_2015re36_2028/anchor_00/stage_psi/limit/point_0010",
+            "last_model": {
+              "alpha": 0.5,
+              "beta": 1.0,
+              "variable_mass": true,
+              "model_thrust_N": 0.027663959535685883,
+              "requested_thrust_N": 0.025,
+              "thrust_ratio": 1.1065583814274353
+            },
+            "physically_unreachable_proven": false,
+            "checkpoint": "runs/free_time_physical_matrix_v1/earth_2015re36_2028/anchor_00/stage_psi/limit/continuation.json",
+            "accepted_parameter": 0.821875,
+            "next_step": 0.0035156250000000005,
+            "stop_label": "Исчерпан бюджет этапа"
+          },
+          "release": {
+            "seed_tof_days": 600,
+            "anchor_status": "partial",
+            "phase": "psi",
+            "error": null,
+            "status": "partial"
+          }
+        },
+        {
+          "anchor": "anchor_01",
+          "fixed_time": {
+            "case_id": "earth_2015re36_2028",
+            "status": "partial",
+            "module": "psi",
+            "block": "ПСИ: введение массы",
+            "stop_kind": "stage_time_budget",
+            "reason": "time_budget",
+            "last_rejection": "RuntimeError: active: Bounded collocation budget reached; active shooting: Bounded shooting budget reached; free: Bounded collocation budget reached",
+            "last_verified_artifact": "runs/free_time_physical_matrix_v1/earth_2015re36_2028/anchor_01/stage_psi/mass/point_0010",
+            "last_model": {
+              "alpha": 0.5,
+              "beta": 0.9875,
+              "variable_mass": true,
+              "model_thrust_N": 0.10657903923582553,
+              "requested_thrust_N": 0.025,
+              "thrust_ratio": 4.263161569433021
+            },
+            "physically_unreachable_proven": false,
+            "checkpoint": "runs/free_time_physical_matrix_v1/earth_2015re36_2028/anchor_01/stage_psi/mass/continuation.json",
+            "accepted_parameter": 0.9875,
+            "next_step": 0.007031250000000001,
+            "stop_label": "Исчерпан бюджет этапа"
+          },
+          "release": {
+            "seed_tof_days": 420.8012446900539,
+            "anchor_status": "partial",
+            "phase": "psi",
+            "error": null,
+            "status": "partial"
+          }
+        },
+        {
+          "anchor": "anchor_02",
+          "fixed_time": {
+            "case_id": "earth_2015re36_2028",
+            "status": "partial",
+            "module": "psi",
+            "block": "ПСИ: введение массы",
+            "stop_kind": "stage_time_budget",
+            "reason": "time_budget",
+            "last_rejection": "RuntimeError: active: Bounded collocation budget reached; free: Bounded collocation budget reached",
+            "last_verified_artifact": "runs/free_time_physical_matrix_v1/earth_2015re36_2028/anchor_02/stage_psi/mass/point_0005",
+            "last_model": {
+              "alpha": 0.13125,
+              "beta": 0.19375000000000003,
+              "variable_mass": true,
+              "model_thrust_N": 0.025,
+              "requested_thrust_N": 0.025,
+              "thrust_ratio": 1.0
+            },
+            "physically_unreachable_proven": false,
+            "checkpoint": "runs/free_time_physical_matrix_v1/earth_2015re36_2028/anchor_02/stage_psi/mass/continuation.json",
+            "accepted_parameter": 0.19375000000000003,
+            "next_step": 0.0052734375,
+            "stop_label": "Исчерпан бюджет этапа"
+          },
+          "release": {
+            "seed_tof_days": 779.198755309946,
+            "anchor_status": "partial",
+            "phase": "psi",
+            "error": null,
+            "status": "partial"
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "earth_saturn_flyby_2028",
+      "departure": "Earth",
+      "target": "Saturn",
+      "launch_tdb": "2028-06-01T00:00:00",
+      "mode": "flyby",
+      "seed_tof_days": 2200,
+      "bounds_days": [
+        1100.0,
+        3300.0
+      ],
+      "status": "failed",
+      "phase": "initialization",
+      "tof_days": null,
+      "fuel_kg": null,
+      "verification": null,
+      "kiam_verification": null,
+      "reason": "ValueError: Ephemerides do not cover the full free-duration interval: Saturn",
+      "attempts": []
+    },
+    {
+      "case_id": "earth_mars_2029",
+      "departure": "Earth",
+      "target": "Mars",
+      "launch_tdb": "2029-09-01T00:00:00",
+      "mode": "rendezvous",
+      "seed_tof_days": 300,
+      "bounds_days": [
+        150.0,
+        450.0
+      ],
+      "status": "partial",
+      "phase": "psi",
+      "tof_days": null,
+      "fuel_kg": null,
+      "verification": null,
+      "kiam_verification": null,
+      "reason": "No independently accepted free-duration result; see time_history.json",
+      "attempts": [
+        {
+          "anchor": "anchor_00",
+          "fixed_time": {
+            "case_id": "earth_mars_2029",
+            "status": "partial",
+            "module": "psi",
+            "block": "ПСИ: введение массы",
+            "stop_kind": "stage_time_budget",
+            "reason": "time_budget",
+            "last_rejection": "RuntimeError: active: Bounded collocation budget reached; active shooting: Bounded shooting replay failed: {'passed': False, 'position_residual_m': 23.108690679353323, 'velocity_residual_m_s': 3.441137672341599e-05, 'parameter_audit': {'passed': True, 'configuration_sha256': '38603cdb963b19f5e10d136ab2ce6528b7dcbe6e5a4fa80acd419df556b86267', 'configuration_hash_version': 2, 'requested': {'mass_kg': 156, 'thrust_N': 0.025, 'exhaust_velocity_m_s': 20000, 'dry_mass_kg': 90, 'launch_tdb': '2029-09-01T00:00:00', 'tof_days': 300, 'departure': 'Earth', 'target': 'Mars', 'mode': 'rendezvous'}, 'recovered_model': {'model_thrust_N': np.float64(0.3751037388772162), 'thrust_to_requested_ratio': np.float64(15.004149555088647), 'alpha': 0.5, 'beta': 1.0, 'variable_mass': True, 'hardware_limit_reached': False, 'exhaust_velocity_m_s': np.float64(20000.0)}, 'geometry': None, 'final_admission': False}, 'trajectory_difference_m': 28.382663618027543, 'velocity_difference_m_s': 4.122468806607114e-05, 'stored_throttle_error': 1.2212453270876722e-15, 'stored_throttle_minimum': 0.0, 'stored_throttle_maximum': 1.0, 'canonical_boundary_residual': 1.4991539139153227e-09, 'method': 'LSODA with independent bounded/mass equations', 'scope': 'Numerical extremal and constraints; no global optimality proof', 'departure_norm_m_s': 2999.9999999255115, 'minimum_mass_kg': 18.549756235306152, 'fuel_kg': 137.45024376469385, 'mass_difference_kg': 4.175874945833158e-08, 'stored_thrust_error_N': 4.718447854656915e-16}; free: Nonpositive mass or central collision during propagation; free shooting: Bounded shooting budget reached",
+            "last_verified_artifact": "runs/free_time_physical_matrix_v1/earth_mars_2029/anchor_00/stage_psi/mass/point_0013",
+            "last_model": {
+              "alpha": 0.5,
+              "beta": 0.999609375,
+              "variable_mass": true,
+              "model_thrust_N": 0.3751037388772162,
+              "requested_thrust_N": 0.025,
+              "thrust_ratio": 15.004149555088647
+            },
+            "physically_unreachable_proven": false,
+            "checkpoint": "runs/free_time_physical_matrix_v1/earth_mars_2029/anchor_00/stage_psi/mass/continuation.json",
+            "accepted_parameter": 0.999609375,
+            "next_step": 0.003955078125000001,
+            "stop_label": "Исчерпан бюджет этапа"
+          },
+          "release": {
+            "seed_tof_days": 300,
+            "anchor_status": "partial",
+            "phase": "psi",
+            "error": null,
+            "status": "partial"
+          }
+        }
+      ]
+    }
+  ],
+  "execution_notes": {
+    "solver_commit": "774d8a6",
+    "docker_image_id": "sha256:fc5198261292a626adfb0c4a52ac9695dab1931884aaa10f3104462e1538956a",
+    "notes": [
+      "Full original 15-case physical matrix; only time_policy and common free_time_budget_s=120 added.",
+      "All durations use [0.5,1.5] times original seed. No case-specific tuning or post-hoc retries.",
+      "Saturn coverage ends 2035-12-31. Expansion to 2038-01-01 attempted through Docker Horizons downloader; DNS resolution failed. Original ephemerides preserved.",
+      "Cases run sequentially in one Docker sweep. Reporting module added during execution; numerical solver unchanged."
+    ]
+  }
+}
