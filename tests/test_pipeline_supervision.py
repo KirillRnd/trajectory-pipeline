@@ -17,6 +17,7 @@ class SupervisionTests(unittest.TestCase):
             root=Path(temporary);matrix=root/'input.json';write_json(matrix,missions)
             calls=[]
             def worker(command,**options):
+                self.assertIn('--fixed-time',command)
                 destination=Path(command[command.index('--output')+1])
                 destination.mkdir()
                 calls.append(destination.name)

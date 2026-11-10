@@ -149,11 +149,15 @@ def sweep_pipeline(matrix,output,resume=False,pending_only=False,parameter_desig
             logdir=output/'worker_logs';logdir.mkdir(exist_ok=True)
             log=logdir/f'{mission.case_id}_{time.time_ns()}.log'
             command=[sys.executable,'-X','faulthandler','-m','trajectory_pipeline','solve',str(config.resolve()),'--output',str(case.resolve())]
+            # A matrix is an explicit request, unlike the interactive CLI default.
+            if mission.time_policy is None:command.append('--fixed-time')
             if resume and case.exists():command.append('--resume')
             settings=mission.solver
             wall_limit=(settings.get('budget_s',45)+settings.get('departure_budget_s',90)+
                         settings.get('limit_budget_s',90)+settings.get('pazov_budget_s',150)+
                         4*settings.get('psi_budget_s',180)+120)
+            if mission.time_policy is not None:
+                wall_limit=4*(wall_limit+settings.get('free_time_budget_s',120))
             failure=None;exitcode=None
             try:
                 with log.open('w',encoding='utf-8') as stream:
@@ -317,6 +321,9 @@ def run_pipeline(mission,output,resume=False):
     if resume and (output/'mission.json').exists():
         owned=Mission(**json.loads((output/'mission.json').read_text(encoding='utf-8'))).to_dict()==mission.to_dict()
     try:
+        if mission.time_policy is not None:
+            from .free_time import run_time_pipeline
+            return run_time_pipeline(mission,output,resume=resume)
         if mission.orbital_maneuvers is not None:
             from .orbital_pipeline import run_orbital_pipeline
             return run_orbital_pipeline(mission,output,resume=resume)

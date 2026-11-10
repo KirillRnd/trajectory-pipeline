@@ -1,0 +1,211 @@
+{
+  "case_id": "date_000001",
+  "mission": {
+    "case_id": "date_000001",
+    "departure": "Earth",
+    "target": "Venus",
+    "launch_tdb": "2032-11-02T00:00:00",
+    "tof_days": 410.16346534489116,
+    "center": "Sun",
+    "mode": "rendezvous",
+    "position_tolerance_m": 1000.0,
+    "velocity_tolerance_m_s": 0.01,
+    "mass_kg": 156.0,
+    "departure_mode": "bounded_norm",
+    "vinf_max_m_s": 3000.0,
+    "vinf_vector_m_s": null,
+    "spacecraft": {
+      "thrust_N": 0.025,
+      "exhaust_velocity_m_s": 20000.0,
+      "dry_mass_kg": 90.0
+    },
+    "solver": {
+      "budget_s": 45
+    },
+    "lunar": null
+  },
+  "scales": {
+    "distance_m": 148449588585.68716,
+    "mu_m3_s2": 1.32712440018e+20
+  },
+  "epoch_jd": 2463538.5,
+  "center": "Sun",
+  "time_scale": "TDB",
+  "frame": "ECLIPJ2000",
+  "body_initial_state_si": [
+    114281288787.78006,
+    94747386905.43735,
+    -7671711.560119572,
+    -19503.619085981154,
+    22830.243314589283,
+    -2.637329953043788
+  ],
+  "target_state_si": [
+    -28252749213.41688,
+    -104872093752.62732,
+    186878275.65517774,
+    33577.33152373507,
+    -9255.116527818573,
+    -2064.5062267798526
+  ],
+  "configuration_sha256": "349abdc45dd6ee3f64b1c5455da5eeb669f9399b9712a95d8c4f7c248b9eca0d",
+  "bounded_model": {
+    "a_max": 0.026611035411812322,
+    "alpha": 1.0,
+    "beta": 1.0,
+    "q": 0.0397830517862086,
+    "variable_mass": true,
+    "gravity_spec": null
+  },
+  "stage": "psi",
+  "status": "verified_extremal",
+  "initial_state_si": [
+    114281288787.78006,
+    94747386905.43735,
+    -7671711.560119572,
+    -18999.9859948783,
+    20393.081246170852,
+    1300.731899388869
+  ],
+  "costates_initial": [
+    -0.4993614389743564,
+    -0.3176365205212409,
+    -0.7308706968667048,
+    0.0,
+    0.0,
+    0.0,
+    -0.16861599296418794
+  ],
+  "model": "physical constant thrust and exhaust, variable mass",
+  "functional_dimensionless": 0.11488825477062817,
+  "hardware_limit_reached": true,
+  "title": "Earth → Venus: ПСИ 156 кг",
+  "costate_convention": "dimensionless [p_r,p_v,p_m] for normalized remaining mass",
+  "departure": {
+    "mode": "bounded_norm",
+    "bound_active": false,
+    "vector_m_s": [
+      503.63309110285263,
+      -2437.162068418431,
+      1303.3692293419126
+    ],
+    "norm_m_s": 2809.301796921568,
+    "bound_m_s": 3000.0
+  },
+  "switch_times_s": [
+    3905324.717193079,
+    18594977.889579482,
+    28687846.73372694
+  ],
+  "initial_throttle": 0.0,
+  "free_time": {
+    "method": "constrained_shooting_SLSQP",
+    "seed_tof_days": 390.8,
+    "resolved_tof_days": 410.16346534489116,
+    "bounds_days": [
+      195.4,
+      586.2
+    ],
+    "optimizer_success": true,
+    "iterations": 12,
+    "objective": "propellant",
+    "global_optimality": false
+  },
+  "verification": {
+    "passed": true,
+    "position_residual_m": 0.4744056267712535,
+    "velocity_residual_m_s": 2.0367099011954614e-07,
+    "parameter_audit": {
+      "passed": true,
+      "configuration_sha256": "349abdc45dd6ee3f64b1c5455da5eeb669f9399b9712a95d8c4f7c248b9eca0d",
+      "configuration_hash_version": 2,
+      "requested": {
+        "mass_kg": 156.0,
+        "thrust_N": 0.025,
+        "exhaust_velocity_m_s": 20000.0,
+        "dry_mass_kg": 90.0,
+        "launch_tdb": "2032-11-02T00:00:00",
+        "tof_days": 410.16346534489116,
+        "departure": "Earth",
+        "target": "Venus",
+        "mode": "rendezvous"
+      },
+      "recovered_model": {
+        "model_thrust_N": 0.025,
+        "thrust_to_requested_ratio": 1.0,
+        "alpha": 1.0,
+        "beta": 1.0,
+        "variable_mass": true,
+        "hardware_limit_reached": true,
+        "exhaust_velocity_m_s": 20000.0
+      },
+      "geometry": null,
+      "final_admission": true
+    },
+    "trajectory_difference_m": 0.9036361857187071,
+    "velocity_difference_m_s": 2.706130671721637e-07,
+    "stored_throttle_error": 0.0,
+    "stored_throttle_minimum": 0.0,
+    "stored_throttle_maximum": 1.0,
+    "canonical_boundary_residual": 1.0748493263317331e-11,
+    "method": "LSODA with independent bounded/mass equations",
+    "scope": "Numerical extremal and constraints; no global optimality proof",
+    "departure_norm_m_s": 2809.301796921568,
+    "switching_sign_violation": 1.0249281020367846e-10,
+    "switching_node_residual": 1.0249281020367846e-10,
+    "minimum_mass_kg": 129.20008769442717,
+    "fuel_kg": 26.799912305572846,
+    "mass_difference_kg": 3.810285420513537e-13,
+    "stored_thrust_error_N": 0.0,
+    "mass_balance_error_kg": 2.7000623958883807e-13
+  },
+  "parameter_audit": {
+    "passed": true,
+    "configuration_sha256": "349abdc45dd6ee3f64b1c5455da5eeb669f9399b9712a95d8c4f7c248b9eca0d",
+    "configuration_hash_version": 2,
+    "requested": {
+      "mass_kg": 156.0,
+      "thrust_N": 0.025,
+      "exhaust_velocity_m_s": 20000.0,
+      "dry_mass_kg": 90.0,
+      "launch_tdb": "2032-11-02T00:00:00",
+      "tof_days": 410.16346534489116,
+      "departure": "Earth",
+      "target": "Venus",
+      "mode": "rendezvous"
+    },
+    "recovered_model": {
+      "model_thrust_N": 0.025,
+      "thrust_to_requested_ratio": 1.0,
+      "alpha": 1.0,
+      "beta": 1.0,
+      "variable_mass": true,
+      "hardware_limit_reached": true,
+      "exhaust_velocity_m_s": 20000.0
+    },
+    "geometry": {
+      "epoch_jd": 2463538.5,
+      "arrival_jd": 2463948.663465345,
+      "departure_position_difference_m": 0.0,
+      "arrival_position_difference_m": 0.0
+    },
+    "final_admission": true
+  },
+  "kiam_verification": {
+    "passed": true,
+    "source": "Unmodified KIAM Astro compiled Fortran equations and published control API",
+    "package_version": "6.1.6",
+    "samples": 100,
+    "maximum_dimensionless_rhs_error": 2.6645352591003757e-15,
+    "maximum_dimensionless_force_error": 6.938893903907228e-18,
+    "maximum_third_body_decomposition_error": 0.0,
+    "nbody_gravity": {
+      "passed": true,
+      "applicable": false
+    },
+    "costate_map": "p_r,v(KIAM)=p_r,v/vex; p_m(KIAM)=1+p_m/vex; normalized initial mass=1",
+    "scope": "KIAM central mass-optimal equations/control, plus independent third-body decomposition when present; not a separate global optimization"
+  },
+  "schema_version": 1,
+  "arrays_sha256": "d8c591ce2389905b5b24d5bfae4c0b93b64b327b40767f55f33bac0b3db80f11"
+}

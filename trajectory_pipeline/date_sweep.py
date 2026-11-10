@@ -80,14 +80,15 @@ def _fast_worker(plan_path, mission_path, attempt):
     reference = Trajectory.load(source)
     base = _reference_mission(reference)
     mission = Mission.load(mission_path)
-    expected = replace(base, case_id=mission.case_id, launch_tdb=mission.launch_tdb)
+    expected = replace(base, case_id=mission.case_id, launch_tdb=mission.launch_tdb,time_policy=plan.get('time_policy'))
     if mission.to_dict() != expected.to_dict():
         raise ValueError('Only the epoch and case ID may differ from the reference')
     body, target, scale = mission.boundary()
     old_scale = Scales(**reference.metadata['scales'])
     old_body = np.asarray(reference.metadata['body_initial_state_si'])
     guess, transform = _seed(reference, old_body, body, old_scale, scale)
-    context, model = _date_context(mission, body, target, scale)
+    context, model = _date_context(replace(mission,time_policy=None), body, target, scale)
+    context.metadata['bounded_model']=asdict(model)
     request = make_request(mission)
     attempt = Path(attempt)
     write_json(attempt / 'request.json', request)
@@ -96,17 +97,28 @@ def _fast_worker(plan_path, mission_path, attempt):
                initial_costates=guess.arrays['costates'][0].tolist(),
                initial_excess_m_s=(guess.arrays['v_m_s'][0] - body[3:]).tolist()))
     started = perf_counter()
-    result = solve_bangbang(context, guess, model, started + plan['fast_budget_s'], 'psi')
-    audit = audit_configuration(result, mission, request, require_final=True)
+    if mission.time_policy is None:
+        result = solve_bangbang(context, guess, model, started + plan['fast_budget_s'], 'psi')
+    else:
+        from .free_time import release_duration
+        try:
+            fixed=solve_bangbang(context,guess,model,min(started+10.,started+plan['fast_budget_s']/3),'psi')
+        except (ValueError,RuntimeError,TimeoutError):
+            fixed=guess
+        result=release_duration(context,fixed,mission.time_policy['bounds_days'],started+plan['fast_budget_s'])
+    from .free_time import audit_time_result
+    audit = audit_time_result(result,mission)
     kiam = verify_kiam_psi(result)
     if not kiam['passed']:
         raise RuntimeError('Date solution failed the KIAM cross-check')
     result.metadata.update(parameter_audit=audit, kiam_verification=kiam)
     result.save(attempt / 'final')
+    write_json(attempt/'resolved_request.json',make_request(Mission(**result.metadata['mission'])))
     write_json(attempt / 'summary.json', dict(status='completed',
                fuel_kg=float(mission.mass_kg - result.arrays['mass_kg'][-1]),
                verification=result.metadata['verification'], kiam_verification=kiam,
                artifact_sha256=_identity(attempt / 'final'),
+               tof_days=result.metadata['mission']['tof_days'],duration_released=mission.time_policy is not None,
                correction_s=perf_counter() - started))
 
 
@@ -162,11 +174,12 @@ def fuel_outliers(dates, fast, abs_kg, relative):
     return flags
 
 
-def run_date_sweep(reference_path, output, start, stop, *, step_days=1, fast_budget_s=10.,
-                   outlier_abs_kg=.5, outlier_rel=.05, resume=False):
+def run_date_sweep(reference_path, output, start, stop, *, step_days=1, fast_budget_s=60.,
+                   outlier_abs_kg=.5, outlier_rel=.05, resume=False,time_bounds_days=None,fixed_time=False):
     from fcntl import LOCK_EX, LOCK_NB, flock
 
     source, output = Path(reference_path).resolve(), Path(output)
+    if fixed_time and time_bounds_days is not None:raise ValueError('Choose duration bounds or fixed_time, not both')
     first, last = datetime.fromisoformat(start), datetime.fromisoformat(stop)
     if first.tzinfo is not None or last.tzinfo is not None or last < first or step_days <= 0:
         raise ValueError('Supply an ordered TDB date range and a positive day step')
@@ -182,14 +195,17 @@ def run_date_sweep(reference_path, output, start, stop, *, step_days=1, fast_bud
     if _identity(source) != reference_hash:
         raise ValueError('Reference changed during verification')
     dates = [first + timedelta(days=i) for i in range(0, (last - first).days + 1, step_days)]
-    missions = [replace(base, case_id=f'date_{i:06d}', launch_tdb=date.isoformat())
+    policy=None if fixed_time else dict(bounds_days=list(time_bounds_days or [base.tof_days*.5,base.tof_days*1.5]))
+    missions = [replace(base, case_id=f'date_{i:06d}', launch_tdb=date.isoformat(),time_policy=policy).validate()
                 for i, date in enumerate(dates)]
     ephemerides = Ephemerides()
     for body in (base.departure, base.target):
         coverage = ephemerides.coverage(body)
-        if missions[0].launch_jd < coverage['start_jd'] or missions[-1].arrival_jd > coverage['stop_jd']:
+        final_jd=missions[-1].launch_jd+(policy['bounds_days'][1] if policy else base.tof_days)
+        if missions[0].launch_jd < coverage['start_jd'] or final_jd > coverage['stop_jd']:
             raise ValueError(f'{body} ephemeris does not cover the full sweep and its standard reruns')
     plan = dict(reference=source.as_posix(), reference_sha256=reference_hash,
+                time_policy=policy,
                 start=first.isoformat(), stop=last.isoformat(), step_days=step_days,
                 fast_budget_s=fast_budget_s, outlier_abs_kg=outlier_abs_kg, outlier_rel=outlier_rel,
                 outlier_method='median_of_local_pair_predictions_v1',
@@ -206,6 +222,7 @@ def run_date_sweep(reference_path, output, start, stop, *, step_days=1, fast_bud
 
 def _run_plan(output, plan, missions, resume):
     from .runner import sweep_pipeline
+    from .free_time import audit_time_result
 
     plan_file = output / 'sweep.json'
     if resume:
@@ -245,9 +262,10 @@ def _run_plan(output, plan, missions, resume):
         if standard_result and standard_result['status'] == 'completed':
             path = output / 'standard' / mission.case_id / 'final'
             result = Trajectory.load(path)
-            audit_configuration(result, mission, make_request(mission), require_final=True)
+            audit_time_result(result,mission)
             fuel = float(mission.mass_kg - result.arrays['mass_kg'][-1])
             row.update(selected='standard', fuel_kg=fuel, standard_fuel_kg=fuel,
+                       tof_days=result.metadata['mission']['tof_days'],
                        status='completed', artifact=path.relative_to(output).as_posix())
         elif standard_result:
             row['status'] = 'review_required' if fast_ok else standard_result['status']
@@ -255,11 +273,12 @@ def _run_plan(output, plan, missions, resume):
                         (row['selected'] == 'standard' and fast_result['fuel_kg'] < row['fuel_kg'] - 1e-4)):
             path = output / fast_result['attempt'] / 'final'
             result = Trajectory.load(path)
-            audit_configuration(result, mission, make_request(mission), require_final=True)
+            audit_time_result(result,mission)
             row.update(selected='fast', fuel_kg=fast_result['fuel_kg'], status='completed', artifact=path.relative_to(output).as_posix())
+            row['tof_days']=result.metadata['mission']['tof_days']
         rows.append(row)
     write_json(output / 'results.json', rows)
-    fields = ['case_id', 'launch_tdb', 'status', 'selected', 'fuel_kg', 'fast_fuel_kg', 'standard_fuel_kg',
+    fields = ['case_id', 'launch_tdb', 'tof_days', 'status', 'selected', 'fuel_kg', 'fast_fuel_kg', 'standard_fuel_kg',
               'fast_elapsed_s', 'standard_elapsed_s', 'fallback_reason', 'standard_status', 'artifact']
     with (output / 'results.csv.tmp').open('w', encoding='utf-8', newline='') as stream:
         writer = csv.DictWriter(stream, fieldnames=fields)

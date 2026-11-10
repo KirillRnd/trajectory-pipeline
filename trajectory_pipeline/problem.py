@@ -54,6 +54,7 @@ class Mission:
     departure_offset_state_si: list | None = None
     orbital_maneuvers: dict | None = None
     mass_reference: str | None = None
+    time_policy: dict | None = None
 
     @classmethod
     def load(cls, path):
@@ -99,6 +100,12 @@ class Mission:
             if vector.shape!=(3,) or not np.isfinite(vector).all():
                 raise ValueError('fixed_vector needs vinf_vector_m_s with three finite components')
         self.launch_jd
+        if self.time_policy is not None:
+            if not isinstance(self.time_policy,dict) or set(self.time_policy)!={'bounds_days'}:
+                raise ValueError('time_policy requires bounds_days')
+            bounds=self.time_policy['bounds_days']
+            if not isinstance(bounds,list) or len(bounds)!=2 or not all(number(x) for x in bounds) or not 0<bounds[0]<self.tof_days<bounds[1]:
+                raise ValueError('Time bounds must strictly enclose the seed tof_days')
         if self.lunar is not None and (canonical(self.center)!='earth' or canonical(self.target)!='moon' or canonical(self.departure)!='earth'):
             raise ValueError('Lunar orbit specifications require Earth-centered Earth-to-Moon missions')
         if self.arrival_offset_state_si is not None:
@@ -159,7 +166,7 @@ class Mission:
     def to_dict(self):
         result=asdict(self)
         # Preserve serialized/hash identity of all pre-capture missions.
-        for key in ('capture','arrival_offset_state_si','parking_departure','departure_offset_state_si','orbital_maneuvers','mass_reference'):
+        for key in ('capture','arrival_offset_state_si','parking_departure','departure_offset_state_si','orbital_maneuvers','mass_reference','time_policy'):
             if result[key] is None:result.pop(key)
         if self.parking_departure is not None:
             from .parking_departure import ParkingDeparture

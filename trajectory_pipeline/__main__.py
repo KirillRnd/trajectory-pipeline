@@ -63,6 +63,8 @@ def main():
     pipeline.add_argument('mission')
     pipeline.add_argument('--output',required=True)
     pipeline.add_argument('--resume',action='store_true')
+    pipeline.add_argument('--tof-bounds-days',type=float,nargs=2)
+    pipeline.add_argument('--fixed-time',action='store_true',help='Keep the explicitly requested flight duration')
     pipeline.add_argument('--capture-mode',choices=['continuous','angular'])
     pipeline.add_argument('--capture-half-width-deg',type=float)
     pipeline.add_argument('--capture-phase-reference',choices=['periapsis','fixed_axis'])
@@ -83,7 +85,9 @@ def main():
     date_sweep.add_argument('--start', required=True, help='First TDB calendar date')
     date_sweep.add_argument('--stop', required=True, help='Last allowed TDB calendar date')
     date_sweep.add_argument('--step-days', type=int, default=1)
-    date_sweep.add_argument('--fast-budget-s', type=float, default=10.)
+    date_sweep.add_argument('--fast-budget-s', type=float, default=60.)
+    date_sweep.add_argument('--tof-bounds-days',type=float,nargs=2)
+    date_sweep.add_argument('--fixed-time',action='store_true')
     date_sweep.add_argument('--outlier-abs-kg', type=float, default=.5)
     date_sweep.add_argument('--outlier-rel', type=float, default=.05, help='Relative fuel threshold as a fraction')
     date_sweep.add_argument('--output', required=True)
@@ -179,6 +183,11 @@ def main():
         from .runner import run_pipeline
         from .capture_control import apply_capture_flags
         mission=apply_capture_flags(Mission.load(args.mission),args)
+        if args.fixed_time and args.tof_bounds_days:raise ValueError('Choose free-time bounds or --fixed-time')
+        if args.fixed_time:mission.time_policy=None
+        elif args.tof_bounds_days or not any(x is not None for x in (mission.capture,mission.parking_departure,mission.orbital_maneuvers,mission.lunar)):
+            mission.time_policy=dict(bounds_days=args.tof_bounds_days or (mission.time_policy or {}).get('bounds_days',[mission.tof_days*.5,mission.tof_days*1.5]))
+        mission.validate()
         result,summary=run_pipeline(mission,args.output,resume=args.resume)
         print(json.dumps({k:v for k,v in summary.items() if k!='stages'},ensure_ascii=False,indent=2))
         return exit_code(summary['status'])
@@ -191,7 +200,7 @@ def main():
         rows = run_date_sweep(args.reference, args.output, args.start, args.stop,
                               step_days=args.step_days, fast_budget_s=args.fast_budget_s,
                               outlier_abs_kg=args.outlier_abs_kg, outlier_rel=args.outlier_rel,
-                              resume=args.resume)
+                              resume=args.resume,time_bounds_days=args.tof_bounds_days,fixed_time=args.fixed_time)
         return 0 if all(row['status'] == 'completed' for row in rows) else 2
     elif args.command=='matrix-report':
         from .matrix_report import report_matrix
