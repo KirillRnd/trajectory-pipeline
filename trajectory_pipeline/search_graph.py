@@ -56,18 +56,24 @@ def supported(mission):
 def validate_design(design, base):
     supported(base)
     if base.time_policy is not None:raise ValueError('Declare time search bounds in the design, not in the base mission')
-    required = {'date_offsets_days','duration_factors','engines','mass_alphas','routes',
+    axis='angular_branches' if 'angular_branches' in design else 'duration_factors'
+    if axis=='duration_factors' and base.tof_days is None:raise ValueError('Fixed-time design requires tof_days')
+    required = {'date_offsets_days',axis,'engines','mass_alphas','routes',
                 'population','generations','seed','wall_budget_s','node_budget_s','release_budget_s','time_bounds_factors'}
     optional={'intermediate_release_budget_s','physical_continue_budget_s','intermediate_rounds'}
     if not required<=set(design) or set(design)-required-optional:raise ValueError('Search design keys differ: '+str(set(design)^required))
-    for key in ('date_offsets_days','duration_factors','mass_alphas','time_bounds_factors'):
+    for key in ('date_offsets_days',axis,'mass_alphas','time_bounds_factors'):
         values=design[key]
         if not isinstance(values,list) or not values or not all(type(x) in (int,float) and math.isfinite(x) for x in values):
             raise ValueError('Invalid finite search axis: '+key)
-    if any(x<=0 for x in design['duration_factors']) or any(not 0<x<1 for x in design['mass_alphas']):raise ValueError('Invalid duration/alpha')
+    if any(not 0<x<1 for x in design['mass_alphas']):raise ValueError('Invalid alpha')
+    if axis=='angular_branches':
+        if any(type(x) is not int or x<0 for x in design[axis]):raise ValueError('Invalid ILTT branch ranks')
+    elif any(x<=0 for x in design[axis]):raise ValueError('Invalid duration')
     if len(design['time_bounds_factors'])!=2:raise ValueError('Two time bounds required')
     lo,hi=design['time_bounds_factors']
-    if not 0<lo<min(design['duration_factors'])<=max(design['duration_factors'])<hi:raise ValueError('Time bounds must enclose all seeds')
+    seeds=[1.] if axis=='angular_branches' else design[axis]
+    if not 0<lo<min(seeds)<=max(seeds)<hi:raise ValueError('Time bounds must enclose all seeds')
     if not design['routes'] or not set(design['routes'])<= {'fixed','release','intermediate'}:raise ValueError('Unsupported route')
     if type(design.get('intermediate_rounds',1)) is not int or not 1<=design.get('intermediate_rounds',1)<=4:raise ValueError('Invalid intermediate rounds')
     for key in ('population','generations','seed'):
@@ -126,7 +132,8 @@ def learn_history(roots, base):
 
 
 def dimensions(design, history):
-    return [len(design[k]) for k in ('date_offsets_days','duration_factors','engines','mass_alphas','routes')]+[1+len(history['references'])]
+    axis='angular_branches' if 'angular_branches' in design else 'duration_factors'
+    return [len(design[k]) for k in ('date_offsets_days',axis,'engines','mass_alphas','routes')]+[1+len(history['references'])]
 
 
 def decode(base, design, genome):
@@ -134,14 +141,20 @@ def decode(base, design, genome):
     hardware=design['engines'][engine]
     mission=replace(base,time_policy=None,
         launch_tdb=(datetime.fromisoformat(base.launch_tdb)+timedelta(days=design['date_offsets_days'][day])).isoformat(),
-        tof_days=base.tof_days*design['duration_factors'][tof],
+        tof_days=base.tof_days if 'angular_branches' in design else base.tof_days*design['duration_factors'][tof],
         spacecraft=dict(base.spacecraft,thrust_N=hardware['thrust_N'],exhaust_velocity_m_s=hardware['exhaust_velocity_m_s']),
-        solver=dict(base.solver,pipeline_pazov_alpha=design['mass_alphas'][alpha],psi_mass_alpha=design['mass_alphas'][alpha]))
+        solver=dict({k:v for k,v in base.solver.items() if k!='iltt_resolved'},
+                    irt_entry='date' if 'angular_branches' in design else 'fixed_time',
+                    iltt_branch=design.get('angular_branches',[0])[tof] if 'angular_branches' in design else 0,
+                    pipeline_pazov_alpha=design['mass_alphas'][alpha],psi_mass_alpha=design['mass_alphas'][alpha]))
     return mission.validate(),design['routes'][route],source
 
 
 def repair(genome, base, design, history):
     genome=list(genome)
+    if 'angular_branches' in design:
+        genome[-1]=0  # Legacy references do not certify the requested ILTT phase branch.
+        return genome
     mission,_,source=decode(base,design,genome)
     if source:
         reference=Mission(**history['references'][source-1]['mission'])
@@ -172,11 +185,11 @@ def breed(population, scores, sizes, rng, repair_fn):
 
 def changes(base, result):
     a,b=physical_spec(base),physical_spec(result)
-    return {k:dict(requested=a.get(k),actual=b.get(k)) for k in a if a.get(k)!=b.get(k)}
+    return {k:dict(requested=a.get(k),actual=b.get(k)) for k in a if a.get(k)!=b.get(k) and not (k=='tof_days' and a.get(k) is None)}
 
 
 def objectives(base, actual, fuel):
-    deviation=(abs(actual.launch_jd-base.launch_jd)/365.+abs(actual.tof_days/base.tof_days-1)+
+    deviation=(abs(actual.launch_jd-base.launch_jd)/365.+(abs(actual.tof_days/base.tof_days-1) if base.tof_days else 0.)+
                abs(actual.spacecraft['thrust_N']/base.spacecraft['thrust_N']-1)+
                abs(actual.spacecraft['exhaust_velocity_m_s']/base.spacecraft['exhaust_velocity_m_s']-1))
     return [deviation,float(fuel),actual.tof_days]
@@ -215,6 +228,8 @@ def worker(request_path):
         if operation=='cold':
             from .runner import run_pipeline
             result,status=run_pipeline(mission,folder/'run')
+            if result is not None and mission.solver.get('irt_entry')=='date':
+                mission=replace(mission,tof_days=result.metadata['mission']['tof_days'])
             if status['status']!='completed':
                 save_intermediate(result,folder,status['status'],status['phase'],error=status.get('error'),
                     checkpoint=str(folder/'run'),elapsed_s=perf_counter()-started)
@@ -297,8 +312,9 @@ def run_search(mission_path, design_path, history_roots, output, resume=False):
         write_json(root/'request.json',identity)
         history=learn_history(history_roots,base);write_json(root/'history.json',history)
         sizes=dimensions(design,history);rng=random.Random(design['seed'])
+        axis='angular_branches' if 'angular_branches' in design else 'duration_factors'
         zero=[min(range(len(design[k])),key=lambda i:abs(design[k][i]-value)) for k,value in
-              [('date_offsets_days',0),('duration_factors',1)]]
+              [('date_offsets_days',0),(axis,0 if axis=='angular_branches' else 1)]]
         preferred=next(r for r in history['template_order'] if r in design['routes'])
         first=zero+[0,min(range(len(design['mass_alphas'])),key=lambda i:abs(design['mass_alphas'][i]-.5)),design['routes'].index(preferred),0]
         for index in range(len(history['references'])):
@@ -325,11 +341,12 @@ def run_search(mission_path, design_path, history_roots, output, resume=False):
     save.last=start
     def node(operation,mission,reference=None,parent=None):
         request=dict(operation=operation,mission=mission.to_dict(),budget_s=design['node_budget_s'],reference=reference)
+        anchor=mission.solver.get('iltt_resolved',{}).get('tof_days',base.tof_days) if 'angular_branches' in design else base.tof_days
         if operation=='r_release':request.update(bounds_days=[x*base.tof_days for x in design['time_bounds_factors']],budget_s=design['release_budget_s'])
         if parent:
             request.update(parent_artifact=state['nodes'][parent]['artifact'],parent_sha256=state['nodes'][parent]['arrays_sha256'],
                            parent_metadata_sha256=state['nodes'][parent]['metadata_sha256'],
-                           bounds_days=[x*base.tof_days for x in design['time_bounds_factors']],budget_s=design['release_budget_s'])
+                           bounds_days=[x*anchor for x in design['time_bounds_factors']],budget_s=design['release_budget_s'])
         if operation=='intermediate_release':request['budget_s']=design.get('intermediate_release_budget_s',design['release_budget_s'])
         if operation=='physical_continue':request['budget_s']=design.get('physical_continue_budget_s',design['node_budget_s'])
         key=digest(request)[:24]

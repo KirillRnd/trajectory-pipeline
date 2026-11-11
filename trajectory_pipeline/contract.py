@@ -21,7 +21,7 @@ def _raw_specification(mission):
 def specification(mission):
     result=_raw_specification(mission)
     for key in ('tof_days','position_tolerance_m','velocity_tolerance_m_s','mass_kg','vinf_max_m_s'):
-        result[key]=float(result[key])
+        if result[key] is not None:result[key]=float(result[key])
     result['spacecraft']={key:float(value) for key,value in result['spacecraft'].items()}
     if result['vinf_vector_m_s'] is not None:result['vinf_vector_m_s']=[float(value) for value in result['vinf_vector_m_s']]
     if 'arrival_offset_state_si' in result:result['arrival_offset_state_si']=[float(x) for x in result['arrival_offset_state_si']]

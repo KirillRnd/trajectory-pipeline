@@ -15,11 +15,10 @@ from .contract import make_request,audit_configuration,stamp_configuration
 
 
 def run_irt(mission, output,resume=False):
+    from .iltt_entry import resolve_date_mission
+    original_mission=mission
     output = Path(output)
     output.mkdir(parents=True,exist_ok=resume)
-    if resume and (output/'mission.json').exists() and Mission(**json.loads((output/'mission.json').read_text(encoding='utf-8'))).to_dict()!=mission.to_dict():
-        raise ValueError('Resume IRT mission differs from saved configuration')
-    write_json(output/'mission.json',mission.to_dict())
     summary = dict(case_id=mission.case_id,status='failed',stage='irt',
                    started_utc=datetime.now(timezone.utc).isoformat(),python=platform.python_version())
     summary['runtime']=runtime_environment()
@@ -30,6 +29,11 @@ def run_irt(mission, output,resume=False):
     summary['git_revision']=subprocess.check_output(['git','rev-parse','HEAD'],cwd=root,text=True).strip()
     started = time.perf_counter()
     try:
+        mission=resolve_date_mission(mission)
+        if resume and (output/'mission.json').exists() and Mission.load(output/'mission.json').to_dict()!=mission.to_dict():
+            raise ValueError('Resume IRT mission differs from saved configuration')
+        write_json(output/'mission.json',mission.to_dict())
+        write_json(output/'entry_request.json',original_mission.to_dict())
         if mission.lunar is not None:
             from .lunar import solve_lunar_irt
             trajectory,diagnostics=solve_lunar_irt(mission,output,resume=resume)
@@ -37,6 +41,7 @@ def run_irt(mission, output,resume=False):
         write_json(output/'diagnostics.json',diagnostics)
         if trajectory is None:
             summary['status']='initial_failed'
+            summary['error']='No independently verified IRT; see diagnostics.json for each attempted branch/corrector'
         else:
             check = verify_irt(trajectory)
             stamp_configuration(trajectory)
@@ -246,7 +251,8 @@ def _run_pipeline(mission,output,resume=False):
     else:irt_summary=run_irt(mission,irt_folder)
     record('irt',irt_summary)
     if irt_summary['status']!='completed_stage':
-        summary['status']='partial' if irt_summary['status']=='partial' else 'initial_failed';write_json(output/'summary.json',summary)
+        summary['status']='partial' if irt_summary['status']=='partial' else 'initial_failed'
+        summary['error']=irt_summary.get('error');write_json(output/'summary.json',summary)
         return None,summary
     current=Trajectory.load(irt_folder/irt_summary.get('last_result','irt'))
     audit('irt',current)
@@ -316,6 +322,21 @@ def _run_pipeline(mission,output,resume=False):
 
 
 def run_pipeline(mission,output,resume=False):
+    from .iltt_entry import resolve_date_mission,date_entry
+    original_mission=mission
+    if resume and (Path(output)/'mission.json').exists():
+        entry_request=Path(output)/'entry_request.json'
+        if entry_request.exists():
+            if json.loads(entry_request.read_text())!=original_mission.to_dict():raise ValueError('Resume date-first entry request differs')
+            mission=Mission.load(Path(output)/'mission.json')
+    elif date_entry(mission):
+        try:mission=resolve_date_mission(mission)
+        except Exception as exc:
+            output=Path(output);output.mkdir(parents=True,exist_ok=resume)
+            write_json(output/'mission.json',original_mission.to_dict())
+            summary=dict(case_id=mission.case_id,status='initial_failed',phase='iltt_entry',error=type(exc).__name__+': '+str(exc))
+            write_json(output/'summary.json',summary)
+            return None,summary
     output=Path(output)
     owned=not output.exists()
     if resume and (output/'mission.json').exists():
@@ -334,6 +355,9 @@ def run_pipeline(mission,output,resume=False):
             from .capture_pipeline import run_capture_pipeline
             return run_capture_pipeline(mission,output,resume=resume)
         result,summary=_run_pipeline(mission,output,resume=resume)
+        if date_entry(original_mission) and 'iltt_resolved' in mission.solver:
+            write_json(output/'entry_request.json',original_mission.to_dict())
+            write_json(output/'iltt_entry.json',mission.solver['iltt_resolved'])
         summary['completion_scope']='heliocentric_segment' if mission.center=='Sun' else 'specified_segment'
         summary['capture_included']=False
         write_json(output/'summary.json',summary)

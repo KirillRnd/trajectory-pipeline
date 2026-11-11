@@ -129,6 +129,8 @@ def collocation_seed(initial,target,tof,guess,mode,deadline):
 
 def solve_irt(mission, eph=None):
     eph = eph or Ephemerides()
+    from .iltt_entry import resolve_date_mission,date_entry
+    mission=resolve_date_mission(mission,eph)
     initial_si,target_si,scales = mission.boundary(eph)
     initial,target = scales.normalize_state(initial_si),scales.normalize_state(target_si)
     tof = mission.tof_days*DAY_S/scales.time_s
@@ -137,9 +139,15 @@ def solve_irt(mission, eph=None):
     history = []
     accepted = []
     collocation_attempted = False
-    seeds = list(iltt_seeds(*[initial[:3],initial[3:],target[:3],target[3:],tof]))
+    if date_entry(mission):
+        entry=mission.solver['iltt_resolved']
+        seeds=[(dict(source='ILTT date/phase',branch_rank=entry['branch_rank'],k=entry['k'],
+                     lambda_turns=entry['lambda_corrected'],kappa=entry['kappa']),np.asarray(entry['costates']))]
+    else:
+        seeds = list(iltt_seeds(*[initial[:3],initial[3:],target[:3],target[3:],tof]))
     for info,seed in seeds:
         for route in ('shooting','collocation'):
+            if date_entry(mission) and route=='collocation':continue  # Never silently replace the ILTT branch.
             if route=='collocation' and collocation_attempted:
                 continue
             if route=='collocation':

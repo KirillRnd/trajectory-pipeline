@@ -13,6 +13,8 @@ class RealIRTTests(unittest.TestCase):
         configurations=json.loads((ROOT/'configs/irt_matrix.json').read_text(encoding='utf-8'))
         for index in (0,11):
             with self.subTest(case=configurations[index]['case_id']):
+                # These archived regression cases specify a fixed duration.
+                configurations[index]['solver']['irt_entry']='fixed_time'
                 result,diagnostics=solve_irt(Mission(**configurations[index]))
                 self.assertIsNotNone(result,diagnostics)
                 self.assertTrue(verify_irt(result)['passed'])
@@ -21,7 +23,7 @@ class RealIRTTests(unittest.TestCase):
 
     def test_budget_interrupts_difficult_real_shooting(self):
         configuration=json.loads((ROOT/'configs/irt_matrix.json').read_text(encoding='utf-8'))[9]
-        configuration['solver']={'budget_s':.02,'attempt_budget_s':.02}
+        configuration['solver']={'irt_entry':'fixed_time','budget_s':.02,'attempt_budget_s':.02}
         result,diagnostics=solve_irt(Mission(**configuration))
         self.assertIsNone(result)
         self.assertLess(diagnostics['elapsed_s'],2.)

@@ -36,7 +36,7 @@ class Mission:
     departure: str
     target: str
     launch_tdb: str
-    tof_days: float
+    tof_days: float | None = None
     center: str = 'Sun'
     mode: str = 'rendezvous'
     position_tolerance_m: float = 1000.
@@ -69,6 +69,7 @@ class Mission:
 
     @property
     def arrival_jd(self):
+        if self.tof_days is None:raise ValueError('Resolve ILTT date/phase before requesting arrival')
         return self.launch_jd+self.tof_days
 
     def validate(self):
@@ -80,7 +81,11 @@ class Mission:
             canonical(body)
         if self.mode not in ('rendezvous', 'flyby'):
             raise ValueError('mode must be rendezvous or flyby')
-        values = [self.tof_days, self.position_tolerance_m, self.velocity_tolerance_m_s, self.mass_kg]
+        values = [self.position_tolerance_m, self.velocity_tolerance_m_s, self.mass_kg]
+        if self.tof_days is not None:values.append(self.tof_days)
+        else:
+            from .iltt_entry import date_entry
+            if not date_entry(self) or self.time_policy is not None:raise ValueError('Unresolved duration requires a central date-first ILTT request')
         if not all(number(value) for value in values) or min(values) <= 0:
             raise ValueError('Mission durations, tolerances and mass must be positive')
         required={'thrust_N','exhaust_velocity_m_s','dry_mass_kg'}
