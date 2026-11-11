@@ -327,6 +327,18 @@ def run_search(mission_path, design_path, history_roots, output, resume=False):
         for engine in range(1,len(design['engines'])):
             if len(population)>=design['population']:break
             item=list(first);item[2]=engine;population.append(repair(item,base,design,history))
+        if axis=='angular_branches':
+            # Cover branch and launch-window changes before random breeding.
+            templates=[]
+            for branch in range(1,len(design[axis])):
+                for engine in range(len(design['engines'])):
+                    item=list(first);item[1]=branch;item[2]=engine;templates.append(item)
+            for offset in sorted(range(sizes[0]),key=lambda i:design['date_offsets_days'][i]):
+                item=list(first);item[0]=offset;templates.append(item)
+            for item in templates:
+                if len(population)>=design['population']:break
+                item=repair(item,base,design,history)
+                if item not in population:population.append(item)
         while len(population)<design['population']:
             if first[-1] and len(design['date_offsets_days'])>1 and len(population)==design['population']-1:
                 trial=list(first);trial[0]=(trial[0]+1)%sizes[0]
@@ -391,8 +403,10 @@ def run_search(mission_path, design_path, history_roots, output, resume=False):
                     for _ in range(design.get('intermediate_rounds',1)):
                         parent=terminal
                         released=node('intermediate_release',Mission(**state['nodes'][parent]['mission']),parent=parent)
-                        if state['nodes'][released]['status']!='intermediate':break
-                        terminal=node('physical_continue',Mission(**state['nodes'][released]['mission']),parent=released)
+                        # A failed time improvement does not invalidate its
+                        # independently verified parent at fixed duration.
+                        seed=released if state['nodes'][released]['status']=='intermediate' else parent
+                        terminal=node('physical_continue',Mission(**state['nodes'][seed]['mission']),parent=seed)
                         if state['nodes'][terminal]['status']=='completed':
                             physical_parent=terminal  # Retain it if final time improvement fails.
                             terminal=node('release',Mission(**state['nodes'][terminal]['mission']),parent=terminal)

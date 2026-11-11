@@ -55,3 +55,18 @@ class DateFirstILTTTests(unittest.TestCase):
         self.assertEqual(m.solver['iltt_branch'],1)
         self.assertEqual(m.solver['irt_entry'],'date')
         with self.assertRaises(ValueError):validate_design(dict(design,duration_factors=[1]),self.mission)
+
+    def test_cli_resolves_date_before_default_time_bounds(self):
+        from trajectory_pipeline.__main__ import main
+        with patch('sys.argv',['pipeline','solve','unused.json','--output','unused']), \
+             patch.object(Mission,'load',return_value=self.mission), \
+             patch('trajectory_pipeline.runner.run_pipeline',return_value=(None,{'status':'partial'})) as run:
+            main()
+        submitted=run.call_args.args[0]
+        self.assertAlmostEqual(submitted.tof_days,self.resolved.tof_days)
+        self.assertEqual(submitted.time_policy['bounds_days'],[self.resolved.tof_days*.5,self.resolved.tof_days*1.5])
+
+    def test_short_formula_is_admissible(self):
+        short=resolve_date_mission(replace(self.mission,launch_tdb='2029-01-01T00:00:00'))
+        self.assertLess(short.solver['iltt_resolved']['lambda_corrected'],.75)
+        self.assertAlmostEqual(short.tof_days,234.6999519747,places=4)

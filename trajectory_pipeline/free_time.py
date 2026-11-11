@@ -58,23 +58,49 @@ def run_time_pipeline(mission,output,resume=False):
         coverage=ephemerides.coverage(body)
         if mission.launch_jd<coverage['start_jd'] or mission.launch_jd+bounds[1]>coverage['stop_jd']:
             raise ValueError('Ephemerides do not cover the full free-duration interval: '+body)
-    # Generate alternative initial durations from the actual ILTT lambda law.
-    # Every anchor uses this departure date, and a fresh cold ILTT chain.
-    from .irt import _module,iltt_seeds
-    initial,target,scales=base.boundary();rf=scales.normalize_state(target)[:3];vf=scales.normalize_state(target)[3:]
-    energy=2/np.linalg.norm(rf)-vf@vf;kappa=1/energy if energy>0 else np.linalg.norm(rf)
-    toolbox=_module('_pipeline_iltt','ILTT/ILTTToolbox.py')
+    # The date-first ILTT anchor already determines duration. Additional angular
+    # branches belong to the search controller, never to an inverse time fit.
+    from .iltt_entry import date_entry
     durations=[base.tof_days]
-    for info,_ in iltt_seeds(*[scales.normalize_state(initial)[:3],scales.normalize_state(initial)[3:],rf,vf],base.tof_days*DAY_S/scales.time_s):
-        duration=float(2*np.pi*toolbox.T_a(info['lambda_turns'],kappa)*scales.time_s/DAY_S)
-        if bounds[0]<duration<bounds[1] and all(abs(duration-t)>1 for t in durations):durations.append(duration)
+    if not date_entry(base):
+        from .irt import _module,iltt_seeds
+        initial,target,scales=base.boundary();rf=scales.normalize_state(target)[:3];vf=scales.normalize_state(target)[3:]
+        energy=2/np.linalg.norm(rf)-vf@vf;kappa=1/energy if energy>0 else np.linalg.norm(rf)
+        toolbox=_module('_pipeline_iltt','ILTT/ILTTToolbox.py')
+        for info,_ in iltt_seeds(scales.normalize_state(initial)[:3],scales.normalize_state(initial)[3:],rf,vf,base.tof_days*DAY_S/scales.time_s):
+            duration=float(2*np.pi*toolbox.T_a(info['lambda_turns'],kappa)*scales.time_s/DAY_S)
+            if bounds[0]<duration<bounds[1] and all(abs(duration-t)>1 for t in durations):durations.append(duration)
     history=[];result=None
     for index,duration in enumerate(durations):
         child=replace(base,tof_days=duration);folder=output/f'anchor_{index:02d}'
         write_json(output/'summary.json',dict(case_id=mission.case_id,status='running',phase='iltt_anchor',anchor=index,seed_tof_days=duration))
         current,status=run_pipeline(child,folder,resume=resume and folder.exists())
         row=dict(seed_tof_days=duration,anchor_status=status['status'],phase=status.get('phase'),error=status.get('error'))
+        if status['status']!='completed' and current is not None:
+            from .intermediate_time import verify_intermediate,release_intermediate_duration,continue_physical_model
+            recovery=[]
+            for cycle in range(int(mission.solver.get('intermediate_rounds',2))):
+                step=dict(cycle=cycle+1)
+                try:verify_intermediate(current)
+                except (ValueError,RuntimeError) as exc:
+                    step['error']=str(exc);recovery.append(step);break
+                try:
+                    current=release_intermediate_duration(current,bounds,perf_counter()+float(mission.solver.get('intermediate_release_budget_s',120)),output/f'anchor_{index:02d}_release_{cycle}')
+                    step['duration_released']=True
+                except (ValueError,RuntimeError,TimeoutError) as exc:
+                    step.update(duration_released=False,error=str(exc))
+                current,status=continue_physical_model(current,output/f'anchor_{index:02d}_continue_{cycle}')
+                step.update(status=status['status'],phase=status.get('phase'))
+                recovery.append(step)
+                if status['status']=='completed' or current is None:break
+            row['intermediate_recovery']=recovery
         if status['status']=='completed':
+            # Keep an accepted physical parent even if optimization fails;
+            # it is explicitly not labelled a free-time optimized result.
+            parent_check=verify_kiam_psi(current)
+            if not parent_check['passed']:raise RuntimeError('Physical parent KIAM check failed')
+            current.save(output/f'physical_parent_{index:02d}')
+            row['physical_parent']=f'physical_parent_{index:02d}'
             write_json(output/'summary.json',dict(case_id=mission.case_id,status='running',phase='time_release',anchor=index,seed_tof_days=duration))
             try:
                 result=release_duration(current,current,bounds,perf_counter()+float(mission.solver.get('free_time_budget_s',120.)))

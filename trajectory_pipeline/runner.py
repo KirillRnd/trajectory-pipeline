@@ -344,7 +344,11 @@ def run_pipeline(mission,output,resume=False):
     try:
         if mission.time_policy is not None:
             from .free_time import run_time_pipeline
-            return run_time_pipeline(mission,output,resume=resume)
+            result,summary=run_time_pipeline(mission,output,resume=resume)
+            if date_entry(original_mission) and 'iltt_resolved' in mission.solver:
+                write_json(output/'entry_request.json',original_mission.to_dict())
+                write_json(output/'iltt_entry.json',mission.solver['iltt_resolved'])
+            return result,summary
         if mission.orbital_maneuvers is not None:
             from .orbital_pipeline import run_orbital_pipeline
             return run_orbital_pipeline(mission,output,resume=resume)

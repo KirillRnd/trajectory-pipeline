@@ -13,7 +13,7 @@ def main():
     search=sub.add_parser('search',help='Genetic graph search over declared dates, engines and existing routes')
     search.add_argument('mission')
     search.add_argument('--design',required=True)
-    search.add_argument('--history',nargs='+',required=True)
+    search.add_argument('--history',nargs='+',default=[])
     search.add_argument('--output',required=True)
     search.add_argument('--resume',action='store_true')
     search_worker=sub.add_parser('_search-worker',help=argparse.SUPPRESS)
@@ -203,7 +203,10 @@ def main():
         if args.fixed_time and args.tof_bounds_days:raise ValueError('Choose free-time bounds or --fixed-time')
         if args.fixed_time:mission.time_policy=None
         elif args.tof_bounds_days or not any(x is not None for x in (mission.capture,mission.parking_departure,mission.orbital_maneuvers,mission.lunar)):
-            mission.time_policy=dict(bounds_days=args.tof_bounds_days or (mission.time_policy or {}).get('bounds_days',[mission.tof_days*.5,mission.tof_days*1.5]))
+            from .iltt_entry import resolve_date_mission
+            mission=resolve_date_mission(mission)
+            bounds=args.tof_bounds_days or (mission.time_policy or {}).get('bounds_days')
+            mission.time_policy=dict(bounds_days=bounds if bounds is not None else [mission.tof_days*.5,mission.tof_days*1.5])
         mission.validate()
         result,summary=run_pipeline(mission,args.output,resume=args.resume)
         print(json.dumps({k:v for k,v in summary.items() if k!='stages'},ensure_ascii=False,indent=2))
