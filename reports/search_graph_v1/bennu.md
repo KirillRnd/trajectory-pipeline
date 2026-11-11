@@ -1,0 +1,24 @@
+# Граф поиска траекторий
+
+Статус: finished. Узлов: 6; принятых: 2; попаданий в кеш: 5.
+
+Принятые решения сохранены независимо от неудач их улучшения. Изменения относятся к исходной постановке. Физическая недостижимость не доказывается.
+
+| Узел | Операция | Статус | Причина |
+|---|---|---|---|
+| dd6f34a8470c52a5a64825e4 | reference | completed |  |
+| 891628fea3584dbfe7a16612 | release | failed | TimeoutError: Free-duration integration budget reached |
+| f453e754e3feebba7af095d4 | cold | partial |  |
+| a6d15b20cb1a36c5ed749993 | r_transfer | failed | RuntimeError: free: Exact independent replay failed: {'passed': False, 'position_residual_m': 2407468620.9691725, 'velocity_residual_m_s': 438.53457422428636, 'parameter_audit': {'passed': True, 'configuration_sha256': '7bb71546346bdc818fc88ce03ef1ff4bf704edfa9e8c67d65a9bd3eae65b4faa', 'configuration_hash_version': 2, 'requested': {'mass_kg': 156, 'thrust_N': 0.025, 'exhaust_velocity_m_s': 20000, 'dry_mass_kg': 90, 'launch_tdb': '2029-08-30T00:00:00', 'tof_days': 500.0, 'departure': 'Earth', 'target': 'Bennu', 'mode': 'rendezvous'}, 'recovered_model': {'model_thrust_N': np.float64(0.025), 'thrust_to_requested_ratio': np.float64(1.0), 'alpha': 1.0, 'beta': 1.0, 'variable_mass': True, 'hardware_limit_reached': True, 'exhaust_velocity_m_s': np.float64(19999.999999999996)}, 'geometry': None, 'final_admission': True}, 'trajectory_difference_m': 1.3117770971029314, 'velocity_difference_m_s': 3.182516870758136e-07, 'stored_throttle_error': 0.0, 'stored_throttle_minimum': 0.0, 'stored_throttle_maximum': 1.0, 'canonical_boundary_residual': 0.021746503737312572, 'method': 'LSODA with independent bounded/mass equations', 'scope': 'Numerical extremal and constraints; no global optimality proof', 'departure_norm_m_s': 4785.271542419613, 'switching_sign_violation': 0.11931165058824264, 'switching_node_residual': 0.0006918192086625142, 'minimum_mass_kg': 145.52864236922085, 'fuel_kg': 10.471357630779151, 'mass_difference_kg': 1.9051427102567686e-13, 'stored_thrust_error_N': 0.0, 'mass_balance_error_kg': np.float64(3.552713678800501e-15)}; active: Exact independent replay failed: {'passed': False, 'position_residual_m': 2575156940.0396323, 'velocity_residual_m_s': 528.4733960799086, 'parameter_audit': {'passed': True, 'configuration_sha256': '7bb71546346bdc818fc88ce03ef1ff4bf704edfa9e8c67d65a9bd3eae65b4faa', 'configuration_hash_version': 2, 'requested': {'mass_kg': 156, 'thrust_N': 0.025, 'exhaust_velocity_m_s': 20000, 'dry_mass_kg': 90, 'launch_tdb': '2029-08-30T00:00:00', 'tof_days': 500.0, 'departure': 'Earth', 'target': 'Bennu', 'mode': 'rendezvous'}, 'recovered_model': {'model_thrust_N': np.float64(0.025), 'thrust_to_requested_ratio': np.float64(1.0), 'alpha': 1.0, 'beta': 1.0, 'variable_mass': True, 'hardware_limit_reached': True, 'exhaust_velocity_m_s': np.float64(19999.999999999996)}, 'geometry': None, 'final_admission': True}, 'trajectory_difference_m': 1.2558837600934794, 'velocity_difference_m_s': 2.6165636788391645e-07, 'stored_throttle_error': 0.0, 'stored_throttle_minimum': 0.0, 'stored_throttle_maximum': 1.0, 'canonical_boundary_residual': 0.026853679612133703, 'method': 'LSODA with independent bounded/mass equations', 'scope': 'Numerical extremal and constraints; no global optimality proof', 'departure_norm_m_s': 3298.856149782495, 'switching_sign_violation': 0.8871840971781655, 'switching_node_residual': 0.002039284904180893, 'minimum_mass_kg': 138.98270385321058, 'fuel_kg': 17.01729614678942, 'mass_difference_kg': 3.810285420513537e-13, 'stored_thrust_error_N': 0.0, 'mass_balance_error_kg': np.float64(3.517186542012496e-13)} |
+| 0c9e431bd6d51ebaaac6e59a | r_release | failed | TimeoutError: Free-duration integration budget reached |
+| 720311bc15a1bf4dfa31a898 | reference | completed |  |
+
+## Решение dd6f34a8470c52a5a64825e4
+
+Артефакт: `runs/search_graph_bennu_v2/nodes/dd6f34a8470c52a5a64825e4/final`. Изменения: `{}`.
+Критерии [изменения условий, топливо кг, длительность сутки]: [0.0, 32.631073589213685, 500.0].
+
+## Решение 720311bc15a1bf4dfa31a898
+
+Артефакт: `runs/search_graph_bennu_v2/nodes/720311bc15a1bf4dfa31a898/final`. Изменения: `{}`.
+Критерии [изменения условий, топливо кг, длительность сутки]: [0.0, 32.631073589213685, 500.0].

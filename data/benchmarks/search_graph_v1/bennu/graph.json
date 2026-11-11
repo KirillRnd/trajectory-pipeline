@@ -1,0 +1,998 @@
+{
+  "nodes": {
+    "dd6f34a8470c52a5a64825e4": {
+      "status": "completed",
+      "phase": "final",
+      "mission": {
+        "case_id": "earth_bennu_2029",
+        "departure": "Earth",
+        "target": "Bennu",
+        "launch_tdb": "2029-06-01T00:00:00",
+        "tof_days": 500.0,
+        "center": "Sun",
+        "mode": "rendezvous",
+        "position_tolerance_m": 1000,
+        "velocity_tolerance_m_s": 0.01,
+        "mass_kg": 156,
+        "departure_mode": "bounded_norm",
+        "vinf_max_m_s": 3000,
+        "vinf_vector_m_s": null,
+        "spacecraft": {
+          "thrust_N": 0.025,
+          "exhaust_velocity_m_s": 20000,
+          "dry_mass_kg": 90
+        },
+        "solver": {
+          "budget_s": 30,
+          "compare_seeds": true,
+          "departure_budget_s": 40,
+          "limit_budget_s": 60,
+          "pazov_budget_s": 60,
+          "psi_budget_s": 60,
+          "bounded_attempt_s": 20,
+          "pipeline_pazov_alpha": 0.5,
+          "psi_mass_alpha": 0.5
+        },
+        "lunar": null
+      },
+      "fuel_kg": 32.631073589213685,
+      "verification": {
+        "passed": true,
+        "position_residual_m": 1.1145549929898289,
+        "velocity_residual_m_s": 1.9382236934669828e-07,
+        "parameter_audit": {
+          "passed": true,
+          "configuration_sha256": "89113f7103e4a87a7c822dc8e47cfd8f14605d9be27f6722597bef75b2e7d233",
+          "configuration_hash_version": 2,
+          "requested": {
+            "mass_kg": 156,
+            "thrust_N": 0.025,
+            "exhaust_velocity_m_s": 20000,
+            "dry_mass_kg": 90,
+            "launch_tdb": "2029-06-01T00:00:00",
+            "tof_days": 500.0,
+            "departure": "Earth",
+            "target": "Bennu",
+            "mode": "rendezvous"
+          },
+          "recovered_model": {
+            "model_thrust_N": 0.025,
+            "thrust_to_requested_ratio": 1.0,
+            "alpha": 1.0,
+            "beta": 1.0,
+            "variable_mass": true,
+            "hardware_limit_reached": true,
+            "exhaust_velocity_m_s": 20000.0
+          },
+          "geometry": null,
+          "final_admission": true
+        },
+        "trajectory_difference_m": 1.1177209081737003,
+        "velocity_difference_m_s": 1.9424011566007665e-07,
+        "stored_throttle_error": 0.0,
+        "stored_throttle_minimum": 0.0,
+        "stored_throttle_maximum": 1.0,
+        "canonical_boundary_residual": 9.889184483874445e-12,
+        "method": "LSODA with independent bounded/mass equations",
+        "scope": "Numerical extremal and constraints; no global optimality proof",
+        "departure_norm_m_s": 2017.7630461668296,
+        "switching_sign_violation": 3.0920833938161672e-12,
+        "switching_node_residual": 3.0920833938161672e-12,
+        "minimum_mass_kg": 123.36892641078632,
+        "fuel_kg": 32.631073589213685,
+        "mass_difference_kg": 2.078337502098293e-13,
+        "stored_thrust_error_N": 0.0,
+        "mass_balance_error_kg": 7.105427357601002e-14
+      },
+      "kiam_verification": {
+        "passed": true,
+        "source": "Unmodified KIAM Astro compiled Fortran equations and published control API",
+        "package_version": "6.1.6",
+        "samples": 101,
+        "maximum_dimensionless_rhs_error": 8.881784197001252e-16,
+        "maximum_dimensionless_force_error": 6.938893903907228e-18,
+        "maximum_third_body_decomposition_error": 0.0,
+        "nbody_gravity": {
+          "passed": true,
+          "applicable": false
+        },
+        "costate_map": "p_r,v(KIAM)=p_r,v/vex; p_m(KIAM)=1+p_m/vex; normalized initial mass=1",
+        "scope": "KIAM central mass-optimal equations/control, plus independent third-body decomposition when present; not a separate global optimization"
+      },
+      "elapsed_s": 0.23216902700369246,
+      "artifact": "runs/search_graph_bennu_v2/nodes/dd6f34a8470c52a5a64825e4/final",
+      "metadata_sha256": "87ab35ee5f81f73b5d6626eb0afb030a5bbdf076931e803cad61f26f74c82dd3",
+      "arrays_sha256": "42a74f3ca2b03058e14c63b49e12c1109065367e2d438667582973588e63d531",
+      "request": {
+        "operation": "reference",
+        "mission": {
+          "case_id": "earth_bennu_2029",
+          "departure": "Earth",
+          "target": "Bennu",
+          "launch_tdb": "2029-06-01T00:00:00",
+          "tof_days": 500.0,
+          "center": "Sun",
+          "mode": "rendezvous",
+          "position_tolerance_m": 1000,
+          "velocity_tolerance_m_s": 0.01,
+          "mass_kg": 156,
+          "departure_mode": "bounded_norm",
+          "vinf_max_m_s": 3000,
+          "vinf_vector_m_s": null,
+          "spacecraft": {
+            "thrust_N": 0.025,
+            "exhaust_velocity_m_s": 20000,
+            "dry_mass_kg": 90
+          },
+          "solver": {
+            "budget_s": 30,
+            "compare_seeds": true,
+            "departure_budget_s": 40,
+            "limit_budget_s": 60,
+            "pazov_budget_s": 60,
+            "psi_budget_s": 60,
+            "bounded_attempt_s": 20,
+            "pipeline_pazov_alpha": 0.5,
+            "psi_mass_alpha": 0.5
+          },
+          "lunar": null
+        },
+        "budget_s": 240,
+        "reference": {
+          "path": "data/benchmarks/free_time_physical_matrix_v1/earth_bennu_2029/anchor_00/final",
+          "metadata_sha256": "4121c9af84901bde0f1f2d50b27f09afd1202829ae73964c7151710577a4107c",
+          "arrays_sha256": "42a74f3ca2b03058e14c63b49e12c1109065367e2d438667582973588e63d531",
+          "mission": {
+            "case_id": "earth_bennu_2029",
+            "departure": "Earth",
+            "target": "Bennu",
+            "launch_tdb": "2029-06-01T00:00:00",
+            "tof_days": 500,
+            "center": "Sun",
+            "mode": "rendezvous",
+            "position_tolerance_m": 1000,
+            "velocity_tolerance_m_s": 0.01,
+            "mass_kg": 156,
+            "departure_mode": "bounded_norm",
+            "vinf_max_m_s": 3000,
+            "vinf_vector_m_s": null,
+            "spacecraft": {
+              "thrust_N": 0.025,
+              "exhaust_velocity_m_s": 20000,
+              "dry_mass_kg": 90
+            },
+            "solver": {
+              "budget_s": 45,
+              "compare_seeds": true,
+              "departure_budget_s": 60,
+              "limit_budget_s": 60,
+              "pazov_budget_s": 90,
+              "psi_budget_s": 120,
+              "bounded_attempt_s": 20,
+              "free_time_budget_s": 120
+            },
+            "lunar": null
+          }
+        }
+      }
+    },
+    "891628fea3584dbfe7a16612": {
+      "status": "failed",
+      "phase": "release",
+      "error": "TimeoutError: Free-duration integration budget reached",
+      "elapsed_s": 90.05841398899793,
+      "request": {
+        "operation": "release",
+        "mission": {
+          "case_id": "earth_bennu_2029",
+          "departure": "Earth",
+          "target": "Bennu",
+          "launch_tdb": "2029-06-01T00:00:00",
+          "tof_days": 500.0,
+          "center": "Sun",
+          "mode": "rendezvous",
+          "position_tolerance_m": 1000,
+          "velocity_tolerance_m_s": 0.01,
+          "mass_kg": 156,
+          "departure_mode": "bounded_norm",
+          "vinf_max_m_s": 3000,
+          "vinf_vector_m_s": null,
+          "spacecraft": {
+            "thrust_N": 0.025,
+            "exhaust_velocity_m_s": 20000,
+            "dry_mass_kg": 90
+          },
+          "solver": {
+            "budget_s": 30,
+            "compare_seeds": true,
+            "departure_budget_s": 40,
+            "limit_budget_s": 60,
+            "pazov_budget_s": 60,
+            "psi_budget_s": 60,
+            "bounded_attempt_s": 20,
+            "pipeline_pazov_alpha": 0.5,
+            "psi_mass_alpha": 0.5
+          },
+          "lunar": null
+        },
+        "budget_s": 90,
+        "reference": null,
+        "parent_artifact": "runs/search_graph_bennu_v2/nodes/dd6f34a8470c52a5a64825e4/final",
+        "parent_sha256": "42a74f3ca2b03058e14c63b49e12c1109065367e2d438667582973588e63d531",
+        "bounds_days": [
+          250.0,
+          750.0
+        ]
+      }
+    },
+    "f453e754e3feebba7af095d4": {
+      "status": "partial",
+      "phase": "psi",
+      "error": null,
+      "last_model": {
+        "a_max": 0.05557024434919569,
+        "alpha": 0.5,
+        "beta": 0.9750000000000001,
+        "q": 0.04109235189196995,
+        "variable_mass": true,
+        "gravity_spec": null
+      },
+      "checkpoint": "runs/search_graph_bennu_v2/nodes/f453e754e3feebba7af095d4/run",
+      "elapsed_s": 68.19851693100645,
+      "request": {
+        "operation": "cold",
+        "mission": {
+          "case_id": "earth_bennu_2029",
+          "departure": "Earth",
+          "target": "Bennu",
+          "launch_tdb": "2029-06-01T00:00:00",
+          "tof_days": 500.0,
+          "center": "Sun",
+          "mode": "rendezvous",
+          "position_tolerance_m": 1000,
+          "velocity_tolerance_m_s": 0.01,
+          "mass_kg": 156,
+          "departure_mode": "bounded_norm",
+          "vinf_max_m_s": 3000,
+          "vinf_vector_m_s": null,
+          "spacecraft": {
+            "thrust_N": 0.05,
+            "exhaust_velocity_m_s": 40000,
+            "dry_mass_kg": 90
+          },
+          "solver": {
+            "budget_s": 30,
+            "compare_seeds": true,
+            "departure_budget_s": 40,
+            "limit_budget_s": 60,
+            "pazov_budget_s": 60,
+            "psi_budget_s": 60,
+            "bounded_attempt_s": 20,
+            "pipeline_pazov_alpha": 0.5,
+            "psi_mass_alpha": 0.5
+          },
+          "lunar": null
+        },
+        "budget_s": 240,
+        "reference": null
+      }
+    },
+    "a6d15b20cb1a36c5ed749993": {
+      "status": "failed",
+      "phase": "r_transfer",
+      "error": "RuntimeError: free: Exact independent replay failed: {'passed': False, 'position_residual_m': 2407468620.9691725, 'velocity_residual_m_s': 438.53457422428636, 'parameter_audit': {'passed': True, 'configuration_sha256': '7bb71546346bdc818fc88ce03ef1ff4bf704edfa9e8c67d65a9bd3eae65b4faa', 'configuration_hash_version': 2, 'requested': {'mass_kg': 156, 'thrust_N': 0.025, 'exhaust_velocity_m_s': 20000, 'dry_mass_kg': 90, 'launch_tdb': '2029-08-30T00:00:00', 'tof_days': 500.0, 'departure': 'Earth', 'target': 'Bennu', 'mode': 'rendezvous'}, 'recovered_model': {'model_thrust_N': np.float64(0.025), 'thrust_to_requested_ratio': np.float64(1.0), 'alpha': 1.0, 'beta': 1.0, 'variable_mass': True, 'hardware_limit_reached': True, 'exhaust_velocity_m_s': np.float64(19999.999999999996)}, 'geometry': None, 'final_admission': True}, 'trajectory_difference_m': 1.3117770971029314, 'velocity_difference_m_s': 3.182516870758136e-07, 'stored_throttle_error': 0.0, 'stored_throttle_minimum': 0.0, 'stored_throttle_maximum': 1.0, 'canonical_boundary_residual': 0.021746503737312572, 'method': 'LSODA with independent bounded/mass equations', 'scope': 'Numerical extremal and constraints; no global optimality proof', 'departure_norm_m_s': 4785.271542419613, 'switching_sign_violation': 0.11931165058824264, 'switching_node_residual': 0.0006918192086625142, 'minimum_mass_kg': 145.52864236922085, 'fuel_kg': 10.471357630779151, 'mass_difference_kg': 1.9051427102567686e-13, 'stored_thrust_error_N': 0.0, 'mass_balance_error_kg': np.float64(3.552713678800501e-15)}; active: Exact independent replay failed: {'passed': False, 'position_residual_m': 2575156940.0396323, 'velocity_residual_m_s': 528.4733960799086, 'parameter_audit': {'passed': True, 'configuration_sha256': '7bb71546346bdc818fc88ce03ef1ff4bf704edfa9e8c67d65a9bd3eae65b4faa', 'configuration_hash_version': 2, 'requested': {'mass_kg': 156, 'thrust_N': 0.025, 'exhaust_velocity_m_s': 20000, 'dry_mass_kg': 90, 'launch_tdb': '2029-08-30T00:00:00', 'tof_days': 500.0, 'departure': 'Earth', 'target': 'Bennu', 'mode': 'rendezvous'}, 'recovered_model': {'model_thrust_N': np.float64(0.025), 'thrust_to_requested_ratio': np.float64(1.0), 'alpha': 1.0, 'beta': 1.0, 'variable_mass': True, 'hardware_limit_reached': True, 'exhaust_velocity_m_s': np.float64(19999.999999999996)}, 'geometry': None, 'final_admission': True}, 'trajectory_difference_m': 1.2558837600934794, 'velocity_difference_m_s': 2.6165636788391645e-07, 'stored_throttle_error': 0.0, 'stored_throttle_minimum': 0.0, 'stored_throttle_maximum': 1.0, 'canonical_boundary_residual': 0.026853679612133703, 'method': 'LSODA with independent bounded/mass equations', 'scope': 'Numerical extremal and constraints; no global optimality proof', 'departure_norm_m_s': 3298.856149782495, 'switching_sign_violation': 0.8871840971781655, 'switching_node_residual': 0.002039284904180893, 'minimum_mass_kg': 138.98270385321058, 'fuel_kg': 17.01729614678942, 'mass_difference_kg': 3.810285420513537e-13, 'stored_thrust_error_N': 0.0, 'mass_balance_error_kg': np.float64(3.517186542012496e-13)}",
+      "elapsed_s": 42.948892597982194,
+      "request": {
+        "operation": "r_transfer",
+        "mission": {
+          "case_id": "earth_bennu_2029",
+          "departure": "Earth",
+          "target": "Bennu",
+          "launch_tdb": "2029-08-30T00:00:00",
+          "tof_days": 500.0,
+          "center": "Sun",
+          "mode": "rendezvous",
+          "position_tolerance_m": 1000,
+          "velocity_tolerance_m_s": 0.01,
+          "mass_kg": 156,
+          "departure_mode": "bounded_norm",
+          "vinf_max_m_s": 3000,
+          "vinf_vector_m_s": null,
+          "spacecraft": {
+            "thrust_N": 0.025,
+            "exhaust_velocity_m_s": 20000,
+            "dry_mass_kg": 90
+          },
+          "solver": {
+            "budget_s": 30,
+            "compare_seeds": true,
+            "departure_budget_s": 40,
+            "limit_budget_s": 60,
+            "pazov_budget_s": 60,
+            "psi_budget_s": 60,
+            "bounded_attempt_s": 20,
+            "pipeline_pazov_alpha": 0.5,
+            "psi_mass_alpha": 0.5
+          },
+          "lunar": null
+        },
+        "budget_s": 240,
+        "reference": {
+          "path": "data/benchmarks/free_time_physical_matrix_v1/earth_bennu_2029/anchor_00/final",
+          "metadata_sha256": "4121c9af84901bde0f1f2d50b27f09afd1202829ae73964c7151710577a4107c",
+          "arrays_sha256": "42a74f3ca2b03058e14c63b49e12c1109065367e2d438667582973588e63d531",
+          "mission": {
+            "case_id": "earth_bennu_2029",
+            "departure": "Earth",
+            "target": "Bennu",
+            "launch_tdb": "2029-06-01T00:00:00",
+            "tof_days": 500,
+            "center": "Sun",
+            "mode": "rendezvous",
+            "position_tolerance_m": 1000,
+            "velocity_tolerance_m_s": 0.01,
+            "mass_kg": 156,
+            "departure_mode": "bounded_norm",
+            "vinf_max_m_s": 3000,
+            "vinf_vector_m_s": null,
+            "spacecraft": {
+              "thrust_N": 0.025,
+              "exhaust_velocity_m_s": 20000,
+              "dry_mass_kg": 90
+            },
+            "solver": {
+              "budget_s": 45,
+              "compare_seeds": true,
+              "departure_budget_s": 60,
+              "limit_budget_s": 60,
+              "pazov_budget_s": 90,
+              "psi_budget_s": 120,
+              "bounded_attempt_s": 20,
+              "free_time_budget_s": 120
+            },
+            "lunar": null
+          }
+        }
+      }
+    },
+    "0c9e431bd6d51ebaaac6e59a": {
+      "status": "failed",
+      "phase": "r_release",
+      "error": "TimeoutError: Free-duration integration budget reached",
+      "elapsed_s": 90.03559806800331,
+      "request": {
+        "operation": "r_release",
+        "mission": {
+          "case_id": "earth_bennu_2029",
+          "departure": "Earth",
+          "target": "Bennu",
+          "launch_tdb": "2029-08-30T00:00:00",
+          "tof_days": 500.0,
+          "center": "Sun",
+          "mode": "rendezvous",
+          "position_tolerance_m": 1000,
+          "velocity_tolerance_m_s": 0.01,
+          "mass_kg": 156,
+          "departure_mode": "bounded_norm",
+          "vinf_max_m_s": 3000,
+          "vinf_vector_m_s": null,
+          "spacecraft": {
+            "thrust_N": 0.025,
+            "exhaust_velocity_m_s": 20000,
+            "dry_mass_kg": 90
+          },
+          "solver": {
+            "budget_s": 30,
+            "compare_seeds": true,
+            "departure_budget_s": 40,
+            "limit_budget_s": 60,
+            "pazov_budget_s": 60,
+            "psi_budget_s": 60,
+            "bounded_attempt_s": 20,
+            "pipeline_pazov_alpha": 0.5,
+            "psi_mass_alpha": 0.5
+          },
+          "lunar": null
+        },
+        "budget_s": 90,
+        "reference": {
+          "path": "data/benchmarks/free_time_physical_matrix_v1/earth_bennu_2029/anchor_00/final",
+          "metadata_sha256": "4121c9af84901bde0f1f2d50b27f09afd1202829ae73964c7151710577a4107c",
+          "arrays_sha256": "42a74f3ca2b03058e14c63b49e12c1109065367e2d438667582973588e63d531",
+          "mission": {
+            "case_id": "earth_bennu_2029",
+            "departure": "Earth",
+            "target": "Bennu",
+            "launch_tdb": "2029-06-01T00:00:00",
+            "tof_days": 500,
+            "center": "Sun",
+            "mode": "rendezvous",
+            "position_tolerance_m": 1000,
+            "velocity_tolerance_m_s": 0.01,
+            "mass_kg": 156,
+            "departure_mode": "bounded_norm",
+            "vinf_max_m_s": 3000,
+            "vinf_vector_m_s": null,
+            "spacecraft": {
+              "thrust_N": 0.025,
+              "exhaust_velocity_m_s": 20000,
+              "dry_mass_kg": 90
+            },
+            "solver": {
+              "budget_s": 45,
+              "compare_seeds": true,
+              "departure_budget_s": 60,
+              "limit_budget_s": 60,
+              "pazov_budget_s": 90,
+              "psi_budget_s": 120,
+              "bounded_attempt_s": 20,
+              "free_time_budget_s": 120
+            },
+            "lunar": null
+          }
+        },
+        "bounds_days": [
+          250.0,
+          750.0
+        ]
+      }
+    },
+    "720311bc15a1bf4dfa31a898": {
+      "status": "completed",
+      "phase": "final",
+      "mission": {
+        "case_id": "earth_bennu_2029",
+        "departure": "Earth",
+        "target": "Bennu",
+        "launch_tdb": "2029-06-01T00:00:00",
+        "tof_days": 500.0,
+        "center": "Sun",
+        "mode": "rendezvous",
+        "position_tolerance_m": 1000,
+        "velocity_tolerance_m_s": 0.01,
+        "mass_kg": 156,
+        "departure_mode": "bounded_norm",
+        "vinf_max_m_s": 3000,
+        "vinf_vector_m_s": null,
+        "spacecraft": {
+          "thrust_N": 0.025,
+          "exhaust_velocity_m_s": 20000,
+          "dry_mass_kg": 90
+        },
+        "solver": {
+          "budget_s": 30,
+          "compare_seeds": true,
+          "departure_budget_s": 40,
+          "limit_budget_s": 60,
+          "pazov_budget_s": 60,
+          "psi_budget_s": 60,
+          "bounded_attempt_s": 20,
+          "pipeline_pazov_alpha": 0.7,
+          "psi_mass_alpha": 0.7
+        },
+        "lunar": null
+      },
+      "fuel_kg": 32.631073589213685,
+      "verification": {
+        "passed": true,
+        "position_residual_m": 1.1145549929898289,
+        "velocity_residual_m_s": 1.9382236934669828e-07,
+        "parameter_audit": {
+          "passed": true,
+          "configuration_sha256": "89113f7103e4a87a7c822dc8e47cfd8f14605d9be27f6722597bef75b2e7d233",
+          "configuration_hash_version": 2,
+          "requested": {
+            "mass_kg": 156,
+            "thrust_N": 0.025,
+            "exhaust_velocity_m_s": 20000,
+            "dry_mass_kg": 90,
+            "launch_tdb": "2029-06-01T00:00:00",
+            "tof_days": 500.0,
+            "departure": "Earth",
+            "target": "Bennu",
+            "mode": "rendezvous"
+          },
+          "recovered_model": {
+            "model_thrust_N": 0.025,
+            "thrust_to_requested_ratio": 1.0,
+            "alpha": 1.0,
+            "beta": 1.0,
+            "variable_mass": true,
+            "hardware_limit_reached": true,
+            "exhaust_velocity_m_s": 20000.0
+          },
+          "geometry": null,
+          "final_admission": true
+        },
+        "trajectory_difference_m": 1.1177209081737003,
+        "velocity_difference_m_s": 1.9424011566007665e-07,
+        "stored_throttle_error": 0.0,
+        "stored_throttle_minimum": 0.0,
+        "stored_throttle_maximum": 1.0,
+        "canonical_boundary_residual": 9.889184483874445e-12,
+        "method": "LSODA with independent bounded/mass equations",
+        "scope": "Numerical extremal and constraints; no global optimality proof",
+        "departure_norm_m_s": 2017.7630461668296,
+        "switching_sign_violation": 3.0920833938161672e-12,
+        "switching_node_residual": 3.0920833938161672e-12,
+        "minimum_mass_kg": 123.36892641078632,
+        "fuel_kg": 32.631073589213685,
+        "mass_difference_kg": 2.078337502098293e-13,
+        "stored_thrust_error_N": 0.0,
+        "mass_balance_error_kg": 7.105427357601002e-14
+      },
+      "kiam_verification": {
+        "passed": true,
+        "source": "Unmodified KIAM Astro compiled Fortran equations and published control API",
+        "package_version": "6.1.6",
+        "samples": 101,
+        "maximum_dimensionless_rhs_error": 8.881784197001252e-16,
+        "maximum_dimensionless_force_error": 6.938893903907228e-18,
+        "maximum_third_body_decomposition_error": 0.0,
+        "nbody_gravity": {
+          "passed": true,
+          "applicable": false
+        },
+        "costate_map": "p_r,v(KIAM)=p_r,v/vex; p_m(KIAM)=1+p_m/vex; normalized initial mass=1",
+        "scope": "KIAM central mass-optimal equations/control, plus independent third-body decomposition when present; not a separate global optimization"
+      },
+      "elapsed_s": 0.18863183000939898,
+      "artifact": "runs/search_graph_bennu_v2/nodes/720311bc15a1bf4dfa31a898/final",
+      "metadata_sha256": "3cb9428ad5e2f85edc283753acf444cf77f47036f4ba5f5c0fde950ef66b3010",
+      "arrays_sha256": "42a74f3ca2b03058e14c63b49e12c1109065367e2d438667582973588e63d531",
+      "request": {
+        "operation": "reference",
+        "mission": {
+          "case_id": "earth_bennu_2029",
+          "departure": "Earth",
+          "target": "Bennu",
+          "launch_tdb": "2029-06-01T00:00:00",
+          "tof_days": 500.0,
+          "center": "Sun",
+          "mode": "rendezvous",
+          "position_tolerance_m": 1000,
+          "velocity_tolerance_m_s": 0.01,
+          "mass_kg": 156,
+          "departure_mode": "bounded_norm",
+          "vinf_max_m_s": 3000,
+          "vinf_vector_m_s": null,
+          "spacecraft": {
+            "thrust_N": 0.025,
+            "exhaust_velocity_m_s": 20000,
+            "dry_mass_kg": 90
+          },
+          "solver": {
+            "budget_s": 30,
+            "compare_seeds": true,
+            "departure_budget_s": 40,
+            "limit_budget_s": 60,
+            "pazov_budget_s": 60,
+            "psi_budget_s": 60,
+            "bounded_attempt_s": 20,
+            "pipeline_pazov_alpha": 0.7,
+            "psi_mass_alpha": 0.7
+          },
+          "lunar": null
+        },
+        "budget_s": 240,
+        "reference": {
+          "path": "data/benchmarks/free_time_physical_matrix_v1/earth_bennu_2029/anchor_00/final",
+          "metadata_sha256": "4121c9af84901bde0f1f2d50b27f09afd1202829ae73964c7151710577a4107c",
+          "arrays_sha256": "42a74f3ca2b03058e14c63b49e12c1109065367e2d438667582973588e63d531",
+          "mission": {
+            "case_id": "earth_bennu_2029",
+            "departure": "Earth",
+            "target": "Bennu",
+            "launch_tdb": "2029-06-01T00:00:00",
+            "tof_days": 500,
+            "center": "Sun",
+            "mode": "rendezvous",
+            "position_tolerance_m": 1000,
+            "velocity_tolerance_m_s": 0.01,
+            "mass_kg": 156,
+            "departure_mode": "bounded_norm",
+            "vinf_max_m_s": 3000,
+            "vinf_vector_m_s": null,
+            "spacecraft": {
+              "thrust_N": 0.025,
+              "exhaust_velocity_m_s": 20000,
+              "dry_mass_kg": 90
+            },
+            "solver": {
+              "budget_s": 45,
+              "compare_seeds": true,
+              "departure_budget_s": 60,
+              "limit_budget_s": 60,
+              "pazov_budget_s": 90,
+              "psi_budget_s": 120,
+              "bounded_attempt_s": 20,
+              "free_time_budget_s": 120
+            },
+            "lunar": null
+          }
+        }
+      }
+    }
+  },
+  "edges": [
+    {
+      "parent": null,
+      "child": "dd6f34a8470c52a5a64825e4",
+      "operation": "reference",
+      "cache_hit": false
+    },
+    {
+      "parent": "dd6f34a8470c52a5a64825e4",
+      "child": "891628fea3584dbfe7a16612",
+      "operation": "release",
+      "cache_hit": false
+    },
+    {
+      "parent": null,
+      "child": "dd6f34a8470c52a5a64825e4",
+      "operation": "reference",
+      "cache_hit": true
+    },
+    {
+      "parent": null,
+      "child": "f453e754e3feebba7af095d4",
+      "operation": "cold",
+      "cache_hit": false
+    },
+    {
+      "parent": null,
+      "child": "a6d15b20cb1a36c5ed749993",
+      "operation": "r_transfer",
+      "cache_hit": false
+    },
+    {
+      "parent": null,
+      "child": "0c9e431bd6d51ebaaac6e59a",
+      "operation": "r_release",
+      "cache_hit": false
+    },
+    {
+      "parent": null,
+      "child": "dd6f34a8470c52a5a64825e4",
+      "operation": "reference",
+      "cache_hit": true
+    },
+    {
+      "parent": "dd6f34a8470c52a5a64825e4",
+      "child": "891628fea3584dbfe7a16612",
+      "operation": "release",
+      "cache_hit": true
+    },
+    {
+      "parent": null,
+      "child": "f453e754e3feebba7af095d4",
+      "operation": "cold",
+      "cache_hit": true
+    },
+    {
+      "parent": null,
+      "child": "f453e754e3feebba7af095d4",
+      "operation": "cold",
+      "cache_hit": true
+    },
+    {
+      "parent": null,
+      "child": "720311bc15a1bf4dfa31a898",
+      "operation": "reference",
+      "cache_hit": false
+    }
+  ],
+  "generations": [
+    {
+      "population": [
+        [
+          0,
+          0,
+          0,
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          1,
+          0,
+          1,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          1,
+          1
+        ]
+      ],
+      "results": [
+        {
+          "genome": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            1
+          ],
+          "fixed_node": "dd6f34a8470c52a5a64825e4",
+          "terminal_node": "891628fea3584dbfe7a16612",
+          "retained_node": "dd6f34a8470c52a5a64825e4",
+          "score": [
+            1,
+            -0.0,
+            -32.631073589213685,
+            -500.0
+          ]
+        },
+        {
+          "genome": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "fixed_node": "dd6f34a8470c52a5a64825e4",
+          "terminal_node": "dd6f34a8470c52a5a64825e4",
+          "retained_node": "dd6f34a8470c52a5a64825e4",
+          "score": [
+            1,
+            -0.0,
+            -32.631073589213685,
+            -500.0
+          ]
+        },
+        {
+          "genome": [
+            0,
+            0,
+            1,
+            0,
+            1,
+            0
+          ],
+          "fixed_node": "f453e754e3feebba7af095d4",
+          "terminal_node": "f453e754e3feebba7af095d4",
+          "retained_node": "f453e754e3feebba7af095d4",
+          "score": [
+            0,
+            4,
+            0.9750000000000001,
+            0.5
+          ]
+        },
+        {
+          "genome": [
+            1,
+            0,
+            0,
+            0,
+            1,
+            1
+          ],
+          "fixed_node": "a6d15b20cb1a36c5ed749993",
+          "terminal_node": "0c9e431bd6d51ebaaac6e59a",
+          "retained_node": "a6d15b20cb1a36c5ed749993",
+          "score": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "origin": "history_and_exploration"
+    },
+    {
+      "population": [
+        [
+          0,
+          0,
+          0,
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          0,
+          1,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          2,
+          0,
+          1
+        ]
+      ],
+      "results": [
+        {
+          "genome": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            1
+          ],
+          "fixed_node": "dd6f34a8470c52a5a64825e4",
+          "terminal_node": "891628fea3584dbfe7a16612",
+          "retained_node": "dd6f34a8470c52a5a64825e4",
+          "score": [
+            1,
+            -0.0,
+            -32.631073589213685,
+            -500.0
+          ]
+        },
+        {
+          "genome": [
+            0,
+            0,
+            1,
+            0,
+            1,
+            0
+          ],
+          "fixed_node": "f453e754e3feebba7af095d4",
+          "terminal_node": "f453e754e3feebba7af095d4",
+          "retained_node": "f453e754e3feebba7af095d4",
+          "score": [
+            0,
+            4,
+            0.9750000000000001,
+            0.5
+          ]
+        },
+        {
+          "genome": [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "fixed_node": "f453e754e3feebba7af095d4",
+          "terminal_node": "f453e754e3feebba7af095d4",
+          "retained_node": "f453e754e3feebba7af095d4",
+          "score": [
+            0,
+            4,
+            0.9750000000000001,
+            0.5
+          ]
+        },
+        {
+          "genome": [
+            0,
+            0,
+            0,
+            2,
+            0,
+            1
+          ],
+          "fixed_node": "720311bc15a1bf4dfa31a898",
+          "terminal_node": "720311bc15a1bf4dfa31a898",
+          "retained_node": "720311bc15a1bf4dfa31a898",
+          "score": [
+            1,
+            -0.0,
+            -32.631073589213685,
+            -500.0
+          ]
+        }
+      ],
+      "origin": [
+        {
+          "kind": "elite",
+          "parents": [
+            0
+          ]
+        },
+        {
+          "kind": "crossover_mutation",
+          "parents": [
+            1,
+            0
+          ],
+          "mutation_axis": 2
+        },
+        {
+          "kind": "crossover_mutation",
+          "parents": [
+            1,
+            1
+          ],
+          "mutation_axis": 2
+        },
+        {
+          "kind": "crossover_mutation",
+          "parents": [
+            0,
+            1
+          ],
+          "mutation_axis": 3
+        }
+      ]
+    }
+  ],
+  "solutions": [
+    {
+      "node": "dd6f34a8470c52a5a64825e4",
+      "artifact": "runs/search_graph_bennu_v2/nodes/dd6f34a8470c52a5a64825e4/final",
+      "changes": {},
+      "original_conditions": true,
+      "objectives": [
+        0.0,
+        32.631073589213685,
+        500.0
+      ]
+    },
+    {
+      "node": "720311bc15a1bf4dfa31a898",
+      "artifact": "runs/search_graph_bennu_v2/nodes/720311bc15a1bf4dfa31a898/final",
+      "changes": {},
+      "original_conditions": true,
+      "objectives": [
+        0.0,
+        32.631073589213685,
+        500.0
+      ]
+    }
+  ],
+  "pareto": [
+    {
+      "node": "dd6f34a8470c52a5a64825e4",
+      "artifact": "runs/search_graph_bennu_v2/nodes/dd6f34a8470c52a5a64825e4/final",
+      "changes": {},
+      "original_conditions": true,
+      "objectives": [
+        0.0,
+        32.631073589213685,
+        500.0
+      ]
+    },
+    {
+      "node": "720311bc15a1bf4dfa31a898",
+      "artifact": "runs/search_graph_bennu_v2/nodes/720311bc15a1bf4dfa31a898/final",
+      "changes": {},
+      "original_conditions": true,
+      "objectives": [
+        0.0,
+        32.631073589213685,
+        500.0
+      ]
+    }
+  ],
+  "elapsed_s": 297.44855382401147,
+  "status": "finished"
+}

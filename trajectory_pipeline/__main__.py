@@ -10,6 +10,14 @@ def exit_code(status):
 def main():
     parser = argparse.ArgumentParser(description='Shared trajectory tools')
     sub = parser.add_subparsers(dest='command', required=True)
+    search=sub.add_parser('search',help='Genetic graph search over declared dates, engines and existing routes')
+    search.add_argument('mission')
+    search.add_argument('--design',required=True)
+    search.add_argument('--history',nargs='+',required=True)
+    search.add_argument('--output',required=True)
+    search.add_argument('--resume',action='store_true')
+    search_worker=sub.add_parser('_search-worker',help=argparse.SUPPRESS)
+    search_worker.add_argument('request')
     render = sub.add_parser('render', help='Render saved results without recalculation')
     render.add_argument('result')
     render.add_argument('--output', required=True)
@@ -116,6 +124,15 @@ def main():
     parameter_report.add_argument('source')
     parameter_report.add_argument('--output',required=True)
     args = parser.parse_args()
+    if args.command=='search':
+        from .search_graph import run_search
+        summary=run_search(args.mission,args.design,args.history,args.output,resume=args.resume)
+        print(json.dumps(summary,ensure_ascii=False,indent=2))
+        return 0 if summary['accepted'] else 2
+    if args.command=='_search-worker':
+        from .search_graph import worker
+        worker(args.request)
+        return 0
     if args.command == 'render':
         from .visualization import render
         print(render(Trajectory.load(args.result), args.output))

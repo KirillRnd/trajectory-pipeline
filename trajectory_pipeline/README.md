@@ -1,5 +1,10 @@
 # Общие модули
 
+Граф поиска поверх модулей: `search <mission.json> --design <design.json>
+--history <archive> [<archive> ...] --output <new-run>`.
+Он эволюционирует планы расчёта, сохраняет принятые решения при неудаче улучшения
+и использует кеш узлов. [Дизайн, рёбра и ограничения](../.agents/skills/trajectory-pipeline/references/search-graph.md).
+
 ## R-преобразование
 
 Модуль `r_transform.py` работает с любым узлом дуги, заданным
