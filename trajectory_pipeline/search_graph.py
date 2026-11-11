@@ -31,6 +31,8 @@ def physical_spec(mission):
 
 
 def verify_cached(cached):
+    if cached['status'] in ('completed','intermediate') and not cached.get('artifact'):
+        raise ValueError('Missing verified graph artifact')
     if cached.get('artifact'):
         path=Path(cached['artifact'])
         if sha256(path/'trajectory.json')!=cached['metadata_sha256'] or sha256(path/'trajectory.npz')!=cached['arrays_sha256']:
@@ -197,6 +199,8 @@ def save_intermediate(result, folder, status, phase, **extra):
             record.update(artifact=str(path),metadata_sha256=sha256(path/'trajectory.json'),arrays_sha256=sha256(path/'trajectory.npz'))
         except (ValueError,RuntimeError) as exc:
             record['intermediate_unavailable']=str(exc)
+    if status=='intermediate' and not record.get('artifact'):
+        record.update(status='failed',error='Intermediate checkpoint did not pass verification: '+record.get('intermediate_unavailable','missing source'))
     write_json(folder/'result.json',record)
 
 

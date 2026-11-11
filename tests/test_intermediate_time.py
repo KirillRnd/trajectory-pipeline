@@ -20,6 +20,19 @@ def mars_checkpoint():
     return Trajectory.load(folder/read(folder/'continuation.json')['last_point'])
 
 class IntermediateTimeTests(unittest.TestCase):
+    def test_verified_status_without_artifact_is_not_a_valid_cache_entry(self):
+        for status in ('completed','intermediate'):
+            with self.assertRaisesRegex(ValueError,'Missing verified graph artifact'):
+                verify_cached(dict(status=status))
+
+    def test_rejected_snapshot_cannot_keep_intermediate_status(self):
+        with TemporaryDirectory() as d, patch('trajectory_pipeline.intermediate_time.verify_intermediate',side_effect=ValueError('replay failed')):
+            folder=Path(d);save_intermediate(mars_checkpoint(),folder,'intermediate','intermediate_release')
+            result=read(folder/'result.json')
+            self.assertEqual(result['status'],'failed')
+            self.assertNotIn('artifact',result)
+            self.assertIn('replay failed',result['error'])
+
     def test_real_partial_saturn_excess_is_a_valid_early_source(self):
         root=ROOT/'data/benchmarks/search_matrix_v1/earth_saturn_flyby_2028'
         graph=read(root/'graph.json')
