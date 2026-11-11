@@ -1,0 +1,980 @@
+{
+  "nodes": {
+    "d99d648a97fd004529563d9e": {
+      "status": "partial",
+      "phase": "psi",
+      "error": null,
+      "last_model": {
+        "a_max": 0.053628156188192694,
+        "alpha": 0.5,
+        "beta": 0.7437500000000001,
+        "q": 0.079310035103243,
+        "variable_mass": true,
+        "gravity_spec": null
+      },
+      "checkpoint": "runs/search_matrix_v1/earth_jupiter_2028/nodes/d99d648a97fd004529563d9e/run",
+      "elapsed_s": 151.4970119690406,
+      "request": {
+        "operation": "cold",
+        "mission": {
+          "case_id": "earth_jupiter_2028",
+          "departure": "Earth",
+          "target": "Jupiter",
+          "launch_tdb": "2028-06-01T00:00:00",
+          "tof_days": 1100.0,
+          "center": "Sun",
+          "mode": "rendezvous",
+          "position_tolerance_m": 1000,
+          "velocity_tolerance_m_s": 0.01,
+          "mass_kg": 156,
+          "departure_mode": "bounded_norm",
+          "vinf_max_m_s": 3000,
+          "vinf_vector_m_s": null,
+          "spacecraft": {
+            "thrust_N": 0.025,
+            "exhaust_velocity_m_s": 20000,
+            "dry_mass_kg": 90
+          },
+          "solver": {
+            "budget_s": 30,
+            "compare_seeds": true,
+            "departure_budget_s": 40,
+            "limit_budget_s": 60,
+            "pazov_budget_s": 60,
+            "psi_budget_s": 60,
+            "bounded_attempt_s": 20,
+            "pipeline_pazov_alpha": 0.5,
+            "psi_mass_alpha": 0.5
+          },
+          "lunar": null
+        },
+        "budget_s": 240,
+        "reference": null
+      }
+    },
+    "f5021dcd3d6a47e87e9d7dc0": {
+      "status": "completed",
+      "phase": "final",
+      "mission": {
+        "case_id": "earth_jupiter_2028",
+        "departure": "Earth",
+        "target": "Jupiter",
+        "launch_tdb": "2028-06-01T00:00:00",
+        "tof_days": 1100.0,
+        "center": "Sun",
+        "mode": "rendezvous",
+        "position_tolerance_m": 1000,
+        "velocity_tolerance_m_s": 0.01,
+        "mass_kg": 156,
+        "departure_mode": "bounded_norm",
+        "vinf_max_m_s": 3000,
+        "vinf_vector_m_s": null,
+        "spacecraft": {
+          "thrust_N": 0.05,
+          "exhaust_velocity_m_s": 40000,
+          "dry_mass_kg": 90
+        },
+        "solver": {
+          "budget_s": 30,
+          "compare_seeds": true,
+          "departure_budget_s": 40,
+          "limit_budget_s": 60,
+          "pazov_budget_s": 60,
+          "psi_budget_s": 60,
+          "bounded_attempt_s": 20,
+          "pipeline_pazov_alpha": 0.5,
+          "psi_mass_alpha": 0.5
+        },
+        "lunar": null
+      },
+      "fuel_kg": 58.61296981081333,
+      "verification": {
+        "passed": true,
+        "position_residual_m": 15.974369858524245,
+        "velocity_residual_m_s": 4.3514176858261306e-07,
+        "parameter_audit": {
+          "passed": true,
+          "configuration_sha256": "8392f2220b40c8aa9b9df72fc486e70dbf1f7416ba83eb681747721ec8d86bb6",
+          "configuration_hash_version": 2,
+          "requested": {
+            "mass_kg": 156,
+            "thrust_N": 0.05,
+            "exhaust_velocity_m_s": 40000,
+            "dry_mass_kg": 90,
+            "launch_tdb": "2028-06-01T00:00:00",
+            "tof_days": 1100.0,
+            "departure": "Earth",
+            "target": "Jupiter",
+            "mode": "rendezvous"
+          },
+          "recovered_model": {
+            "model_thrust_N": 0.05,
+            "thrust_to_requested_ratio": 1.0,
+            "alpha": 1.0,
+            "beta": 1.0,
+            "variable_mass": true,
+            "hardware_limit_reached": true,
+            "exhaust_velocity_m_s": 40000.0
+          },
+          "geometry": null,
+          "final_admission": true
+        },
+        "trajectory_difference_m": 15.960336494255321,
+        "velocity_difference_m_s": 4.348225557824279e-07,
+        "stored_throttle_error": 0.0,
+        "stored_throttle_minimum": 0.0,
+        "stored_throttle_maximum": 1.0,
+        "canonical_boundary_residual": 1.2132583100011858e-10,
+        "method": "LSODA with independent bounded/mass equations",
+        "scope": "Numerical extremal and constraints; no global optimality proof",
+        "departure_norm_m_s": 3000.0000000000023,
+        "switching_sign_violation": 2.1080714650876862e-10,
+        "switching_node_residual": 2.1080714650876862e-10,
+        "minimum_mass_kg": 97.38703018918667,
+        "fuel_kg": 58.61296981081333,
+        "mass_difference_kg": 2.7711166694643907e-13,
+        "stored_thrust_error_N": 0.0,
+        "mass_balance_error_kg": 2.2737367544323206e-13
+      },
+      "kiam_verification": {
+        "passed": true,
+        "source": "Unmodified KIAM Astro compiled Fortran equations and published control API",
+        "package_version": "6.1.6",
+        "samples": 101,
+        "maximum_dimensionless_rhs_error": 3.0531133177191805e-16,
+        "maximum_dimensionless_force_error": 1.3877787807814457e-17,
+        "maximum_third_body_decomposition_error": 0.0,
+        "nbody_gravity": {
+          "passed": true,
+          "applicable": false
+        },
+        "costate_map": "p_r,v(KIAM)=p_r,v/vex; p_m(KIAM)=1+p_m/vex; normalized initial mass=1",
+        "scope": "KIAM central mass-optimal equations/control, plus independent third-body decomposition when present; not a separate global optimization"
+      },
+      "elapsed_s": 51.2069627570454,
+      "artifact": "runs/search_matrix_v1/earth_jupiter_2028/nodes/f5021dcd3d6a47e87e9d7dc0/final",
+      "metadata_sha256": "8b78fed4b696e3f565265364671a228600352681c56a35ce5276288dfe8a5d1c",
+      "arrays_sha256": "6eb1facef5f0dbc20244f9007c4999cc3b4206c3fb34550624dd34583da6eab1",
+      "request": {
+        "operation": "cold",
+        "mission": {
+          "case_id": "earth_jupiter_2028",
+          "departure": "Earth",
+          "target": "Jupiter",
+          "launch_tdb": "2028-06-01T00:00:00",
+          "tof_days": 1100.0,
+          "center": "Sun",
+          "mode": "rendezvous",
+          "position_tolerance_m": 1000,
+          "velocity_tolerance_m_s": 0.01,
+          "mass_kg": 156,
+          "departure_mode": "bounded_norm",
+          "vinf_max_m_s": 3000,
+          "vinf_vector_m_s": null,
+          "spacecraft": {
+            "thrust_N": 0.05,
+            "exhaust_velocity_m_s": 40000,
+            "dry_mass_kg": 90
+          },
+          "solver": {
+            "budget_s": 30,
+            "compare_seeds": true,
+            "departure_budget_s": 40,
+            "limit_budget_s": 60,
+            "pazov_budget_s": 60,
+            "psi_budget_s": 60,
+            "bounded_attempt_s": 20,
+            "pipeline_pazov_alpha": 0.5,
+            "psi_mass_alpha": 0.5
+          },
+          "lunar": null
+        },
+        "budget_s": 240,
+        "reference": null
+      }
+    },
+    "7cec44b2d7a50babfc172c57": {
+      "status": "completed",
+      "phase": "final",
+      "mission": {
+        "case_id": "earth_jupiter_2028",
+        "departure": "Earth",
+        "target": "Jupiter",
+        "launch_tdb": "2028-06-01T00:00:00",
+        "tof_days": 1360.2395578302157,
+        "center": "Sun",
+        "mode": "rendezvous",
+        "position_tolerance_m": 1000,
+        "velocity_tolerance_m_s": 0.01,
+        "mass_kg": 156,
+        "departure_mode": "bounded_norm",
+        "vinf_max_m_s": 3000,
+        "vinf_vector_m_s": null,
+        "spacecraft": {
+          "thrust_N": 0.05,
+          "exhaust_velocity_m_s": 40000,
+          "dry_mass_kg": 90
+        },
+        "solver": {
+          "budget_s": 30,
+          "compare_seeds": true,
+          "departure_budget_s": 40,
+          "limit_budget_s": 60,
+          "pazov_budget_s": 60,
+          "psi_budget_s": 60,
+          "bounded_attempt_s": 20,
+          "pipeline_pazov_alpha": 0.5,
+          "psi_mass_alpha": 0.5
+        },
+        "lunar": null
+      },
+      "fuel_kg": 46.87901212831868,
+      "verification": {
+        "passed": true,
+        "position_residual_m": 12.524822793252053,
+        "velocity_residual_m_s": 1.6694938970814567e-07,
+        "parameter_audit": {
+          "passed": true,
+          "configuration_sha256": "c05b066f81cbe874f130976875397770cde50ebad6b3952b51a6f30ece3b7849",
+          "configuration_hash_version": 2,
+          "requested": {
+            "mass_kg": 156,
+            "thrust_N": 0.05,
+            "exhaust_velocity_m_s": 40000,
+            "dry_mass_kg": 90,
+            "launch_tdb": "2028-06-01T00:00:00",
+            "tof_days": 1360.2395578302157,
+            "departure": "Earth",
+            "target": "Jupiter",
+            "mode": "rendezvous"
+          },
+          "recovered_model": {
+            "model_thrust_N": 0.05,
+            "thrust_to_requested_ratio": 1.0,
+            "alpha": 1.0,
+            "beta": 1.0,
+            "variable_mass": true,
+            "hardware_limit_reached": true,
+            "exhaust_velocity_m_s": 40000.0
+          },
+          "geometry": null,
+          "final_admission": true
+        },
+        "trajectory_difference_m": 12.396620105354113,
+        "velocity_difference_m_s": 1.9724020025522574e-07,
+        "stored_throttle_error": 0.0,
+        "stored_throttle_minimum": 0.0,
+        "stored_throttle_maximum": 1.0,
+        "canonical_boundary_residual": 8.399393712960973e-11,
+        "method": "LSODA with independent bounded/mass equations",
+        "scope": "Numerical extremal and constraints; no global optimality proof",
+        "departure_norm_m_s": 3000.000000000059,
+        "switching_sign_violation": 5.934149116090434e-11,
+        "switching_node_residual": 5.934149116090434e-11,
+        "minimum_mass_kg": 109.12098787168132,
+        "fuel_kg": 46.87901212831868,
+        "mass_difference_kg": 2.5979218776228663e-13,
+        "stored_thrust_error_N": 0.0,
+        "mass_balance_error_kg": 1.4210854715202004e-13
+      },
+      "kiam_verification": {
+        "passed": true,
+        "source": "Unmodified KIAM Astro compiled Fortran equations and published control API",
+        "package_version": "6.1.6",
+        "samples": 101,
+        "maximum_dimensionless_rhs_error": 8.326672684688674e-17,
+        "maximum_dimensionless_force_error": 1.3877787807814457e-17,
+        "maximum_third_body_decomposition_error": 0.0,
+        "nbody_gravity": {
+          "passed": true,
+          "applicable": false
+        },
+        "costate_map": "p_r,v(KIAM)=p_r,v/vex; p_m(KIAM)=1+p_m/vex; normalized initial mass=1",
+        "scope": "KIAM central mass-optimal equations/control, plus independent third-body decomposition when present; not a separate global optimization"
+      },
+      "elapsed_s": 19.448483837011736,
+      "artifact": "runs/search_matrix_v1/earth_jupiter_2028/nodes/7cec44b2d7a50babfc172c57/final",
+      "metadata_sha256": "a61a333c8c9a883cb5d41622451956a4f3b30100533b0b6b69905a51336bc751",
+      "arrays_sha256": "94a5eb4a7b9a1ad467657ee14e05161f21b49d7e25fbb27e01fbad0dbe0586fa",
+      "request": {
+        "operation": "release",
+        "mission": {
+          "case_id": "earth_jupiter_2028",
+          "departure": "Earth",
+          "target": "Jupiter",
+          "launch_tdb": "2028-06-01T00:00:00",
+          "tof_days": 1100.0,
+          "center": "Sun",
+          "mode": "rendezvous",
+          "position_tolerance_m": 1000,
+          "velocity_tolerance_m_s": 0.01,
+          "mass_kg": 156,
+          "departure_mode": "bounded_norm",
+          "vinf_max_m_s": 3000,
+          "vinf_vector_m_s": null,
+          "spacecraft": {
+            "thrust_N": 0.05,
+            "exhaust_velocity_m_s": 40000,
+            "dry_mass_kg": 90
+          },
+          "solver": {
+            "budget_s": 30,
+            "compare_seeds": true,
+            "departure_budget_s": 40,
+            "limit_budget_s": 60,
+            "pazov_budget_s": 60,
+            "psi_budget_s": 60,
+            "bounded_attempt_s": 20,
+            "pipeline_pazov_alpha": 0.5,
+            "psi_mass_alpha": 0.5
+          },
+          "lunar": null
+        },
+        "budget_s": 90,
+        "reference": null,
+        "parent_artifact": "runs/search_matrix_v1/earth_jupiter_2028/nodes/f5021dcd3d6a47e87e9d7dc0/final",
+        "parent_sha256": "6eb1facef5f0dbc20244f9007c4999cc3b4206c3fb34550624dd34583da6eab1",
+        "bounds_days": [
+          550.0,
+          1650.0
+        ]
+      }
+    },
+    "c2648b2aa9fbec567f0f9737": {
+      "status": "partial",
+      "phase": "departure",
+      "error": null,
+      "last_model": null,
+      "checkpoint": "runs/search_matrix_v1/earth_jupiter_2028/nodes/c2648b2aa9fbec567f0f9737/run",
+      "elapsed_s": 23.541936588997487,
+      "request": {
+        "operation": "cold",
+        "mission": {
+          "case_id": "earth_jupiter_2028",
+          "departure": "Earth",
+          "target": "Jupiter",
+          "launch_tdb": "2028-03-03T00:00:00",
+          "tof_days": 880.0,
+          "center": "Sun",
+          "mode": "rendezvous",
+          "position_tolerance_m": 1000,
+          "velocity_tolerance_m_s": 0.01,
+          "mass_kg": 156,
+          "departure_mode": "bounded_norm",
+          "vinf_max_m_s": 3000,
+          "vinf_vector_m_s": null,
+          "spacecraft": {
+            "thrust_N": 0.05,
+            "exhaust_velocity_m_s": 40000,
+            "dry_mass_kg": 90
+          },
+          "solver": {
+            "budget_s": 30,
+            "compare_seeds": true,
+            "departure_budget_s": 40,
+            "limit_budget_s": 60,
+            "pazov_budget_s": 60,
+            "psi_budget_s": 60,
+            "bounded_attempt_s": 20,
+            "pipeline_pazov_alpha": 0.3,
+            "psi_mass_alpha": 0.3
+          },
+          "lunar": null
+        },
+        "budget_s": 240,
+        "reference": null
+      }
+    },
+    "a96213375654f12b4aed0f97": {
+      "status": "partial",
+      "phase": "psi",
+      "error": null,
+      "last_model": {
+        "a_max": 0.05311613045177622,
+        "alpha": 0.39250000000000007,
+        "beta": 1.0,
+        "q": 0.03972364484126802,
+        "variable_mass": true,
+        "gravity_spec": null
+      },
+      "checkpoint": "runs/search_matrix_v1/earth_jupiter_2028/nodes/a96213375654f12b4aed0f97/run",
+      "elapsed_s": 212.7891160559957,
+      "request": {
+        "operation": "cold",
+        "mission": {
+          "case_id": "earth_jupiter_2028",
+          "departure": "Earth",
+          "target": "Jupiter",
+          "launch_tdb": "2028-03-03T00:00:00",
+          "tof_days": 1320.0,
+          "center": "Sun",
+          "mode": "rendezvous",
+          "position_tolerance_m": 1000,
+          "velocity_tolerance_m_s": 0.01,
+          "mass_kg": 156,
+          "departure_mode": "bounded_norm",
+          "vinf_max_m_s": 3000,
+          "vinf_vector_m_s": null,
+          "spacecraft": {
+            "thrust_N": 0.05,
+            "exhaust_velocity_m_s": 40000,
+            "dry_mass_kg": 90
+          },
+          "solver": {
+            "budget_s": 30,
+            "compare_seeds": true,
+            "departure_budget_s": 40,
+            "limit_budget_s": 60,
+            "pazov_budget_s": 60,
+            "psi_budget_s": 60,
+            "bounded_attempt_s": 20,
+            "pipeline_pazov_alpha": 0.5,
+            "psi_mass_alpha": 0.5
+          },
+          "lunar": null
+        },
+        "budget_s": 240,
+        "reference": null
+      }
+    },
+    "783b4326370dd72bb25a15ba": {
+      "status": "partial",
+      "phase": "psi",
+      "error": null,
+      "last_model": {
+        "a_max": 0.03932696640115103,
+        "alpha": 0.5,
+        "beta": 0.8,
+        "q": 0.05882244932816121,
+        "variable_mass": true,
+        "gravity_spec": null
+      },
+      "checkpoint": "runs/search_matrix_v1/earth_jupiter_2028/nodes/783b4326370dd72bb25a15ba/run",
+      "elapsed_s": 150.84677232900867,
+      "request": {
+        "operation": "cold",
+        "mission": {
+          "case_id": "earth_jupiter_2028",
+          "departure": "Earth",
+          "target": "Jupiter",
+          "launch_tdb": "2028-03-03T00:00:00",
+          "tof_days": 1320.0,
+          "center": "Sun",
+          "mode": "rendezvous",
+          "position_tolerance_m": 1000,
+          "velocity_tolerance_m_s": 0.01,
+          "mass_kg": 156,
+          "departure_mode": "bounded_norm",
+          "vinf_max_m_s": 3000,
+          "vinf_vector_m_s": null,
+          "spacecraft": {
+            "thrust_N": 0.025,
+            "exhaust_velocity_m_s": 20000,
+            "dry_mass_kg": 90
+          },
+          "solver": {
+            "budget_s": 30,
+            "compare_seeds": true,
+            "departure_budget_s": 40,
+            "limit_budget_s": 60,
+            "pazov_budget_s": 60,
+            "psi_budget_s": 60,
+            "bounded_attempt_s": 20,
+            "pipeline_pazov_alpha": 0.5,
+            "psi_mass_alpha": 0.5
+          },
+          "lunar": null
+        },
+        "budget_s": 240,
+        "reference": null
+      }
+    },
+    "ab51c2f6b9f2751dad451ff6": {
+      "status": "partial",
+      "phase": "psi",
+      "error": null,
+      "last_model": {
+        "a_max": 0.05557710890696852,
+        "alpha": 0.3578125,
+        "beta": 1.0,
+        "q": 0.04109615891771888,
+        "variable_mass": true,
+        "gravity_spec": null
+      },
+      "checkpoint": "runs/search_matrix_v1/earth_jupiter_2028/nodes/ab51c2f6b9f2751dad451ff6/run",
+      "elapsed_s": 174.79201330902288,
+      "request": {
+        "operation": "cold",
+        "mission": {
+          "case_id": "earth_jupiter_2028",
+          "departure": "Earth",
+          "target": "Jupiter",
+          "launch_tdb": "2028-06-01T00:00:00",
+          "tof_days": 1320.0,
+          "center": "Sun",
+          "mode": "rendezvous",
+          "position_tolerance_m": 1000,
+          "velocity_tolerance_m_s": 0.01,
+          "mass_kg": 156,
+          "departure_mode": "bounded_norm",
+          "vinf_max_m_s": 3000,
+          "vinf_vector_m_s": null,
+          "spacecraft": {
+            "thrust_N": 0.05,
+            "exhaust_velocity_m_s": 40000,
+            "dry_mass_kg": 90
+          },
+          "solver": {
+            "budget_s": 30,
+            "compare_seeds": true,
+            "departure_budget_s": 40,
+            "limit_budget_s": 60,
+            "pazov_budget_s": 60,
+            "psi_budget_s": 60,
+            "bounded_attempt_s": 20,
+            "pipeline_pazov_alpha": 0.7,
+            "psi_mass_alpha": 0.7
+          },
+          "lunar": null
+        },
+        "budget_s": 240,
+        "reference": null
+      }
+    }
+  },
+  "edges": [
+    {
+      "parent": null,
+      "child": "d99d648a97fd004529563d9e",
+      "operation": "cold",
+      "cache_hit": false
+    },
+    {
+      "parent": null,
+      "child": "f5021dcd3d6a47e87e9d7dc0",
+      "operation": "cold",
+      "cache_hit": false
+    },
+    {
+      "parent": "f5021dcd3d6a47e87e9d7dc0",
+      "child": "7cec44b2d7a50babfc172c57",
+      "operation": "release",
+      "cache_hit": false
+    },
+    {
+      "parent": null,
+      "child": "c2648b2aa9fbec567f0f9737",
+      "operation": "cold",
+      "cache_hit": false
+    },
+    {
+      "parent": null,
+      "child": "a96213375654f12b4aed0f97",
+      "operation": "cold",
+      "cache_hit": false
+    },
+    {
+      "parent": null,
+      "child": "f5021dcd3d6a47e87e9d7dc0",
+      "operation": "cold",
+      "cache_hit": true
+    },
+    {
+      "parent": "f5021dcd3d6a47e87e9d7dc0",
+      "child": "7cec44b2d7a50babfc172c57",
+      "operation": "release",
+      "cache_hit": true
+    },
+    {
+      "parent": null,
+      "child": "783b4326370dd72bb25a15ba",
+      "operation": "cold",
+      "cache_hit": false
+    },
+    {
+      "parent": null,
+      "child": "d99d648a97fd004529563d9e",
+      "operation": "cold",
+      "cache_hit": true
+    },
+    {
+      "parent": null,
+      "child": "ab51c2f6b9f2751dad451ff6",
+      "operation": "cold",
+      "cache_hit": false
+    }
+  ],
+  "generations": [
+    {
+      "population": [
+        [
+          0,
+          0,
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0,
+          1,
+          0
+        ],
+        [
+          2,
+          1,
+          1,
+          1,
+          1,
+          0
+        ],
+        [
+          2,
+          2,
+          1,
+          0,
+          0,
+          0
+        ]
+      ],
+      "results": [
+        {
+          "genome": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          "fixed_node": "d99d648a97fd004529563d9e",
+          "terminal_node": "d99d648a97fd004529563d9e",
+          "retained_node": "d99d648a97fd004529563d9e",
+          "score": [
+            0,
+            4,
+            0.7437500000000001,
+            0.5
+          ]
+        },
+        {
+          "genome": [
+            0,
+            0,
+            1,
+            0,
+            1,
+            0
+          ],
+          "fixed_node": "f5021dcd3d6a47e87e9d7dc0",
+          "terminal_node": "7cec44b2d7a50babfc172c57",
+          "retained_node": "7cec44b2d7a50babfc172c57",
+          "score": [
+            1,
+            -2.2365814162092867,
+            -46.87901212831868,
+            -1360.2395578302157
+          ]
+        },
+        {
+          "genome": [
+            2,
+            1,
+            1,
+            1,
+            1,
+            0
+          ],
+          "fixed_node": "c2648b2aa9fbec567f0f9737",
+          "terminal_node": "c2648b2aa9fbec567f0f9737",
+          "retained_node": "c2648b2aa9fbec567f0f9737",
+          "score": [
+            0,
+            2,
+            0,
+            0
+          ]
+        },
+        {
+          "genome": [
+            2,
+            2,
+            1,
+            0,
+            0,
+            0
+          ],
+          "fixed_node": "a96213375654f12b4aed0f97",
+          "terminal_node": "a96213375654f12b4aed0f97",
+          "retained_node": "a96213375654f12b4aed0f97",
+          "score": [
+            0,
+            4,
+            1.0,
+            0.39250000000000007
+          ]
+        }
+      ],
+      "origin": "history_and_exploration"
+    },
+    {
+      "population": [
+        [
+          0,
+          0,
+          1,
+          0,
+          1,
+          0
+        ],
+        [
+          2,
+          2,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          2,
+          1,
+          2,
+          1,
+          0
+        ]
+      ],
+      "results": [
+        {
+          "genome": [
+            0,
+            0,
+            1,
+            0,
+            1,
+            0
+          ],
+          "fixed_node": "f5021dcd3d6a47e87e9d7dc0",
+          "terminal_node": "7cec44b2d7a50babfc172c57",
+          "retained_node": "7cec44b2d7a50babfc172c57",
+          "score": [
+            1,
+            -2.2365814162092867,
+            -46.87901212831868,
+            -1360.2395578302157
+          ]
+        },
+        {
+          "genome": [
+            2,
+            2,
+            0,
+            0,
+            0,
+            0
+          ],
+          "fixed_node": "783b4326370dd72bb25a15ba",
+          "terminal_node": "783b4326370dd72bb25a15ba",
+          "retained_node": "783b4326370dd72bb25a15ba",
+          "score": [
+            0,
+            4,
+            0.8,
+            0.5
+          ]
+        },
+        {
+          "genome": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          "fixed_node": "d99d648a97fd004529563d9e",
+          "terminal_node": "d99d648a97fd004529563d9e",
+          "retained_node": "d99d648a97fd004529563d9e",
+          "score": [
+            0,
+            4,
+            0.7437500000000001,
+            0.5
+          ]
+        },
+        {
+          "genome": [
+            0,
+            2,
+            1,
+            2,
+            1,
+            0
+          ],
+          "fixed_node": "ab51c2f6b9f2751dad451ff6",
+          "terminal_node": "ab51c2f6b9f2751dad451ff6",
+          "retained_node": "ab51c2f6b9f2751dad451ff6",
+          "score": [
+            0,
+            4,
+            1.0,
+            0.3578125
+          ]
+        }
+      ],
+      "origin": [
+        {
+          "kind": "elite",
+          "parents": [
+            1
+          ]
+        },
+        {
+          "kind": "crossover_mutation",
+          "parents": [
+            1,
+            3
+          ],
+          "mutation_axis": 2
+        },
+        {
+          "kind": "crossover_mutation",
+          "parents": [
+            1,
+            1
+          ],
+          "mutation_axis": 2
+        },
+        {
+          "kind": "crossover_mutation",
+          "parents": [
+            3,
+            1
+          ],
+          "mutation_axis": 3
+        }
+      ]
+    }
+  ],
+  "solutions": [
+    {
+      "node": "f5021dcd3d6a47e87e9d7dc0",
+      "artifact": "runs/search_matrix_v1/earth_jupiter_2028/nodes/f5021dcd3d6a47e87e9d7dc0/final",
+      "changes": {
+        "spacecraft": {
+          "requested": {
+            "thrust_N": 0.025,
+            "exhaust_velocity_m_s": 20000.0,
+            "dry_mass_kg": 90.0
+          },
+          "actual": {
+            "thrust_N": 0.05,
+            "exhaust_velocity_m_s": 40000.0,
+            "dry_mass_kg": 90.0
+          }
+        }
+      },
+      "original_conditions": false,
+      "objectives": [
+        2.0,
+        58.61296981081333,
+        1100.0
+      ]
+    },
+    {
+      "node": "7cec44b2d7a50babfc172c57",
+      "artifact": "runs/search_matrix_v1/earth_jupiter_2028/nodes/7cec44b2d7a50babfc172c57/final",
+      "changes": {
+        "tof_days": {
+          "requested": 1100.0,
+          "actual": 1360.2395578302157
+        },
+        "spacecraft": {
+          "requested": {
+            "thrust_N": 0.025,
+            "exhaust_velocity_m_s": 20000.0,
+            "dry_mass_kg": 90.0
+          },
+          "actual": {
+            "thrust_N": 0.05,
+            "exhaust_velocity_m_s": 40000.0,
+            "dry_mass_kg": 90.0
+          }
+        }
+      },
+      "original_conditions": false,
+      "objectives": [
+        2.2365814162092867,
+        46.87901212831868,
+        1360.2395578302157
+      ]
+    }
+  ],
+  "pareto": [
+    {
+      "node": "f5021dcd3d6a47e87e9d7dc0",
+      "artifact": "runs/search_matrix_v1/earth_jupiter_2028/nodes/f5021dcd3d6a47e87e9d7dc0/final",
+      "changes": {
+        "spacecraft": {
+          "requested": {
+            "thrust_N": 0.025,
+            "exhaust_velocity_m_s": 20000.0,
+            "dry_mass_kg": 90.0
+          },
+          "actual": {
+            "thrust_N": 0.05,
+            "exhaust_velocity_m_s": 40000.0,
+            "dry_mass_kg": 90.0
+          }
+        }
+      },
+      "original_conditions": false,
+      "objectives": [
+        2.0,
+        58.61296981081333,
+        1100.0
+      ]
+    },
+    {
+      "node": "7cec44b2d7a50babfc172c57",
+      "artifact": "runs/search_matrix_v1/earth_jupiter_2028/nodes/7cec44b2d7a50babfc172c57/final",
+      "changes": {
+        "tof_days": {
+          "requested": 1100.0,
+          "actual": 1360.2395578302157
+        },
+        "spacecraft": {
+          "requested": {
+            "thrust_N": 0.025,
+            "exhaust_velocity_m_s": 20000.0,
+            "dry_mass_kg": 90.0
+          },
+          "actual": {
+            "thrust_N": 0.05,
+            "exhaust_velocity_m_s": 40000.0,
+            "dry_mass_kg": 90.0
+          }
+        }
+      },
+      "original_conditions": false,
+      "objectives": [
+        2.2365814162092867,
+        46.87901212831868,
+        1360.2395578302157
+      ]
+    }
+  ],
+  "elapsed_s": 792.4216260900139,
+  "status": "finished"
+}

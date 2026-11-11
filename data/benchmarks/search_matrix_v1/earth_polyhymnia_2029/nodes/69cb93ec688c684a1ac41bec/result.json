@@ -1,0 +1,104 @@
+{
+  "status": "completed",
+  "phase": "final",
+  "mission": {
+    "case_id": "earth_polyhymnia_2029",
+    "departure": "Earth",
+    "target": "Polyhymnia",
+    "launch_tdb": "2028-12-01T00:00:00",
+    "tof_days": 720.0,
+    "center": "Sun",
+    "mode": "rendezvous",
+    "position_tolerance_m": 1000,
+    "velocity_tolerance_m_s": 0.01,
+    "mass_kg": 156,
+    "departure_mode": "bounded_norm",
+    "vinf_max_m_s": 3000,
+    "vinf_vector_m_s": null,
+    "spacecraft": {
+      "thrust_N": 0.05,
+      "exhaust_velocity_m_s": 40000,
+      "dry_mass_kg": 90
+    },
+    "solver": {
+      "budget_s": 30,
+      "compare_seeds": true,
+      "departure_budget_s": 40,
+      "limit_budget_s": 60,
+      "pazov_budget_s": 60,
+      "psi_budget_s": 60,
+      "bounded_attempt_s": 20,
+      "pipeline_pazov_alpha": 0.3,
+      "psi_mass_alpha": 0.3
+    },
+    "lunar": null
+  },
+  "fuel_kg": 50.64745643716605,
+  "verification": {
+    "passed": true,
+    "position_residual_m": 39.89510734697777,
+    "velocity_residual_m_s": 3.0992087925999022e-06,
+    "parameter_audit": {
+      "passed": true,
+      "configuration_sha256": "99d815bc54c7951b1864f9dd9f8f5dd0691d1f1d5db221d3d6f463334bf92b87",
+      "configuration_hash_version": 2,
+      "requested": {
+        "mass_kg": 156,
+        "thrust_N": 0.05,
+        "exhaust_velocity_m_s": 40000,
+        "dry_mass_kg": 90,
+        "launch_tdb": "2028-12-01T00:00:00",
+        "tof_days": 720.0,
+        "departure": "Earth",
+        "target": "Polyhymnia",
+        "mode": "rendezvous"
+      },
+      "recovered_model": {
+        "model_thrust_N": 0.05,
+        "thrust_to_requested_ratio": 1.0,
+        "alpha": 1.0,
+        "beta": 1.0,
+        "variable_mass": true,
+        "hardware_limit_reached": true,
+        "exhaust_velocity_m_s": 40000.0
+      },
+      "geometry": null,
+      "final_admission": true
+    },
+    "trajectory_difference_m": 39.8955420535799,
+    "velocity_difference_m_s": 3.099063179185418e-06,
+    "stored_throttle_error": 0.0,
+    "stored_throttle_minimum": 0.0,
+    "stored_throttle_maximum": 1.0,
+    "canonical_boundary_residual": 3.309684626159944e-10,
+    "method": "LSODA with independent bounded/mass equations",
+    "scope": "Numerical extremal and constraints; no global optimality proof",
+    "departure_norm_m_s": 2999.999999999991,
+    "switching_sign_violation": 8.858368093567766e-10,
+    "switching_node_residual": 8.858364132319388e-10,
+    "minimum_mass_kg": 105.35254356283396,
+    "fuel_kg": 50.64745643716605,
+    "mass_difference_kg": 5.022648963404208e-13,
+    "stored_thrust_error_N": 0.0,
+    "mass_balance_error_kg": 2.7711166694643907e-13
+  },
+  "kiam_verification": {
+    "passed": true,
+    "source": "Unmodified KIAM Astro compiled Fortran equations and published control API",
+    "package_version": "6.1.6",
+    "samples": 101,
+    "maximum_dimensionless_rhs_error": 8.881784197001252e-16,
+    "maximum_dimensionless_force_error": 1.3877787807814457e-17,
+    "maximum_third_body_decomposition_error": 0.0,
+    "nbody_gravity": {
+      "passed": true,
+      "applicable": false
+    },
+    "costate_map": "p_r,v(KIAM)=p_r,v/vex; p_m(KIAM)=1+p_m/vex; normalized initial mass=1",
+    "scope": "KIAM central mass-optimal equations/control, plus independent third-body decomposition when present; not a separate global optimization"
+  },
+  "elapsed_s": 117.15603943204042,
+  "artifact": "runs/search_matrix_v1/earth_polyhymnia_2029/nodes/69cb93ec688c684a1ac41bec/final",
+  "metadata_sha256": "ef46455cf4260fdf02170cf0cb4616c8e068df71f94016f59172c5d77322f8fa",
+  "arrays_sha256": "9cd3af8212d297600d0ea1ec89043cd0060fcf85b62b2b407943ff2f403cd6c4"
+}

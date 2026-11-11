@@ -1,0 +1,1122 @@
+{
+  "nodes": {
+    "f35658b2b98f6d968a8fdee2": {
+      "status": "completed",
+      "phase": "final",
+      "mission": {
+        "case_id": "earth_ryugu_2028",
+        "departure": "Earth",
+        "target": "Ryugu",
+        "launch_tdb": "2028-06-01T00:00:00",
+        "tof_days": 600.0,
+        "center": "Sun",
+        "mode": "rendezvous",
+        "position_tolerance_m": 1000,
+        "velocity_tolerance_m_s": 0.01,
+        "mass_kg": 156,
+        "departure_mode": "bounded_norm",
+        "vinf_max_m_s": 3000,
+        "vinf_vector_m_s": null,
+        "spacecraft": {
+          "thrust_N": 0.025,
+          "exhaust_velocity_m_s": 20000,
+          "dry_mass_kg": 90
+        },
+        "solver": {
+          "budget_s": 30,
+          "compare_seeds": true,
+          "departure_budget_s": 40,
+          "limit_budget_s": 60,
+          "pazov_budget_s": 60,
+          "psi_budget_s": 60,
+          "bounded_attempt_s": 20,
+          "pipeline_pazov_alpha": 0.5,
+          "psi_mass_alpha": 0.5
+        },
+        "lunar": null
+      },
+      "fuel_kg": 20.831503693032758,
+      "verification": {
+        "passed": true,
+        "position_residual_m": 2.2761909479034923,
+        "velocity_residual_m_s": 4.0748711872136553e-07,
+        "parameter_audit": {
+          "passed": true,
+          "configuration_sha256": "d3cd118e4502404d420adbf0fc52321f91194e5b1d3f204309c18573bc8f3f35",
+          "configuration_hash_version": 2,
+          "requested": {
+            "mass_kg": 156,
+            "thrust_N": 0.025,
+            "exhaust_velocity_m_s": 20000,
+            "dry_mass_kg": 90,
+            "launch_tdb": "2028-06-01T00:00:00",
+            "tof_days": 600.0,
+            "departure": "Earth",
+            "target": "Ryugu",
+            "mode": "rendezvous"
+          },
+          "recovered_model": {
+            "model_thrust_N": 0.025,
+            "thrust_to_requested_ratio": 1.0,
+            "alpha": 1.0,
+            "beta": 1.0,
+            "variable_mass": true,
+            "hardware_limit_reached": true,
+            "exhaust_velocity_m_s": 20000.0
+          },
+          "geometry": null,
+          "final_admission": true
+        },
+        "trajectory_difference_m": 2.2758293154892955,
+        "velocity_difference_m_s": 4.3206554492502463e-07,
+        "stored_throttle_error": 0.0,
+        "stored_throttle_minimum": 0.0,
+        "stored_throttle_maximum": 1.0,
+        "canonical_boundary_residual": 2.039589657706845e-11,
+        "method": "LSODA with independent bounded/mass equations",
+        "scope": "Numerical extremal and constraints; no global optimality proof",
+        "departure_norm_m_s": 2999.9999999999845,
+        "switching_sign_violation": 2.8814138390711534e-11,
+        "switching_node_residual": 2.8814138390711534e-11,
+        "minimum_mass_kg": 135.16849630696726,
+        "fuel_kg": 20.831503693032758,
+        "mass_difference_kg": 3.4638958368304884e-13,
+        "stored_thrust_error_N": 0.0,
+        "mass_balance_error_kg": 3.268496584496461e-13
+      },
+      "kiam_verification": {
+        "passed": true,
+        "source": "Unmodified KIAM Astro compiled Fortran equations and published control API",
+        "package_version": "6.1.6",
+        "samples": 101,
+        "maximum_dimensionless_rhs_error": 8.881784197001252e-16,
+        "maximum_dimensionless_force_error": 6.938893903907228e-18,
+        "maximum_third_body_decomposition_error": 0.0,
+        "nbody_gravity": {
+          "passed": true,
+          "applicable": false
+        },
+        "costate_map": "p_r,v(KIAM)=p_r,v/vex; p_m(KIAM)=1+p_m/vex; normalized initial mass=1",
+        "scope": "KIAM central mass-optimal equations/control, plus independent third-body decomposition when present; not a separate global optimization"
+      },
+      "elapsed_s": 0.24032732797786593,
+      "artifact": "runs/search_matrix_v1/earth_ryugu_2028/nodes/f35658b2b98f6d968a8fdee2/final",
+      "metadata_sha256": "d0493d5dabf2976fc466057ad8c5bf90a966596fa36a4ec7bf8b0a0119cbcbff",
+      "arrays_sha256": "088d4daf6445997d6552b15d9a55770f530d90d8dddb99c6976d5b1d0be46558",
+      "request": {
+        "operation": "reference",
+        "mission": {
+          "case_id": "earth_ryugu_2028",
+          "departure": "Earth",
+          "target": "Ryugu",
+          "launch_tdb": "2028-06-01T00:00:00",
+          "tof_days": 600.0,
+          "center": "Sun",
+          "mode": "rendezvous",
+          "position_tolerance_m": 1000,
+          "velocity_tolerance_m_s": 0.01,
+          "mass_kg": 156,
+          "departure_mode": "bounded_norm",
+          "vinf_max_m_s": 3000,
+          "vinf_vector_m_s": null,
+          "spacecraft": {
+            "thrust_N": 0.025,
+            "exhaust_velocity_m_s": 20000,
+            "dry_mass_kg": 90
+          },
+          "solver": {
+            "budget_s": 30,
+            "compare_seeds": true,
+            "departure_budget_s": 40,
+            "limit_budget_s": 60,
+            "pazov_budget_s": 60,
+            "psi_budget_s": 60,
+            "bounded_attempt_s": 20,
+            "pipeline_pazov_alpha": 0.5,
+            "psi_mass_alpha": 0.5
+          },
+          "lunar": null
+        },
+        "budget_s": 240,
+        "reference": {
+          "path": "data/benchmarks/free_time_physical_matrix_v1/earth_ryugu_2028/anchor_00/final",
+          "metadata_sha256": "bcb9d72641406d465a2ad4cf81186c00357e69600de5b074a7bf755d580e687c",
+          "arrays_sha256": "088d4daf6445997d6552b15d9a55770f530d90d8dddb99c6976d5b1d0be46558",
+          "mission": {
+            "case_id": "earth_ryugu_2028",
+            "departure": "Earth",
+            "target": "Ryugu",
+            "launch_tdb": "2028-06-01T00:00:00",
+            "tof_days": 600,
+            "center": "Sun",
+            "mode": "rendezvous",
+            "position_tolerance_m": 1000,
+            "velocity_tolerance_m_s": 0.01,
+            "mass_kg": 156,
+            "departure_mode": "bounded_norm",
+            "vinf_max_m_s": 3000,
+            "vinf_vector_m_s": null,
+            "spacecraft": {
+              "thrust_N": 0.025,
+              "exhaust_velocity_m_s": 20000,
+              "dry_mass_kg": 90
+            },
+            "solver": {
+              "budget_s": 45,
+              "compare_seeds": true,
+              "departure_budget_s": 60,
+              "limit_budget_s": 60,
+              "pazov_budget_s": 90,
+              "psi_budget_s": 120,
+              "bounded_attempt_s": 20,
+              "free_time_budget_s": 120
+            },
+            "lunar": null
+          }
+        }
+      }
+    },
+    "909a2dfbf2e47c5e9e08b47e": {
+      "status": "completed",
+      "phase": "final",
+      "mission": {
+        "case_id": "earth_ryugu_2028",
+        "departure": "Earth",
+        "target": "Ryugu",
+        "launch_tdb": "2028-06-01T00:00:00",
+        "tof_days": 656.3187285322039,
+        "center": "Sun",
+        "mode": "rendezvous",
+        "position_tolerance_m": 1000,
+        "velocity_tolerance_m_s": 0.01,
+        "mass_kg": 156,
+        "departure_mode": "bounded_norm",
+        "vinf_max_m_s": 3000,
+        "vinf_vector_m_s": null,
+        "spacecraft": {
+          "thrust_N": 0.025,
+          "exhaust_velocity_m_s": 20000,
+          "dry_mass_kg": 90
+        },
+        "solver": {
+          "budget_s": 30,
+          "compare_seeds": true,
+          "departure_budget_s": 40,
+          "limit_budget_s": 60,
+          "pazov_budget_s": 60,
+          "psi_budget_s": 60,
+          "bounded_attempt_s": 20,
+          "pipeline_pazov_alpha": 0.5,
+          "psi_mass_alpha": 0.5
+        },
+        "lunar": null
+      },
+      "fuel_kg": 17.32092170073716,
+      "verification": {
+        "passed": true,
+        "position_residual_m": 6.4169036749613095,
+        "velocity_residual_m_s": 1.256846104804456e-06,
+        "parameter_audit": {
+          "passed": true,
+          "configuration_sha256": "b5170e01cac4f1856dca8e49b695203c3288616a890dff29d39232e3d8d4c4e7",
+          "configuration_hash_version": 2,
+          "requested": {
+            "mass_kg": 156,
+            "thrust_N": 0.025,
+            "exhaust_velocity_m_s": 20000,
+            "dry_mass_kg": 90,
+            "launch_tdb": "2028-06-01T00:00:00",
+            "tof_days": 656.3187285322039,
+            "departure": "Earth",
+            "target": "Ryugu",
+            "mode": "rendezvous"
+          },
+          "recovered_model": {
+            "model_thrust_N": 0.025,
+            "thrust_to_requested_ratio": 1.0,
+            "alpha": 1.0,
+            "beta": 1.0,
+            "variable_mass": true,
+            "hardware_limit_reached": true,
+            "exhaust_velocity_m_s": 20000.0
+          },
+          "geometry": null,
+          "final_admission": true
+        },
+        "trajectory_difference_m": 6.08252610353431,
+        "velocity_difference_m_s": 1.2018088869152461e-06,
+        "stored_throttle_error": 0.0,
+        "stored_throttle_minimum": 0.0,
+        "stored_throttle_maximum": 1.0,
+        "canonical_boundary_residual": 5.995832679490447e-11,
+        "method": "LSODA with independent bounded/mass equations",
+        "scope": "Numerical extremal and constraints; no global optimality proof",
+        "departure_norm_m_s": 2999.9999999996594,
+        "switching_sign_violation": 8.968094219365949e-13,
+        "switching_node_residual": 8.9655971863103e-13,
+        "minimum_mass_kg": 138.67907829926284,
+        "fuel_kg": 17.32092170073716,
+        "mass_difference_kg": 3.810285420513537e-13,
+        "stored_thrust_error_N": 0.0,
+        "mass_balance_error_kg": 3.232969447708456e-13
+      },
+      "kiam_verification": {
+        "passed": true,
+        "source": "Unmodified KIAM Astro compiled Fortran equations and published control API",
+        "package_version": "6.1.6",
+        "samples": 101,
+        "maximum_dimensionless_rhs_error": 8.326672684688674e-16,
+        "maximum_dimensionless_force_error": 6.938893903907228e-18,
+        "maximum_third_body_decomposition_error": 0.0,
+        "nbody_gravity": {
+          "passed": true,
+          "applicable": false
+        },
+        "costate_map": "p_r,v(KIAM)=p_r,v/vex; p_m(KIAM)=1+p_m/vex; normalized initial mass=1",
+        "scope": "KIAM central mass-optimal equations/control, plus independent third-body decomposition when present; not a separate global optimization"
+      },
+      "elapsed_s": 43.448371639999095,
+      "artifact": "runs/search_matrix_v1/earth_ryugu_2028/nodes/909a2dfbf2e47c5e9e08b47e/final",
+      "metadata_sha256": "d99ff87409532363ccc10cd09157a71ffb36fea9aa61d2c5a5b14c5b6cfcab1c",
+      "arrays_sha256": "826f1fb15f841ebbf67aa8a55c6d8f572e9fc884f6b2f0dd3de97d6a93b36f58",
+      "request": {
+        "operation": "release",
+        "mission": {
+          "case_id": "earth_ryugu_2028",
+          "departure": "Earth",
+          "target": "Ryugu",
+          "launch_tdb": "2028-06-01T00:00:00",
+          "tof_days": 600.0,
+          "center": "Sun",
+          "mode": "rendezvous",
+          "position_tolerance_m": 1000,
+          "velocity_tolerance_m_s": 0.01,
+          "mass_kg": 156,
+          "departure_mode": "bounded_norm",
+          "vinf_max_m_s": 3000,
+          "vinf_vector_m_s": null,
+          "spacecraft": {
+            "thrust_N": 0.025,
+            "exhaust_velocity_m_s": 20000,
+            "dry_mass_kg": 90
+          },
+          "solver": {
+            "budget_s": 30,
+            "compare_seeds": true,
+            "departure_budget_s": 40,
+            "limit_budget_s": 60,
+            "pazov_budget_s": 60,
+            "psi_budget_s": 60,
+            "bounded_attempt_s": 20,
+            "pipeline_pazov_alpha": 0.5,
+            "psi_mass_alpha": 0.5
+          },
+          "lunar": null
+        },
+        "budget_s": 90,
+        "reference": null,
+        "parent_artifact": "runs/search_matrix_v1/earth_ryugu_2028/nodes/f35658b2b98f6d968a8fdee2/final",
+        "parent_sha256": "088d4daf6445997d6552b15d9a55770f530d90d8dddb99c6976d5b1d0be46558",
+        "bounds_days": [
+          300.0,
+          900.0
+        ]
+      }
+    },
+    "50a9dc3715a1f83cd60af23e": {
+      "status": "partial",
+      "phase": "psi",
+      "error": null,
+      "last_model": {
+        "a_max": 0.05557710890696852,
+        "alpha": 0.5,
+        "beta": 0.65625,
+        "q": 0.04109615891771888,
+        "variable_mass": true,
+        "gravity_spec": null
+      },
+      "checkpoint": "runs/search_matrix_v1/earth_ryugu_2028/nodes/50a9dc3715a1f83cd60af23e/run",
+      "elapsed_s": 71.63377892400604,
+      "request": {
+        "operation": "cold",
+        "mission": {
+          "case_id": "earth_ryugu_2028",
+          "departure": "Earth",
+          "target": "Ryugu",
+          "launch_tdb": "2028-06-01T00:00:00",
+          "tof_days": 600.0,
+          "center": "Sun",
+          "mode": "rendezvous",
+          "position_tolerance_m": 1000,
+          "velocity_tolerance_m_s": 0.01,
+          "mass_kg": 156,
+          "departure_mode": "bounded_norm",
+          "vinf_max_m_s": 3000,
+          "vinf_vector_m_s": null,
+          "spacecraft": {
+            "thrust_N": 0.05,
+            "exhaust_velocity_m_s": 40000,
+            "dry_mass_kg": 90
+          },
+          "solver": {
+            "budget_s": 30,
+            "compare_seeds": true,
+            "departure_budget_s": 40,
+            "limit_budget_s": 60,
+            "pazov_budget_s": 60,
+            "psi_budget_s": 60,
+            "bounded_attempt_s": 20,
+            "pipeline_pazov_alpha": 0.5,
+            "psi_mass_alpha": 0.5
+          },
+          "lunar": null
+        },
+        "budget_s": 240,
+        "reference": null
+      }
+    },
+    "5bce4b46396d67bf3e25bc0c": {
+      "status": "failed",
+      "phase": "r_transfer",
+      "error": "RuntimeError: active: Exact independent replay failed: {'passed': False, 'position_residual_m': 1.8613458180816123, 'velocity_residual_m_s': 3.1915369334318667e-07, 'parameter_audit': {'passed': True, 'configuration_sha256': '6b43f61ee215812c626a3f6bb88732501054b16143dbf89db9393ffd51e49ac8', 'configuration_hash_version': 2, 'requested': {'mass_kg': 156, 'thrust_N': 0.025, 'exhaust_velocity_m_s': 20000, 'dry_mass_kg': 90, 'launch_tdb': '2028-08-30T00:00:00', 'tof_days': 600.0, 'departure': 'Earth', 'target': 'Ryugu', 'mode': 'rendezvous'}, 'recovered_model': {'model_thrust_N': np.float64(0.025), 'thrust_to_requested_ratio': np.float64(1.0), 'alpha': 1.0, 'beta': 1.0, 'variable_mass': True, 'hardware_limit_reached': True, 'exhaust_velocity_m_s': np.float64(20000.0)}, 'geometry': None, 'final_admission': True}, 'trajectory_difference_m': 1.858404914957922, 'velocity_difference_m_s': 3.2010977364511723e-07, 'stored_throttle_error': 0.0, 'stored_throttle_minimum': 0.0, 'stored_throttle_maximum': 1.0, 'canonical_boundary_residual': 1.6839944343354065e-11, 'method': 'LSODA with independent bounded/mass equations', 'scope': 'Numerical extremal and constraints; no global optimality proof', 'departure_norm_m_s': 2999.999999999984, 'switching_sign_violation': 0.46256044054334516, 'switching_node_residual': 2.8568821147159472e-11, 'minimum_mass_kg': 123.60404610112343, 'fuel_kg': 32.39595389887657, 'mass_difference_kg': 4.156675004196586e-13, 'stored_thrust_error_N': 0.0, 'mass_balance_error_kg': np.float64(3.979039320256561e-13)}; free: Exact independent replay failed: {'passed': False, 'position_residual_m': 7897014815.74404, 'velocity_residual_m_s': 837.3952601434099, 'parameter_audit': {'passed': True, 'configuration_sha256': '6b43f61ee215812c626a3f6bb88732501054b16143dbf89db9393ffd51e49ac8', 'configuration_hash_version': 2, 'requested': {'mass_kg': 156, 'thrust_N': 0.025, 'exhaust_velocity_m_s': 20000, 'dry_mass_kg': 90, 'launch_tdb': '2028-08-30T00:00:00', 'tof_days': 600.0, 'departure': 'Earth', 'target': 'Ryugu', 'mode': 'rendezvous'}, 'recovered_model': {'model_thrust_N': np.float64(0.025), 'thrust_to_requested_ratio': np.float64(1.0), 'alpha': 1.0, 'beta': 1.0, 'variable_mass': True, 'hardware_limit_reached': True, 'exhaust_velocity_m_s': np.float64(20000.0)}, 'geometry': None, 'final_admission': True}, 'trajectory_difference_m': 0.6967104153973551, 'velocity_difference_m_s': 1.8028101148264304e-07, 'stored_throttle_error': 0.0, 'stored_throttle_minimum': 0.0, 'stored_throttle_maximum': 1.0, 'canonical_boundary_residual': 0.059428132282862256, 'method': 'LSODA with independent bounded/mass equations', 'scope': 'Numerical extremal and constraints; no global optimality proof', 'departure_norm_m_s': 5666.199295851775, 'switching_sign_violation': 0.7944379318165301, 'switching_node_residual': 0.006196985929999791, 'minimum_mass_kg': 132.99875797162338, 'fuel_kg': 23.00124202837663, 'mass_difference_kg': 3.9834802123550617e-13, 'stored_thrust_error_N': 0.0, 'mass_balance_error_kg': np.float64(3.836930773104541e-13)}",
+      "elapsed_s": 30.043980370042846,
+      "request": {
+        "operation": "r_transfer",
+        "mission": {
+          "case_id": "earth_ryugu_2028",
+          "departure": "Earth",
+          "target": "Ryugu",
+          "launch_tdb": "2028-08-30T00:00:00",
+          "tof_days": 600.0,
+          "center": "Sun",
+          "mode": "rendezvous",
+          "position_tolerance_m": 1000,
+          "velocity_tolerance_m_s": 0.01,
+          "mass_kg": 156,
+          "departure_mode": "bounded_norm",
+          "vinf_max_m_s": 3000,
+          "vinf_vector_m_s": null,
+          "spacecraft": {
+            "thrust_N": 0.025,
+            "exhaust_velocity_m_s": 20000,
+            "dry_mass_kg": 90
+          },
+          "solver": {
+            "budget_s": 30,
+            "compare_seeds": true,
+            "departure_budget_s": 40,
+            "limit_budget_s": 60,
+            "pazov_budget_s": 60,
+            "psi_budget_s": 60,
+            "bounded_attempt_s": 20,
+            "pipeline_pazov_alpha": 0.5,
+            "psi_mass_alpha": 0.5
+          },
+          "lunar": null
+        },
+        "budget_s": 240,
+        "reference": {
+          "path": "data/benchmarks/free_time_physical_matrix_v1/earth_ryugu_2028/anchor_00/final",
+          "metadata_sha256": "bcb9d72641406d465a2ad4cf81186c00357e69600de5b074a7bf755d580e687c",
+          "arrays_sha256": "088d4daf6445997d6552b15d9a55770f530d90d8dddb99c6976d5b1d0be46558",
+          "mission": {
+            "case_id": "earth_ryugu_2028",
+            "departure": "Earth",
+            "target": "Ryugu",
+            "launch_tdb": "2028-06-01T00:00:00",
+            "tof_days": 600,
+            "center": "Sun",
+            "mode": "rendezvous",
+            "position_tolerance_m": 1000,
+            "velocity_tolerance_m_s": 0.01,
+            "mass_kg": 156,
+            "departure_mode": "bounded_norm",
+            "vinf_max_m_s": 3000,
+            "vinf_vector_m_s": null,
+            "spacecraft": {
+              "thrust_N": 0.025,
+              "exhaust_velocity_m_s": 20000,
+              "dry_mass_kg": 90
+            },
+            "solver": {
+              "budget_s": 45,
+              "compare_seeds": true,
+              "departure_budget_s": 60,
+              "limit_budget_s": 60,
+              "pazov_budget_s": 90,
+              "psi_budget_s": 120,
+              "bounded_attempt_s": 20,
+              "free_time_budget_s": 120
+            },
+            "lunar": null
+          }
+        }
+      }
+    },
+    "0ef1c15c485308a604b4ecf8": {
+      "status": "failed",
+      "phase": "r_release",
+      "error": "TimeoutError: Free-duration integration budget reached",
+      "elapsed_s": 90.00004255701788,
+      "request": {
+        "operation": "r_release",
+        "mission": {
+          "case_id": "earth_ryugu_2028",
+          "departure": "Earth",
+          "target": "Ryugu",
+          "launch_tdb": "2028-08-30T00:00:00",
+          "tof_days": 600.0,
+          "center": "Sun",
+          "mode": "rendezvous",
+          "position_tolerance_m": 1000,
+          "velocity_tolerance_m_s": 0.01,
+          "mass_kg": 156,
+          "departure_mode": "bounded_norm",
+          "vinf_max_m_s": 3000,
+          "vinf_vector_m_s": null,
+          "spacecraft": {
+            "thrust_N": 0.025,
+            "exhaust_velocity_m_s": 20000,
+            "dry_mass_kg": 90
+          },
+          "solver": {
+            "budget_s": 30,
+            "compare_seeds": true,
+            "departure_budget_s": 40,
+            "limit_budget_s": 60,
+            "pazov_budget_s": 60,
+            "psi_budget_s": 60,
+            "bounded_attempt_s": 20,
+            "pipeline_pazov_alpha": 0.5,
+            "psi_mass_alpha": 0.5
+          },
+          "lunar": null
+        },
+        "budget_s": 90,
+        "reference": {
+          "path": "data/benchmarks/free_time_physical_matrix_v1/earth_ryugu_2028/anchor_00/final",
+          "metadata_sha256": "bcb9d72641406d465a2ad4cf81186c00357e69600de5b074a7bf755d580e687c",
+          "arrays_sha256": "088d4daf6445997d6552b15d9a55770f530d90d8dddb99c6976d5b1d0be46558",
+          "mission": {
+            "case_id": "earth_ryugu_2028",
+            "departure": "Earth",
+            "target": "Ryugu",
+            "launch_tdb": "2028-06-01T00:00:00",
+            "tof_days": 600,
+            "center": "Sun",
+            "mode": "rendezvous",
+            "position_tolerance_m": 1000,
+            "velocity_tolerance_m_s": 0.01,
+            "mass_kg": 156,
+            "departure_mode": "bounded_norm",
+            "vinf_max_m_s": 3000,
+            "vinf_vector_m_s": null,
+            "spacecraft": {
+              "thrust_N": 0.025,
+              "exhaust_velocity_m_s": 20000,
+              "dry_mass_kg": 90
+            },
+            "solver": {
+              "budget_s": 45,
+              "compare_seeds": true,
+              "departure_budget_s": 60,
+              "limit_budget_s": 60,
+              "pazov_budget_s": 90,
+              "psi_budget_s": 120,
+              "bounded_attempt_s": 20,
+              "free_time_budget_s": 120
+            },
+            "lunar": null
+          }
+        },
+        "bounds_days": [
+          300.0,
+          900.0
+        ]
+      }
+    },
+    "fa9625637441138eb15388a3": {
+      "status": "completed",
+      "phase": "final",
+      "mission": {
+        "case_id": "earth_ryugu_2028",
+        "departure": "Earth",
+        "target": "Ryugu",
+        "launch_tdb": "2028-06-01T00:00:00",
+        "tof_days": 600.0,
+        "center": "Sun",
+        "mode": "rendezvous",
+        "position_tolerance_m": 1000,
+        "velocity_tolerance_m_s": 0.01,
+        "mass_kg": 156,
+        "departure_mode": "bounded_norm",
+        "vinf_max_m_s": 3000,
+        "vinf_vector_m_s": null,
+        "spacecraft": {
+          "thrust_N": 0.025,
+          "exhaust_velocity_m_s": 20000,
+          "dry_mass_kg": 90
+        },
+        "solver": {
+          "budget_s": 30,
+          "compare_seeds": true,
+          "departure_budget_s": 40,
+          "limit_budget_s": 60,
+          "pazov_budget_s": 60,
+          "psi_budget_s": 60,
+          "bounded_attempt_s": 20,
+          "pipeline_pazov_alpha": 0.7,
+          "psi_mass_alpha": 0.7
+        },
+        "lunar": null
+      },
+      "fuel_kg": 20.831503693032758,
+      "verification": {
+        "passed": true,
+        "position_residual_m": 2.2761909479034923,
+        "velocity_residual_m_s": 4.0748711872136553e-07,
+        "parameter_audit": {
+          "passed": true,
+          "configuration_sha256": "d3cd118e4502404d420adbf0fc52321f91194e5b1d3f204309c18573bc8f3f35",
+          "configuration_hash_version": 2,
+          "requested": {
+            "mass_kg": 156,
+            "thrust_N": 0.025,
+            "exhaust_velocity_m_s": 20000,
+            "dry_mass_kg": 90,
+            "launch_tdb": "2028-06-01T00:00:00",
+            "tof_days": 600.0,
+            "departure": "Earth",
+            "target": "Ryugu",
+            "mode": "rendezvous"
+          },
+          "recovered_model": {
+            "model_thrust_N": 0.025,
+            "thrust_to_requested_ratio": 1.0,
+            "alpha": 1.0,
+            "beta": 1.0,
+            "variable_mass": true,
+            "hardware_limit_reached": true,
+            "exhaust_velocity_m_s": 20000.0
+          },
+          "geometry": null,
+          "final_admission": true
+        },
+        "trajectory_difference_m": 2.2758293154892955,
+        "velocity_difference_m_s": 4.3206554492502463e-07,
+        "stored_throttle_error": 0.0,
+        "stored_throttle_minimum": 0.0,
+        "stored_throttle_maximum": 1.0,
+        "canonical_boundary_residual": 2.039589657706845e-11,
+        "method": "LSODA with independent bounded/mass equations",
+        "scope": "Numerical extremal and constraints; no global optimality proof",
+        "departure_norm_m_s": 2999.9999999999845,
+        "switching_sign_violation": 2.8814138390711534e-11,
+        "switching_node_residual": 2.8814138390711534e-11,
+        "minimum_mass_kg": 135.16849630696726,
+        "fuel_kg": 20.831503693032758,
+        "mass_difference_kg": 3.4638958368304884e-13,
+        "stored_thrust_error_N": 0.0,
+        "mass_balance_error_kg": 3.268496584496461e-13
+      },
+      "kiam_verification": {
+        "passed": true,
+        "source": "Unmodified KIAM Astro compiled Fortran equations and published control API",
+        "package_version": "6.1.6",
+        "samples": 101,
+        "maximum_dimensionless_rhs_error": 8.881784197001252e-16,
+        "maximum_dimensionless_force_error": 6.938893903907228e-18,
+        "maximum_third_body_decomposition_error": 0.0,
+        "nbody_gravity": {
+          "passed": true,
+          "applicable": false
+        },
+        "costate_map": "p_r,v(KIAM)=p_r,v/vex; p_m(KIAM)=1+p_m/vex; normalized initial mass=1",
+        "scope": "KIAM central mass-optimal equations/control, plus independent third-body decomposition when present; not a separate global optimization"
+      },
+      "elapsed_s": 0.2272197239799425,
+      "artifact": "runs/search_matrix_v1/earth_ryugu_2028/nodes/fa9625637441138eb15388a3/final",
+      "metadata_sha256": "1d66a2e9a42d5ef868886a1092e26ccb41ca92b39a4d5cc20d7bb0d86775ca73",
+      "arrays_sha256": "088d4daf6445997d6552b15d9a55770f530d90d8dddb99c6976d5b1d0be46558",
+      "request": {
+        "operation": "reference",
+        "mission": {
+          "case_id": "earth_ryugu_2028",
+          "departure": "Earth",
+          "target": "Ryugu",
+          "launch_tdb": "2028-06-01T00:00:00",
+          "tof_days": 600.0,
+          "center": "Sun",
+          "mode": "rendezvous",
+          "position_tolerance_m": 1000,
+          "velocity_tolerance_m_s": 0.01,
+          "mass_kg": 156,
+          "departure_mode": "bounded_norm",
+          "vinf_max_m_s": 3000,
+          "vinf_vector_m_s": null,
+          "spacecraft": {
+            "thrust_N": 0.025,
+            "exhaust_velocity_m_s": 20000,
+            "dry_mass_kg": 90
+          },
+          "solver": {
+            "budget_s": 30,
+            "compare_seeds": true,
+            "departure_budget_s": 40,
+            "limit_budget_s": 60,
+            "pazov_budget_s": 60,
+            "psi_budget_s": 60,
+            "bounded_attempt_s": 20,
+            "pipeline_pazov_alpha": 0.7,
+            "psi_mass_alpha": 0.7
+          },
+          "lunar": null
+        },
+        "budget_s": 240,
+        "reference": {
+          "path": "data/benchmarks/free_time_physical_matrix_v1/earth_ryugu_2028/anchor_00/final",
+          "metadata_sha256": "bcb9d72641406d465a2ad4cf81186c00357e69600de5b074a7bf755d580e687c",
+          "arrays_sha256": "088d4daf6445997d6552b15d9a55770f530d90d8dddb99c6976d5b1d0be46558",
+          "mission": {
+            "case_id": "earth_ryugu_2028",
+            "departure": "Earth",
+            "target": "Ryugu",
+            "launch_tdb": "2028-06-01T00:00:00",
+            "tof_days": 600,
+            "center": "Sun",
+            "mode": "rendezvous",
+            "position_tolerance_m": 1000,
+            "velocity_tolerance_m_s": 0.01,
+            "mass_kg": 156,
+            "departure_mode": "bounded_norm",
+            "vinf_max_m_s": 3000,
+            "vinf_vector_m_s": null,
+            "spacecraft": {
+              "thrust_N": 0.025,
+              "exhaust_velocity_m_s": 20000,
+              "dry_mass_kg": 90
+            },
+            "solver": {
+              "budget_s": 45,
+              "compare_seeds": true,
+              "departure_budget_s": 60,
+              "limit_budget_s": 60,
+              "pazov_budget_s": 90,
+              "psi_budget_s": 120,
+              "bounded_attempt_s": 20,
+              "free_time_budget_s": 120
+            },
+            "lunar": null
+          }
+        }
+      }
+    }
+  },
+  "edges": [
+    {
+      "parent": null,
+      "child": "f35658b2b98f6d968a8fdee2",
+      "operation": "reference",
+      "cache_hit": false
+    },
+    {
+      "parent": "f35658b2b98f6d968a8fdee2",
+      "child": "909a2dfbf2e47c5e9e08b47e",
+      "operation": "release",
+      "cache_hit": false
+    },
+    {
+      "parent": null,
+      "child": "f35658b2b98f6d968a8fdee2",
+      "operation": "reference",
+      "cache_hit": true
+    },
+    {
+      "parent": null,
+      "child": "50a9dc3715a1f83cd60af23e",
+      "operation": "cold",
+      "cache_hit": false
+    },
+    {
+      "parent": null,
+      "child": "5bce4b46396d67bf3e25bc0c",
+      "operation": "r_transfer",
+      "cache_hit": false
+    },
+    {
+      "parent": null,
+      "child": "0ef1c15c485308a604b4ecf8",
+      "operation": "r_release",
+      "cache_hit": false
+    },
+    {
+      "parent": null,
+      "child": "f35658b2b98f6d968a8fdee2",
+      "operation": "reference",
+      "cache_hit": true
+    },
+    {
+      "parent": null,
+      "child": "50a9dc3715a1f83cd60af23e",
+      "operation": "cold",
+      "cache_hit": true
+    },
+    {
+      "parent": null,
+      "child": "50a9dc3715a1f83cd60af23e",
+      "operation": "cold",
+      "cache_hit": true
+    },
+    {
+      "parent": null,
+      "child": "fa9625637441138eb15388a3",
+      "operation": "reference",
+      "cache_hit": false
+    }
+  ],
+  "generations": [
+    {
+      "population": [
+        [
+          0,
+          0,
+          0,
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          1,
+          0,
+          1,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          1,
+          1
+        ]
+      ],
+      "results": [
+        {
+          "genome": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            1
+          ],
+          "fixed_node": "f35658b2b98f6d968a8fdee2",
+          "terminal_node": "909a2dfbf2e47c5e9e08b47e",
+          "retained_node": "909a2dfbf2e47c5e9e08b47e",
+          "score": [
+            1,
+            -0.09386454755367302,
+            -17.32092170073716,
+            -656.3187285322039
+          ]
+        },
+        {
+          "genome": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "fixed_node": "f35658b2b98f6d968a8fdee2",
+          "terminal_node": "f35658b2b98f6d968a8fdee2",
+          "retained_node": "f35658b2b98f6d968a8fdee2",
+          "score": [
+            1,
+            -0.0,
+            -20.831503693032758,
+            -600.0
+          ]
+        },
+        {
+          "genome": [
+            0,
+            0,
+            1,
+            0,
+            1,
+            0
+          ],
+          "fixed_node": "50a9dc3715a1f83cd60af23e",
+          "terminal_node": "50a9dc3715a1f83cd60af23e",
+          "retained_node": "50a9dc3715a1f83cd60af23e",
+          "score": [
+            0,
+            4,
+            0.65625,
+            0.5
+          ]
+        },
+        {
+          "genome": [
+            1,
+            0,
+            0,
+            0,
+            1,
+            1
+          ],
+          "fixed_node": "5bce4b46396d67bf3e25bc0c",
+          "terminal_node": "0ef1c15c485308a604b4ecf8",
+          "retained_node": "5bce4b46396d67bf3e25bc0c",
+          "score": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "origin": "history_and_exploration"
+    },
+    {
+      "population": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          1,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          2,
+          0,
+          1
+        ]
+      ],
+      "results": [
+        {
+          "genome": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "fixed_node": "f35658b2b98f6d968a8fdee2",
+          "terminal_node": "f35658b2b98f6d968a8fdee2",
+          "retained_node": "f35658b2b98f6d968a8fdee2",
+          "score": [
+            1,
+            -0.0,
+            -20.831503693032758,
+            -600.0
+          ]
+        },
+        {
+          "genome": [
+            0,
+            0,
+            1,
+            0,
+            1,
+            0
+          ],
+          "fixed_node": "50a9dc3715a1f83cd60af23e",
+          "terminal_node": "50a9dc3715a1f83cd60af23e",
+          "retained_node": "50a9dc3715a1f83cd60af23e",
+          "score": [
+            0,
+            4,
+            0.65625,
+            0.5
+          ]
+        },
+        {
+          "genome": [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "fixed_node": "50a9dc3715a1f83cd60af23e",
+          "terminal_node": "50a9dc3715a1f83cd60af23e",
+          "retained_node": "50a9dc3715a1f83cd60af23e",
+          "score": [
+            0,
+            4,
+            0.65625,
+            0.5
+          ]
+        },
+        {
+          "genome": [
+            0,
+            0,
+            0,
+            2,
+            0,
+            1
+          ],
+          "fixed_node": "fa9625637441138eb15388a3",
+          "terminal_node": "fa9625637441138eb15388a3",
+          "retained_node": "fa9625637441138eb15388a3",
+          "score": [
+            1,
+            -0.0,
+            -20.831503693032758,
+            -600.0
+          ]
+        }
+      ],
+      "origin": [
+        {
+          "kind": "elite",
+          "parents": [
+            1
+          ]
+        },
+        {
+          "kind": "crossover_mutation",
+          "parents": [
+            1,
+            0
+          ],
+          "mutation_axis": 2
+        },
+        {
+          "kind": "crossover_mutation",
+          "parents": [
+            1,
+            1
+          ],
+          "mutation_axis": 2
+        },
+        {
+          "kind": "crossover_mutation",
+          "parents": [
+            0,
+            1
+          ],
+          "mutation_axis": 3
+        }
+      ]
+    }
+  ],
+  "solutions": [
+    {
+      "node": "f35658b2b98f6d968a8fdee2",
+      "artifact": "runs/search_matrix_v1/earth_ryugu_2028/nodes/f35658b2b98f6d968a8fdee2/final",
+      "changes": {},
+      "original_conditions": true,
+      "objectives": [
+        0.0,
+        20.831503693032758,
+        600.0
+      ]
+    },
+    {
+      "node": "909a2dfbf2e47c5e9e08b47e",
+      "artifact": "runs/search_matrix_v1/earth_ryugu_2028/nodes/909a2dfbf2e47c5e9e08b47e/final",
+      "changes": {
+        "tof_days": {
+          "requested": 600.0,
+          "actual": 656.3187285322039
+        }
+      },
+      "original_conditions": false,
+      "objectives": [
+        0.09386454755367302,
+        17.32092170073716,
+        656.3187285322039
+      ]
+    },
+    {
+      "node": "fa9625637441138eb15388a3",
+      "artifact": "runs/search_matrix_v1/earth_ryugu_2028/nodes/fa9625637441138eb15388a3/final",
+      "changes": {},
+      "original_conditions": true,
+      "objectives": [
+        0.0,
+        20.831503693032758,
+        600.0
+      ]
+    }
+  ],
+  "pareto": [
+    {
+      "node": "f35658b2b98f6d968a8fdee2",
+      "artifact": "runs/search_matrix_v1/earth_ryugu_2028/nodes/f35658b2b98f6d968a8fdee2/final",
+      "changes": {},
+      "original_conditions": true,
+      "objectives": [
+        0.0,
+        20.831503693032758,
+        600.0
+      ]
+    },
+    {
+      "node": "909a2dfbf2e47c5e9e08b47e",
+      "artifact": "runs/search_matrix_v1/earth_ryugu_2028/nodes/909a2dfbf2e47c5e9e08b47e/final",
+      "changes": {
+        "tof_days": {
+          "requested": 600.0,
+          "actual": 656.3187285322039
+        }
+      },
+      "original_conditions": false,
+      "objectives": [
+        0.09386454755367302,
+        17.32092170073716,
+        656.3187285322039
+      ]
+    },
+    {
+      "node": "fa9625637441138eb15388a3",
+      "artifact": "runs/search_matrix_v1/earth_ryugu_2028/nodes/fa9625637441138eb15388a3/final",
+      "changes": {},
+      "original_conditions": true,
+      "objectives": [
+        0.0,
+        20.831503693032758,
+        600.0
+      ]
+    }
+  ],
+  "elapsed_s": 241.91025828785496,
+  "status": "finished"
+}

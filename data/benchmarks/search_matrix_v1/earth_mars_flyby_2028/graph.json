@@ -1,0 +1,1685 @@
+{
+  "nodes": {
+    "1a9aa7be8cde7ec9fcebcac1": {
+      "status": "completed",
+      "phase": "final",
+      "mission": {
+        "case_id": "earth_mars_flyby_2028",
+        "departure": "Earth",
+        "target": "Mars",
+        "launch_tdb": "2028-11-01T00:00:00",
+        "tof_days": 500.0,
+        "center": "Sun",
+        "mode": "flyby",
+        "position_tolerance_m": 1000,
+        "velocity_tolerance_m_s": 0.01,
+        "mass_kg": 156,
+        "departure_mode": "bounded_norm",
+        "vinf_max_m_s": 3000,
+        "vinf_vector_m_s": null,
+        "spacecraft": {
+          "thrust_N": 0.025,
+          "exhaust_velocity_m_s": 20000,
+          "dry_mass_kg": 90
+        },
+        "solver": {
+          "budget_s": 30,
+          "compare_seeds": true,
+          "departure_budget_s": 40,
+          "limit_budget_s": 60,
+          "pazov_budget_s": 60,
+          "psi_budget_s": 60,
+          "bounded_attempt_s": 20,
+          "pipeline_pazov_alpha": 0.5,
+          "psi_mass_alpha": 0.5
+        },
+        "lunar": null
+      },
+      "fuel_kg": 17.509634215795035,
+      "verification": {
+        "passed": true,
+        "position_residual_m": 3.382212511523136,
+        "velocity_residual_m_s": 4187.087832540117,
+        "parameter_audit": {
+          "passed": true,
+          "configuration_sha256": "c68bdd7bb3d110f9cfb2c5882f3ea79538de315257144d98ef01e1c1b70740b3",
+          "configuration_hash_version": 2,
+          "requested": {
+            "mass_kg": 156,
+            "thrust_N": 0.025,
+            "exhaust_velocity_m_s": 20000,
+            "dry_mass_kg": 90,
+            "launch_tdb": "2028-11-01T00:00:00",
+            "tof_days": 500.0,
+            "departure": "Earth",
+            "target": "Mars",
+            "mode": "flyby"
+          },
+          "recovered_model": {
+            "model_thrust_N": 0.025,
+            "thrust_to_requested_ratio": 1.0,
+            "alpha": 1.0,
+            "beta": 1.0,
+            "variable_mass": true,
+            "hardware_limit_reached": true,
+            "exhaust_velocity_m_s": 20000.0
+          },
+          "geometry": null,
+          "final_admission": true
+        },
+        "trajectory_difference_m": 3.3835757081186832,
+        "velocity_difference_m_s": 3.5314161730451056e-07,
+        "stored_throttle_error": 0.0,
+        "stored_throttle_minimum": 0.0,
+        "stored_throttle_maximum": 1.0,
+        "canonical_boundary_residual": 8.644850749940256e-11,
+        "method": "LSODA with independent bounded/mass equations",
+        "scope": "Numerical extremal and constraints; no global optimality proof",
+        "departure_norm_m_s": 2999.999999999982,
+        "switching_sign_violation": 1.5644302283026644e-11,
+        "switching_node_residual": 1.564417194751096e-11,
+        "minimum_mass_kg": 138.49036578420495,
+        "fuel_kg": 17.509634215795035,
+        "mass_difference_kg": 1.5587531265737198e-13,
+        "stored_thrust_error_N": 0.0,
+        "mass_balance_error_kg": 1.3855583347321954e-13
+      },
+      "kiam_verification": {
+        "passed": true,
+        "source": "Unmodified KIAM Astro compiled Fortran equations and published control API",
+        "package_version": "6.1.6",
+        "samples": 101,
+        "maximum_dimensionless_rhs_error": 4.718447854656915e-16,
+        "maximum_dimensionless_force_error": 6.938893903907228e-18,
+        "maximum_third_body_decomposition_error": 0.0,
+        "nbody_gravity": {
+          "passed": true,
+          "applicable": false
+        },
+        "costate_map": "p_r,v(KIAM)=p_r,v/vex; p_m(KIAM)=1+p_m/vex; normalized initial mass=1",
+        "scope": "KIAM central mass-optimal equations/control, plus independent third-body decomposition when present; not a separate global optimization"
+      },
+      "elapsed_s": 0.18895616597728804,
+      "artifact": "runs/search_matrix_v1/earth_mars_flyby_2028/nodes/1a9aa7be8cde7ec9fcebcac1/final",
+      "metadata_sha256": "ba846891dc70797dc4fd62e702e0ed6dfd58ceae2cf73fd9acfeee23aa8432dd",
+      "arrays_sha256": "8e98d4c30ef3efe0520d61956b8c2e33e284a6b5397fae5c2fec0b01cb2f13fe",
+      "request": {
+        "operation": "reference",
+        "mission": {
+          "case_id": "earth_mars_flyby_2028",
+          "departure": "Earth",
+          "target": "Mars",
+          "launch_tdb": "2028-11-01T00:00:00",
+          "tof_days": 500.0,
+          "center": "Sun",
+          "mode": "flyby",
+          "position_tolerance_m": 1000,
+          "velocity_tolerance_m_s": 0.01,
+          "mass_kg": 156,
+          "departure_mode": "bounded_norm",
+          "vinf_max_m_s": 3000,
+          "vinf_vector_m_s": null,
+          "spacecraft": {
+            "thrust_N": 0.025,
+            "exhaust_velocity_m_s": 20000,
+            "dry_mass_kg": 90
+          },
+          "solver": {
+            "budget_s": 30,
+            "compare_seeds": true,
+            "departure_budget_s": 40,
+            "limit_budget_s": 60,
+            "pazov_budget_s": 60,
+            "psi_budget_s": 60,
+            "bounded_attempt_s": 20,
+            "pipeline_pazov_alpha": 0.5,
+            "psi_mass_alpha": 0.5
+          },
+          "lunar": null
+        },
+        "budget_s": 240,
+        "reference": {
+          "path": "data/benchmarks/free_time_physical_matrix_v1/earth_mars_flyby_2028/anchor_00/final",
+          "metadata_sha256": "02142cefbd65df8125eac9f5336bd7223c16cef7df020ced960a0a433311efd9",
+          "arrays_sha256": "8e98d4c30ef3efe0520d61956b8c2e33e284a6b5397fae5c2fec0b01cb2f13fe",
+          "mission": {
+            "case_id": "earth_mars_flyby_2028",
+            "departure": "Earth",
+            "target": "Mars",
+            "launch_tdb": "2028-11-01T00:00:00",
+            "tof_days": 500,
+            "center": "Sun",
+            "mode": "flyby",
+            "position_tolerance_m": 1000,
+            "velocity_tolerance_m_s": 0.01,
+            "mass_kg": 156,
+            "departure_mode": "bounded_norm",
+            "vinf_max_m_s": 3000,
+            "vinf_vector_m_s": null,
+            "spacecraft": {
+              "thrust_N": 0.025,
+              "exhaust_velocity_m_s": 20000,
+              "dry_mass_kg": 90
+            },
+            "solver": {
+              "budget_s": 45,
+              "compare_seeds": true,
+              "departure_budget_s": 60,
+              "limit_budget_s": 60,
+              "pazov_budget_s": 90,
+              "psi_budget_s": 120,
+              "bounded_attempt_s": 20,
+              "free_time_budget_s": 120
+            },
+            "lunar": null
+          }
+        }
+      }
+    },
+    "0c413c7a4640904225f52a14": {
+      "status": "completed",
+      "phase": "final",
+      "mission": {
+        "case_id": "earth_mars_flyby_2028",
+        "departure": "Earth",
+        "target": "Mars",
+        "launch_tdb": "2028-11-01T00:00:00",
+        "tof_days": 306.9815310032382,
+        "center": "Sun",
+        "mode": "flyby",
+        "position_tolerance_m": 1000,
+        "velocity_tolerance_m_s": 0.01,
+        "mass_kg": 156,
+        "departure_mode": "bounded_norm",
+        "vinf_max_m_s": 3000,
+        "vinf_vector_m_s": null,
+        "spacecraft": {
+          "thrust_N": 0.025,
+          "exhaust_velocity_m_s": 20000,
+          "dry_mass_kg": 90
+        },
+        "solver": {
+          "budget_s": 30,
+          "compare_seeds": true,
+          "departure_budget_s": 40,
+          "limit_budget_s": 60,
+          "pazov_budget_s": 60,
+          "psi_budget_s": 60,
+          "bounded_attempt_s": 20,
+          "pipeline_pazov_alpha": 0.5,
+          "psi_mass_alpha": 0.5
+        },
+        "lunar": null
+      },
+      "fuel_kg": 2.8542646297548093,
+      "verification": {
+        "passed": true,
+        "position_residual_m": 1.065413886124728,
+        "velocity_residual_m_s": 3019.8254568206853,
+        "parameter_audit": {
+          "passed": true,
+          "configuration_sha256": "d25d6eb5a097f1b04d6cdee4c3b4acfb5ec06414b8ddaf4a5757e691a21b7050",
+          "configuration_hash_version": 2,
+          "requested": {
+            "mass_kg": 156,
+            "thrust_N": 0.025,
+            "exhaust_velocity_m_s": 20000,
+            "dry_mass_kg": 90,
+            "launch_tdb": "2028-11-01T00:00:00",
+            "tof_days": 306.9815310032382,
+            "departure": "Earth",
+            "target": "Mars",
+            "mode": "flyby"
+          },
+          "recovered_model": {
+            "model_thrust_N": 0.025,
+            "thrust_to_requested_ratio": 1.0,
+            "alpha": 1.0,
+            "beta": 1.0,
+            "variable_mass": true,
+            "hardware_limit_reached": true,
+            "exhaust_velocity_m_s": 20000.0
+          },
+          "geometry": null,
+          "final_admission": true
+        },
+        "trajectory_difference_m": 1.0964518358373048,
+        "velocity_difference_m_s": 1.4801423686548133e-07,
+        "stored_throttle_error": 0.0,
+        "stored_throttle_minimum": 0.0,
+        "stored_throttle_maximum": 1.0,
+        "canonical_boundary_residual": 3.382926462173393e-11,
+        "method": "LSODA with independent bounded/mass equations",
+        "scope": "Numerical extremal and constraints; no global optimality proof",
+        "departure_norm_m_s": 3000.0000000000005,
+        "switching_sign_violation": 5.524922509830789e-13,
+        "switching_node_residual": 5.524922509830789e-13,
+        "minimum_mass_kg": 153.14573537024518,
+        "fuel_kg": 2.8542646297548093,
+        "mass_difference_kg": 1.0391687510491465e-13,
+        "stored_thrust_error_N": 0.0,
+        "mass_balance_error_kg": 8.260059303211165e-14
+      },
+      "kiam_verification": {
+        "passed": true,
+        "source": "Unmodified KIAM Astro compiled Fortran equations and published control API",
+        "package_version": "6.1.6",
+        "samples": 100,
+        "maximum_dimensionless_rhs_error": 5.551115123125783e-16,
+        "maximum_dimensionless_force_error": 6.938893903907228e-18,
+        "maximum_third_body_decomposition_error": 0.0,
+        "nbody_gravity": {
+          "passed": true,
+          "applicable": false
+        },
+        "costate_map": "p_r,v(KIAM)=p_r,v/vex; p_m(KIAM)=1+p_m/vex; normalized initial mass=1",
+        "scope": "KIAM central mass-optimal equations/control, plus independent third-body decomposition when present; not a separate global optimization"
+      },
+      "elapsed_s": 27.984052676998544,
+      "artifact": "runs/search_matrix_v1/earth_mars_flyby_2028/nodes/0c413c7a4640904225f52a14/final",
+      "metadata_sha256": "e66ece9128fb5ace415035966b54af544aa85f290949cb91f21d7008b8fafa4d",
+      "arrays_sha256": "b034f7b6f14fa111b85101e8f378a5a62a3760d6c71c53892e08ff1df21f6a9f",
+      "request": {
+        "operation": "release",
+        "mission": {
+          "case_id": "earth_mars_flyby_2028",
+          "departure": "Earth",
+          "target": "Mars",
+          "launch_tdb": "2028-11-01T00:00:00",
+          "tof_days": 500.0,
+          "center": "Sun",
+          "mode": "flyby",
+          "position_tolerance_m": 1000,
+          "velocity_tolerance_m_s": 0.01,
+          "mass_kg": 156,
+          "departure_mode": "bounded_norm",
+          "vinf_max_m_s": 3000,
+          "vinf_vector_m_s": null,
+          "spacecraft": {
+            "thrust_N": 0.025,
+            "exhaust_velocity_m_s": 20000,
+            "dry_mass_kg": 90
+          },
+          "solver": {
+            "budget_s": 30,
+            "compare_seeds": true,
+            "departure_budget_s": 40,
+            "limit_budget_s": 60,
+            "pazov_budget_s": 60,
+            "psi_budget_s": 60,
+            "bounded_attempt_s": 20,
+            "pipeline_pazov_alpha": 0.5,
+            "psi_mass_alpha": 0.5
+          },
+          "lunar": null
+        },
+        "budget_s": 90,
+        "reference": null,
+        "parent_artifact": "runs/search_matrix_v1/earth_mars_flyby_2028/nodes/1a9aa7be8cde7ec9fcebcac1/final",
+        "parent_sha256": "8e98d4c30ef3efe0520d61956b8c2e33e284a6b5397fae5c2fec0b01cb2f13fe",
+        "bounds_days": [
+          250.0,
+          750.0
+        ]
+      }
+    },
+    "7f8ceb2edb724b578a63c028": {
+      "status": "completed",
+      "phase": "final",
+      "mission": {
+        "case_id": "earth_mars_flyby_2028",
+        "departure": "Earth",
+        "target": "Mars",
+        "launch_tdb": "2028-11-01T00:00:00",
+        "tof_days": 500.0,
+        "center": "Sun",
+        "mode": "flyby",
+        "position_tolerance_m": 1000,
+        "velocity_tolerance_m_s": 0.01,
+        "mass_kg": 156,
+        "departure_mode": "bounded_norm",
+        "vinf_max_m_s": 3000,
+        "vinf_vector_m_s": null,
+        "spacecraft": {
+          "thrust_N": 0.05,
+          "exhaust_velocity_m_s": 40000,
+          "dry_mass_kg": 90
+        },
+        "solver": {
+          "budget_s": 30,
+          "compare_seeds": true,
+          "departure_budget_s": 40,
+          "limit_budget_s": 60,
+          "pazov_budget_s": 60,
+          "psi_budget_s": 60,
+          "bounded_attempt_s": 20,
+          "pipeline_pazov_alpha": 0.5,
+          "psi_mass_alpha": 0.5
+        },
+        "lunar": null
+      },
+      "fuel_kg": 8.625263260523226,
+      "verification": {
+        "passed": true,
+        "position_residual_m": 2.4663370562565667,
+        "velocity_residual_m_s": 4255.401951982858,
+        "parameter_audit": {
+          "passed": true,
+          "configuration_sha256": "b2775dd480acae30c4235283f5a9ab67f9e0432054914503af05f5517903bcf4",
+          "configuration_hash_version": 2,
+          "requested": {
+            "mass_kg": 156,
+            "thrust_N": 0.05,
+            "exhaust_velocity_m_s": 40000,
+            "dry_mass_kg": 90,
+            "launch_tdb": "2028-11-01T00:00:00",
+            "tof_days": 500.0,
+            "departure": "Earth",
+            "target": "Mars",
+            "mode": "flyby"
+          },
+          "recovered_model": {
+            "model_thrust_N": 0.05,
+            "thrust_to_requested_ratio": 1.0,
+            "alpha": 1.0,
+            "beta": 1.0,
+            "variable_mass": true,
+            "hardware_limit_reached": true,
+            "exhaust_velocity_m_s": 40000.0
+          },
+          "geometry": null,
+          "final_admission": true
+        },
+        "trajectory_difference_m": 2.4660172385150623,
+        "velocity_difference_m_s": 2.6332797438879985e-07,
+        "stored_throttle_error": 0.0,
+        "stored_throttle_minimum": 0.0,
+        "stored_throttle_maximum": 1.0,
+        "canonical_boundary_residual": 7.361010254021589e-11,
+        "method": "LSODA with independent bounded/mass equations",
+        "scope": "Numerical extremal and constraints; no global optimality proof",
+        "departure_norm_m_s": 3000.000000000005,
+        "switching_sign_violation": 8.671612864981643e-12,
+        "switching_node_residual": 8.671743200497327e-12,
+        "minimum_mass_kg": 147.37473673947676,
+        "fuel_kg": 8.625263260523226,
+        "mass_difference_kg": 5.1958437552457326e-14,
+        "stored_thrust_error_N": 0.0,
+        "mass_balance_error_kg": 3.552713678800501e-15
+      },
+      "kiam_verification": {
+        "passed": true,
+        "source": "Unmodified KIAM Astro compiled Fortran equations and published control API",
+        "package_version": "6.1.6",
+        "samples": 101,
+        "maximum_dimensionless_rhs_error": 2.220446049250313e-16,
+        "maximum_dimensionless_force_error": 6.938893903907228e-18,
+        "maximum_third_body_decomposition_error": 0.0,
+        "nbody_gravity": {
+          "passed": true,
+          "applicable": false
+        },
+        "costate_map": "p_r,v(KIAM)=p_r,v/vex; p_m(KIAM)=1+p_m/vex; normalized initial mass=1",
+        "scope": "KIAM central mass-optimal equations/control, plus independent third-body decomposition when present; not a separate global optimization"
+      },
+      "elapsed_s": 22.736204834945966,
+      "artifact": "runs/search_matrix_v1/earth_mars_flyby_2028/nodes/7f8ceb2edb724b578a63c028/final",
+      "metadata_sha256": "e026c5b48dae6048913ad753e205046986ddf9f2908433ab00fdc1dc917ebf24",
+      "arrays_sha256": "e697b876df284c9bc6080764be1e4c3be1764f294b52a735e3cf36d5226584f5",
+      "request": {
+        "operation": "cold",
+        "mission": {
+          "case_id": "earth_mars_flyby_2028",
+          "departure": "Earth",
+          "target": "Mars",
+          "launch_tdb": "2028-11-01T00:00:00",
+          "tof_days": 500.0,
+          "center": "Sun",
+          "mode": "flyby",
+          "position_tolerance_m": 1000,
+          "velocity_tolerance_m_s": 0.01,
+          "mass_kg": 156,
+          "departure_mode": "bounded_norm",
+          "vinf_max_m_s": 3000,
+          "vinf_vector_m_s": null,
+          "spacecraft": {
+            "thrust_N": 0.05,
+            "exhaust_velocity_m_s": 40000,
+            "dry_mass_kg": 90
+          },
+          "solver": {
+            "budget_s": 30,
+            "compare_seeds": true,
+            "departure_budget_s": 40,
+            "limit_budget_s": 60,
+            "pazov_budget_s": 60,
+            "psi_budget_s": 60,
+            "bounded_attempt_s": 20,
+            "pipeline_pazov_alpha": 0.5,
+            "psi_mass_alpha": 0.5
+          },
+          "lunar": null
+        },
+        "budget_s": 240,
+        "reference": null
+      }
+    },
+    "9309d596e20f8b04ffcedb81": {
+      "status": "completed",
+      "phase": "final",
+      "mission": {
+        "case_id": "earth_mars_flyby_2028",
+        "departure": "Earth",
+        "target": "Mars",
+        "launch_tdb": "2028-11-01T00:00:00",
+        "tof_days": 306.95659461234834,
+        "center": "Sun",
+        "mode": "flyby",
+        "position_tolerance_m": 1000,
+        "velocity_tolerance_m_s": 0.01,
+        "mass_kg": 156,
+        "departure_mode": "bounded_norm",
+        "vinf_max_m_s": 3000,
+        "vinf_vector_m_s": null,
+        "spacecraft": {
+          "thrust_N": 0.05,
+          "exhaust_velocity_m_s": 40000,
+          "dry_mass_kg": 90
+        },
+        "solver": {
+          "budget_s": 30,
+          "compare_seeds": true,
+          "departure_budget_s": 40,
+          "limit_budget_s": 60,
+          "pazov_budget_s": 60,
+          "psi_budget_s": 60,
+          "bounded_attempt_s": 20,
+          "pipeline_pazov_alpha": 0.5,
+          "psi_mass_alpha": 0.5
+        },
+        "lunar": null
+      },
+      "fuel_kg": 1.4299331521282417,
+      "verification": {
+        "passed": true,
+        "position_residual_m": 0.9200930358308494,
+        "velocity_residual_m_s": 3020.530056355071,
+        "parameter_audit": {
+          "passed": true,
+          "configuration_sha256": "ccd95d94e541e0f2e7ea41fbdb26b3f505242b78985ff7d478b068a5a3a5c434",
+          "configuration_hash_version": 2,
+          "requested": {
+            "mass_kg": 156,
+            "thrust_N": 0.05,
+            "exhaust_velocity_m_s": 40000,
+            "dry_mass_kg": 90,
+            "launch_tdb": "2028-11-01T00:00:00",
+            "tof_days": 306.95659461234834,
+            "departure": "Earth",
+            "target": "Mars",
+            "mode": "flyby"
+          },
+          "recovered_model": {
+            "model_thrust_N": 0.05,
+            "thrust_to_requested_ratio": 1.0,
+            "alpha": 1.0,
+            "beta": 1.0,
+            "variable_mass": true,
+            "hardware_limit_reached": true,
+            "exhaust_velocity_m_s": 40000.0
+          },
+          "geometry": null,
+          "final_admission": true
+        },
+        "trajectory_difference_m": 0.9279470669921742,
+        "velocity_difference_m_s": 1.2360143697525313e-07,
+        "stored_throttle_error": 0.0,
+        "stored_throttle_minimum": 0.0,
+        "stored_throttle_maximum": 1.0,
+        "canonical_boundary_residual": 2.4918324078237426e-11,
+        "method": "LSODA with independent bounded/mass equations",
+        "scope": "Numerical extremal and constraints; no global optimality proof",
+        "departure_norm_m_s": 2999.9999999997617,
+        "switching_sign_violation": 1.3893765971879265e-13,
+        "switching_node_residual": 1.3893765971879265e-13,
+        "minimum_mass_kg": 154.57006684787177,
+        "fuel_kg": 1.4299331521282417,
+        "mass_difference_kg": 6.927791673660977e-14,
+        "stored_thrust_error_N": 0.0,
+        "mass_balance_error_kg": 1.3322676295501878e-15
+      },
+      "kiam_verification": {
+        "passed": true,
+        "source": "Unmodified KIAM Astro compiled Fortran equations and published control API",
+        "package_version": "6.1.6",
+        "samples": 101,
+        "maximum_dimensionless_rhs_error": 3.3306690738754696e-16,
+        "maximum_dimensionless_force_error": 6.938893903907228e-18,
+        "maximum_third_body_decomposition_error": 0.0,
+        "nbody_gravity": {
+          "passed": true,
+          "applicable": false
+        },
+        "costate_map": "p_r,v(KIAM)=p_r,v/vex; p_m(KIAM)=1+p_m/vex; normalized initial mass=1",
+        "scope": "KIAM central mass-optimal equations/control, plus independent third-body decomposition when present; not a separate global optimization"
+      },
+      "elapsed_s": 14.00260658597108,
+      "artifact": "runs/search_matrix_v1/earth_mars_flyby_2028/nodes/9309d596e20f8b04ffcedb81/final",
+      "metadata_sha256": "e29ed901b8d2a3492d15db5918df2a9450d87346b7b9f80a7ec13151dd1fa0ce",
+      "arrays_sha256": "a71b9b4b536333da0d59697134d5bb505993fc20274cee18a38ecd93d6e72c74",
+      "request": {
+        "operation": "release",
+        "mission": {
+          "case_id": "earth_mars_flyby_2028",
+          "departure": "Earth",
+          "target": "Mars",
+          "launch_tdb": "2028-11-01T00:00:00",
+          "tof_days": 500.0,
+          "center": "Sun",
+          "mode": "flyby",
+          "position_tolerance_m": 1000,
+          "velocity_tolerance_m_s": 0.01,
+          "mass_kg": 156,
+          "departure_mode": "bounded_norm",
+          "vinf_max_m_s": 3000,
+          "vinf_vector_m_s": null,
+          "spacecraft": {
+            "thrust_N": 0.05,
+            "exhaust_velocity_m_s": 40000,
+            "dry_mass_kg": 90
+          },
+          "solver": {
+            "budget_s": 30,
+            "compare_seeds": true,
+            "departure_budget_s": 40,
+            "limit_budget_s": 60,
+            "pazov_budget_s": 60,
+            "psi_budget_s": 60,
+            "bounded_attempt_s": 20,
+            "pipeline_pazov_alpha": 0.5,
+            "psi_mass_alpha": 0.5
+          },
+          "lunar": null
+        },
+        "budget_s": 90,
+        "reference": null,
+        "parent_artifact": "runs/search_matrix_v1/earth_mars_flyby_2028/nodes/7f8ceb2edb724b578a63c028/final",
+        "parent_sha256": "e697b876df284c9bc6080764be1e4c3be1764f294b52a735e3cf36d5226584f5",
+        "bounds_days": [
+          250.0,
+          750.0
+        ]
+      }
+    },
+    "b3b25d66ead61e52f9c0c1f1": {
+      "status": "completed",
+      "phase": "final",
+      "mission": {
+        "case_id": "earth_mars_flyby_2028",
+        "departure": "Earth",
+        "target": "Mars",
+        "launch_tdb": "2029-01-30T00:00:00",
+        "tof_days": 500.0,
+        "center": "Sun",
+        "mode": "flyby",
+        "position_tolerance_m": 1000,
+        "velocity_tolerance_m_s": 0.01,
+        "mass_kg": 156,
+        "departure_mode": "bounded_norm",
+        "vinf_max_m_s": 3000,
+        "vinf_vector_m_s": null,
+        "spacecraft": {
+          "thrust_N": 0.025,
+          "exhaust_velocity_m_s": 20000,
+          "dry_mass_kg": 90
+        },
+        "solver": {
+          "budget_s": 30,
+          "compare_seeds": true,
+          "departure_budget_s": 40,
+          "limit_budget_s": 60,
+          "pazov_budget_s": 60,
+          "psi_budget_s": 60,
+          "bounded_attempt_s": 20,
+          "pipeline_pazov_alpha": 0.5,
+          "psi_mass_alpha": 0.5
+        },
+        "lunar": null
+      },
+      "fuel_kg": 16.57820792760679,
+      "verification": {
+        "passed": true,
+        "position_residual_m": 7.312265749885592,
+        "velocity_residual_m_s": 6056.314530013168,
+        "parameter_audit": {
+          "passed": true,
+          "configuration_sha256": "86b00a6f7594b084214c365ada3da42a547eea81036245d31069d6bac5ab060c",
+          "configuration_hash_version": 2,
+          "requested": {
+            "mass_kg": 156,
+            "thrust_N": 0.025,
+            "exhaust_velocity_m_s": 20000,
+            "dry_mass_kg": 90,
+            "launch_tdb": "2029-01-30T00:00:00",
+            "tof_days": 500.0,
+            "departure": "Earth",
+            "target": "Mars",
+            "mode": "flyby"
+          },
+          "recovered_model": {
+            "model_thrust_N": 0.025,
+            "thrust_to_requested_ratio": 1.0,
+            "alpha": 1.0,
+            "beta": 1.0,
+            "variable_mass": true,
+            "hardware_limit_reached": true,
+            "exhaust_velocity_m_s": 19999.999999999996
+          },
+          "geometry": null,
+          "final_admission": true
+        },
+        "trajectory_difference_m": 7.353459483081274,
+        "velocity_difference_m_s": 7.044951904290582e-07,
+        "stored_throttle_error": 0.0,
+        "stored_throttle_minimum": 0.0,
+        "stored_throttle_maximum": 1.0,
+        "canonical_boundary_residual": 9.739302842551404e-11,
+        "method": "LSODA with independent bounded/mass equations",
+        "scope": "Numerical extremal and constraints; no global optimality proof",
+        "departure_norm_m_s": 3000.0000000016207,
+        "switching_sign_violation": 1.7404026807856065e-11,
+        "switching_node_residual": 1.740389450110612e-11,
+        "minimum_mass_kg": 139.4217920723932,
+        "fuel_kg": 16.57820792760679,
+        "mass_difference_kg": 1.5587531265737198e-13,
+        "stored_thrust_error_N": 0.0,
+        "mass_balance_error_kg": 2.4868995751603507e-14
+      },
+      "kiam_verification": {
+        "passed": true,
+        "source": "Unmodified KIAM Astro compiled Fortran equations and published control API",
+        "package_version": "6.1.6",
+        "samples": 100,
+        "maximum_dimensionless_rhs_error": 5.551115123125783e-16,
+        "maximum_dimensionless_force_error": 6.938893903907228e-18,
+        "maximum_third_body_decomposition_error": 0.0,
+        "nbody_gravity": {
+          "passed": true,
+          "applicable": false
+        },
+        "costate_map": "p_r,v(KIAM)=p_r,v/vex; p_m(KIAM)=1+p_m/vex; normalized initial mass=1",
+        "scope": "KIAM central mass-optimal equations/control, plus independent third-body decomposition when present; not a separate global optimization"
+      },
+      "elapsed_s": 2.6171469019609503,
+      "artifact": "runs/search_matrix_v1/earth_mars_flyby_2028/nodes/b3b25d66ead61e52f9c0c1f1/final",
+      "metadata_sha256": "7ddd5ff496d0e1f142e7531325dc9e06ec8392b8c9440f134adf12472ae6c823",
+      "arrays_sha256": "1bc7b91f5a19daf5a53743e13b6140a1377b8e03a5fd7fdef0fad6a1207f6f73",
+      "request": {
+        "operation": "r_transfer",
+        "mission": {
+          "case_id": "earth_mars_flyby_2028",
+          "departure": "Earth",
+          "target": "Mars",
+          "launch_tdb": "2029-01-30T00:00:00",
+          "tof_days": 500.0,
+          "center": "Sun",
+          "mode": "flyby",
+          "position_tolerance_m": 1000,
+          "velocity_tolerance_m_s": 0.01,
+          "mass_kg": 156,
+          "departure_mode": "bounded_norm",
+          "vinf_max_m_s": 3000,
+          "vinf_vector_m_s": null,
+          "spacecraft": {
+            "thrust_N": 0.025,
+            "exhaust_velocity_m_s": 20000,
+            "dry_mass_kg": 90
+          },
+          "solver": {
+            "budget_s": 30,
+            "compare_seeds": true,
+            "departure_budget_s": 40,
+            "limit_budget_s": 60,
+            "pazov_budget_s": 60,
+            "psi_budget_s": 60,
+            "bounded_attempt_s": 20,
+            "pipeline_pazov_alpha": 0.5,
+            "psi_mass_alpha": 0.5
+          },
+          "lunar": null
+        },
+        "budget_s": 240,
+        "reference": {
+          "path": "data/benchmarks/free_time_physical_matrix_v1/earth_mars_flyby_2028/anchor_00/final",
+          "metadata_sha256": "02142cefbd65df8125eac9f5336bd7223c16cef7df020ced960a0a433311efd9",
+          "arrays_sha256": "8e98d4c30ef3efe0520d61956b8c2e33e284a6b5397fae5c2fec0b01cb2f13fe",
+          "mission": {
+            "case_id": "earth_mars_flyby_2028",
+            "departure": "Earth",
+            "target": "Mars",
+            "launch_tdb": "2028-11-01T00:00:00",
+            "tof_days": 500,
+            "center": "Sun",
+            "mode": "flyby",
+            "position_tolerance_m": 1000,
+            "velocity_tolerance_m_s": 0.01,
+            "mass_kg": 156,
+            "departure_mode": "bounded_norm",
+            "vinf_max_m_s": 3000,
+            "vinf_vector_m_s": null,
+            "spacecraft": {
+              "thrust_N": 0.025,
+              "exhaust_velocity_m_s": 20000,
+              "dry_mass_kg": 90
+            },
+            "solver": {
+              "budget_s": 45,
+              "compare_seeds": true,
+              "departure_budget_s": 60,
+              "limit_budget_s": 60,
+              "pazov_budget_s": 90,
+              "psi_budget_s": 120,
+              "bounded_attempt_s": 20,
+              "free_time_budget_s": 120
+            },
+            "lunar": null
+          }
+        }
+      }
+    },
+    "6e0a10cbd8ebc45810d1ef59": {
+      "status": "completed",
+      "phase": "final",
+      "mission": {
+        "case_id": "earth_mars_flyby_2028",
+        "departure": "Earth",
+        "target": "Mars",
+        "launch_tdb": "2029-01-30T00:00:00",
+        "tof_days": 377.6788282703631,
+        "center": "Sun",
+        "mode": "flyby",
+        "position_tolerance_m": 1000,
+        "velocity_tolerance_m_s": 0.01,
+        "mass_kg": 156,
+        "departure_mode": "bounded_norm",
+        "vinf_max_m_s": 3000,
+        "vinf_vector_m_s": null,
+        "spacecraft": {
+          "thrust_N": 0.025,
+          "exhaust_velocity_m_s": 20000,
+          "dry_mass_kg": 90
+        },
+        "solver": {
+          "budget_s": 30,
+          "compare_seeds": true,
+          "departure_budget_s": 40,
+          "limit_budget_s": 60,
+          "pazov_budget_s": 60,
+          "psi_budget_s": 60,
+          "bounded_attempt_s": 20,
+          "pipeline_pazov_alpha": 0.5,
+          "psi_mass_alpha": 0.5
+        },
+        "lunar": null
+      },
+      "fuel_kg": 1.4029320845519306,
+      "verification": {
+        "passed": true,
+        "position_residual_m": 6.4805119979444115,
+        "velocity_residual_m_s": 6764.727537176849,
+        "parameter_audit": {
+          "passed": true,
+          "configuration_sha256": "f7ce0624b1d7736cd15197b7ea95db9a0dbab6e2918a1c07a5c594f463d59259",
+          "configuration_hash_version": 2,
+          "requested": {
+            "mass_kg": 156,
+            "thrust_N": 0.025,
+            "exhaust_velocity_m_s": 20000,
+            "dry_mass_kg": 90,
+            "launch_tdb": "2029-01-30T00:00:00",
+            "tof_days": 377.6788282703631,
+            "departure": "Earth",
+            "target": "Mars",
+            "mode": "flyby"
+          },
+          "recovered_model": {
+            "model_thrust_N": 0.025,
+            "thrust_to_requested_ratio": 1.0,
+            "alpha": 1.0,
+            "beta": 1.0,
+            "variable_mass": true,
+            "hardware_limit_reached": true,
+            "exhaust_velocity_m_s": 19999.999999999996
+          },
+          "geometry": null,
+          "final_admission": true
+        },
+        "trajectory_difference_m": 5.787517103899908,
+        "velocity_difference_m_s": 6.537827654828441e-07,
+        "stored_throttle_error": 0.0,
+        "stored_throttle_minimum": 0.0,
+        "stored_throttle_maximum": 1.0,
+        "canonical_boundary_residual": 5.796738568531529e-11,
+        "method": "LSODA with independent bounded/mass equations",
+        "scope": "Numerical extremal and constraints; no global optimality proof",
+        "departure_norm_m_s": 3000.00000000007,
+        "switching_sign_violation": 1.5612196493367306e-14,
+        "switching_node_residual": 1.5612196493367306e-14,
+        "minimum_mass_kg": 154.59706791544806,
+        "fuel_kg": 1.4029320845519306,
+        "mass_difference_kg": 6.927791673660977e-14,
+        "stored_thrust_error_N": 0.0,
+        "mass_balance_error_kg": 5.684341886080802e-14
+      },
+      "kiam_verification": {
+        "passed": true,
+        "source": "Unmodified KIAM Astro compiled Fortran equations and published control API",
+        "package_version": "6.1.6",
+        "samples": 100,
+        "maximum_dimensionless_rhs_error": 5.551115123125783e-16,
+        "maximum_dimensionless_force_error": 3.469446951953614e-18,
+        "maximum_third_body_decomposition_error": 0.0,
+        "nbody_gravity": {
+          "passed": true,
+          "applicable": false
+        },
+        "costate_map": "p_r,v(KIAM)=p_r,v/vex; p_m(KIAM)=1+p_m/vex; normalized initial mass=1",
+        "scope": "KIAM central mass-optimal equations/control, plus independent third-body decomposition when present; not a separate global optimization"
+      },
+      "elapsed_s": 32.301378189004026,
+      "artifact": "runs/search_matrix_v1/earth_mars_flyby_2028/nodes/6e0a10cbd8ebc45810d1ef59/final",
+      "metadata_sha256": "9563729453678f2e577ff2e58cccd015b7258feb3a274fac1f7926c37fd855fa",
+      "arrays_sha256": "068a73a030eda39a08fc6fe0b84d670172596c232710028dbb5be71fd0e7d104",
+      "request": {
+        "operation": "release",
+        "mission": {
+          "case_id": "earth_mars_flyby_2028",
+          "departure": "Earth",
+          "target": "Mars",
+          "launch_tdb": "2029-01-30T00:00:00",
+          "tof_days": 500.0,
+          "center": "Sun",
+          "mode": "flyby",
+          "position_tolerance_m": 1000,
+          "velocity_tolerance_m_s": 0.01,
+          "mass_kg": 156,
+          "departure_mode": "bounded_norm",
+          "vinf_max_m_s": 3000,
+          "vinf_vector_m_s": null,
+          "spacecraft": {
+            "thrust_N": 0.025,
+            "exhaust_velocity_m_s": 20000,
+            "dry_mass_kg": 90
+          },
+          "solver": {
+            "budget_s": 30,
+            "compare_seeds": true,
+            "departure_budget_s": 40,
+            "limit_budget_s": 60,
+            "pazov_budget_s": 60,
+            "psi_budget_s": 60,
+            "bounded_attempt_s": 20,
+            "pipeline_pazov_alpha": 0.5,
+            "psi_mass_alpha": 0.5
+          },
+          "lunar": null
+        },
+        "budget_s": 90,
+        "reference": null,
+        "parent_artifact": "runs/search_matrix_v1/earth_mars_flyby_2028/nodes/b3b25d66ead61e52f9c0c1f1/final",
+        "parent_sha256": "1bc7b91f5a19daf5a53743e13b6140a1377b8e03a5fd7fdef0fad6a1207f6f73",
+        "bounds_days": [
+          250.0,
+          750.0
+        ]
+      }
+    },
+    "610068a9a502bbbf18a22c2e": {
+      "status": "completed",
+      "phase": "final",
+      "mission": {
+        "case_id": "earth_mars_flyby_2028",
+        "departure": "Earth",
+        "target": "Mars",
+        "launch_tdb": "2028-11-01T00:00:00",
+        "tof_days": 500.0,
+        "center": "Sun",
+        "mode": "flyby",
+        "position_tolerance_m": 1000,
+        "velocity_tolerance_m_s": 0.01,
+        "mass_kg": 156,
+        "departure_mode": "bounded_norm",
+        "vinf_max_m_s": 3000,
+        "vinf_vector_m_s": null,
+        "spacecraft": {
+          "thrust_N": 0.025,
+          "exhaust_velocity_m_s": 20000,
+          "dry_mass_kg": 90
+        },
+        "solver": {
+          "budget_s": 30,
+          "compare_seeds": true,
+          "departure_budget_s": 40,
+          "limit_budget_s": 60,
+          "pazov_budget_s": 60,
+          "psi_budget_s": 60,
+          "bounded_attempt_s": 20,
+          "pipeline_pazov_alpha": 0.7,
+          "psi_mass_alpha": 0.7
+        },
+        "lunar": null
+      },
+      "fuel_kg": 17.509634215795035,
+      "verification": {
+        "passed": true,
+        "position_residual_m": 3.382212511523136,
+        "velocity_residual_m_s": 4187.087832540117,
+        "parameter_audit": {
+          "passed": true,
+          "configuration_sha256": "c68bdd7bb3d110f9cfb2c5882f3ea79538de315257144d98ef01e1c1b70740b3",
+          "configuration_hash_version": 2,
+          "requested": {
+            "mass_kg": 156,
+            "thrust_N": 0.025,
+            "exhaust_velocity_m_s": 20000,
+            "dry_mass_kg": 90,
+            "launch_tdb": "2028-11-01T00:00:00",
+            "tof_days": 500.0,
+            "departure": "Earth",
+            "target": "Mars",
+            "mode": "flyby"
+          },
+          "recovered_model": {
+            "model_thrust_N": 0.025,
+            "thrust_to_requested_ratio": 1.0,
+            "alpha": 1.0,
+            "beta": 1.0,
+            "variable_mass": true,
+            "hardware_limit_reached": true,
+            "exhaust_velocity_m_s": 20000.0
+          },
+          "geometry": null,
+          "final_admission": true
+        },
+        "trajectory_difference_m": 3.3835757081186832,
+        "velocity_difference_m_s": 3.5314161730451056e-07,
+        "stored_throttle_error": 0.0,
+        "stored_throttle_minimum": 0.0,
+        "stored_throttle_maximum": 1.0,
+        "canonical_boundary_residual": 8.644850749940256e-11,
+        "method": "LSODA with independent bounded/mass equations",
+        "scope": "Numerical extremal and constraints; no global optimality proof",
+        "departure_norm_m_s": 2999.999999999982,
+        "switching_sign_violation": 1.5644302283026644e-11,
+        "switching_node_residual": 1.564417194751096e-11,
+        "minimum_mass_kg": 138.49036578420495,
+        "fuel_kg": 17.509634215795035,
+        "mass_difference_kg": 1.5587531265737198e-13,
+        "stored_thrust_error_N": 0.0,
+        "mass_balance_error_kg": 1.3855583347321954e-13
+      },
+      "kiam_verification": {
+        "passed": true,
+        "source": "Unmodified KIAM Astro compiled Fortran equations and published control API",
+        "package_version": "6.1.6",
+        "samples": 101,
+        "maximum_dimensionless_rhs_error": 4.718447854656915e-16,
+        "maximum_dimensionless_force_error": 6.938893903907228e-18,
+        "maximum_third_body_decomposition_error": 0.0,
+        "nbody_gravity": {
+          "passed": true,
+          "applicable": false
+        },
+        "costate_map": "p_r,v(KIAM)=p_r,v/vex; p_m(KIAM)=1+p_m/vex; normalized initial mass=1",
+        "scope": "KIAM central mass-optimal equations/control, plus independent third-body decomposition when present; not a separate global optimization"
+      },
+      "elapsed_s": 0.17759704601485282,
+      "artifact": "runs/search_matrix_v1/earth_mars_flyby_2028/nodes/610068a9a502bbbf18a22c2e/final",
+      "metadata_sha256": "ecf681c9f3b0c715a553d8b90fb6cc2c863aae65afd94c82a1620bdcf762e6e2",
+      "arrays_sha256": "8e98d4c30ef3efe0520d61956b8c2e33e284a6b5397fae5c2fec0b01cb2f13fe",
+      "request": {
+        "operation": "reference",
+        "mission": {
+          "case_id": "earth_mars_flyby_2028",
+          "departure": "Earth",
+          "target": "Mars",
+          "launch_tdb": "2028-11-01T00:00:00",
+          "tof_days": 500.0,
+          "center": "Sun",
+          "mode": "flyby",
+          "position_tolerance_m": 1000,
+          "velocity_tolerance_m_s": 0.01,
+          "mass_kg": 156,
+          "departure_mode": "bounded_norm",
+          "vinf_max_m_s": 3000,
+          "vinf_vector_m_s": null,
+          "spacecraft": {
+            "thrust_N": 0.025,
+            "exhaust_velocity_m_s": 20000,
+            "dry_mass_kg": 90
+          },
+          "solver": {
+            "budget_s": 30,
+            "compare_seeds": true,
+            "departure_budget_s": 40,
+            "limit_budget_s": 60,
+            "pazov_budget_s": 60,
+            "psi_budget_s": 60,
+            "bounded_attempt_s": 20,
+            "pipeline_pazov_alpha": 0.7,
+            "psi_mass_alpha": 0.7
+          },
+          "lunar": null
+        },
+        "budget_s": 240,
+        "reference": {
+          "path": "data/benchmarks/free_time_physical_matrix_v1/earth_mars_flyby_2028/anchor_00/final",
+          "metadata_sha256": "02142cefbd65df8125eac9f5336bd7223c16cef7df020ced960a0a433311efd9",
+          "arrays_sha256": "8e98d4c30ef3efe0520d61956b8c2e33e284a6b5397fae5c2fec0b01cb2f13fe",
+          "mission": {
+            "case_id": "earth_mars_flyby_2028",
+            "departure": "Earth",
+            "target": "Mars",
+            "launch_tdb": "2028-11-01T00:00:00",
+            "tof_days": 500,
+            "center": "Sun",
+            "mode": "flyby",
+            "position_tolerance_m": 1000,
+            "velocity_tolerance_m_s": 0.01,
+            "mass_kg": 156,
+            "departure_mode": "bounded_norm",
+            "vinf_max_m_s": 3000,
+            "vinf_vector_m_s": null,
+            "spacecraft": {
+              "thrust_N": 0.025,
+              "exhaust_velocity_m_s": 20000,
+              "dry_mass_kg": 90
+            },
+            "solver": {
+              "budget_s": 45,
+              "compare_seeds": true,
+              "departure_budget_s": 60,
+              "limit_budget_s": 60,
+              "pazov_budget_s": 90,
+              "psi_budget_s": 120,
+              "bounded_attempt_s": 20,
+              "free_time_budget_s": 120
+            },
+            "lunar": null
+          }
+        }
+      }
+    }
+  },
+  "edges": [
+    {
+      "parent": null,
+      "child": "1a9aa7be8cde7ec9fcebcac1",
+      "operation": "reference",
+      "cache_hit": false
+    },
+    {
+      "parent": "1a9aa7be8cde7ec9fcebcac1",
+      "child": "0c413c7a4640904225f52a14",
+      "operation": "release",
+      "cache_hit": false
+    },
+    {
+      "parent": null,
+      "child": "1a9aa7be8cde7ec9fcebcac1",
+      "operation": "reference",
+      "cache_hit": true
+    },
+    {
+      "parent": null,
+      "child": "7f8ceb2edb724b578a63c028",
+      "operation": "cold",
+      "cache_hit": false
+    },
+    {
+      "parent": "7f8ceb2edb724b578a63c028",
+      "child": "9309d596e20f8b04ffcedb81",
+      "operation": "release",
+      "cache_hit": false
+    },
+    {
+      "parent": null,
+      "child": "b3b25d66ead61e52f9c0c1f1",
+      "operation": "r_transfer",
+      "cache_hit": false
+    },
+    {
+      "parent": "b3b25d66ead61e52f9c0c1f1",
+      "child": "6e0a10cbd8ebc45810d1ef59",
+      "operation": "release",
+      "cache_hit": false
+    },
+    {
+      "parent": null,
+      "child": "1a9aa7be8cde7ec9fcebcac1",
+      "operation": "reference",
+      "cache_hit": true
+    },
+    {
+      "parent": null,
+      "child": "7f8ceb2edb724b578a63c028",
+      "operation": "cold",
+      "cache_hit": true
+    },
+    {
+      "parent": "7f8ceb2edb724b578a63c028",
+      "child": "9309d596e20f8b04ffcedb81",
+      "operation": "release",
+      "cache_hit": true
+    },
+    {
+      "parent": null,
+      "child": "7f8ceb2edb724b578a63c028",
+      "operation": "cold",
+      "cache_hit": true
+    },
+    {
+      "parent": null,
+      "child": "610068a9a502bbbf18a22c2e",
+      "operation": "reference",
+      "cache_hit": false
+    }
+  ],
+  "generations": [
+    {
+      "population": [
+        [
+          0,
+          0,
+          0,
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          1,
+          0,
+          1,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          1,
+          1
+        ]
+      ],
+      "results": [
+        {
+          "genome": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            1
+          ],
+          "fixed_node": "1a9aa7be8cde7ec9fcebcac1",
+          "terminal_node": "0c413c7a4640904225f52a14",
+          "retained_node": "0c413c7a4640904225f52a14",
+          "score": [
+            1,
+            -0.38603693799352357,
+            -2.8542646297548093,
+            -306.9815310032382
+          ]
+        },
+        {
+          "genome": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "fixed_node": "1a9aa7be8cde7ec9fcebcac1",
+          "terminal_node": "1a9aa7be8cde7ec9fcebcac1",
+          "retained_node": "1a9aa7be8cde7ec9fcebcac1",
+          "score": [
+            1,
+            -0.0,
+            -17.509634215795035,
+            -500.0
+          ]
+        },
+        {
+          "genome": [
+            0,
+            0,
+            1,
+            0,
+            1,
+            0
+          ],
+          "fixed_node": "7f8ceb2edb724b578a63c028",
+          "terminal_node": "9309d596e20f8b04ffcedb81",
+          "retained_node": "9309d596e20f8b04ffcedb81",
+          "score": [
+            1,
+            -2.3860868107753035,
+            -1.4299331521282417,
+            -306.95659461234834
+          ]
+        },
+        {
+          "genome": [
+            1,
+            0,
+            0,
+            0,
+            1,
+            1
+          ],
+          "fixed_node": "b3b25d66ead61e52f9c0c1f1",
+          "terminal_node": "6e0a10cbd8ebc45810d1ef59",
+          "retained_node": "6e0a10cbd8ebc45810d1ef59",
+          "score": [
+            1,
+            -0.49121768592502724,
+            -1.4029320845519306,
+            -377.6788282703631
+          ]
+        }
+      ],
+      "origin": "history_and_exploration"
+    },
+    {
+      "population": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          1,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          2,
+          0,
+          1
+        ]
+      ],
+      "results": [
+        {
+          "genome": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "fixed_node": "1a9aa7be8cde7ec9fcebcac1",
+          "terminal_node": "1a9aa7be8cde7ec9fcebcac1",
+          "retained_node": "1a9aa7be8cde7ec9fcebcac1",
+          "score": [
+            1,
+            -0.0,
+            -17.509634215795035,
+            -500.0
+          ]
+        },
+        {
+          "genome": [
+            0,
+            0,
+            1,
+            0,
+            1,
+            0
+          ],
+          "fixed_node": "7f8ceb2edb724b578a63c028",
+          "terminal_node": "9309d596e20f8b04ffcedb81",
+          "retained_node": "9309d596e20f8b04ffcedb81",
+          "score": [
+            1,
+            -2.3860868107753035,
+            -1.4299331521282417,
+            -306.95659461234834
+          ]
+        },
+        {
+          "genome": [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "fixed_node": "7f8ceb2edb724b578a63c028",
+          "terminal_node": "7f8ceb2edb724b578a63c028",
+          "retained_node": "7f8ceb2edb724b578a63c028",
+          "score": [
+            1,
+            -2.0,
+            -8.625263260523226,
+            -500.0
+          ]
+        },
+        {
+          "genome": [
+            0,
+            0,
+            0,
+            2,
+            0,
+            1
+          ],
+          "fixed_node": "610068a9a502bbbf18a22c2e",
+          "terminal_node": "610068a9a502bbbf18a22c2e",
+          "retained_node": "610068a9a502bbbf18a22c2e",
+          "score": [
+            1,
+            -0.0,
+            -17.509634215795035,
+            -500.0
+          ]
+        }
+      ],
+      "origin": [
+        {
+          "kind": "elite",
+          "parents": [
+            1
+          ]
+        },
+        {
+          "kind": "crossover_mutation",
+          "parents": [
+            1,
+            0
+          ],
+          "mutation_axis": 2
+        },
+        {
+          "kind": "crossover_mutation",
+          "parents": [
+            1,
+            1
+          ],
+          "mutation_axis": 2
+        },
+        {
+          "kind": "crossover_mutation",
+          "parents": [
+            0,
+            1
+          ],
+          "mutation_axis": 3
+        }
+      ]
+    }
+  ],
+  "solutions": [
+    {
+      "node": "1a9aa7be8cde7ec9fcebcac1",
+      "artifact": "runs/search_matrix_v1/earth_mars_flyby_2028/nodes/1a9aa7be8cde7ec9fcebcac1/final",
+      "changes": {},
+      "original_conditions": true,
+      "objectives": [
+        0.0,
+        17.509634215795035,
+        500.0
+      ]
+    },
+    {
+      "node": "0c413c7a4640904225f52a14",
+      "artifact": "runs/search_matrix_v1/earth_mars_flyby_2028/nodes/0c413c7a4640904225f52a14/final",
+      "changes": {
+        "tof_days": {
+          "requested": 500.0,
+          "actual": 306.9815310032382
+        }
+      },
+      "original_conditions": false,
+      "objectives": [
+        0.38603693799352357,
+        2.8542646297548093,
+        306.9815310032382
+      ]
+    },
+    {
+      "node": "7f8ceb2edb724b578a63c028",
+      "artifact": "runs/search_matrix_v1/earth_mars_flyby_2028/nodes/7f8ceb2edb724b578a63c028/final",
+      "changes": {
+        "spacecraft": {
+          "requested": {
+            "thrust_N": 0.025,
+            "exhaust_velocity_m_s": 20000.0,
+            "dry_mass_kg": 90.0
+          },
+          "actual": {
+            "thrust_N": 0.05,
+            "exhaust_velocity_m_s": 40000.0,
+            "dry_mass_kg": 90.0
+          }
+        }
+      },
+      "original_conditions": false,
+      "objectives": [
+        2.0,
+        8.625263260523226,
+        500.0
+      ]
+    },
+    {
+      "node": "9309d596e20f8b04ffcedb81",
+      "artifact": "runs/search_matrix_v1/earth_mars_flyby_2028/nodes/9309d596e20f8b04ffcedb81/final",
+      "changes": {
+        "tof_days": {
+          "requested": 500.0,
+          "actual": 306.95659461234834
+        },
+        "spacecraft": {
+          "requested": {
+            "thrust_N": 0.025,
+            "exhaust_velocity_m_s": 20000.0,
+            "dry_mass_kg": 90.0
+          },
+          "actual": {
+            "thrust_N": 0.05,
+            "exhaust_velocity_m_s": 40000.0,
+            "dry_mass_kg": 90.0
+          }
+        }
+      },
+      "original_conditions": false,
+      "objectives": [
+        2.3860868107753035,
+        1.4299331521282417,
+        306.95659461234834
+      ]
+    },
+    {
+      "node": "b3b25d66ead61e52f9c0c1f1",
+      "artifact": "runs/search_matrix_v1/earth_mars_flyby_2028/nodes/b3b25d66ead61e52f9c0c1f1/final",
+      "changes": {
+        "launch_tdb": {
+          "requested": "2028-11-01T00:00:00",
+          "actual": "2029-01-30T00:00:00"
+        }
+      },
+      "original_conditions": false,
+      "objectives": [
+        0.2465753424657534,
+        16.57820792760679,
+        500.0
+      ]
+    },
+    {
+      "node": "6e0a10cbd8ebc45810d1ef59",
+      "artifact": "runs/search_matrix_v1/earth_mars_flyby_2028/nodes/6e0a10cbd8ebc45810d1ef59/final",
+      "changes": {
+        "launch_tdb": {
+          "requested": "2028-11-01T00:00:00",
+          "actual": "2029-01-30T00:00:00"
+        },
+        "tof_days": {
+          "requested": 500.0,
+          "actual": 377.6788282703631
+        }
+      },
+      "original_conditions": false,
+      "objectives": [
+        0.49121768592502724,
+        1.4029320845519306,
+        377.6788282703631
+      ]
+    },
+    {
+      "node": "610068a9a502bbbf18a22c2e",
+      "artifact": "runs/search_matrix_v1/earth_mars_flyby_2028/nodes/610068a9a502bbbf18a22c2e/final",
+      "changes": {},
+      "original_conditions": true,
+      "objectives": [
+        0.0,
+        17.509634215795035,
+        500.0
+      ]
+    }
+  ],
+  "pareto": [
+    {
+      "node": "1a9aa7be8cde7ec9fcebcac1",
+      "artifact": "runs/search_matrix_v1/earth_mars_flyby_2028/nodes/1a9aa7be8cde7ec9fcebcac1/final",
+      "changes": {},
+      "original_conditions": true,
+      "objectives": [
+        0.0,
+        17.509634215795035,
+        500.0
+      ]
+    },
+    {
+      "node": "0c413c7a4640904225f52a14",
+      "artifact": "runs/search_matrix_v1/earth_mars_flyby_2028/nodes/0c413c7a4640904225f52a14/final",
+      "changes": {
+        "tof_days": {
+          "requested": 500.0,
+          "actual": 306.9815310032382
+        }
+      },
+      "original_conditions": false,
+      "objectives": [
+        0.38603693799352357,
+        2.8542646297548093,
+        306.9815310032382
+      ]
+    },
+    {
+      "node": "9309d596e20f8b04ffcedb81",
+      "artifact": "runs/search_matrix_v1/earth_mars_flyby_2028/nodes/9309d596e20f8b04ffcedb81/final",
+      "changes": {
+        "tof_days": {
+          "requested": 500.0,
+          "actual": 306.95659461234834
+        },
+        "spacecraft": {
+          "requested": {
+            "thrust_N": 0.025,
+            "exhaust_velocity_m_s": 20000.0,
+            "dry_mass_kg": 90.0
+          },
+          "actual": {
+            "thrust_N": 0.05,
+            "exhaust_velocity_m_s": 40000.0,
+            "dry_mass_kg": 90.0
+          }
+        }
+      },
+      "original_conditions": false,
+      "objectives": [
+        2.3860868107753035,
+        1.4299331521282417,
+        306.95659461234834
+      ]
+    },
+    {
+      "node": "b3b25d66ead61e52f9c0c1f1",
+      "artifact": "runs/search_matrix_v1/earth_mars_flyby_2028/nodes/b3b25d66ead61e52f9c0c1f1/final",
+      "changes": {
+        "launch_tdb": {
+          "requested": "2028-11-01T00:00:00",
+          "actual": "2029-01-30T00:00:00"
+        }
+      },
+      "original_conditions": false,
+      "objectives": [
+        0.2465753424657534,
+        16.57820792760679,
+        500.0
+      ]
+    },
+    {
+      "node": "6e0a10cbd8ebc45810d1ef59",
+      "artifact": "runs/search_matrix_v1/earth_mars_flyby_2028/nodes/6e0a10cbd8ebc45810d1ef59/final",
+      "changes": {
+        "launch_tdb": {
+          "requested": "2028-11-01T00:00:00",
+          "actual": "2029-01-30T00:00:00"
+        },
+        "tof_days": {
+          "requested": 500.0,
+          "actual": 377.6788282703631
+        }
+      },
+      "original_conditions": false,
+      "objectives": [
+        0.49121768592502724,
+        1.4029320845519306,
+        377.6788282703631
+      ]
+    },
+    {
+      "node": "610068a9a502bbbf18a22c2e",
+      "artifact": "runs/search_matrix_v1/earth_mars_flyby_2028/nodes/610068a9a502bbbf18a22c2e/final",
+      "changes": {},
+      "original_conditions": true,
+      "objectives": [
+        0.0,
+        17.509634215795035,
+        500.0
+      ]
+    }
+  ],
+  "elapsed_s": 108.268992527097,
+  "status": "finished"
+}

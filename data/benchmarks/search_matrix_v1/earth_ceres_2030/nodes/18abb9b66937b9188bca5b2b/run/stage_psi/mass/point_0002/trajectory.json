@@ -1,0 +1,259 @@
+{
+  "case_id": "earth_ceres_2030",
+  "epoch_jd": 2462443.5,
+  "time_scale": "TDB",
+  "center": "Sun",
+  "frame": "ECLIPJ2000",
+  "model": "Pazov bounded acceleration / mass homotopy",
+  "status": "verified_extremal",
+  "stage": "psi_mass",
+  "mission": {
+    "case_id": "earth_ceres_2030",
+    "departure": "Earth",
+    "target": "Ceres",
+    "launch_tdb": "2029-11-03T00:00:00",
+    "tof_days": 1200.0,
+    "center": "Sun",
+    "mode": "rendezvous",
+    "position_tolerance_m": 1000,
+    "velocity_tolerance_m_s": 0.01,
+    "mass_kg": 156,
+    "departure_mode": "bounded_norm",
+    "vinf_max_m_s": 3000,
+    "vinf_vector_m_s": null,
+    "spacecraft": {
+      "thrust_N": 0.05,
+      "exhaust_velocity_m_s": 40000,
+      "dry_mass_kg": 90
+    },
+    "solver": {
+      "budget_s": 30,
+      "compare_seeds": true,
+      "departure_budget_s": 40,
+      "limit_budget_s": 60,
+      "pazov_budget_s": 60,
+      "psi_budget_s": 60,
+      "bounded_attempt_s": 20,
+      "pipeline_pazov_alpha": 0.5,
+      "psi_mass_alpha": 0.5
+    },
+    "lunar": null
+  },
+  "scales": {
+    "distance_m": 148413710129.3936,
+    "mu_m3_s2": 1.32712440018e+20
+  },
+  "initial_state_si": [
+    112962904634.42593,
+    96260124066.89832,
+    -6749118.647702969,
+    -21732.548403918965,
+    24747.659980359862,
+    752.6974644190451
+  ],
+  "target_state_si": [
+    -201779783179.7307,
+    -355981540253.75836,
+    25786889538.13773,
+    14648.130528705879,
+    -10145.30993276,
+    -3020.77015746376
+  ],
+  "costate_convention": "dimensionless [p_r,p_v,p_m] for normalized remaining mass",
+  "costates_initial": [
+    0.08388681475938822,
+    0.07294611087294936,
+    -0.0521012449989203,
+    -0.07706786243977531,
+    0.08689230854285597,
+    0.030166573274663117,
+    -0.027434810525657508
+  ],
+  "functional_dimensionless": 0.04258358962102057,
+  "chosen_seed": {
+    "source": "ILTT",
+    "lambda_turns": 1.5269952271845175,
+    "kappa": 2.7878418765472976,
+    "route": "shooting",
+    "independent_check": {
+      "position_residual_m": 20.466015491822947,
+      "velocity_residual_m_s": 1.505682877991808e-06,
+      "free_velocity_transversality": 0.022103618621616146,
+      "difference_r_m": 47.782771378020854,
+      "difference_v_m_s": 2.699791726330283e-06
+    },
+    "nfev": 9,
+    "integrations": 9,
+    "optimizer_success": true,
+    "residual_norm": 9.29725115406529e-14,
+    "position_residual_m": 21.465350037664862,
+    "velocity_residual_m_s": 1.072189976527508e-06,
+    "free_velocity_transversality": 0.022103618621280446,
+    "accepted": true
+  },
+  "title": "Earth → Ceres: ограниченное ускорение",
+  "ephemerides": {
+    "Earth": {
+      "body": "earth",
+      "start_jd": 2287184.5,
+      "stop_jd": 2688976.5,
+      "source": "KIAM 6.1.6 / bundled JPLEPH",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "center": "requested",
+      "interpolation": "KIAM native ephemeris",
+      "representation": "body center"
+    },
+    "Ceres": {
+      "body": "ceres",
+      "source": "https://ssd.jpl.nasa.gov/api/horizons.api",
+      "parameters": {
+        "format": "json",
+        "COMMAND": "'1;'",
+        "CENTER": "'500@10'",
+        "EPHEM_TYPE": "'VECTORS'",
+        "REF_PLANE": "'ECLIPTIC'",
+        "REF_SYSTEM": "'ICRF'",
+        "OUT_UNITS": "'KM-S'",
+        "VEC_CORR": "'NONE'",
+        "CSV_FORMAT": "'YES'",
+        "VEC_TABLE": "'2'",
+        "TIME_TYPE": "'TDB'",
+        "OBJ_DATA": "'YES'",
+        "START_TIME": "'2028-01-01'",
+        "STOP_TIME": "'2035-01-01'",
+        "STEP_SIZE": "'12 h'"
+      },
+      "center": "Sun",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "units": "m,m/s",
+      "start_jd": 2461771.5,
+      "stop_jd": 2464328.5,
+      "knots": 5115,
+      "max_step_days": 0.5,
+      "interpolation": "cubic Hermite, position and velocity from the same polynomial",
+      "arrays_sha256": "2b6ac907853d726b865b01d10a953907cbb203aa87356dfabc33d3114b686749",
+      "raw_sha256": "a5af177b8a121a4c8e19914da131159da1ec3b124411a6548676c6c68e6aea8c"
+    }
+  },
+  "overlays": [
+    {
+      "array": "departure_orbit_m",
+      "label": "Орбита Earth"
+    },
+    {
+      "array": "target_orbit_m",
+      "label": "Орбита Ceres",
+      "linestyle": "-.",
+      "color": ".65"
+    }
+  ],
+  "markers": [
+    {
+      "label": "Earth, старт",
+      "r_m": [
+        112962904634.42593,
+        96260124066.89832,
+        -6749118.647702968
+      ]
+    },
+    {
+      "label": "Earth, прибытие",
+      "r_m": [
+        -122706648883.47963,
+        82294183015.4929,
+        -4764020.744215956
+      ],
+      "hollow": true
+    },
+    {
+      "label": "Ceres",
+      "r_m": [
+        -201779783179.7307,
+        -355981540253.75836,
+        25786889538.13773
+      ],
+      "color": "#df1111",
+      "role": "target"
+    }
+  ],
+  "configuration_sha256": "d173e91f05f437009fcce63795f1f9f9e8e28c8eb405072a6e9450bd5eb2a93f",
+  "configuration_hash_version": 2,
+  "verification": {
+    "passed": true,
+    "position_residual_m": 601.8582696025389,
+    "velocity_residual_m_s": 3.6444481504454423e-05,
+    "parameter_audit": {
+      "passed": true,
+      "configuration_sha256": "d173e91f05f437009fcce63795f1f9f9e8e28c8eb405072a6e9450bd5eb2a93f",
+      "configuration_hash_version": 2,
+      "requested": {
+        "mass_kg": 156,
+        "thrust_N": 0.05,
+        "exhaust_velocity_m_s": 40000,
+        "dry_mass_kg": 90,
+        "launch_tdb": "2029-11-03T00:00:00",
+        "tof_days": 1200.0,
+        "departure": "Earth",
+        "target": "Ceres",
+        "mode": "rendezvous"
+      },
+      "recovered_model": {
+        "model_thrust_N": 0.05,
+        "thrust_to_requested_ratio": 1.0,
+        "alpha": 0.125,
+        "beta": 0.6000000000000001,
+        "variable_mass": true,
+        "hardware_limit_reached": true,
+        "exhaust_velocity_m_s": 40000.0
+      },
+      "geometry": null,
+      "final_admission": false
+    },
+    "trajectory_difference_m": 601.8582696025389,
+    "velocity_difference_m_s": 3.6444481504454423e-05,
+    "stored_throttle_error": 0.0,
+    "stored_throttle_minimum": 0.0,
+    "stored_throttle_maximum": 0.8978023740757558,
+    "canonical_boundary_residual": 4.234491721842981e-09,
+    "method": "LSODA with independent bounded/mass equations",
+    "scope": "Numerical extremal and constraints; no global optimality proof",
+    "departure_norm_m_s": 3000.0000000000005,
+    "minimum_mass_kg": 133.92057654524413
+  },
+  "schema_version": 1,
+  "arrays_sha256": "539cc2119520bc4ccf5a75ef991e2e39b28061974b908cfc1e801929e41ded6b",
+  "departure": {
+    "mode": "bounded_norm",
+    "bound_active": true,
+    "vector_m_s": [
+      -1926.7132292714487,
+      2172.326506684738,
+      754.1708563086155
+    ],
+    "norm_m_s": 3000.0000000000005,
+    "bound_m_s": 3000
+  },
+  "bounded_model": {
+    "a_max": 0.05319634768076462,
+    "alpha": 0.125,
+    "beta": 0.6000000000000001,
+    "q": 0.03976863003956065,
+    "variable_mass": true,
+    "gravity_spec": null
+  },
+  "body_initial_state_si": [
+    112962904634.42593,
+    96260124066.89832,
+    -6749118.647702969,
+    -19805.835174647516,
+    22575.333473675124,
+    -1.4733918895703937
+  ],
+  "hardware_limit_reached": true,
+  "collocation_tolerance": 2e-09,
+  "collocation_derivatives": "analytic central-field",
+  "collocation_nodes": 2196,
+  "collocation_iterations": 6
+}

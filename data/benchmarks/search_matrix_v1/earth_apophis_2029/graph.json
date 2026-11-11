@@ -1,0 +1,1421 @@
+{
+  "nodes": {
+    "4801b96f480e5a1eb4a9f01d": {
+      "status": "completed",
+      "phase": "final",
+      "mission": {
+        "case_id": "earth_apophis_2029",
+        "departure": "Earth",
+        "target": "Apophis",
+        "launch_tdb": "2029-02-14T12:00:00",
+        "tof_days": 422.6618015373437,
+        "center": "Sun",
+        "mode": "rendezvous",
+        "position_tolerance_m": 1000,
+        "velocity_tolerance_m_s": 0.01,
+        "mass_kg": 156,
+        "departure_mode": "bounded_norm",
+        "vinf_max_m_s": 3000,
+        "vinf_vector_m_s": null,
+        "spacecraft": {
+          "thrust_N": 0.025,
+          "exhaust_velocity_m_s": 20000,
+          "dry_mass_kg": 90
+        },
+        "solver": {
+          "budget_s": 30,
+          "compare_seeds": true,
+          "departure_budget_s": 40,
+          "limit_budget_s": 60,
+          "pazov_budget_s": 60,
+          "psi_budget_s": 60,
+          "bounded_attempt_s": 20,
+          "pipeline_pazov_alpha": 0.5,
+          "psi_mass_alpha": 0.5
+        },
+        "lunar": null
+      },
+      "fuel_kg": 18.640351096134413,
+      "verification": {
+        "passed": true,
+        "position_residual_m": 0.9148963366085348,
+        "velocity_residual_m_s": 1.1423351960473132e-07,
+        "parameter_audit": {
+          "passed": true,
+          "configuration_sha256": "6f3b994664f8787458e80d26fdbff449a93a01cb9da57a2db1322883b36fb739",
+          "configuration_hash_version": 2,
+          "requested": {
+            "mass_kg": 156,
+            "thrust_N": 0.025,
+            "exhaust_velocity_m_s": 20000,
+            "dry_mass_kg": 90,
+            "launch_tdb": "2029-02-14T12:00:00",
+            "tof_days": 422.6618015373437,
+            "departure": "Earth",
+            "target": "Apophis",
+            "mode": "rendezvous"
+          },
+          "recovered_model": {
+            "model_thrust_N": 0.025,
+            "thrust_to_requested_ratio": 1.0,
+            "alpha": 1.0,
+            "beta": 1.0,
+            "variable_mass": true,
+            "hardware_limit_reached": true,
+            "exhaust_velocity_m_s": 20000.0
+          },
+          "geometry": null,
+          "final_admission": true
+        },
+        "trajectory_difference_m": 0.9231028664114586,
+        "velocity_difference_m_s": 1.4088967145874956e-07,
+        "stored_throttle_error": 0.0,
+        "stored_throttle_minimum": 0.0,
+        "stored_throttle_maximum": 1.0,
+        "canonical_boundary_residual": 7.2754525538562214e-12,
+        "method": "LSODA with independent bounded/mass equations",
+        "scope": "Numerical extremal and constraints; no global optimality proof",
+        "departure_norm_m_s": 3000.000000000022,
+        "switching_sign_violation": 8.68529754244513e-12,
+        "switching_node_residual": 8.68529754244513e-12,
+        "minimum_mass_kg": 137.35964890386558,
+        "fuel_kg": 18.640351096134413,
+        "mass_difference_kg": 6.927791673660977e-14,
+        "stored_thrust_error_N": 0.0,
+        "mass_balance_error_kg": 5.684341886080802e-14
+      },
+      "kiam_verification": {
+        "passed": true,
+        "source": "Unmodified KIAM Astro compiled Fortran equations and published control API",
+        "package_version": "6.1.6",
+        "samples": 101,
+        "maximum_dimensionless_rhs_error": 7.771561172376096e-16,
+        "maximum_dimensionless_force_error": 6.938893903907228e-18,
+        "maximum_third_body_decomposition_error": 0.0,
+        "nbody_gravity": {
+          "passed": true,
+          "applicable": false
+        },
+        "costate_map": "p_r,v(KIAM)=p_r,v/vex; p_m(KIAM)=1+p_m/vex; normalized initial mass=1",
+        "scope": "KIAM central mass-optimal equations/control, plus independent third-body decomposition when present; not a separate global optimization"
+      },
+      "elapsed_s": 0.2732414199854247,
+      "artifact": "runs/search_matrix_v1/earth_apophis_2029/nodes/4801b96f480e5a1eb4a9f01d/final",
+      "metadata_sha256": "f1d9ff75c74d6be0c7815b4297b4ff424f2459b6fc9dfca2397fa683d59e973f",
+      "arrays_sha256": "28ad1802aace565d9a6118d034cc37ebf859a31c9d7eb8ce651c4eaa9d717aaa",
+      "request": {
+        "operation": "reference",
+        "mission": {
+          "case_id": "earth_apophis_2029",
+          "departure": "Earth",
+          "target": "Apophis",
+          "launch_tdb": "2029-02-14T12:00:00",
+          "tof_days": 422.6618015373437,
+          "center": "Sun",
+          "mode": "rendezvous",
+          "position_tolerance_m": 1000,
+          "velocity_tolerance_m_s": 0.01,
+          "mass_kg": 156,
+          "departure_mode": "bounded_norm",
+          "vinf_max_m_s": 3000,
+          "vinf_vector_m_s": null,
+          "spacecraft": {
+            "thrust_N": 0.025,
+            "exhaust_velocity_m_s": 20000,
+            "dry_mass_kg": 90
+          },
+          "solver": {
+            "budget_s": 30,
+            "compare_seeds": true,
+            "departure_budget_s": 40,
+            "limit_budget_s": 60,
+            "pazov_budget_s": 60,
+            "psi_budget_s": 60,
+            "bounded_attempt_s": 20,
+            "pipeline_pazov_alpha": 0.5,
+            "psi_mass_alpha": 0.5
+          },
+          "lunar": null
+        },
+        "budget_s": 240,
+        "reference": {
+          "path": "data/benchmarks/free_time_physical_matrix_v1/earth_apophis_2029/anchor_00/final",
+          "metadata_sha256": "6013d445766a762fc0c6a4f2d2b1a974fed2d5052ae5ba536f7b34bb43ffb102",
+          "arrays_sha256": "28ad1802aace565d9a6118d034cc37ebf859a31c9d7eb8ce651c4eaa9d717aaa",
+          "mission": {
+            "case_id": "earth_apophis_2029",
+            "departure": "Earth",
+            "target": "Apophis",
+            "launch_tdb": "2029-02-14T12:00:00",
+            "tof_days": 422.6618015373437,
+            "center": "Sun",
+            "mode": "rendezvous",
+            "position_tolerance_m": 1000,
+            "velocity_tolerance_m_s": 0.01,
+            "mass_kg": 156,
+            "departure_mode": "bounded_norm",
+            "vinf_max_m_s": 3000,
+            "vinf_vector_m_s": null,
+            "spacecraft": {
+              "thrust_N": 0.025,
+              "exhaust_velocity_m_s": 20000,
+              "dry_mass_kg": 90
+            },
+            "solver": {
+              "budget_s": 45,
+              "compare_seeds": true,
+              "departure_budget_s": 60,
+              "limit_budget_s": 60,
+              "pazov_budget_s": 90,
+              "psi_budget_s": 120,
+              "bounded_attempt_s": 20,
+              "free_time_budget_s": 120
+            },
+            "lunar": null
+          }
+        }
+      }
+    },
+    "89bfa20c65fee8fc23e4c957": {
+      "status": "completed",
+      "phase": "final",
+      "mission": {
+        "case_id": "earth_apophis_2029",
+        "departure": "Earth",
+        "target": "Apophis",
+        "launch_tdb": "2029-02-14T12:00:00",
+        "tof_days": 422.6618015373437,
+        "center": "Sun",
+        "mode": "rendezvous",
+        "position_tolerance_m": 1000,
+        "velocity_tolerance_m_s": 0.01,
+        "mass_kg": 156,
+        "departure_mode": "bounded_norm",
+        "vinf_max_m_s": 3000,
+        "vinf_vector_m_s": null,
+        "spacecraft": {
+          "thrust_N": 0.025,
+          "exhaust_velocity_m_s": 20000,
+          "dry_mass_kg": 90
+        },
+        "solver": {
+          "budget_s": 30,
+          "compare_seeds": true,
+          "departure_budget_s": 40,
+          "limit_budget_s": 60,
+          "pazov_budget_s": 60,
+          "psi_budget_s": 60,
+          "bounded_attempt_s": 20,
+          "pipeline_pazov_alpha": 0.5,
+          "psi_mass_alpha": 0.5
+        },
+        "lunar": null
+      },
+      "fuel_kg": 18.64035109613448,
+      "verification": {
+        "passed": true,
+        "position_residual_m": 0.9376402315936139,
+        "velocity_residual_m_s": 1.215017608383077e-07,
+        "parameter_audit": {
+          "passed": true,
+          "configuration_sha256": "6f3b994664f8787458e80d26fdbff449a93a01cb9da57a2db1322883b36fb739",
+          "configuration_hash_version": 2,
+          "requested": {
+            "mass_kg": 156,
+            "thrust_N": 0.025,
+            "exhaust_velocity_m_s": 20000,
+            "dry_mass_kg": 90,
+            "launch_tdb": "2029-02-14T12:00:00",
+            "tof_days": 422.6618015373437,
+            "departure": "Earth",
+            "target": "Apophis",
+            "mode": "rendezvous"
+          },
+          "recovered_model": {
+            "model_thrust_N": 0.025,
+            "thrust_to_requested_ratio": 1.0,
+            "alpha": 1.0,
+            "beta": 1.0,
+            "variable_mass": true,
+            "hardware_limit_reached": true,
+            "exhaust_velocity_m_s": 20000.0
+          },
+          "geometry": null,
+          "final_admission": true
+        },
+        "trajectory_difference_m": 0.9418894732058104,
+        "velocity_difference_m_s": 1.4088967145874956e-07,
+        "stored_throttle_error": 0.0,
+        "stored_throttle_minimum": 0.0,
+        "stored_throttle_maximum": 1.0,
+        "canonical_boundary_residual": 7.53413787316146e-12,
+        "method": "LSODA with independent bounded/mass equations",
+        "scope": "Numerical extremal and constraints; no global optimality proof",
+        "departure_norm_m_s": 3000.000000000022,
+        "switching_sign_violation": 7.533566441797516e-12,
+        "switching_node_residual": 7.533566441797516e-12,
+        "minimum_mass_kg": 137.35964890386552,
+        "fuel_kg": 18.64035109613448,
+        "mass_difference_kg": 8.659739592076221e-14,
+        "stored_thrust_error_N": 0.0,
+        "mass_balance_error_kg": 1.0658141036401503e-14
+      },
+      "kiam_verification": {
+        "passed": true,
+        "source": "Unmodified KIAM Astro compiled Fortran equations and published control API",
+        "package_version": "6.1.6",
+        "samples": 101,
+        "maximum_dimensionless_rhs_error": 6.661338147750939e-16,
+        "maximum_dimensionless_force_error": 6.938893903907228e-18,
+        "maximum_third_body_decomposition_error": 0.0,
+        "nbody_gravity": {
+          "passed": true,
+          "applicable": false
+        },
+        "costate_map": "p_r,v(KIAM)=p_r,v/vex; p_m(KIAM)=1+p_m/vex; normalized initial mass=1",
+        "scope": "KIAM central mass-optimal equations/control, plus independent third-body decomposition when present; not a separate global optimization"
+      },
+      "elapsed_s": 1.3523382669663988,
+      "artifact": "runs/search_matrix_v1/earth_apophis_2029/nodes/89bfa20c65fee8fc23e4c957/final",
+      "metadata_sha256": "c89e91c12a2d6b679224f786019f07f7c55386036f936c0bbdc94b5e2326ee35",
+      "arrays_sha256": "e19f9efdca8d3eea3362f03e0f02458f4ba1cd5f5280a35d6e1828f3b503fec6",
+      "request": {
+        "operation": "release",
+        "mission": {
+          "case_id": "earth_apophis_2029",
+          "departure": "Earth",
+          "target": "Apophis",
+          "launch_tdb": "2029-02-14T12:00:00",
+          "tof_days": 422.6618015373437,
+          "center": "Sun",
+          "mode": "rendezvous",
+          "position_tolerance_m": 1000,
+          "velocity_tolerance_m_s": 0.01,
+          "mass_kg": 156,
+          "departure_mode": "bounded_norm",
+          "vinf_max_m_s": 3000,
+          "vinf_vector_m_s": null,
+          "spacecraft": {
+            "thrust_N": 0.025,
+            "exhaust_velocity_m_s": 20000,
+            "dry_mass_kg": 90
+          },
+          "solver": {
+            "budget_s": 30,
+            "compare_seeds": true,
+            "departure_budget_s": 40,
+            "limit_budget_s": 60,
+            "pazov_budget_s": 60,
+            "psi_budget_s": 60,
+            "bounded_attempt_s": 20,
+            "pipeline_pazov_alpha": 0.5,
+            "psi_mass_alpha": 0.5
+          },
+          "lunar": null
+        },
+        "budget_s": 90,
+        "reference": null,
+        "parent_artifact": "runs/search_matrix_v1/earth_apophis_2029/nodes/4801b96f480e5a1eb4a9f01d/final",
+        "parent_sha256": "28ad1802aace565d9a6118d034cc37ebf859a31c9d7eb8ce651c4eaa9d717aaa",
+        "bounds_days": [
+          211.33090076867185,
+          633.9927023060155
+        ]
+      }
+    },
+    "7cfb5368528e28305f0414f3": {
+      "status": "completed",
+      "phase": "final",
+      "mission": {
+        "case_id": "earth_apophis_2029",
+        "departure": "Earth",
+        "target": "Apophis",
+        "launch_tdb": "2029-02-14T12:00:00",
+        "tof_days": 422.6618015373437,
+        "center": "Sun",
+        "mode": "rendezvous",
+        "position_tolerance_m": 1000,
+        "velocity_tolerance_m_s": 0.01,
+        "mass_kg": 156,
+        "departure_mode": "bounded_norm",
+        "vinf_max_m_s": 3000,
+        "vinf_vector_m_s": null,
+        "spacecraft": {
+          "thrust_N": 0.05,
+          "exhaust_velocity_m_s": 40000,
+          "dry_mass_kg": 90
+        },
+        "solver": {
+          "budget_s": 30,
+          "compare_seeds": true,
+          "departure_budget_s": 40,
+          "limit_budget_s": 60,
+          "pazov_budget_s": 60,
+          "psi_budget_s": 60,
+          "bounded_attempt_s": 20,
+          "pipeline_pazov_alpha": 0.5,
+          "psi_mass_alpha": 0.5
+        },
+        "lunar": null
+      },
+      "fuel_kg": 9.211762028295203,
+      "verification": {
+        "passed": true,
+        "position_residual_m": 1.2851114649702722,
+        "velocity_residual_m_s": 1.7747252041228645e-07,
+        "parameter_audit": {
+          "passed": true,
+          "configuration_sha256": "9032784e144dcd32a9af1f8fbe6e384ed3c88488f650df5cb8cefce743c44983",
+          "configuration_hash_version": 2,
+          "requested": {
+            "mass_kg": 156,
+            "thrust_N": 0.05,
+            "exhaust_velocity_m_s": 40000,
+            "dry_mass_kg": 90,
+            "launch_tdb": "2029-02-14T12:00:00",
+            "tof_days": 422.6618015373437,
+            "departure": "Earth",
+            "target": "Apophis",
+            "mode": "rendezvous"
+          },
+          "recovered_model": {
+            "model_thrust_N": 0.05,
+            "thrust_to_requested_ratio": 1.0,
+            "alpha": 1.0,
+            "beta": 1.0,
+            "variable_mass": true,
+            "hardware_limit_reached": true,
+            "exhaust_velocity_m_s": 40000.0
+          },
+          "geometry": null,
+          "final_admission": true
+        },
+        "trajectory_difference_m": 1.4542528698958186,
+        "velocity_difference_m_s": 2.60685804576979e-07,
+        "stored_throttle_error": 0.0,
+        "stored_throttle_minimum": 0.0,
+        "stored_throttle_maximum": 1.0,
+        "canonical_boundary_residual": 1.0526375757784658e-11,
+        "method": "LSODA with independent bounded/mass equations",
+        "scope": "Numerical extremal and constraints; no global optimality proof",
+        "departure_norm_m_s": 2912.9052062313212,
+        "switching_sign_violation": 9.967850345074657e-12,
+        "switching_node_residual": 9.967718733704453e-12,
+        "minimum_mass_kg": 146.7882379717048,
+        "fuel_kg": 9.211762028295203,
+        "mass_difference_kg": 2.2515322939398175e-13,
+        "stored_thrust_error_N": 0.0,
+        "mass_balance_error_kg": 2.1316282072803006e-14
+      },
+      "kiam_verification": {
+        "passed": true,
+        "source": "Unmodified KIAM Astro compiled Fortran equations and published control API",
+        "package_version": "6.1.6",
+        "samples": 99,
+        "maximum_dimensionless_rhs_error": 3.885780586188048e-16,
+        "maximum_dimensionless_force_error": 1.3877787807814457e-17,
+        "maximum_third_body_decomposition_error": 0.0,
+        "nbody_gravity": {
+          "passed": true,
+          "applicable": false
+        },
+        "costate_map": "p_r,v(KIAM)=p_r,v/vex; p_m(KIAM)=1+p_m/vex; normalized initial mass=1",
+        "scope": "KIAM central mass-optimal equations/control, plus independent third-body decomposition when present; not a separate global optimization"
+      },
+      "elapsed_s": 13.935610187007114,
+      "artifact": "runs/search_matrix_v1/earth_apophis_2029/nodes/7cfb5368528e28305f0414f3/final",
+      "metadata_sha256": "1a951c13dc6b9d1d40dca6afb0687851116b41f61c3af452b988e145312d517d",
+      "arrays_sha256": "9220c58d5dc92ed2006b45839412ae254dd8c29aa32a9316adbda58ebed510a8",
+      "request": {
+        "operation": "cold",
+        "mission": {
+          "case_id": "earth_apophis_2029",
+          "departure": "Earth",
+          "target": "Apophis",
+          "launch_tdb": "2029-02-14T12:00:00",
+          "tof_days": 422.6618015373437,
+          "center": "Sun",
+          "mode": "rendezvous",
+          "position_tolerance_m": 1000,
+          "velocity_tolerance_m_s": 0.01,
+          "mass_kg": 156,
+          "departure_mode": "bounded_norm",
+          "vinf_max_m_s": 3000,
+          "vinf_vector_m_s": null,
+          "spacecraft": {
+            "thrust_N": 0.05,
+            "exhaust_velocity_m_s": 40000,
+            "dry_mass_kg": 90
+          },
+          "solver": {
+            "budget_s": 30,
+            "compare_seeds": true,
+            "departure_budget_s": 40,
+            "limit_budget_s": 60,
+            "pazov_budget_s": 60,
+            "psi_budget_s": 60,
+            "bounded_attempt_s": 20,
+            "pipeline_pazov_alpha": 0.5,
+            "psi_mass_alpha": 0.5
+          },
+          "lunar": null
+        },
+        "budget_s": 240,
+        "reference": null
+      }
+    },
+    "9e36965099b7ca4893a480b9": {
+      "status": "completed",
+      "phase": "final",
+      "mission": {
+        "case_id": "earth_apophis_2029",
+        "departure": "Earth",
+        "target": "Apophis",
+        "launch_tdb": "2029-02-14T12:00:00",
+        "tof_days": 422.6618015373437,
+        "center": "Sun",
+        "mode": "rendezvous",
+        "position_tolerance_m": 1000,
+        "velocity_tolerance_m_s": 0.01,
+        "mass_kg": 156,
+        "departure_mode": "bounded_norm",
+        "vinf_max_m_s": 3000,
+        "vinf_vector_m_s": null,
+        "spacecraft": {
+          "thrust_N": 0.05,
+          "exhaust_velocity_m_s": 40000,
+          "dry_mass_kg": 90
+        },
+        "solver": {
+          "budget_s": 30,
+          "compare_seeds": true,
+          "departure_budget_s": 40,
+          "limit_budget_s": 60,
+          "pazov_budget_s": 60,
+          "psi_budget_s": 60,
+          "bounded_attempt_s": 20,
+          "pipeline_pazov_alpha": 0.5,
+          "psi_mass_alpha": 0.5
+        },
+        "lunar": null
+      },
+      "fuel_kg": 9.211762028294977,
+      "verification": {
+        "passed": true,
+        "position_residual_m": 1.285641108812086,
+        "velocity_residual_m_s": 1.7511759995348153e-07,
+        "parameter_audit": {
+          "passed": true,
+          "configuration_sha256": "9032784e144dcd32a9af1f8fbe6e384ed3c88488f650df5cb8cefce743c44983",
+          "configuration_hash_version": 2,
+          "requested": {
+            "mass_kg": 156,
+            "thrust_N": 0.05,
+            "exhaust_velocity_m_s": 40000,
+            "dry_mass_kg": 90,
+            "launch_tdb": "2029-02-14T12:00:00",
+            "tof_days": 422.6618015373437,
+            "departure": "Earth",
+            "target": "Apophis",
+            "mode": "rendezvous"
+          },
+          "recovered_model": {
+            "model_thrust_N": 0.05,
+            "thrust_to_requested_ratio": 1.0,
+            "alpha": 1.0,
+            "beta": 1.0,
+            "variable_mass": true,
+            "hardware_limit_reached": true,
+            "exhaust_velocity_m_s": 40000.0
+          },
+          "geometry": null,
+          "final_admission": true
+        },
+        "trajectory_difference_m": 1.4538057936864939,
+        "velocity_difference_m_s": 2.608288375791802e-07,
+        "stored_throttle_error": 0.0,
+        "stored_throttle_minimum": 0.0,
+        "stored_throttle_maximum": 1.0,
+        "canonical_boundary_residual": 1.0485473859178173e-11,
+        "method": "LSODA with independent bounded/mass equations",
+        "scope": "Numerical extremal and constraints; no global optimality proof",
+        "departure_norm_m_s": 2912.9052062313212,
+        "switching_sign_violation": 9.978510866061111e-12,
+        "switching_node_residual": 9.978510866061111e-12,
+        "minimum_mass_kg": 146.78823797170503,
+        "fuel_kg": 9.211762028294977,
+        "mass_difference_kg": 2.5979218776228663e-13,
+        "stored_thrust_error_N": 0.0,
+        "mass_balance_error_kg": 2.042810365310288e-13
+      },
+      "kiam_verification": {
+        "passed": true,
+        "source": "Unmodified KIAM Astro compiled Fortran equations and published control API",
+        "package_version": "6.1.6",
+        "samples": 99,
+        "maximum_dimensionless_rhs_error": 3.3306690738754696e-16,
+        "maximum_dimensionless_force_error": 6.938893903907228e-18,
+        "maximum_third_body_decomposition_error": 0.0,
+        "nbody_gravity": {
+          "passed": true,
+          "applicable": false
+        },
+        "costate_map": "p_r,v(KIAM)=p_r,v/vex; p_m(KIAM)=1+p_m/vex; normalized initial mass=1",
+        "scope": "KIAM central mass-optimal equations/control, plus independent third-body decomposition when present; not a separate global optimization"
+      },
+      "elapsed_s": 1.1062762490473688,
+      "artifact": "runs/search_matrix_v1/earth_apophis_2029/nodes/9e36965099b7ca4893a480b9/final",
+      "metadata_sha256": "a61608ae8acc728f1a589fbe039cb43167bbd3641c9801389bfdca4e97021161",
+      "arrays_sha256": "1d54ed94f15914f52cb953f5c7f8303fbe08fd696f4dfe9fc107ba17117823d0",
+      "request": {
+        "operation": "release",
+        "mission": {
+          "case_id": "earth_apophis_2029",
+          "departure": "Earth",
+          "target": "Apophis",
+          "launch_tdb": "2029-02-14T12:00:00",
+          "tof_days": 422.6618015373437,
+          "center": "Sun",
+          "mode": "rendezvous",
+          "position_tolerance_m": 1000,
+          "velocity_tolerance_m_s": 0.01,
+          "mass_kg": 156,
+          "departure_mode": "bounded_norm",
+          "vinf_max_m_s": 3000,
+          "vinf_vector_m_s": null,
+          "spacecraft": {
+            "thrust_N": 0.05,
+            "exhaust_velocity_m_s": 40000,
+            "dry_mass_kg": 90
+          },
+          "solver": {
+            "budget_s": 30,
+            "compare_seeds": true,
+            "departure_budget_s": 40,
+            "limit_budget_s": 60,
+            "pazov_budget_s": 60,
+            "psi_budget_s": 60,
+            "bounded_attempt_s": 20,
+            "pipeline_pazov_alpha": 0.5,
+            "psi_mass_alpha": 0.5
+          },
+          "lunar": null
+        },
+        "budget_s": 90,
+        "reference": null,
+        "parent_artifact": "runs/search_matrix_v1/earth_apophis_2029/nodes/7cfb5368528e28305f0414f3/final",
+        "parent_sha256": "9220c58d5dc92ed2006b45839412ae254dd8c29aa32a9316adbda58ebed510a8",
+        "bounds_days": [
+          211.33090076867185,
+          633.9927023060155
+        ]
+      }
+    },
+    "69428d0ccf57f72055740daa": {
+      "status": "failed",
+      "phase": "r_transfer",
+      "error": "RuntimeError: active: Exact independent replay failed: {'passed': False, 'position_residual_m': 8552855686.082364, 'velocity_residual_m_s': 1827.6628277133048, 'parameter_audit': {'passed': True, 'configuration_sha256': 'f8fc5680270ac96b06b2c5e09ef85d88267e3a2dfd5c9b6e6482be165788690d', 'configuration_hash_version': 2, 'requested': {'mass_kg': 156, 'thrust_N': 0.025, 'exhaust_velocity_m_s': 20000, 'dry_mass_kg': 90, 'launch_tdb': '2029-05-15T12:00:00', 'tof_days': 422.6618015373437, 'departure': 'Earth', 'target': 'Apophis', 'mode': 'rendezvous'}, 'recovered_model': {'model_thrust_N': np.float64(0.025), 'thrust_to_requested_ratio': np.float64(1.0), 'alpha': 1.0, 'beta': 1.0, 'variable_mass': True, 'hardware_limit_reached': True, 'exhaust_velocity_m_s': np.float64(20000.0)}, 'geometry': None, 'final_admission': True}, 'trajectory_difference_m': 2.196106718849908, 'velocity_difference_m_s': 5.189377375769566e-07, 'stored_throttle_error': 0.0, 'stored_throttle_minimum': 0.0, 'stored_throttle_maximum': 1.0, 'canonical_boundary_residual': 0.0845254389809495, 'method': 'LSODA with independent bounded/mass equations', 'scope': 'Numerical extremal and constraints; no global optimality proof', 'departure_norm_m_s': 2655.3848577414137, 'switching_sign_violation': 0.0071698943293934305, 'switching_node_residual': 0.0071698943293934305, 'minimum_mass_kg': 143.32452952022766, 'fuel_kg': 12.675470479772343, 'mass_difference_kg': 1.7319479184152442e-13, 'stored_thrust_error_N': 0.0, 'mass_balance_error_kg': np.float64(1.5987211554602254e-13)}; free: Exact independent replay failed: {'passed': False, 'position_residual_m': 13524808165.195374, 'velocity_residual_m_s': 712.0286302880046, 'parameter_audit': {'passed': True, 'configuration_sha256': 'f8fc5680270ac96b06b2c5e09ef85d88267e3a2dfd5c9b6e6482be165788690d', 'configuration_hash_version': 2, 'requested': {'mass_kg': 156, 'thrust_N': 0.025, 'exhaust_velocity_m_s': 20000, 'dry_mass_kg': 90, 'launch_tdb': '2029-05-15T12:00:00', 'tof_days': 422.6618015373437, 'departure': 'Earth', 'target': 'Apophis', 'mode': 'rendezvous'}, 'recovered_model': {'model_thrust_N': np.float64(0.025), 'thrust_to_requested_ratio': np.float64(1.0), 'alpha': 1.0, 'beta': 1.0, 'variable_mass': True, 'hardware_limit_reached': True, 'exhaust_velocity_m_s': np.float64(20000.0)}, 'geometry': None, 'final_admission': True}, 'trajectory_difference_m': 0.9245365531163799, 'velocity_difference_m_s': 2.8116333985805465e-07, 'stored_throttle_error': 0.0, 'stored_throttle_minimum': 0.0, 'stored_throttle_maximum': 1.0, 'canonical_boundary_residual': 0.09260165301765932, 'method': 'LSODA with independent bounded/mass equations', 'scope': 'Numerical extremal and constraints; no global optimality proof', 'departure_norm_m_s': 1625.0770225037684, 'switching_sign_violation': 0.6338975823615512, 'switching_node_residual': 0.001953281434216598, 'minimum_mass_kg': 129.48346570151048, 'fuel_kg': 26.516534298489507, 'mass_difference_kg': 5.195843755245733e-13, 'stored_thrust_error_N': 0.0, 'mass_balance_error_kg': np.float64(4.654054919228656e-13)}",
+      "elapsed_s": 41.14019880496198,
+      "request": {
+        "operation": "r_transfer",
+        "mission": {
+          "case_id": "earth_apophis_2029",
+          "departure": "Earth",
+          "target": "Apophis",
+          "launch_tdb": "2029-05-15T12:00:00",
+          "tof_days": 422.6618015373437,
+          "center": "Sun",
+          "mode": "rendezvous",
+          "position_tolerance_m": 1000,
+          "velocity_tolerance_m_s": 0.01,
+          "mass_kg": 156,
+          "departure_mode": "bounded_norm",
+          "vinf_max_m_s": 3000,
+          "vinf_vector_m_s": null,
+          "spacecraft": {
+            "thrust_N": 0.025,
+            "exhaust_velocity_m_s": 20000,
+            "dry_mass_kg": 90
+          },
+          "solver": {
+            "budget_s": 30,
+            "compare_seeds": true,
+            "departure_budget_s": 40,
+            "limit_budget_s": 60,
+            "pazov_budget_s": 60,
+            "psi_budget_s": 60,
+            "bounded_attempt_s": 20,
+            "pipeline_pazov_alpha": 0.5,
+            "psi_mass_alpha": 0.5
+          },
+          "lunar": null
+        },
+        "budget_s": 240,
+        "reference": {
+          "path": "data/benchmarks/free_time_physical_matrix_v1/earth_apophis_2029/anchor_00/final",
+          "metadata_sha256": "6013d445766a762fc0c6a4f2d2b1a974fed2d5052ae5ba536f7b34bb43ffb102",
+          "arrays_sha256": "28ad1802aace565d9a6118d034cc37ebf859a31c9d7eb8ce651c4eaa9d717aaa",
+          "mission": {
+            "case_id": "earth_apophis_2029",
+            "departure": "Earth",
+            "target": "Apophis",
+            "launch_tdb": "2029-02-14T12:00:00",
+            "tof_days": 422.6618015373437,
+            "center": "Sun",
+            "mode": "rendezvous",
+            "position_tolerance_m": 1000,
+            "velocity_tolerance_m_s": 0.01,
+            "mass_kg": 156,
+            "departure_mode": "bounded_norm",
+            "vinf_max_m_s": 3000,
+            "vinf_vector_m_s": null,
+            "spacecraft": {
+              "thrust_N": 0.025,
+              "exhaust_velocity_m_s": 20000,
+              "dry_mass_kg": 90
+            },
+            "solver": {
+              "budget_s": 45,
+              "compare_seeds": true,
+              "departure_budget_s": 60,
+              "limit_budget_s": 60,
+              "pazov_budget_s": 90,
+              "psi_budget_s": 120,
+              "bounded_attempt_s": 20,
+              "free_time_budget_s": 120
+            },
+            "lunar": null
+          }
+        }
+      }
+    },
+    "6b6dda1396be66289cf69c03": {
+      "status": "failed",
+      "phase": "r_release",
+      "error": "TimeoutError: Free-duration integration budget reached",
+      "elapsed_s": 90.00003739300882,
+      "request": {
+        "operation": "r_release",
+        "mission": {
+          "case_id": "earth_apophis_2029",
+          "departure": "Earth",
+          "target": "Apophis",
+          "launch_tdb": "2029-05-15T12:00:00",
+          "tof_days": 422.6618015373437,
+          "center": "Sun",
+          "mode": "rendezvous",
+          "position_tolerance_m": 1000,
+          "velocity_tolerance_m_s": 0.01,
+          "mass_kg": 156,
+          "departure_mode": "bounded_norm",
+          "vinf_max_m_s": 3000,
+          "vinf_vector_m_s": null,
+          "spacecraft": {
+            "thrust_N": 0.025,
+            "exhaust_velocity_m_s": 20000,
+            "dry_mass_kg": 90
+          },
+          "solver": {
+            "budget_s": 30,
+            "compare_seeds": true,
+            "departure_budget_s": 40,
+            "limit_budget_s": 60,
+            "pazov_budget_s": 60,
+            "psi_budget_s": 60,
+            "bounded_attempt_s": 20,
+            "pipeline_pazov_alpha": 0.5,
+            "psi_mass_alpha": 0.5
+          },
+          "lunar": null
+        },
+        "budget_s": 90,
+        "reference": {
+          "path": "data/benchmarks/free_time_physical_matrix_v1/earth_apophis_2029/anchor_00/final",
+          "metadata_sha256": "6013d445766a762fc0c6a4f2d2b1a974fed2d5052ae5ba536f7b34bb43ffb102",
+          "arrays_sha256": "28ad1802aace565d9a6118d034cc37ebf859a31c9d7eb8ce651c4eaa9d717aaa",
+          "mission": {
+            "case_id": "earth_apophis_2029",
+            "departure": "Earth",
+            "target": "Apophis",
+            "launch_tdb": "2029-02-14T12:00:00",
+            "tof_days": 422.6618015373437,
+            "center": "Sun",
+            "mode": "rendezvous",
+            "position_tolerance_m": 1000,
+            "velocity_tolerance_m_s": 0.01,
+            "mass_kg": 156,
+            "departure_mode": "bounded_norm",
+            "vinf_max_m_s": 3000,
+            "vinf_vector_m_s": null,
+            "spacecraft": {
+              "thrust_N": 0.025,
+              "exhaust_velocity_m_s": 20000,
+              "dry_mass_kg": 90
+            },
+            "solver": {
+              "budget_s": 45,
+              "compare_seeds": true,
+              "departure_budget_s": 60,
+              "limit_budget_s": 60,
+              "pazov_budget_s": 90,
+              "psi_budget_s": 120,
+              "bounded_attempt_s": 20,
+              "free_time_budget_s": 120
+            },
+            "lunar": null
+          }
+        },
+        "bounds_days": [
+          211.33090076867185,
+          633.9927023060155
+        ]
+      }
+    },
+    "7c448e450d17d8de7ff5eb46": {
+      "status": "completed",
+      "phase": "final",
+      "mission": {
+        "case_id": "earth_apophis_2029",
+        "departure": "Earth",
+        "target": "Apophis",
+        "launch_tdb": "2029-02-14T12:00:00",
+        "tof_days": 422.6618015373437,
+        "center": "Sun",
+        "mode": "rendezvous",
+        "position_tolerance_m": 1000,
+        "velocity_tolerance_m_s": 0.01,
+        "mass_kg": 156,
+        "departure_mode": "bounded_norm",
+        "vinf_max_m_s": 3000,
+        "vinf_vector_m_s": null,
+        "spacecraft": {
+          "thrust_N": 0.025,
+          "exhaust_velocity_m_s": 20000,
+          "dry_mass_kg": 90
+        },
+        "solver": {
+          "budget_s": 30,
+          "compare_seeds": true,
+          "departure_budget_s": 40,
+          "limit_budget_s": 60,
+          "pazov_budget_s": 60,
+          "psi_budget_s": 60,
+          "bounded_attempt_s": 20,
+          "pipeline_pazov_alpha": 0.7,
+          "psi_mass_alpha": 0.7
+        },
+        "lunar": null
+      },
+      "fuel_kg": 18.640351096134413,
+      "verification": {
+        "passed": true,
+        "position_residual_m": 0.9148963366085348,
+        "velocity_residual_m_s": 1.1423351960473132e-07,
+        "parameter_audit": {
+          "passed": true,
+          "configuration_sha256": "6f3b994664f8787458e80d26fdbff449a93a01cb9da57a2db1322883b36fb739",
+          "configuration_hash_version": 2,
+          "requested": {
+            "mass_kg": 156,
+            "thrust_N": 0.025,
+            "exhaust_velocity_m_s": 20000,
+            "dry_mass_kg": 90,
+            "launch_tdb": "2029-02-14T12:00:00",
+            "tof_days": 422.6618015373437,
+            "departure": "Earth",
+            "target": "Apophis",
+            "mode": "rendezvous"
+          },
+          "recovered_model": {
+            "model_thrust_N": 0.025,
+            "thrust_to_requested_ratio": 1.0,
+            "alpha": 1.0,
+            "beta": 1.0,
+            "variable_mass": true,
+            "hardware_limit_reached": true,
+            "exhaust_velocity_m_s": 20000.0
+          },
+          "geometry": null,
+          "final_admission": true
+        },
+        "trajectory_difference_m": 0.9231028664114586,
+        "velocity_difference_m_s": 1.4088967145874956e-07,
+        "stored_throttle_error": 0.0,
+        "stored_throttle_minimum": 0.0,
+        "stored_throttle_maximum": 1.0,
+        "canonical_boundary_residual": 7.2754525538562214e-12,
+        "method": "LSODA with independent bounded/mass equations",
+        "scope": "Numerical extremal and constraints; no global optimality proof",
+        "departure_norm_m_s": 3000.000000000022,
+        "switching_sign_violation": 8.68529754244513e-12,
+        "switching_node_residual": 8.68529754244513e-12,
+        "minimum_mass_kg": 137.35964890386558,
+        "fuel_kg": 18.640351096134413,
+        "mass_difference_kg": 6.927791673660977e-14,
+        "stored_thrust_error_N": 0.0,
+        "mass_balance_error_kg": 5.684341886080802e-14
+      },
+      "kiam_verification": {
+        "passed": true,
+        "source": "Unmodified KIAM Astro compiled Fortran equations and published control API",
+        "package_version": "6.1.6",
+        "samples": 101,
+        "maximum_dimensionless_rhs_error": 7.771561172376096e-16,
+        "maximum_dimensionless_force_error": 6.938893903907228e-18,
+        "maximum_third_body_decomposition_error": 0.0,
+        "nbody_gravity": {
+          "passed": true,
+          "applicable": false
+        },
+        "costate_map": "p_r,v(KIAM)=p_r,v/vex; p_m(KIAM)=1+p_m/vex; normalized initial mass=1",
+        "scope": "KIAM central mass-optimal equations/control, plus independent third-body decomposition when present; not a separate global optimization"
+      },
+      "elapsed_s": 0.23763734998647124,
+      "artifact": "runs/search_matrix_v1/earth_apophis_2029/nodes/7c448e450d17d8de7ff5eb46/final",
+      "metadata_sha256": "ed7611edc00d030863d5ee929594c65506a8aa0be8e998e13f91501bba8e9485",
+      "arrays_sha256": "28ad1802aace565d9a6118d034cc37ebf859a31c9d7eb8ce651c4eaa9d717aaa",
+      "request": {
+        "operation": "reference",
+        "mission": {
+          "case_id": "earth_apophis_2029",
+          "departure": "Earth",
+          "target": "Apophis",
+          "launch_tdb": "2029-02-14T12:00:00",
+          "tof_days": 422.6618015373437,
+          "center": "Sun",
+          "mode": "rendezvous",
+          "position_tolerance_m": 1000,
+          "velocity_tolerance_m_s": 0.01,
+          "mass_kg": 156,
+          "departure_mode": "bounded_norm",
+          "vinf_max_m_s": 3000,
+          "vinf_vector_m_s": null,
+          "spacecraft": {
+            "thrust_N": 0.025,
+            "exhaust_velocity_m_s": 20000,
+            "dry_mass_kg": 90
+          },
+          "solver": {
+            "budget_s": 30,
+            "compare_seeds": true,
+            "departure_budget_s": 40,
+            "limit_budget_s": 60,
+            "pazov_budget_s": 60,
+            "psi_budget_s": 60,
+            "bounded_attempt_s": 20,
+            "pipeline_pazov_alpha": 0.7,
+            "psi_mass_alpha": 0.7
+          },
+          "lunar": null
+        },
+        "budget_s": 240,
+        "reference": {
+          "path": "data/benchmarks/free_time_physical_matrix_v1/earth_apophis_2029/anchor_00/final",
+          "metadata_sha256": "6013d445766a762fc0c6a4f2d2b1a974fed2d5052ae5ba536f7b34bb43ffb102",
+          "arrays_sha256": "28ad1802aace565d9a6118d034cc37ebf859a31c9d7eb8ce651c4eaa9d717aaa",
+          "mission": {
+            "case_id": "earth_apophis_2029",
+            "departure": "Earth",
+            "target": "Apophis",
+            "launch_tdb": "2029-02-14T12:00:00",
+            "tof_days": 422.6618015373437,
+            "center": "Sun",
+            "mode": "rendezvous",
+            "position_tolerance_m": 1000,
+            "velocity_tolerance_m_s": 0.01,
+            "mass_kg": 156,
+            "departure_mode": "bounded_norm",
+            "vinf_max_m_s": 3000,
+            "vinf_vector_m_s": null,
+            "spacecraft": {
+              "thrust_N": 0.025,
+              "exhaust_velocity_m_s": 20000,
+              "dry_mass_kg": 90
+            },
+            "solver": {
+              "budget_s": 45,
+              "compare_seeds": true,
+              "departure_budget_s": 60,
+              "limit_budget_s": 60,
+              "pazov_budget_s": 90,
+              "psi_budget_s": 120,
+              "bounded_attempt_s": 20,
+              "free_time_budget_s": 120
+            },
+            "lunar": null
+          }
+        }
+      }
+    }
+  },
+  "edges": [
+    {
+      "parent": null,
+      "child": "4801b96f480e5a1eb4a9f01d",
+      "operation": "reference",
+      "cache_hit": false
+    },
+    {
+      "parent": "4801b96f480e5a1eb4a9f01d",
+      "child": "89bfa20c65fee8fc23e4c957",
+      "operation": "release",
+      "cache_hit": false
+    },
+    {
+      "parent": null,
+      "child": "4801b96f480e5a1eb4a9f01d",
+      "operation": "reference",
+      "cache_hit": true
+    },
+    {
+      "parent": null,
+      "child": "7cfb5368528e28305f0414f3",
+      "operation": "cold",
+      "cache_hit": false
+    },
+    {
+      "parent": "7cfb5368528e28305f0414f3",
+      "child": "9e36965099b7ca4893a480b9",
+      "operation": "release",
+      "cache_hit": false
+    },
+    {
+      "parent": null,
+      "child": "69428d0ccf57f72055740daa",
+      "operation": "r_transfer",
+      "cache_hit": false
+    },
+    {
+      "parent": null,
+      "child": "6b6dda1396be66289cf69c03",
+      "operation": "r_release",
+      "cache_hit": false
+    },
+    {
+      "parent": null,
+      "child": "4801b96f480e5a1eb4a9f01d",
+      "operation": "reference",
+      "cache_hit": true
+    },
+    {
+      "parent": null,
+      "child": "7cfb5368528e28305f0414f3",
+      "operation": "cold",
+      "cache_hit": true
+    },
+    {
+      "parent": "7cfb5368528e28305f0414f3",
+      "child": "9e36965099b7ca4893a480b9",
+      "operation": "release",
+      "cache_hit": true
+    },
+    {
+      "parent": null,
+      "child": "7cfb5368528e28305f0414f3",
+      "operation": "cold",
+      "cache_hit": true
+    },
+    {
+      "parent": null,
+      "child": "7c448e450d17d8de7ff5eb46",
+      "operation": "reference",
+      "cache_hit": false
+    }
+  ],
+  "generations": [
+    {
+      "population": [
+        [
+          0,
+          0,
+          0,
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          1,
+          0,
+          1,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          1,
+          1
+        ]
+      ],
+      "results": [
+        {
+          "genome": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            1
+          ],
+          "fixed_node": "4801b96f480e5a1eb4a9f01d",
+          "terminal_node": "89bfa20c65fee8fc23e4c957",
+          "retained_node": "89bfa20c65fee8fc23e4c957",
+          "score": [
+            1,
+            -0.0,
+            -18.64035109613448,
+            -422.6618015373437
+          ]
+        },
+        {
+          "genome": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "fixed_node": "4801b96f480e5a1eb4a9f01d",
+          "terminal_node": "4801b96f480e5a1eb4a9f01d",
+          "retained_node": "4801b96f480e5a1eb4a9f01d",
+          "score": [
+            1,
+            -0.0,
+            -18.640351096134413,
+            -422.6618015373437
+          ]
+        },
+        {
+          "genome": [
+            0,
+            0,
+            1,
+            0,
+            1,
+            0
+          ],
+          "fixed_node": "7cfb5368528e28305f0414f3",
+          "terminal_node": "9e36965099b7ca4893a480b9",
+          "retained_node": "9e36965099b7ca4893a480b9",
+          "score": [
+            1,
+            -2.0,
+            -9.211762028294977,
+            -422.6618015373437
+          ]
+        },
+        {
+          "genome": [
+            1,
+            0,
+            0,
+            0,
+            1,
+            1
+          ],
+          "fixed_node": "69428d0ccf57f72055740daa",
+          "terminal_node": "6b6dda1396be66289cf69c03",
+          "retained_node": "69428d0ccf57f72055740daa",
+          "score": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "origin": "history_and_exploration"
+    },
+    {
+      "population": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          1,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          2,
+          0,
+          1
+        ]
+      ],
+      "results": [
+        {
+          "genome": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "fixed_node": "4801b96f480e5a1eb4a9f01d",
+          "terminal_node": "4801b96f480e5a1eb4a9f01d",
+          "retained_node": "4801b96f480e5a1eb4a9f01d",
+          "score": [
+            1,
+            -0.0,
+            -18.640351096134413,
+            -422.6618015373437
+          ]
+        },
+        {
+          "genome": [
+            0,
+            0,
+            1,
+            0,
+            1,
+            0
+          ],
+          "fixed_node": "7cfb5368528e28305f0414f3",
+          "terminal_node": "9e36965099b7ca4893a480b9",
+          "retained_node": "9e36965099b7ca4893a480b9",
+          "score": [
+            1,
+            -2.0,
+            -9.211762028294977,
+            -422.6618015373437
+          ]
+        },
+        {
+          "genome": [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "fixed_node": "7cfb5368528e28305f0414f3",
+          "terminal_node": "7cfb5368528e28305f0414f3",
+          "retained_node": "7cfb5368528e28305f0414f3",
+          "score": [
+            1,
+            -2.0,
+            -9.211762028295203,
+            -422.6618015373437
+          ]
+        },
+        {
+          "genome": [
+            0,
+            0,
+            0,
+            2,
+            0,
+            1
+          ],
+          "fixed_node": "7c448e450d17d8de7ff5eb46",
+          "terminal_node": "7c448e450d17d8de7ff5eb46",
+          "retained_node": "7c448e450d17d8de7ff5eb46",
+          "score": [
+            1,
+            -0.0,
+            -18.640351096134413,
+            -422.6618015373437
+          ]
+        }
+      ],
+      "origin": [
+        {
+          "kind": "elite",
+          "parents": [
+            1
+          ]
+        },
+        {
+          "kind": "crossover_mutation",
+          "parents": [
+            1,
+            0
+          ],
+          "mutation_axis": 2
+        },
+        {
+          "kind": "crossover_mutation",
+          "parents": [
+            1,
+            1
+          ],
+          "mutation_axis": 2
+        },
+        {
+          "kind": "crossover_mutation",
+          "parents": [
+            0,
+            1
+          ],
+          "mutation_axis": 3
+        }
+      ]
+    }
+  ],
+  "solutions": [
+    {
+      "node": "4801b96f480e5a1eb4a9f01d",
+      "artifact": "runs/search_matrix_v1/earth_apophis_2029/nodes/4801b96f480e5a1eb4a9f01d/final",
+      "changes": {},
+      "original_conditions": true,
+      "objectives": [
+        0.0,
+        18.640351096134413,
+        422.6618015373437
+      ]
+    },
+    {
+      "node": "89bfa20c65fee8fc23e4c957",
+      "artifact": "runs/search_matrix_v1/earth_apophis_2029/nodes/89bfa20c65fee8fc23e4c957/final",
+      "changes": {},
+      "original_conditions": true,
+      "objectives": [
+        0.0,
+        18.64035109613448,
+        422.6618015373437
+      ]
+    },
+    {
+      "node": "7cfb5368528e28305f0414f3",
+      "artifact": "runs/search_matrix_v1/earth_apophis_2029/nodes/7cfb5368528e28305f0414f3/final",
+      "changes": {
+        "spacecraft": {
+          "requested": {
+            "thrust_N": 0.025,
+            "exhaust_velocity_m_s": 20000.0,
+            "dry_mass_kg": 90.0
+          },
+          "actual": {
+            "thrust_N": 0.05,
+            "exhaust_velocity_m_s": 40000.0,
+            "dry_mass_kg": 90.0
+          }
+        }
+      },
+      "original_conditions": false,
+      "objectives": [
+        2.0,
+        9.211762028295203,
+        422.6618015373437
+      ]
+    },
+    {
+      "node": "9e36965099b7ca4893a480b9",
+      "artifact": "runs/search_matrix_v1/earth_apophis_2029/nodes/9e36965099b7ca4893a480b9/final",
+      "changes": {
+        "spacecraft": {
+          "requested": {
+            "thrust_N": 0.025,
+            "exhaust_velocity_m_s": 20000.0,
+            "dry_mass_kg": 90.0
+          },
+          "actual": {
+            "thrust_N": 0.05,
+            "exhaust_velocity_m_s": 40000.0,
+            "dry_mass_kg": 90.0
+          }
+        }
+      },
+      "original_conditions": false,
+      "objectives": [
+        2.0,
+        9.211762028294977,
+        422.6618015373437
+      ]
+    },
+    {
+      "node": "7c448e450d17d8de7ff5eb46",
+      "artifact": "runs/search_matrix_v1/earth_apophis_2029/nodes/7c448e450d17d8de7ff5eb46/final",
+      "changes": {},
+      "original_conditions": true,
+      "objectives": [
+        0.0,
+        18.640351096134413,
+        422.6618015373437
+      ]
+    }
+  ],
+  "pareto": [
+    {
+      "node": "4801b96f480e5a1eb4a9f01d",
+      "artifact": "runs/search_matrix_v1/earth_apophis_2029/nodes/4801b96f480e5a1eb4a9f01d/final",
+      "changes": {},
+      "original_conditions": true,
+      "objectives": [
+        0.0,
+        18.640351096134413,
+        422.6618015373437
+      ]
+    },
+    {
+      "node": "9e36965099b7ca4893a480b9",
+      "artifact": "runs/search_matrix_v1/earth_apophis_2029/nodes/9e36965099b7ca4893a480b9/final",
+      "changes": {
+        "spacecraft": {
+          "requested": {
+            "thrust_N": 0.025,
+            "exhaust_velocity_m_s": 20000.0,
+            "dry_mass_kg": 90.0
+          },
+          "actual": {
+            "thrust_N": 0.05,
+            "exhaust_velocity_m_s": 40000.0,
+            "dry_mass_kg": 90.0
+          }
+        }
+      },
+      "original_conditions": false,
+      "objectives": [
+        2.0,
+        9.211762028294977,
+        422.6618015373437
+      ]
+    },
+    {
+      "node": "7c448e450d17d8de7ff5eb46",
+      "artifact": "runs/search_matrix_v1/earth_apophis_2029/nodes/7c448e450d17d8de7ff5eb46/final",
+      "changes": {},
+      "original_conditions": true,
+      "objectives": [
+        0.0,
+        18.640351096134413,
+        422.6618015373437
+      ]
+    }
+  ],
+  "elapsed_s": 155.0381226070458,
+  "status": "finished"
+}

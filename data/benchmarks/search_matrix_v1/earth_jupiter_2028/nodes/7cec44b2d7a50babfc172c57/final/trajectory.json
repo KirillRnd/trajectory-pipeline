@@ -1,0 +1,324 @@
+{
+  "case_id": "earth_jupiter_2028",
+  "epoch_jd": 2461923.5,
+  "time_scale": "TDB",
+  "center": "Sun",
+  "frame": "ECLIPJ2000",
+  "model": "physical constant thrust and exhaust, variable mass",
+  "status": "verified_extremal",
+  "stage": "psi",
+  "mission": {
+    "case_id": "earth_jupiter_2028",
+    "departure": "Earth",
+    "target": "Jupiter",
+    "launch_tdb": "2028-06-01T00:00:00",
+    "tof_days": 1360.2395578302157,
+    "center": "Sun",
+    "mode": "rendezvous",
+    "position_tolerance_m": 1000,
+    "velocity_tolerance_m_s": 0.01,
+    "mass_kg": 156,
+    "departure_mode": "bounded_norm",
+    "vinf_max_m_s": 3000,
+    "vinf_vector_m_s": null,
+    "spacecraft": {
+      "thrust_N": 0.05,
+      "exhaust_velocity_m_s": 40000,
+      "dry_mass_kg": 90
+    },
+    "solver": {
+      "budget_s": 30,
+      "compare_seeds": true,
+      "departure_budget_s": 40,
+      "limit_budget_s": 60,
+      "pazov_budget_s": 60,
+      "psi_budget_s": 60,
+      "bounded_attempt_s": 20,
+      "pipeline_pazov_alpha": 0.5,
+      "psi_mass_alpha": 0.5
+    },
+    "lunar": null
+  },
+  "scales": {
+    "distance_m": 151698431252.37823,
+    "mu_m3_s2": 1.32712440018e+20
+  },
+  "initial_state_si": [
+    -50280672910.02913,
+    -143123261130.34283,
+    9978119.907125074,
+    30510.81360231833,
+    -10742.458616707188,
+    -246.14230591267955
+  ],
+  "target_state_si": [
+    190740476165.82135,
+    -752810638193.7678,
+    -1138039656.086661,
+    12521.375714027958,
+    3822.9199537149575,
+    -295.9308302259953
+  ],
+  "costate_convention": "dimensionless [p_r,p_v,p_m] for normalized remaining mass",
+  "costates_initial": [
+    -0.035568037459255616,
+    -0.14768023875694095,
+    0.017972712141264342,
+    -2.1261507556693855e-20,
+    2.3012059628061527e-21,
+    1.3242507704392417e-21,
+    -0.4754301012936308
+  ],
+  "functional_dimensionless": 0.4063952021496405,
+  "chosen_seed": {
+    "source": "ILTT",
+    "lambda_turns": 1.1049793746328689,
+    "kappa": 5.136509293390544,
+    "route": "shooting",
+    "independent_check": {
+      "position_residual_m": 65.66363739525846,
+      "velocity_residual_m_s": 2.3955578737818592e-06,
+      "free_velocity_transversality": 0.07287574852333349,
+      "difference_r_m": 77.8386109130879,
+      "difference_v_m_s": 2.584382714984036e-06
+    },
+    "nfev": 7,
+    "integrations": 7,
+    "optimizer_success": true,
+    "residual_norm": 7.342909655206198e-14,
+    "position_residual_m": 26.389230698012206,
+    "velocity_residual_m_s": 1.0662179651101707e-06,
+    "free_velocity_transversality": 0.07287574852284777,
+    "accepted": true
+  },
+  "title": "Earth → Jupiter: ПСИ 156 кг",
+  "ephemerides": {
+    "Earth": {
+      "body": "earth",
+      "start_jd": 2287184.5,
+      "stop_jd": 2688976.5,
+      "source": "KIAM 6.1.6 / bundled JPLEPH",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "center": "requested",
+      "interpolation": "KIAM native ephemeris",
+      "representation": "body center"
+    },
+    "Jupiter": {
+      "body": "jupiter",
+      "source": "https://ssd.jpl.nasa.gov/api/horizons.api",
+      "parameters": {
+        "format": "json",
+        "COMMAND": "'599'",
+        "CENTER": "'500@10'",
+        "EPHEM_TYPE": "'VECTORS'",
+        "REF_PLANE": "'ECLIPTIC'",
+        "REF_SYSTEM": "'ICRF'",
+        "OUT_UNITS": "'KM-S'",
+        "VEC_CORR": "'NONE'",
+        "CSV_FORMAT": "'YES'",
+        "VEC_TABLE": "'2'",
+        "TIME_TYPE": "'TDB'",
+        "OBJ_DATA": "'YES'",
+        "START_TIME": "'2028-01-01'",
+        "STOP_TIME": "'2035-01-01'",
+        "STEP_SIZE": "'6 h'"
+      },
+      "center": "Sun",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "units": "m,m/s",
+      "start_jd": 2461771.5,
+      "stop_jd": 2464328.5,
+      "knots": 10229,
+      "max_step_days": 0.25,
+      "interpolation": "cubic Hermite, position and velocity from the same polynomial",
+      "arrays_sha256": "8940a77cd2204b0638341ea7368b7a89de71783d1f4bb09e5c0a5b51ec8e8b71",
+      "raw_sha256": "a345f365106bf5923e5aa4384cb92153a7f2489aeeea7c75cacc43c0833ec764"
+    }
+  },
+  "overlays": [
+    {
+      "array": "departure_orbit_m",
+      "label": "Орбита Earth"
+    },
+    {
+      "array": "target_orbit_m",
+      "label": "Орбита Jupiter"
+    }
+  ],
+  "markers": [
+    {
+      "label": "Earth, старт",
+      "r_m": [
+        -50280672910.02913,
+        -143123261130.34283,
+        9978119.907125074
+      ]
+    },
+    {
+      "label": "Jupiter, прибытие",
+      "r_m": [
+        190740476165.82135,
+        -752810638193.7678,
+        -1138039656.086661
+      ]
+    }
+  ],
+  "configuration_sha256": "c05b066f81cbe874f130976875397770cde50ebad6b3952b51a6f30ece3b7849",
+  "configuration_hash_version": 2,
+  "verification": {
+    "passed": true,
+    "position_residual_m": 12.524822793252053,
+    "velocity_residual_m_s": 1.6694938970814567e-07,
+    "parameter_audit": {
+      "passed": true,
+      "configuration_sha256": "c05b066f81cbe874f130976875397770cde50ebad6b3952b51a6f30ece3b7849",
+      "configuration_hash_version": 2,
+      "requested": {
+        "mass_kg": 156,
+        "thrust_N": 0.05,
+        "exhaust_velocity_m_s": 40000,
+        "dry_mass_kg": 90,
+        "launch_tdb": "2028-06-01T00:00:00",
+        "tof_days": 1360.2395578302157,
+        "departure": "Earth",
+        "target": "Jupiter",
+        "mode": "rendezvous"
+      },
+      "recovered_model": {
+        "model_thrust_N": 0.05,
+        "thrust_to_requested_ratio": 1.0,
+        "alpha": 1.0,
+        "beta": 1.0,
+        "variable_mass": true,
+        "hardware_limit_reached": true,
+        "exhaust_velocity_m_s": 40000.0
+      },
+      "geometry": null,
+      "final_admission": true
+    },
+    "trajectory_difference_m": 12.396620105354113,
+    "velocity_difference_m_s": 1.9724020025522574e-07,
+    "stored_throttle_error": 0.0,
+    "stored_throttle_minimum": 0.0,
+    "stored_throttle_maximum": 1.0,
+    "canonical_boundary_residual": 8.399393712960973e-11,
+    "method": "LSODA with independent bounded/mass equations",
+    "scope": "Numerical extremal and constraints; no global optimality proof",
+    "departure_norm_m_s": 3000.000000000059,
+    "switching_sign_violation": 5.934149116090434e-11,
+    "switching_node_residual": 5.934149116090434e-11,
+    "minimum_mass_kg": 109.12098787168132,
+    "fuel_kg": 46.87901212831868,
+    "mass_difference_kg": 2.5979218776228663e-13,
+    "stored_thrust_error_N": 0.0,
+    "mass_balance_error_kg": 1.4210854715202004e-13
+  },
+  "schema_version": 1,
+  "arrays_sha256": "94a5eb4a7b9a1ad467657ee14e05161f21b49d7e25fbb27e01fbad0dbe0586fa",
+  "departure": {
+    "mode": "bounded_norm",
+    "bound_active": true,
+    "vector_m_s": [
+      2889.15187094298,
+      -769.1848687804068,
+      -247.2976026295092
+    ],
+    "norm_m_s": 3000.000000000059,
+    "bound_m_s": 3000
+  },
+  "bounded_model": {
+    "a_max": 0.05557710890696852,
+    "alpha": 1.0,
+    "beta": 1.0,
+    "q": 0.04109615891771888,
+    "variable_mass": true,
+    "gravity_spec": null
+  },
+  "body_initial_state_si": [
+    -50280672910.02913,
+    -143123261130.34283,
+    9978119.907125074,
+    27621.66173137535,
+    -9973.273747926782,
+    1.1552967168296675
+  ],
+  "hardware_limit_reached": true,
+  "collocation_tolerance": 2e-08,
+  "collocation_derivatives": "analytic central-field",
+  "collocation_nodes": 1561,
+  "collocation_iterations": 13,
+  "bangbang_corrector": {
+    "nfev": 6,
+    "integrations": 85,
+    "residual_norm": 1.4859071639343808e-13,
+    "optimizer_success": true
+  },
+  "kiam_verification": {
+    "passed": true,
+    "source": "Unmodified KIAM Astro compiled Fortran equations and published control API",
+    "package_version": "6.1.6",
+    "samples": 101,
+    "maximum_dimensionless_rhs_error": 8.326672684688674e-17,
+    "maximum_dimensionless_force_error": 1.3877787807814457e-17,
+    "maximum_third_body_decomposition_error": 0.0,
+    "nbody_gravity": {
+      "passed": true,
+      "applicable": false
+    },
+    "costate_map": "p_r,v(KIAM)=p_r,v/vex; p_m(KIAM)=1+p_m/vex; normalized initial mass=1",
+    "scope": "KIAM central mass-optimal equations/control, plus independent third-body decomposition when present; not a separate global optimization"
+  },
+  "parameter_audit": {
+    "passed": true,
+    "configuration_sha256": "8392f2220b40c8aa9b9df72fc486e70dbf1f7416ba83eb681747721ec8d86bb6",
+    "configuration_hash_version": 2,
+    "requested": {
+      "mass_kg": 156,
+      "thrust_N": 0.05,
+      "exhaust_velocity_m_s": 40000,
+      "dry_mass_kg": 90,
+      "launch_tdb": "2028-06-01T00:00:00",
+      "tof_days": 1100.0,
+      "departure": "Earth",
+      "target": "Jupiter",
+      "mode": "rendezvous"
+    },
+    "recovered_model": {
+      "model_thrust_N": 0.05,
+      "thrust_to_requested_ratio": 1.0,
+      "alpha": 1.0,
+      "beta": 1.0,
+      "variable_mass": true,
+      "hardware_limit_reached": true,
+      "exhaust_velocity_m_s": 40000.0
+    },
+    "geometry": {
+      "epoch_jd": 2461923.5,
+      "arrival_jd": 2463023.5,
+      "departure_position_difference_m": 0.0,
+      "arrival_position_difference_m": 0.0
+    },
+    "final_admission": true
+  },
+  "switch_times_s": [
+    14300436.1625498,
+    40187797.83027032,
+    105908849.76159632
+  ],
+  "initial_throttle": 0.0,
+  "free_time": {
+    "method": "constrained_shooting_SLSQP",
+    "seed_tof_days": 1100.0,
+    "resolved_tof_days": 1360.2395578302157,
+    "bounds_days": [
+      550.0,
+      1650.0
+    ],
+    "optimizer_success": true,
+    "iterations": 13,
+    "objective": "propellant",
+    "global_optimality": false
+  }
+}

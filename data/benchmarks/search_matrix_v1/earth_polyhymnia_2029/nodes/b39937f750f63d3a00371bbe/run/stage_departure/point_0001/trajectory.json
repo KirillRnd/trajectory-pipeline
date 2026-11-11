@@ -1,0 +1,210 @@
+{
+  "case_id": "earth_polyhymnia_2029",
+  "epoch_jd": 2462106.5,
+  "time_scale": "TDB",
+  "center": "Sun",
+  "frame": "ECLIPJ2000",
+  "model": "IRT two-body minimum integral acceleration squared / 2",
+  "status": "verified_extremal",
+  "stage": "departure",
+  "mission": {
+    "case_id": "earth_polyhymnia_2029",
+    "departure": "Earth",
+    "target": "Polyhymnia",
+    "launch_tdb": "2028-12-01T00:00:00",
+    "tof_days": 1080.0,
+    "center": "Sun",
+    "mode": "rendezvous",
+    "position_tolerance_m": 1000,
+    "velocity_tolerance_m_s": 0.01,
+    "mass_kg": 156,
+    "departure_mode": "bounded_norm",
+    "vinf_max_m_s": 3000,
+    "vinf_vector_m_s": null,
+    "spacecraft": {
+      "thrust_N": 0.05,
+      "exhaust_velocity_m_s": 40000,
+      "dry_mass_kg": 90
+    },
+    "solver": {
+      "budget_s": 30,
+      "compare_seeds": true,
+      "departure_budget_s": 40,
+      "limit_budget_s": 60,
+      "pazov_budget_s": 60,
+      "psi_budget_s": 60,
+      "bounded_attempt_s": 20,
+      "pipeline_pazov_alpha": 0.5,
+      "psi_mass_alpha": 0.5
+    },
+    "lunar": null
+  },
+  "scales": {
+    "distance_m": 147510463557.9794,
+    "mu_m3_s2": 1.32712440018e+20
+  },
+  "initial_state_si": [
+    53061766261.823944,
+    137636425866.51093,
+    -9744638.447476117,
+    -29048.84090323723,
+    11694.093348110477,
+    118.52524407170873
+  ],
+  "target_state_si": [
+    -567140890259.1292,
+    72906848063.0074,
+    4917059462.345697,
+    -958.6947269158455,
+    -12387.84744306475,
+    -393.0812376100494
+  ],
+  "costate_convention": "dimensionless [p_r,p_v], H=p_r*v+p_v*(g+u)-|u|^2/2, u=p_v",
+  "costates_initial": [
+    -0.0028345345586451454,
+    0.01640635941457837,
+    0.0008429408971201439,
+    -0.008475041294520046,
+    0.011901770697346815,
+    0.0012851812061237197
+  ],
+  "functional_dimensionless": 0.007412197352566807,
+  "chosen_seed": {
+    "source": "ILTT",
+    "lambda_turns": 0.9250210435448901,
+    "kappa": 2.905610969025583,
+    "route": "shooting",
+    "independent_check": {
+      "position_residual_m": 306.9486102550058,
+      "velocity_residual_m_s": 1.1577273003129009e-05,
+      "free_velocity_transversality": 0.031379350709781206,
+      "difference_r_m": 340.82375383163514,
+      "difference_v_m_s": 1.2798387291427134e-05
+    },
+    "nfev": 21,
+    "integrations": 21,
+    "optimizer_success": true,
+    "residual_norm": 1.209185516661046e-13,
+    "position_residual_m": 34.902287805381974,
+    "velocity_residual_m_s": 1.3302434397138196e-06,
+    "free_velocity_transversality": 0.03137935069368602,
+    "accepted": true
+  },
+  "title": "Earth → Polyhymnia: ИРТ",
+  "ephemerides": {
+    "Earth": {
+      "body": "earth",
+      "start_jd": 2287184.5,
+      "stop_jd": 2688976.5,
+      "source": "KIAM 6.1.6 / bundled JPLEPH",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "center": "requested",
+      "interpolation": "KIAM native ephemeris",
+      "representation": "body center"
+    },
+    "Polyhymnia": {
+      "body": "polyhymnia",
+      "source": "https://ssd.jpl.nasa.gov/api/horizons.api",
+      "parameters": {
+        "format": "json",
+        "COMMAND": "'33;'",
+        "CENTER": "'500@10'",
+        "EPHEM_TYPE": "'VECTORS'",
+        "REF_PLANE": "'ECLIPTIC'",
+        "REF_SYSTEM": "'ICRF'",
+        "OUT_UNITS": "'KM-S'",
+        "VEC_CORR": "'NONE'",
+        "CSV_FORMAT": "'YES'",
+        "VEC_TABLE": "'2'",
+        "TIME_TYPE": "'TDB'",
+        "OBJ_DATA": "'YES'",
+        "START_TIME": "'2028-01-01'",
+        "STOP_TIME": "'2035-01-01'",
+        "STEP_SIZE": "'12 h'"
+      },
+      "center": "Sun",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "units": "m,m/s",
+      "start_jd": 2461771.5,
+      "stop_jd": 2464328.5,
+      "knots": 5115,
+      "max_step_days": 0.5,
+      "interpolation": "cubic Hermite, position and velocity from the same polynomial",
+      "arrays_sha256": "f73f60cf925228b6960c138bf621e0fa427cbde3905905af505f6e09df6d16ba",
+      "raw_sha256": "eac78e396e55e69fbaba453ad8c29a155f723eeda23f0badd2234d488818fb2a"
+    }
+  },
+  "overlays": [
+    {
+      "array": "departure_orbit_m",
+      "label": "Орбита Earth"
+    },
+    {
+      "array": "target_orbit_m",
+      "label": "Орбита Polyhymnia",
+      "linestyle": "-.",
+      "color": ".65"
+    }
+  ],
+  "markers": [
+    {
+      "label": "Earth, старт",
+      "r_m": [
+        53061766261.823944,
+        137636425866.51093,
+        -9744638.447476117
+      ]
+    },
+    {
+      "label": "Earth, прибытие",
+      "r_m": [
+        89102171061.49425,
+        118135707120.70148,
+        -9288068.270918375
+      ],
+      "hollow": true
+    },
+    {
+      "label": "Polyhymnia",
+      "r_m": [
+        -567140890259.1292,
+        72906848063.0074,
+        4917059462.345697
+      ],
+      "color": "#df1111",
+      "role": "target"
+    }
+  ],
+  "configuration_sha256": "1cd2efc3f8afe1183704292bdd1c837fd5d9e37fa9d2827ff48c4de9b6ec1e73",
+  "configuration_hash_version": 2,
+  "verification": {
+    "passed": true,
+    "method": "LSODA, independently implemented Hamiltonian RHS",
+    "position_residual_m": 389.3705188139665,
+    "velocity_residual_m_s": 1.551710275590818e-05,
+    "trajectory_difference_m": 389.37053149914465,
+    "velocity_difference_m_s": 1.551710275590818e-05,
+    "free_velocity_transversality": 0.03511941708172207,
+    "scope": "Numerical extremal and endpoint consistency; not proof of local/global optimality or N-body fidelity"
+  },
+  "schema_version": 1,
+  "arrays_sha256": "9c1bbf39116026af957b3bcdbdfa51cd0b3e939ee534111602c6b47ade0e51e5",
+  "departure": {
+    "parameter": 0.45,
+    "mode": "bounded_norm",
+    "bound_m_s": 1350.0,
+    "vector_m_s": [
+      -780.0544880933012,
+      1095.4553878959578,
+      118.28985051650325
+    ],
+    "norm_m_s": 1350.0000000000007,
+    "bound_active": true,
+    "pv0_norm": 0.01466731609424904,
+    "norm_error_m_s": 6.821210263296962e-13,
+    "transversality_cross_norm": 1.683188954477194e-19,
+    "free_branch_failure": "Free-departure shooting budget reached"
+  }
+}

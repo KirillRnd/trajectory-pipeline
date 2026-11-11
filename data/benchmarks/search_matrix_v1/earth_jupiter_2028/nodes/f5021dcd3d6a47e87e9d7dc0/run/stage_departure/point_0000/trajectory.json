@@ -1,0 +1,210 @@
+{
+  "case_id": "earth_jupiter_2028",
+  "epoch_jd": 2461923.5,
+  "time_scale": "TDB",
+  "center": "Sun",
+  "frame": "ECLIPJ2000",
+  "model": "IRT two-body minimum integral acceleration squared / 2",
+  "status": "verified_extremal",
+  "stage": "departure",
+  "mission": {
+    "case_id": "earth_jupiter_2028",
+    "departure": "Earth",
+    "target": "Jupiter",
+    "launch_tdb": "2028-06-01T00:00:00",
+    "tof_days": 1100.0,
+    "center": "Sun",
+    "mode": "rendezvous",
+    "position_tolerance_m": 1000,
+    "velocity_tolerance_m_s": 0.01,
+    "mass_kg": 156,
+    "departure_mode": "bounded_norm",
+    "vinf_max_m_s": 3000,
+    "vinf_vector_m_s": null,
+    "spacecraft": {
+      "thrust_N": 0.05,
+      "exhaust_velocity_m_s": 40000,
+      "dry_mass_kg": 90
+    },
+    "solver": {
+      "budget_s": 30,
+      "compare_seeds": true,
+      "departure_budget_s": 40,
+      "limit_budget_s": 60,
+      "pazov_budget_s": 60,
+      "psi_budget_s": 60,
+      "bounded_attempt_s": 20,
+      "pipeline_pazov_alpha": 0.5,
+      "psi_mass_alpha": 0.5
+    },
+    "lunar": null
+  },
+  "scales": {
+    "distance_m": 151698431252.37823,
+    "mu_m3_s2": 1.32712440018e+20
+  },
+  "initial_state_si": [
+    -50280672910.02913,
+    -143123261130.34283,
+    9978119.907125074,
+    27756.63912596042,
+    -9390.616844560158,
+    -46.71991513898857
+  ],
+  "target_state_si": [
+    -97540135833.60431,
+    -784364340916.2157,
+    5442745130.41997,
+    12821.36685975565,
+    -1007.091758965783,
+    -282.7105425459474
+  ],
+  "costate_convention": "dimensionless [p_r,p_v], H=p_r*v+p_v*(g+u)-|u|^2/2, u=p_v",
+  "costates_initial": [
+    -0.008439593550315769,
+    -0.013203628181932244,
+    0.0011896270873062251,
+    0.001461501373018318,
+    0.006308862805409975,
+    -0.0005183807857301622
+  ],
+  "functional_dimensionless": 0.018651989765275313,
+  "chosen_seed": {
+    "source": "ILTT",
+    "lambda_turns": 1.1049793746328689,
+    "kappa": 5.136509293390544,
+    "route": "shooting",
+    "independent_check": {
+      "position_residual_m": 65.66363739525846,
+      "velocity_residual_m_s": 2.3955578737818592e-06,
+      "free_velocity_transversality": 0.07287574852333349,
+      "difference_r_m": 77.8386109130879,
+      "difference_v_m_s": 2.584382714984036e-06
+    },
+    "nfev": 7,
+    "integrations": 7,
+    "optimizer_success": true,
+    "residual_norm": 7.342909655206198e-14,
+    "position_residual_m": 26.389230698012206,
+    "velocity_residual_m_s": 1.0662179651101707e-06,
+    "free_velocity_transversality": 0.07287574852284777,
+    "accepted": true
+  },
+  "title": "Earth → Jupiter: ИРТ",
+  "ephemerides": {
+    "Earth": {
+      "body": "earth",
+      "start_jd": 2287184.5,
+      "stop_jd": 2688976.5,
+      "source": "KIAM 6.1.6 / bundled JPLEPH",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "center": "requested",
+      "interpolation": "KIAM native ephemeris",
+      "representation": "body center"
+    },
+    "Jupiter": {
+      "body": "jupiter",
+      "source": "https://ssd.jpl.nasa.gov/api/horizons.api",
+      "parameters": {
+        "format": "json",
+        "COMMAND": "'599'",
+        "CENTER": "'500@10'",
+        "EPHEM_TYPE": "'VECTORS'",
+        "REF_PLANE": "'ECLIPTIC'",
+        "REF_SYSTEM": "'ICRF'",
+        "OUT_UNITS": "'KM-S'",
+        "VEC_CORR": "'NONE'",
+        "CSV_FORMAT": "'YES'",
+        "VEC_TABLE": "'2'",
+        "TIME_TYPE": "'TDB'",
+        "OBJ_DATA": "'YES'",
+        "START_TIME": "'2028-01-01'",
+        "STOP_TIME": "'2035-01-01'",
+        "STEP_SIZE": "'6 h'"
+      },
+      "center": "Sun",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "units": "m,m/s",
+      "start_jd": 2461771.5,
+      "stop_jd": 2464328.5,
+      "knots": 10229,
+      "max_step_days": 0.25,
+      "interpolation": "cubic Hermite, position and velocity from the same polynomial",
+      "arrays_sha256": "8940a77cd2204b0638341ea7368b7a89de71783d1f4bb09e5c0a5b51ec8e8b71",
+      "raw_sha256": "a345f365106bf5923e5aa4384cb92153a7f2489aeeea7c75cacc43c0833ec764"
+    }
+  },
+  "overlays": [
+    {
+      "array": "departure_orbit_m",
+      "label": "Орбита Earth"
+    },
+    {
+      "array": "target_orbit_m",
+      "label": "Орбита Jupiter",
+      "linestyle": "-.",
+      "color": ".65"
+    }
+  ],
+  "markers": [
+    {
+      "label": "Earth, старт",
+      "r_m": [
+        -50280672910.02913,
+        -143123261130.34283,
+        9978119.907125074
+      ]
+    },
+    {
+      "label": "Earth, прибытие",
+      "r_m": [
+        -40057454077.76158,
+        -146402258195.16556,
+        10332331.793382892
+      ],
+      "hollow": true
+    },
+    {
+      "label": "Jupiter",
+      "r_m": [
+        -97540135833.60431,
+        -784364340916.2157,
+        5442745130.41997
+      ],
+      "color": "#df1111",
+      "role": "target"
+    }
+  ],
+  "configuration_sha256": "8392f2220b40c8aa9b9df72fc486e70dbf1f7416ba83eb681747721ec8d86bb6",
+  "configuration_hash_version": 2,
+  "verification": {
+    "passed": true,
+    "method": "LSODA, independently implemented Hamiltonian RHS",
+    "position_residual_m": 402.42738460302706,
+    "velocity_residual_m_s": 1.1974215855366966e-05,
+    "trajectory_difference_m": 402.4273667219324,
+    "velocity_difference_m_s": 1.1974215855366966e-05,
+    "free_velocity_transversality": 0.07208871199057268,
+    "scope": "Numerical extremal and endpoint consistency; not proof of local/global optimality or N-body fidelity"
+  },
+  "schema_version": 1,
+  "arrays_sha256": "645b0b4088a5884e309a4ed1a4ac77f923cf535cc083a6e31c5dbb41248df1c7",
+  "departure": {
+    "parameter": 0.2,
+    "mode": "bounded_norm",
+    "bound_m_s": 600.0,
+    "vector_m_s": [
+      134.97739458507203,
+      582.6569033666237,
+      -47.87521185581825
+    ],
+    "norm_m_s": 599.9999999999974,
+    "bound_active": true,
+    "pv0_norm": 0.006496649505693998,
+    "norm_error_m_s": 2.6147972675971687e-12,
+    "transversality_cross_norm": 5.249105272747386e-19,
+    "free_branch_failure": "Free-departure shooting budget reached"
+  }
+}
