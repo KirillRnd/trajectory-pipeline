@@ -7,7 +7,7 @@ toolbox's hard-coded AU-to-days conversion. No inverse duration fit is used.
 from dataclasses import replace
 from time import perf_counter
 import numpy as np
-from scipy.optimize import root
+from scipy.optimize import root,least_squares
 from .data import Scales, MU_SUN, DAY_S
 from .ephemerides import Ephemerides
 
@@ -71,12 +71,35 @@ def resolve_date_mission(mission,eph=None):
         actual=np.array([float(a[0]) for a in tb.rv2orb(result['rf'][:,None],result['vf'][:,None],1)])
         residual=np.r_[desired[[0,2,1]]-actual[[0,2,1]],tb.ang_err(desired[[3,8,6]],actual[[3,8,6]])]
         return residual,result,duration
-    opt=root(lambda x:evaluate(x)[0],x0,method='hybr',options={'xtol':1e-9,'maxfev':200})
-    residual,result,duration=evaluate(opt.x)
-    if not np.isfinite(residual).all() or np.linalg.norm(residual)>1e-7:
-        raise ValueError('ILTT phase/orbit correction failed: '+str(opt.message)+'; residual='+str(residual)+'; x='+str(opt.x)+'; x0='+str(x0))
     lower=0. if rank==0 else .5*(branches[rank-1]['lambda_initial']+lam)
     upper=np.inf if rank+1==len(branches) else .5*(lam+branches[rank+1]['lambda_initial'])
+    # The toolbox clips dm internally. Starting outside that interval makes
+    # its entire Jacobian column exactly zero, so unconstrained Newton cannot
+    # recover. Keep the existing R model, but correct inside its active domain.
+    dm_limit=.999*abs(np.sin(.642))
+    saturated=bool(abs(x0[0])>=dm_limit)
+    attempts=[];opt=None;residual=np.full(6,np.inf)
+    if not saturated:
+        try:
+            opt=root(lambda x:evaluate(x)[0],x0,method='hybr',options={'xtol':1e-9,'maxfev':200})
+            residual,result,duration=evaluate(opt.x)
+            attempts.append(dict(route='hybr',residual_norm=float(np.linalg.norm(residual)),message=str(opt.message)))
+        except (ValueError,OverflowError,np.linalg.LinAlgError) as exc:
+            attempts.append(dict(route='hybr',error=str(exc)))
+    if not np.isfinite(residual).all() or np.linalg.norm(residual)>1e-7:
+        # A declared finite trust domain also prevents a failed local step
+        # from sending the transformed inclination or orbit size to infinity.
+        lo=np.array([-dm_limit,-30,-np.inf,-np.inf,.1,lower])
+        hi=np.array([dm_limit,30,np.inf,np.inf,10,upper])
+        seed=np.maximum(lo+1e-7,np.minimum(hi-1e-7,x0))
+        opt=least_squares(lambda x:evaluate(x)[0],seed,bounds=(lo,hi),
+                          method='trf',x_scale='jac',diff_step=1e-5,
+                          ftol=1e-11,xtol=1e-11,gtol=1e-11,max_nfev=200)
+        residual,result,duration=evaluate(opt.x)
+        attempts.append(dict(route='bounded_R',residual_norm=float(np.linalg.norm(residual)),message=str(opt.message),
+                             trust_domain=dict(dm=[-dm_limit,dm_limit],j=[-30,30],kappa=[.1,10],lambda_turns=[lower,float(upper) if np.isfinite(upper) else None])))
+    if not np.isfinite(residual).all() or np.linalg.norm(residual)>1e-7:
+        raise ValueError('ILTT phase/orbit correction failed: '+str(opt.message)+'; residual='+str(residual)+'; x='+str(opt.x)+'; x0='+str(x0))
     if not lower<float(opt.x[5])<upper:raise ValueError('ILTT correction left its angular-distance branch')
     bounds=mission.solver.get('iltt_duration_bounds_days')
     if bounds is not None and not bounds[0]<=duration<=bounds[1]:
@@ -90,6 +113,7 @@ def resolve_date_mission(mission,eph=None):
                 x_initial=np.asarray(x0).tolist(),x_corrected=opt.x.tolist(),
                 tof_days=duration,initial_tof_days=float(2*np.pi*tb.T_a(chosen['lambda_initial'],float(el[0]))*scale.time_s/DAY_S),
                 costates=np.r_[pr,pv].tolist(),orbit_phase_residual=residual.tolist(),evaluations=calls,
+                initial_transform_saturated=saturated,correction_attempts=attempts,
                 source='ILTT/transfer_legacy.py: phase -> a_OM branches -> make_F_function -> moving-target orbit correction',
                 duration_role='derived from ILTT; input tof_days was not used')
     return replace(mission,tof_days=duration,solver=dict(mission.solver,iltt_resolved=record))

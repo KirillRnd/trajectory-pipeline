@@ -92,3 +92,20 @@ class DateFirstILTTTests(unittest.TestCase):
         short=resolve_date_mission(replace(self.mission,launch_tdb='2029-01-01T00:00:00'))
         self.assertLess(short.solver['iltt_resolved']['lambda_corrected'],.75)
         self.assertAlmostEqual(short.tof_days,234.6999519747,places=4)
+
+    def test_apophis_saturated_R_seed_recovers_without_changing_toolbox(self):
+        raw=next(x for x in json.loads((ROOT/'configs/search_matrix_date_v4.json').read_text()) if x['target']=='Apophis')
+        mission=replace(Mission(**raw),launch_tdb='2029-07-01T00:00:00')
+        tb,eph,scale,initial,el,phase,branches=angular_branches(mission)
+        F,x=tb.make_F_function(initial[:3][None,:],initial[3:][None,:],branches[0]['lambda_initial'],el[0],0,1,el[2],el[3],el[1],el[8])
+        a=F(x);shift=x.copy();shift[0]+=1e-5;b=F(shift)
+        np.testing.assert_array_equal(a['rf'],b['rf'])
+        resolved=resolve_date_mission(mission)
+        record=resolved.solver['iltt_resolved']
+        self.assertTrue(record['initial_transform_saturated'])
+        self.assertEqual(record['correction_attempts'][-1]['route'],'bounded_R')
+        self.assertLess(np.linalg.norm(record['orbit_phase_residual']),1e-7)
+        self.assertLess(abs(record['x_corrected'][0]),.999*np.sin(.642))
+        result,diagnostic=solve_irt(resolved)
+        self.assertIsNotNone(result,diagnostic)
+        self.assertTrue(verify_irt(result)['passed'])

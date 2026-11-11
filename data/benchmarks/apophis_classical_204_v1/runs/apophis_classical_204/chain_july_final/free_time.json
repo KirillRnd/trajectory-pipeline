@@ -1,0 +1,74 @@
+{
+  "status": "completed",
+  "parent_artifact": "runs/apophis_classical_204/chain_july_final/04_psi/fuel/point_0004",
+  "bounds_days": [
+    161.8113735896554,
+    485.4341207689662
+  ],
+  "artifact": "runs/apophis_classical_204/chain_july_final/05_free_time",
+  "verification": {
+    "passed": true,
+    "position_residual_m": 0.34794964396920414,
+    "velocity_residual_m_s": 3.791265542896713e-08,
+    "parameter_audit": {
+      "passed": true,
+      "configuration_sha256": "e28f0a9f2a3e9d7e6c0d7d5dabadbe37a8b1216421e9fba1351d5e2d4dc60293",
+      "configuration_hash_version": 2,
+      "requested": {
+        "mass_kg": 204,
+        "thrust_N": 0.036,
+        "exhaust_velocity_m_s": 11767.98,
+        "dry_mass_kg": 140,
+        "launch_tdb": "2029-07-01T00:00:00",
+        "tof_days": 347.20104073924375,
+        "departure": "Earth",
+        "target": "Apophis",
+        "mode": "rendezvous"
+      },
+      "recovered_model": {
+        "model_thrust_N": 0.036,
+        "thrust_to_requested_ratio": 1.0,
+        "alpha": 1.0,
+        "beta": 1.0,
+        "variable_mass": true,
+        "hardware_limit_reached": true,
+        "exhaust_velocity_m_s": 11767.98
+      },
+      "geometry": null,
+      "final_admission": true
+    },
+    "trajectory_difference_m": 0.3978663694271451,
+    "velocity_difference_m_s": 7.32805307830058e-08,
+    "stored_throttle_error": 0.0,
+    "stored_throttle_minimum": 0.0,
+    "stored_throttle_maximum": 1.0,
+    "canonical_boundary_residual": 2.7359982831063998e-12,
+    "method": "LSODA with independent bounded/mass equations",
+    "scope": "Numerical extremal and constraints; no global optimality proof",
+    "departure_norm_m_s": 2999.9999999996003,
+    "switching_sign_violation": 1.549367034716959e-11,
+    "switching_node_residual": 1.5493783147361405e-11,
+    "minimum_mass_kg": 167.5484075470742,
+    "fuel_kg": 36.451592452925816,
+    "mass_difference_kg": 2.4913404672588513e-13,
+    "stored_thrust_error_N": 0.0,
+    "mass_balance_error_kg": 2.2737367544323206e-13
+  },
+  "kiam": {
+    "passed": true,
+    "source": "Unmodified KIAM Astro compiled Fortran equations and published control API",
+    "package_version": "6.1.6",
+    "samples": 100,
+    "maximum_dimensionless_rhs_error": 2.4424906541753444e-15,
+    "maximum_dimensionless_force_error": 6.938893903907228e-18,
+    "maximum_third_body_decomposition_error": 0.0,
+    "nbody_gravity": {
+      "passed": true,
+      "applicable": false
+    },
+    "costate_map": "p_r,v(KIAM)=p_r,v/vex; p_m(KIAM)=1+p_m/vex; normalized initial mass=1",
+    "scope": "KIAM central mass-optimal equations/control, plus independent third-body decomposition when present; not a separate global optimization"
+  },
+  "duration_days": 347.20104073924375,
+  "fuel_delta_kg": -3.7062707059364683
+}

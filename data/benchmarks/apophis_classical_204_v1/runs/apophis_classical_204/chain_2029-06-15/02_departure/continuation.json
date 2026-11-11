@@ -1,0 +1,250 @@
+{
+  "profile": {
+    "stage": "departure",
+    "mission": {
+      "case_id": "apophis_204_2029-06-15",
+      "departure": "Earth",
+      "target": "Apophis",
+      "launch_tdb": "2029-06-15T00:00:00",
+      "tof_days": 370.24271323946573,
+      "center": "Sun",
+      "mode": "rendezvous",
+      "position_tolerance_m": 1000,
+      "velocity_tolerance_m_s": 0.01,
+      "mass_kg": 204,
+      "departure_mode": "bounded_norm",
+      "vinf_max_m_s": 3000,
+      "vinf_vector_m_s": null,
+      "spacecraft": {
+        "thrust_N": 0.036,
+        "exhaust_velocity_m_s": 11767.98,
+        "dry_mass_kg": 140
+      },
+      "solver": {
+        "budget_s": 180,
+        "compare_seeds": true,
+        "departure_budget_s": 240,
+        "limit_budget_s": 300,
+        "pazov_budget_s": 300,
+        "psi_budget_s": 600,
+        "bounded_attempt_s": 45,
+        "irt_entry": "date",
+        "attempt_budget_s": 90,
+        "iltt_budget_s": 90,
+        "iltt_resolved": {
+          "binding": {
+            "departure": "Earth",
+            "target": "Apophis",
+            "launch_tdb": "2029-06-15T00:00:00",
+            "center": "Sun",
+            "max_abs_k": 5,
+            "duration_bounds_days": null,
+            "angular_min": 0.0
+          },
+          "branch_rank": 0,
+          "branches": [
+            {
+              "k": 0,
+              "lambda_initial": 0.619204030306702,
+              "approximation_family": "short"
+            },
+            {
+              "k": 1,
+              "lambda_initial": 17.30904300807732,
+              "approximation_family": "long"
+            },
+            {
+              "k": 2,
+              "lambda_initial": 33.998881985847945,
+              "approximation_family": "long"
+            },
+            {
+              "k": 3,
+              "lambda_initial": 50.68872096361856,
+              "approximation_family": "long"
+            },
+            {
+              "k": 4,
+              "lambda_initial": 67.37855994138918,
+              "approximation_family": "long"
+            },
+            {
+              "k": 5,
+              "lambda_initial": 84.0683989191598,
+              "approximation_family": "long"
+            }
+          ],
+          "phase_rad": 0.2252768562926377,
+          "k": 0,
+          "lambda_initial": 0.619204030306702,
+          "lambda_corrected": 0.8262053063562761,
+          "kappa": 1.2690875374512567,
+          "x_initial": [
+            -0.6980556359758846,
+            -1.6952056305593852,
+            3.5527961814767046,
+            4.799279895767342,
+            1.0859389965504698,
+            0.619204030306702
+          ],
+          "x_corrected": [
+            -0.26060949182040105,
+            -0.5074423081322313,
+            3.571258942440503,
+            5.065210255920459,
+            1.2690875374512567,
+            0.8262053063562761
+          ],
+          "tof_days": 370.24271323946573,
+          "initial_tof_days": 246.21085324388795,
+          "costates": [
+            -0.006856994759447336,
+            -0.018896311094928276,
+            0.010313361920791218,
+            0.03448448305885096,
+            0.0015554538233568547,
+            0.007199240917607964
+          ],
+          "orbit_phase_residual": [
+            -4.440892098500626e-15,
+            0.0,
+            3.3861802251067274e-15,
+            -2.6645352591003757e-15,
+            -5.329070518200751e-15,
+            6.02629057766535e-13
+          ],
+          "evaluations": 109,
+          "initial_transform_saturated": true,
+          "correction_attempts": [
+            {
+              "route": "bounded_R",
+              "residual_norm": 6.026843848520252e-13,
+              "message": "`xtol` termination condition is satisfied.",
+              "trust_domain": {
+                "dm": [
+                  -0.5981996389807971,
+                  0.5981996389807971
+                ],
+                "j": [
+                  -30,
+                  30
+                ],
+                "kappa": [
+                  0.1,
+                  10
+                ],
+                "lambda_turns": [
+                  0.0001,
+                  8.964123519192011
+                ]
+              }
+            }
+          ],
+          "source": "ILTT/transfer_legacy.py: phase -> a_OM branches -> make_F_function -> moving-target orbit correction",
+          "duration_role": "derived from ILTT; input tof_days was not used"
+        }
+      },
+      "lunar": null
+    },
+    "source_arrays_sha256": "c4029d6a42f85f19469eac8c4a62587879c226a04a066279984c747cec7a631c",
+    "budget_s": 240,
+    "min_step": 0.001,
+    "max_step": 0.25
+  },
+  "last_point": "point_0004",
+  "sessions": [
+    {
+      "started_utc": "2026-11-11T21:46:15.835097+00:00",
+      "source_sha256": {
+        "trajectory_pipeline/__init__.py": "b5d69a20b137a938a28e2478dbae0068c3e29e5f6dad0cc95672c5107c6b4842",
+        "trajectory_pipeline/__main__.py": "6f1f3ba6c1a2ea048887f7c646bdce58ecb41dcd55b8764299577ec158818fab",
+        "trajectory_pipeline/angular_capture.py": "97dcbd78260bdd41f214fa64b436ed06e3b78317236367487e6bbffb3499e909",
+        "trajectory_pipeline/bangbang.py": "e523bca38ae2ae700174b4b59ffebc5d01586baed5fb9e74db8446522ce105a9",
+        "trajectory_pipeline/bounded.py": "e5d4802fe6a3ef83ae3e9185b611f216bed0a96291f7d0c7a60898582913e904",
+        "trajectory_pipeline/bounded_derivatives.py": "bb2f18f6202ea1ff072930b1887951a26a840112dbb0feff3c8cf063863b3e79",
+        "trajectory_pipeline/bounded_model.py": "ac847de889d96c6b343276f22972c3c9211cf815cd8605212a951c86c381ddd0",
+        "trajectory_pipeline/capture_control.py": "56b511b672de53896f53a4aab6f13726961d3fc96083ddc9585dd5fb0c30c8b7",
+        "trajectory_pipeline/capture_pipeline.py": "98bd30261567e9227d54757f6daa580c4e9f81ee9695426d149afe3a1b8ea119",
+        "trajectory_pipeline/capture_search.py": "6b6c9a5fe0d4076484f8c0cf28160125e78194eeaa6692e9bd06ec911e777397",
+        "trajectory_pipeline/continuation.py": "14700fe3c5bc32044119902b40f266929439b8901f3455f4105b52ac1957e2a7",
+        "trajectory_pipeline/contract.py": "83bb972ca419ed5fbc0fe4daa0bf6a801750787ddffc1dbda0b78724400aac2d",
+        "trajectory_pipeline/cr3bp.py": "81821102917370aa6ee00878d6534bbbf90a0e417c9474f720f46de820eead33",
+        "trajectory_pipeline/data.py": "aebdc031ea5379bcf840081747f2adb833f918588510c8d9b4e81558d495e972",
+        "trajectory_pipeline/date_sweep.py": "1a4df143fb7b5c6e947de631ae1be551897eb60b7663a6ba60ab40b8c8e9724b",
+        "trajectory_pipeline/departure.py": "64ac75cd2650c1872f89a929743ff9ba124db09ba68f698c79adc8979f4daca1",
+        "trajectory_pipeline/diagnostics.py": "ed7fc51f3d67b2f74751754ed485aed9e6c99312645a36504f8cbde4b410e1bb",
+        "trajectory_pipeline/ephemerides.py": "01b6f771b4adf3e7bac893d619787d4bbb823946cc0dce49b5f588dd8ffa8c95",
+        "trajectory_pipeline/free_time.py": "84f380539035c674f81e045d8fca342cdd2e79fcadb976134befa6b1e42f596f",
+        "trajectory_pipeline/free_time_report.py": "1e5f778d7ae0b394b3fab0fb10417b65a9e15469799b9530ef965f09ec3d2120",
+        "trajectory_pipeline/gravity.py": "716b7dda8f5268c7c65c4014cb7d96bf8008140c6633dcbb0ee6594364d658ab",
+        "trajectory_pipeline/iltt_entry.py": "907e8f928568797f9d0ab66c30f7a3c0ff8432a58d5d7bc72dcc43d457d17ba7",
+        "trajectory_pipeline/intermediate_time.py": "3d96b20d062aaaf3c32dc342b1e1faf8556a739f74c4fe2902e56aecb4729bcb",
+        "trajectory_pipeline/irt.py": "7e0027f48c57ad19711fc6d41ce242933f2e493b927201593c89cba2b064490e",
+        "trajectory_pipeline/kiam_verification.py": "08bc4b66d22208063de9e2c194821d963cfa9af3731d30ce4845b4a52e06a61a",
+        "trajectory_pipeline/launch_pipeline.py": "2afb01c8e923694d8ed410faf8569b30ad0a7f430c51e9aa71aa4d3db1c57445",
+        "trajectory_pipeline/lunar.py": "721ee63036e945c1d6dd767985b9b32c0f48de23fbda78814e2c9fba970de904",
+        "trajectory_pipeline/matrix_report.py": "b11a950417c2a7e2205e1fb92556d09e36c7d81869c89a7d32360d01f6145ce8",
+        "trajectory_pipeline/orbital_maneuvers.py": "c3d1520f17ff038d3e1d548c5b0a752cc9b498ff9e418f1d3c02404b61f8e404",
+        "trajectory_pipeline/orbital_pipeline.py": "0bcd729ad39b8fe5739c6312a927b0dc61e328c2edb735ee9cb0ee5023144fca",
+        "trajectory_pipeline/orbital_visualization.py": "3fc8f294e555f2f1701d91d810756c11f581be0c5aa2080eb4c3e804e75abfb2",
+        "trajectory_pipeline/outcomes.py": "09b53a8b190f5c2d57ef50a64f7883f26e09ffc2e3b91252505612c47f482cc3",
+        "trajectory_pipeline/parameter_study.py": "68efd2d25c52b1db5179616bbc272a6d0afbd25f514b8297bdc3561619238ce4",
+        "trajectory_pipeline/parking_departure.py": "3f7c2858904e30cd47a287d0f1d735f30c6e92faaf894f70a51b8c20cbd984a7",
+        "trajectory_pipeline/pazov.py": "907bff7913bfd981ddcfa7d3878188d357eba84e5b26847a0319aec541f6b682",
+        "trajectory_pipeline/planetary_capture.py": "5a9ca0c37b7abb75021be464d7d40efdfffa15f31266689388bdf8ca01c82f5a",
+        "trajectory_pipeline/problem.py": "11034e384eeca638642a8a684c4d282266d761565be49bf871b74c3c74c8cc57",
+        "trajectory_pipeline/psi.py": "eafb8a8469e789428eba9dfb6a9281097831d76357c1bd1c9ad7bf36bff73e10",
+        "trajectory_pipeline/r_study.py": "b3b7663f2638fe91d4eaaecfad6d48ab887b98fde39ab61b5c8cff8e36037df9",
+        "trajectory_pipeline/r_transform.py": "6f97b68230db35c04cc4903735f3ca8bf875572da068676d19734321ec668880",
+        "trajectory_pipeline/reference.py": "8408fc0ce798a2147a5602c4d23a24536e90905b855a894ad7495e842caa062c",
+        "trajectory_pipeline/runner.py": "00a608d7b4372b524d14695c1d6f99f2685350576fdb3382728f14f3e48d1d8f",
+        "trajectory_pipeline/runtime.py": "81dfded64ae214fc00e611dff44b66a9298edfc0cef367368792860c64eafdbb",
+        "trajectory_pipeline/search_graph.py": "1e467f6dc8a4dcd1fb1b34be671dd4f72abb36be49a40f0f97383bd12f54f362",
+        "trajectory_pipeline/ummp.py": "6fc8d237688692394937e63c193129caa11d6a3fbd1f8262db82338c3b67de63",
+        "trajectory_pipeline/ummp_benchmark.py": "2f1f0de7a1947f3a8514f1efc76f2351794564ba7d94787dbeac02a01c581a54",
+        "trajectory_pipeline/ummp_model.py": "bba0098c8c8363877254c2b3c7ef1e014425f287df0198cb50c33167ea5b8c6a",
+        "trajectory_pipeline/verification.py": "710cd5bbc9b193d32a9536e26aec3769c5ccf1ec4f3fafd761b32b11f78d7af9",
+        "trajectory_pipeline/visualization.py": "3a72c99cf9f5823dfb38b4701b0898a4115e89056398595926136f3bda4ba422",
+        "ILTT/continuation_methods.py": "288680b2703460a0a9b67c3f33a00fc6f6ee908c33f9024c1fba0020dba77d6f"
+      }
+    }
+  ],
+  "status": "completed_stage",
+  "reached_parameter": 1.0,
+  "next_step": 0.25,
+  "history": [
+    {
+      "parameter": 0.2,
+      "step": 0.2,
+      "accepted": true,
+      "accepted_parameter": 0.2
+    },
+    {
+      "parameter": 0.45,
+      "step": 0.25,
+      "accepted": true,
+      "accepted_parameter": 0.45
+    },
+    {
+      "parameter": 0.7,
+      "step": 0.25,
+      "accepted": true,
+      "accepted_parameter": 0.7
+    },
+    {
+      "parameter": 0.95,
+      "step": 0.25,
+      "accepted": true,
+      "accepted_parameter": 0.95
+    },
+    {
+      "parameter": 1.0,
+      "step": 0.25,
+      "accepted": true,
+      "accepted_parameter": 1.0
+    }
+  ],
+  "elapsed_s_current_session": 0.7142501829657704,
+  "attempts_current_session": 5,
+  "stop_reason": "target_reached"
+}
