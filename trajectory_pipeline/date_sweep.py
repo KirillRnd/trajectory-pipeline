@@ -242,6 +242,13 @@ def _run_plan(output, plan, missions, resume):
 
     flags = fuel_outliers([m.launch_jd for m in missions], fast, plan['outlier_abs_kg'], plan['outlier_rel'])
     fallback = [m.to_dict() for i, m in enumerate(missions) if fast[i]['status'] != 'completed' or i in flags]
+    # A reference produced by the legacy fixed-time route must not silently
+    # force that route on a new standard ILTT calculation.
+    for request in fallback:
+        request['solver']=dict(request['solver'],irt_entry='fixed_time' if fixed_time else 'date')
+        request['solver'].pop('iltt_resolved',None)
+        if not fixed_time:
+            request['solver']['iltt_duration_bounds_days']=list(policy['bounds_days'])
     write_json(output / 'fallback_matrix.json', fallback)
     standard = {}
     if fallback:

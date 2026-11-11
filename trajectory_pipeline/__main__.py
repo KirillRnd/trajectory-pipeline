@@ -200,6 +200,7 @@ def main():
         from .runner import run_pipeline
         from .capture_control import apply_capture_flags
         mission=apply_capture_flags(Mission.load(args.mission),args)
+        original_cli_request=mission.to_dict()
         if args.fixed_time and args.tof_bounds_days:raise ValueError('Choose free-time bounds or --fixed-time')
         if args.fixed_time:mission.time_policy=None
         elif args.tof_bounds_days or not any(x is not None for x in (mission.capture,mission.parking_departure,mission.orbital_maneuvers,mission.lunar)):
@@ -209,6 +210,10 @@ def main():
             mission.time_policy=dict(bounds_days=bounds if bounds is not None else [mission.tof_days*.5,mission.tof_days*1.5])
         mission.validate()
         result,summary=run_pipeline(mission,args.output,resume=args.resume)
+        from pathlib import Path
+        from .data import write_json
+        if Path(args.output).exists():
+            write_json(Path(args.output)/'cli_request.json',dict(mission=original_cli_request,fixed_time=args.fixed_time,tof_bounds_days=args.tof_bounds_days))
         print(json.dumps({k:v for k,v in summary.items() if k!='stages'},ensure_ascii=False,indent=2))
         return exit_code(summary['status'])
     elif args.command=='sweep-solve':
