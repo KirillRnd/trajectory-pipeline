@@ -106,8 +106,8 @@ def release_duration(source,previous,bounds_days,deadline):
     if any(x is not None for x in (mission.capture,mission.parking_departure,mission.orbital_maneuvers,mission.lunar,mission.arrival_offset_state_si,mission.departure_offset_state_si)):
         raise ValueError('Body-to-body time release requires unresolved local maneuvers to be handled by their controller')
     bounds=np.asarray(bounds_days,dtype=float)
-    if bounds.shape!=(2,) or not np.isfinite(bounds).all() or not 0<bounds[0]<mission.tof_days<bounds[1]:
-        raise ValueError('Duration bounds must strictly enclose the initial guess')
+    if bounds.shape!=(2,) or not np.isfinite(bounds).all() or not 0<bounds[0]<=mission.tof_days<=bounds[1] or bounds[0]==bounds[1]:
+        raise ValueError('Duration bounds must contain the initial guess')
     model=BoundedModel(**source.metadata['bounded_model'])
     if not model.variable_mass or model.alpha!=1 or model.beta!=1 or model.gravity is not None:
         raise ValueError('Duration release requires physical central-field PSI')

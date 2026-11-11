@@ -31,7 +31,7 @@ def physical_spec(mission):
 
 
 def verify_cached(cached):
-    if cached['status']=='completed':
+    if cached.get('artifact'):
         path=Path(cached['artifact'])
         if sha256(path/'trajectory.json')!=cached['metadata_sha256'] or sha256(path/'trajectory.npz')!=cached['arrays_sha256']:
             raise ValueError('Cached artifact changed')
@@ -56,7 +56,8 @@ def validate_design(design, base):
     if base.time_policy is not None:raise ValueError('Declare time search bounds in the design, not in the base mission')
     required = {'date_offsets_days','duration_factors','engines','mass_alphas','routes',
                 'population','generations','seed','wall_budget_s','node_budget_s','release_budget_s','time_bounds_factors'}
-    if set(design) != required:raise ValueError('Search design keys differ: '+str(set(design)^required))
+    optional={'intermediate_release_budget_s','physical_continue_budget_s','intermediate_rounds'}
+    if not required<=set(design) or set(design)-required-optional:raise ValueError('Search design keys differ: '+str(set(design)^required))
     for key in ('date_offsets_days','duration_factors','mass_alphas','time_bounds_factors'):
         values=design[key]
         if not isinstance(values,list) or not values or not all(type(x) in (int,float) and math.isfinite(x) for x in values):
@@ -65,11 +66,14 @@ def validate_design(design, base):
     if len(design['time_bounds_factors'])!=2:raise ValueError('Two time bounds required')
     lo,hi=design['time_bounds_factors']
     if not 0<lo<min(design['duration_factors'])<=max(design['duration_factors'])<hi:raise ValueError('Time bounds must enclose all seeds')
-    if not design['routes'] or not set(design['routes'])<= {'fixed','release'}:raise ValueError('Unsupported route')
+    if not design['routes'] or not set(design['routes'])<= {'fixed','release','intermediate'}:raise ValueError('Unsupported route')
+    if type(design.get('intermediate_rounds',1)) is not int or not 1<=design.get('intermediate_rounds',1)<=4:raise ValueError('Invalid intermediate rounds')
     for key in ('population','generations','seed'):
         if type(design[key]) is not int or design[key] < (0 if key=='seed' else 1):raise ValueError('Invalid '+key)
     for key in ('wall_budget_s','node_budget_s','release_budget_s'):
         if type(design[key]) not in (int,float) or not math.isfinite(design[key]) or design[key]<=0:raise ValueError('Invalid '+key)
+    for key in optional-{'intermediate_rounds'}:
+        if key in design and (type(design[key]) not in (int,float) or not math.isfinite(design[key]) or design[key]<=0):raise ValueError('Invalid '+key)
     if not design['engines']:raise ValueError('Declare at least one engine')
     for engine in design['engines']:
         if set(engine)!= {'name','thrust_N','exhaust_velocity_m_s'} or not isinstance(engine['name'],str):raise ValueError('Declare named F/c engine pairs')
@@ -78,7 +82,7 @@ def validate_design(design, base):
 
 def learn_history(roots, base):
     """Count observed routes, retain provenance, and discover reusable physical PSI."""
-    references=[]; seen=set(); counts={'fixed':dict(attempts=0,successes=0),'release':dict(attempts=0,successes=0)}
+    references=[]; seen=set(); counts={key:dict(attempts=0,successes=0) for key in ('fixed','release','intermediate')}
     evidence=[]
     for root in roots:
         root=Path(root)
@@ -88,7 +92,7 @@ def learn_history(roots, base):
             graph=read(graph_path)
             for key,node in graph['nodes'].items():
                 if node['status'] not in ('completed','partial','failed','initial_failed'):continue
-                route='release' if node['request']['operation'] in ('release','r_release') else 'fixed'
+                route='intermediate' if node['request']['operation'] in ('intermediate_release','physical_continue') else 'release' if node['request']['operation'] in ('release','r_release') else 'fixed'
                 counts[route]['attempts']+=1;counts[route]['successes']+=int(node['status']=='completed')
                 evidence.append(dict(path=str(graph_path),sha256=sha256(graph_path),node=key,route=route,status=node['status']))
         for path in ([] if graph_path.exists() else sorted(root.rglob('summary.json'))):
@@ -181,17 +185,51 @@ def pareto(rows):
         any(x<y for x,y in zip(q['objectives'],r['objectives'])) for q in rows)]
 
 
+def save_intermediate(result, folder, status, phase, **extra):
+    """A verified checkpoint is reusable, but is never a physical solution."""
+    record=dict(status=status,phase=phase,**extra)
+    if result is not None:
+        record.update(last_model=result.metadata.get('bounded_model'),mission=result.metadata['mission'])
+        try:
+            from .intermediate_time import verify_intermediate
+            verify_intermediate(result)
+            path=folder/'intermediate';result.save(path)
+            record.update(artifact=str(path),metadata_sha256=sha256(path/'trajectory.json'),arrays_sha256=sha256(path/'trajectory.npz'))
+        except (ValueError,RuntimeError) as exc:
+            record['intermediate_unavailable']=str(exc)
+    write_json(folder/'result.json',record)
+
+
 def worker(request_path):
     request=read(request_path);folder=Path(request_path).parent
     mission=Mission(**request['mission']).validate();operation=request['operation'];started=perf_counter()
     try:
+        if request.get('parent_artifact'):
+            path=Path(request['parent_artifact'])
+            if sha256(path/'trajectory.npz')!=request['parent_sha256'] or sha256(path/'trajectory.json')!=request['parent_metadata_sha256']:
+                raise ValueError('Parent artifact changed')
         if operation=='cold':
             from .runner import run_pipeline
             result,status=run_pipeline(mission,folder/'run')
             if status['status']!='completed':
-                last_model=result.metadata.get('bounded_model') if result is not None else None
-                write_json(folder/'result.json',dict(status=status['status'],phase=status['phase'],error=status.get('error'),
-                    last_model=last_model,checkpoint=str(folder/'run'),elapsed_s=perf_counter()-started))
+                save_intermediate(result,folder,status['status'],status['phase'],error=status.get('error'),
+                    checkpoint=str(folder/'run'),elapsed_s=perf_counter()-started)
+                return
+        elif operation=='intermediate_release':
+            from .intermediate_time import release_intermediate_duration
+            source=Trajectory.load(request['parent_artifact'])
+            audit_configuration(source,mission,make_request(mission))
+            result=release_intermediate_duration(source,request['bounds_days'],started+request['budget_s'],folder/'duration')
+            save_intermediate(result,folder,'intermediate','intermediate_release',elapsed_s=perf_counter()-started,
+                              duration_search=result.metadata['intermediate_time'])
+            return
+        elif operation=='physical_continue':
+            from .intermediate_time import continue_physical_model
+            source=Trajectory.load(request['parent_artifact'])
+            audit_configuration(source,mission,make_request(mission))
+            result,status=continue_physical_model(source,folder/'continuation')
+            if status['status']!='completed':
+                save_intermediate(result,folder,'partial',status['phase'],checkpoint=str(folder/'continuation'),elapsed_s=perf_counter()-started)
                 return
         elif operation in ('reference','r_transfer','r_release'):
             ref=request['reference'];path=Path(ref['path'])
@@ -286,7 +324,10 @@ def run_search(mission_path, design_path, history_roots, output, resume=False):
         if operation=='r_release':request.update(bounds_days=[x*base.tof_days for x in design['time_bounds_factors']],budget_s=design['release_budget_s'])
         if parent:
             request.update(parent_artifact=state['nodes'][parent]['artifact'],parent_sha256=state['nodes'][parent]['arrays_sha256'],
+                           parent_metadata_sha256=state['nodes'][parent]['metadata_sha256'],
                            bounds_days=[x*base.tof_days for x in design['time_bounds_factors']],budget_s=design['release_budget_s'])
+        if operation=='intermediate_release':request['budget_s']=design.get('intermediate_release_budget_s',design['release_budget_s'])
+        if operation=='physical_continue':request['budget_s']=design.get('physical_continue_budget_s',design['node_budget_s'])
         key=digest(request)[:24]
         if key in state['nodes']:
             cached=state['nodes'][key]
@@ -320,19 +361,32 @@ def run_search(mission_path, design_path, history_roots, output, resume=False):
                 reference=history['references'][source-1] if source else None
                 operation='cold'
                 if reference:operation='reference' if physical_spec(mission)==physical_spec(Mission(**reference['mission'])) else 'r_transfer'
-                fixed=node(operation,mission,reference=reference);terminal=fixed
-                if route=='release' and state['nodes'][fixed]['status']=='completed':
+                fixed=node(operation,mission,reference=reference);terminal=fixed;physical_parent=fixed
+                if route in ('release','intermediate') and state['nodes'][fixed]['status']=='completed':
                     terminal=node('release',Mission(**state['nodes'][fixed]['mission']),parent=fixed)
                 elif route=='release' and reference:
                     terminal=node('r_release',mission,reference=reference)
+                elif route=='intermediate' and state['nodes'][fixed].get('artifact'):
+                    for _ in range(design.get('intermediate_rounds',1)):
+                        parent=terminal
+                        released=node('intermediate_release',Mission(**state['nodes'][parent]['mission']),parent=parent)
+                        if state['nodes'][released]['status']!='intermediate':break
+                        terminal=node('physical_continue',Mission(**state['nodes'][released]['mission']),parent=released)
+                        if state['nodes'][terminal]['status']=='completed':
+                            physical_parent=terminal  # Retain it if final time improvement fails.
+                            terminal=node('release',Mission(**state['nodes'][terminal]['mission']),parent=terminal)
+                            break
+                        if not state['nodes'][terminal].get('artifact'):break
                 # A failed improvement must never erase a feasible parent.
-                accepted=terminal if state['nodes'][terminal]['status']=='completed' else fixed
+                accepted=terminal if state['nodes'][terminal]['status']=='completed' else physical_parent
+                if state['nodes'][accepted]['status']!='completed' and state['nodes'][terminal].get('artifact'):
+                    accepted=terminal
                 result=state['nodes'][accepted]
                 if result['status']=='completed':
                     score=[1]+[-x for x in objectives(base,Mission(**result['mission']),result['fuel_kg'])]
                 else:
                     model=result.get('last_model') or {}
-                    score=[0,{'irt':1,'departure':2,'pazov':3,'psi':4}.get(result.get('phase'),0),model.get('beta',0),model.get('alpha',0)]
+                    score=[0,{'irt':1,'departure':2,'pazov':3,'psi':4,'mass':4,'mass_and_thrust':4,'physical_thrust_limit':4,'fuel':4}.get(result.get('phase'),0),model.get('beta',0),model.get('alpha',0)]
                 current['results'].append(dict(genome=genome,fixed_node=fixed,terminal_node=terminal,retained_node=accepted,score=score));save()
             if generation+1<design['generations'] and len(state['generations'])==generation+1:
                 population,events=breed(current['population'],[r['score'] for r in current['results']],dimensions(design,history),
