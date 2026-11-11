@@ -33,8 +33,9 @@ def angular_branches(mission,eph=None):
     if kappa<=0 or abs(np.log(kappa))<1e-8:raise ValueError('ILTT phase formula is singular for this semimajor-axis ratio')
     for k in tb.k_order(int(mission.solver.get('iltt_max_abs_k',5))):
         lam=float(tb.a_OM(phase/(2*np.pi),kappa,k))
-        if np.isfinite(lam) and lam>.75:
-            branches.append(dict(k=int(k),lambda_initial=lam))
+        if np.isfinite(lam) and lam>0:
+            branches.append(dict(k=int(k),lambda_initial=lam,
+                                 approximation_family='short' if lam<.75 else 'long'))
     branches.sort(key=lambda x:x['lambda_initial'])
     return tb,eph,scale,initial,end_el,phase,branches
 
@@ -42,7 +43,7 @@ def angular_branches(mission,eph=None):
 def resolve_date_mission(mission,eph=None):
     if not date_entry(mission):return mission
     binding={k:getattr(mission,k) for k in ('departure','target','launch_tdb','center')}
-    binding.update(max_abs_k=mission.solver.get('iltt_max_abs_k',5),duration_bounds_days=mission.solver.get('iltt_duration_bounds_days'))
+    binding.update(max_abs_k=mission.solver.get('iltt_max_abs_k',5),duration_bounds_days=mission.solver.get('iltt_duration_bounds_days'),angular_min=0.)
     if type(binding['max_abs_k']) is not int or binding['max_abs_k']<1:raise ValueError('iltt_max_abs_k must be a positive integer')
     bounds=binding['duration_bounds_days']
     if bounds is not None and (not isinstance(bounds,list) or len(bounds)!=2 or not np.isfinite(bounds).all() or not 0<bounds[0]<bounds[1]):
@@ -74,7 +75,7 @@ def resolve_date_mission(mission,eph=None):
     residual,result,duration=evaluate(opt.x)
     if not np.isfinite(residual).all() or np.linalg.norm(residual)>1e-7:
         raise ValueError('ILTT phase/orbit correction failed: '+str(opt.message)+'; residual='+str(residual)+'; x='+str(opt.x)+'; x0='+str(x0))
-    lower=.75 if rank==0 else .5*(branches[rank-1]['lambda_initial']+lam)
+    lower=0. if rank==0 else .5*(branches[rank-1]['lambda_initial']+lam)
     upper=np.inf if rank+1==len(branches) else .5*(lam+branches[rank+1]['lambda_initial'])
     if not lower<float(opt.x[5])<upper:raise ValueError('ILTT correction left its angular-distance branch')
     bounds=mission.solver.get('iltt_duration_bounds_days')

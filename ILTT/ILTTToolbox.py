@@ -819,8 +819,8 @@ def make_F_function(r0, v0, lmbd, kappa, t0,  d, i_target, O_target, e_target, o
         o_target = x[3]
         kappa = x[4]
         lmbd = x[5]
-        if lmbd<0.05:
-            lmbd=0.05
+        if lmbd<=0:
+            raise ValueError('ILTT angular distance must be positive')
         
         T = 2*np.pi*T_a(lmbd, kappa)
         #print("F:", lmbd, kappa, T)
@@ -899,7 +899,7 @@ def find_min_positive_lmbd(OM, a0, a_OM, max_abs_k=200):
             val = float(a_OM(OM, a0, k)[0])
         except Exception:
             continue  # пропускаем неудачные вызовы
-        if np.isfinite(val) and val > 0.75 and val < best_val:
+        if np.isfinite(val) and val > 0 and val < best_val:
             best_val = val
             best_k = k
 
