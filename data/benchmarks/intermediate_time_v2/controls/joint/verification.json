@@ -1,0 +1,65 @@
+{
+  "verification": {
+    "passed": true,
+    "position_residual_m": 6.671179679984859,
+    "velocity_residual_m_s": 7.75955030106122e-07,
+    "parameter_audit": {
+      "passed": true,
+      "configuration_sha256": "fd2c636094da0d9939899bdb14bd70f4d5b99d9b0c694ee857839304023463a2",
+      "configuration_hash_version": 2,
+      "requested": {
+        "mass_kg": 156,
+        "thrust_N": 0.05,
+        "exhaust_velocity_m_s": 40000,
+        "dry_mass_kg": 90,
+        "launch_tdb": "2028-11-01T00:00:00",
+        "tof_days": 500.0,
+        "departure": "Earth",
+        "target": "Mars",
+        "mode": "rendezvous"
+      },
+      "recovered_model": {
+        "model_thrust_N": 0.05,
+        "thrust_to_requested_ratio": 1.0,
+        "alpha": 1.0,
+        "beta": 1,
+        "variable_mass": true,
+        "hardware_limit_reached": true,
+        "exhaust_velocity_m_s": 40000.0
+      },
+      "geometry": null,
+      "final_admission": true
+    },
+    "trajectory_difference_m": 6.671404800237717,
+    "velocity_difference_m_s": 7.760083372427721e-07,
+    "stored_throttle_error": 0.0,
+    "stored_throttle_minimum": 0.0,
+    "stored_throttle_maximum": 1.0,
+    "canonical_boundary_residual": 5.189396191208715e-11,
+    "method": "LSODA with independent bounded/mass equations",
+    "scope": "Numerical extremal and constraints; no global optimality proof",
+    "departure_norm_m_s": 3000.0000000000014,
+    "switching_sign_violation": 3.027602794470685e-11,
+    "switching_node_residual": 3.027602794470685e-11,
+    "minimum_mass_kg": 144.3042461647331,
+    "fuel_kg": 11.695753835266926,
+    "mass_difference_kg": 1.7319479184152442e-13,
+    "stored_thrust_error_N": 0.0,
+    "mass_balance_error_kg": 7.105427357601002e-15
+  },
+  "kiam_verification": {
+    "passed": true,
+    "source": "Unmodified KIAM Astro compiled Fortran equations and published control API",
+    "package_version": "6.1.6",
+    "samples": 101,
+    "maximum_dimensionless_rhs_error": 2.220446049250313e-16,
+    "maximum_dimensionless_force_error": 1.3877787807814457e-17,
+    "maximum_third_body_decomposition_error": 0.0,
+    "nbody_gravity": {
+      "passed": true,
+      "applicable": false
+    },
+    "costate_map": "p_r,v(KIAM)=p_r,v/vex; p_m(KIAM)=1+p_m/vex; normalized initial mass=1",
+    "scope": "KIAM central mass-optimal equations/control, plus independent third-body decomposition when present; not a separate global optimization"
+  }
+}

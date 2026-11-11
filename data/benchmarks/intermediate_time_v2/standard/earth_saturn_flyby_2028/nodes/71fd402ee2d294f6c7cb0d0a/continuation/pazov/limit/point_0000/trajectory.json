@@ -1,0 +1,266 @@
+{
+  "case_id": "earth_saturn_flyby_2028",
+  "epoch_jd": 2461923.5,
+  "time_scale": "TDB",
+  "center": "Sun",
+  "frame": "ECLIPJ2000",
+  "model": "Pazov bounded acceleration / mass homotopy",
+  "status": "verified_extremal",
+  "stage": "pazov_limit",
+  "mission": {
+    "case_id": "earth_saturn_flyby_2028",
+    "departure": "Earth",
+    "target": "Saturn",
+    "launch_tdb": "2028-06-01T00:00:00",
+    "tof_days": 1812.7307115603353,
+    "center": "Sun",
+    "mode": "flyby",
+    "position_tolerance_m": 1000,
+    "velocity_tolerance_m_s": 0.01,
+    "mass_kg": 156,
+    "departure_mode": "bounded_norm",
+    "vinf_max_m_s": 3000,
+    "vinf_vector_m_s": null,
+    "spacecraft": {
+      "thrust_N": 0.05,
+      "exhaust_velocity_m_s": 40000,
+      "dry_mass_kg": 90
+    },
+    "solver": {
+      "budget_s": 30,
+      "compare_seeds": true,
+      "departure_budget_s": 40,
+      "limit_budget_s": 60,
+      "pazov_budget_s": 60,
+      "psi_budget_s": 60,
+      "bounded_attempt_s": 20,
+      "pipeline_pazov_alpha": 0.5,
+      "psi_mass_alpha": 0.5
+    },
+    "lunar": null
+  },
+  "scales": {
+    "distance_m": 151698431252.37823,
+    "mu_m3_s2": 1.32712440018e+20
+  },
+  "initial_state_si": [
+    -50280672910.02913,
+    -143123261130.34283,
+    9978119.907125074,
+    30360.384567703466,
+    -11197.765204896075,
+    5.385850356171068
+  ],
+  "target_state_si": [
+    -202471161824.6807,
+    1333685556451.9473,
+    -15120620937.013079,
+    -10067.092168081874,
+    -1464.3349476297656,
+    427.1547464512836
+  ],
+  "costate_convention": "dimensionless [p_r,p_v], maximizing Hamiltonian",
+  "costates_initial": [
+    -0.028055103260802808,
+    -0.08440118708434975,
+    0.00012609713136266102,
+    0.09635165154619185,
+    -0.04307912163224804,
+    0.00014883610152088418
+  ],
+  "functional_dimensionless": 0.01112083128186059,
+  "chosen_seed": {
+    "source": "boundary Hermite collocation",
+    "lambda_turns": 0.7082339152675563,
+    "kappa": 9.407826756541668,
+    "route": "collocation",
+    "independent_check": {
+      "position_residual_m": 570.365522009345,
+      "velocity_residual_m_s": 12964.106577998198,
+      "free_velocity_transversality": 3.607902196260816e-11,
+      "difference_r_m": 538.9746655094726,
+      "difference_v_m_s": 1.3305432813083027e-05
+    },
+    "nfev": 3,
+    "integrations": 3,
+    "optimizer_success": true,
+    "residual_norm": 1.683649941584618e-12,
+    "position_residual_m": 97.01786040049086,
+    "velocity_residual_m_s": 12964.106577090375,
+    "free_velocity_transversality": 2.5191990040783953e-12,
+    "accepted": true
+  },
+  "title": "Earth → Saturn: ограниченное ускорение",
+  "ephemerides": {
+    "Earth": {
+      "body": "earth",
+      "start_jd": 2287184.5,
+      "stop_jd": 2688976.5,
+      "source": "KIAM 6.1.6 / bundled JPLEPH",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "center": "requested",
+      "interpolation": "KIAM native ephemeris",
+      "representation": "body center"
+    },
+    "Saturn": {
+      "body": "saturn",
+      "source": "https://ssd.jpl.nasa.gov/api/horizons.api",
+      "parameters": {
+        "format": "json",
+        "COMMAND": "'699'",
+        "CENTER": "'500@10'",
+        "EPHEM_TYPE": "'VECTORS'",
+        "REF_PLANE": "'ECLIPTIC'",
+        "REF_SYSTEM": "'ICRF'",
+        "OUT_UNITS": "'KM-S'",
+        "VEC_CORR": "'NONE'",
+        "CSV_FORMAT": "'YES'",
+        "VEC_TABLE": "'2'",
+        "TIME_TYPE": "'TDB'",
+        "OBJ_DATA": "'YES'",
+        "START_TIME": "'2028-01-01'",
+        "STOP_TIME": "'2035-12-31'",
+        "STEP_SIZE": "'12 h'"
+      },
+      "center": "Sun",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "units": "m,m/s",
+      "start_jd": 2461771.5,
+      "stop_jd": 2464692.5,
+      "knots": 5843,
+      "max_step_days": 0.5,
+      "interpolation": "cubic Hermite, position and velocity from the same polynomial",
+      "arrays_sha256": "6f4941f18112bb062d99cf777268b0d3499138ac5e9d731ef1b351bfeba45916",
+      "raw_sha256": "ee7acab44457f6a32342e624b27bfce60cedcfe5b6078e66570069beaf61db31"
+    }
+  },
+  "overlays": [
+    {
+      "array": "departure_orbit_m",
+      "label": "Орбита Earth"
+    },
+    {
+      "array": "target_orbit_m",
+      "label": "Орбита Saturn",
+      "linestyle": "-.",
+      "color": ".65"
+    }
+  ],
+  "markers": [
+    {
+      "label": "Earth, старт",
+      "r_m": [
+        -50280672910.02913,
+        -143123261130.34283,
+        9978119.907125074
+      ]
+    },
+    {
+      "label": "Saturn, прибытие",
+      "r_m": [
+        -202471161824.6807,
+        1333685556451.9473,
+        -15120620937.013079
+      ]
+    }
+  ],
+  "configuration_sha256": "5083115ae528979e0148cb4e9542915b37c2f63d4e9258e9a94a2c7a6584b9d0",
+  "configuration_hash_version": 2,
+  "schema_version": 1,
+  "departure": {
+    "mode": "bounded_norm",
+    "bound_active": true,
+    "vector_m_s": [
+      2738.7228363281174,
+      -1224.4914569692937,
+      4.230553639341388
+    ],
+    "norm_m_s": 3000.0000000000014,
+    "bound_m_s": 3000
+  },
+  "body_initial_state_si": [
+    -50280672910.02913,
+    -143123261130.34283,
+    9978119.907125074,
+    27621.66173137535,
+    -9973.273747926782,
+    1.1552967168296797
+  ],
+  "verification": {
+    "passed": true,
+    "position_residual_m": 590.7495478774485,
+    "velocity_residual_m_s": 8903.450425018153,
+    "parameter_audit": {
+      "passed": true,
+      "configuration_sha256": "5083115ae528979e0148cb4e9542915b37c2f63d4e9258e9a94a2c7a6584b9d0",
+      "configuration_hash_version": 2,
+      "requested": {
+        "mass_kg": 156,
+        "thrust_N": 0.05,
+        "exhaust_velocity_m_s": 40000,
+        "dry_mass_kg": 90,
+        "launch_tdb": "2028-06-01T00:00:00",
+        "tof_days": 1812.7307115603353,
+        "departure": "Earth",
+        "target": "Saturn",
+        "mode": "flyby"
+      },
+      "recovered_model": {
+        "model_thrust_N": 0.08726639504945244,
+        "thrust_to_requested_ratio": 1.7453279009890488,
+        "alpha": 0.0,
+        "beta": 0.0,
+        "variable_mass": false,
+        "hardware_limit_reached": false
+      },
+      "geometry": null,
+      "final_admission": false
+    },
+    "trajectory_difference_m": 590.7495478819117,
+    "velocity_difference_m_s": 1.5264779715524956e-05,
+    "stored_throttle_error": 0.0,
+    "stored_throttle_minimum": 3.450269303514937e-27,
+    "stored_throttle_maximum": 1.0,
+    "canonical_boundary_residual": 3.894453579468744e-09,
+    "method": "LSODA with independent bounded/mass equations",
+    "scope": "Numerical extremal and constraints; no global optimality proof",
+    "departure_norm_m_s": 3000.0000000000014
+  },
+  "intermediate_time": {
+    "method": "bounded_scalar_with_BVP_correction",
+    "seed_tof_days": 2200.0,
+    "resolved_tof_days": 1812.7307115603353,
+    "bounds_days": [
+      1100.0,
+      2769.0
+    ],
+    "requested_bounds_days": [
+      1100.0,
+      3300.0
+    ],
+    "objective": "current_model_functional",
+    "seed_objective": 0.019596271613546084,
+    "objective_value": 0.022320901493990256,
+    "optimizer_success": true,
+    "stop_reason": "Solution found.",
+    "trials": 25,
+    "physical_solution": false,
+    "global_optimality": false
+  },
+  "arrays_sha256": "ca03022d0b254ebad54bf3ccbeac0d9bd6d739f47ab42bd1fc0277e14a021f52",
+  "bounded_model": {
+    "a_max": 0.09700027883163914,
+    "alpha": 0.0,
+    "beta": 0.0,
+    "q": 0.0,
+    "variable_mass": false,
+    "gravity_spec": null
+  },
+  "hardware_limit_reached": false,
+  "collocation_tolerance": 2e-09,
+  "collocation_derivatives": "analytic central-field",
+  "collocation_nodes": 1527,
+  "collocation_iterations": 5
+}

@@ -1,0 +1,161 @@
+{
+  "mission": {
+    "case_id": "earth_mercury_2029",
+    "departure": "Earth",
+    "target": "Mercury",
+    "launch_tdb": "2029-01-01T00:00:00",
+    "tof_days": 300,
+    "center": "Sun",
+    "mode": "rendezvous",
+    "position_tolerance_m": 1000,
+    "velocity_tolerance_m_s": 0.01,
+    "mass_kg": 156,
+    "departure_mode": "bounded_norm",
+    "vinf_max_m_s": 3000,
+    "vinf_vector_m_s": null,
+    "spacecraft": {
+      "thrust_N": 0.025,
+      "exhaust_velocity_m_s": 20000,
+      "dry_mass_kg": 90
+    },
+    "solver": {
+      "budget_s": 30,
+      "compare_seeds": true,
+      "departure_budget_s": 40,
+      "limit_budget_s": 60,
+      "pazov_budget_s": 60,
+      "psi_budget_s": 60,
+      "bounded_attempt_s": 20
+    },
+    "lunar": null
+  },
+  "design": {
+    "date_offsets_days": [
+      0,
+      90,
+      -90
+    ],
+    "duration_factors": [
+      1.0,
+      0.8,
+      1.2
+    ],
+    "engines": [
+      {
+        "name": "reference_25mN_20kms",
+        "thrust_N": 0.025,
+        "exhaust_velocity_m_s": 20000
+      },
+      {
+        "name": "candidate_50mN_40kms",
+        "thrust_N": 0.05,
+        "exhaust_velocity_m_s": 40000
+      }
+    ],
+    "mass_alphas": [
+      0.5,
+      0.3,
+      0.7
+    ],
+    "routes": [
+      "intermediate"
+    ],
+    "population": 4,
+    "generations": 2,
+    "seed": 17,
+    "wall_budget_s": 4800,
+    "node_budget_s": 240,
+    "release_budget_s": 90,
+    "time_bounds_factors": [
+      0.5,
+      1.5
+    ],
+    "intermediate_release_budget_s": 120,
+    "physical_continue_budget_s": 240,
+    "intermediate_rounds": 2
+  },
+  "history_roots": [
+    "data/benchmarks/free_time_physical_matrix_v1",
+    "data/benchmarks/psi",
+    "data/benchmarks/search_graph_v1/bennu",
+    "data/benchmarks/search_graph_v1/ceres"
+  ],
+  "runtime": {
+    "python": "3.12.16",
+    "executable": "/usr/local/bin/python",
+    "system": "Linux",
+    "machine": "x86_64",
+    "libc": [
+      "glibc",
+      "2.41"
+    ],
+    "kernel": "6.6.87.2-microsoft-standard-WSL2",
+    "container": true,
+    "runtime": "docker-linux",
+    "image_id": "unrecorded",
+    "dependencies": {
+      "numpy": "2.2.5",
+      "scipy": "1.15.1",
+      "matplotlib": "3.10.0",
+      "pandas": "2.2.3",
+      "kiam-astro": "6.1.6",
+      "daceypy": "1.4.0",
+      "pillow": "13.0.0"
+    },
+    "thread_limits": {
+      "OPENBLAS_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1"
+    }
+  },
+  "code": {
+    "__init__.py": "b5d69a20b137a938a28e2478dbae0068c3e29e5f6dad0cc95672c5107c6b4842",
+    "__main__.py": "19d742d92c19884f3f980345c79001a497fdcacffae86c5b7eea730dba84c88b",
+    "angular_capture.py": "97dcbd78260bdd41f214fa64b436ed06e3b78317236367487e6bbffb3499e909",
+    "bangbang.py": "e523bca38ae2ae700174b4b59ffebc5d01586baed5fb9e74db8446522ce105a9",
+    "bounded.py": "e5d4802fe6a3ef83ae3e9185b611f216bed0a96291f7d0c7a60898582913e904",
+    "bounded_derivatives.py": "bb2f18f6202ea1ff072930b1887951a26a840112dbb0feff3c8cf063863b3e79",
+    "bounded_model.py": "ac847de889d96c6b343276f22972c3c9211cf815cd8605212a951c86c381ddd0",
+    "capture_control.py": "56b511b672de53896f53a4aab6f13726961d3fc96083ddc9585dd5fb0c30c8b7",
+    "capture_pipeline.py": "98bd30261567e9227d54757f6daa580c4e9f81ee9695426d149afe3a1b8ea119",
+    "capture_search.py": "6b6c9a5fe0d4076484f8c0cf28160125e78194eeaa6692e9bd06ec911e777397",
+    "continuation.py": "14700fe3c5bc32044119902b40f266929439b8901f3455f4105b52ac1957e2a7",
+    "contract.py": "2110d6689ebfcf613d5a6f5fe1843c8cee1f6b279e4adfc6f579fff76dd8449e",
+    "cr3bp.py": "81821102917370aa6ee00878d6534bbbf90a0e417c9474f720f46de820eead33",
+    "data.py": "aebdc031ea5379bcf840081747f2adb833f918588510c8d9b4e81558d495e972",
+    "date_sweep.py": "7cc41712c9a7c6968cffec4178a586ab1dd9f1a64a4cb1a0e5f7459a2b243141",
+    "departure.py": "64ac75cd2650c1872f89a929743ff9ba124db09ba68f698c79adc8979f4daca1",
+    "diagnostics.py": "ed7fc51f3d67b2f74751754ed485aed9e6c99312645a36504f8cbde4b410e1bb",
+    "ephemerides.py": "01b6f771b4adf3e7bac893d619787d4bbb823946cc0dce49b5f588dd8ffa8c95",
+    "free_time.py": "21c3d0839d96e7fcedbd566202d59ea2983844e2f9f3745a5b0c3f6f91046f54",
+    "free_time_report.py": "1e5f778d7ae0b394b3fab0fb10417b65a9e15469799b9530ef965f09ec3d2120",
+    "gravity.py": "716b7dda8f5268c7c65c4014cb7d96bf8008140c6633dcbb0ee6594364d658ab",
+    "intermediate_time.py": "3d96b20d062aaaf3c32dc342b1e1faf8556a739f74c4fe2902e56aecb4729bcb",
+    "irt.py": "2266d38bee3bba0231ec6912d1f2df23ddeea2691064795ca982d293464eb23f",
+    "kiam_verification.py": "08bc4b66d22208063de9e2c194821d963cfa9af3731d30ce4845b4a52e06a61a",
+    "launch_pipeline.py": "2afb01c8e923694d8ed410faf8569b30ad0a7f430c51e9aa71aa4d3db1c57445",
+    "lunar.py": "721ee63036e945c1d6dd767985b9b32c0f48de23fbda78814e2c9fba970de904",
+    "matrix_report.py": "b11a950417c2a7e2205e1fb92556d09e36c7d81869c89a7d32360d01f6145ce8",
+    "orbital_maneuvers.py": "c3d1520f17ff038d3e1d548c5b0a752cc9b498ff9e418f1d3c02404b61f8e404",
+    "orbital_pipeline.py": "0bcd729ad39b8fe5739c6312a927b0dc61e328c2edb735ee9cb0ee5023144fca",
+    "orbital_visualization.py": "3fc8f294e555f2f1701d91d810756c11f581be0c5aa2080eb4c3e804e75abfb2",
+    "outcomes.py": "09b53a8b190f5c2d57ef50a64f7883f26e09ffc2e3b91252505612c47f482cc3",
+    "parameter_study.py": "68efd2d25c52b1db5179616bbc272a6d0afbd25f514b8297bdc3561619238ce4",
+    "parking_departure.py": "3f7c2858904e30cd47a287d0f1d735f30c6e92faaf894f70a51b8c20cbd984a7",
+    "pazov.py": "907bff7913bfd981ddcfa7d3878188d357eba84e5b26847a0319aec541f6b682",
+    "planetary_capture.py": "5a9ca0c37b7abb75021be464d7d40efdfffa15f31266689388bdf8ca01c82f5a",
+    "problem.py": "46f6dfdd44ee66fdd5fde2b8a4f8c7d385f409d2c72593f2ef8cc5e22cb1ae15",
+    "psi.py": "eafb8a8469e789428eba9dfb6a9281097831d76357c1bd1c9ad7bf36bff73e10",
+    "r_study.py": "b3b7663f2638fe91d4eaaecfad6d48ab887b98fde39ab61b5c8cff8e36037df9",
+    "r_transform.py": "6f97b68230db35c04cc4903735f3ca8bf875572da068676d19734321ec668880",
+    "reference.py": "8408fc0ce798a2147a5602c4d23a24536e90905b855a894ad7495e842caa062c",
+    "runner.py": "2daf44956b53b791fc96903482974b3af362fbc4a73d74d851d27aa448a31796",
+    "runtime.py": "81dfded64ae214fc00e611dff44b66a9298edfc0cef367368792860c64eafdbb",
+    "search_graph.py": "1f2590acad17660de86065103b277788dcfaac7622256c9303e46d0162835715",
+    "ummp.py": "6fc8d237688692394937e63c193129caa11d6a3fbd1f8262db82338c3b67de63",
+    "ummp_benchmark.py": "2f1f0de7a1947f3a8514f1efc76f2351794564ba7d94787dbeac02a01c581a54",
+    "ummp_model.py": "bba0098c8c8363877254c2b3c7ef1e014425f287df0198cb50c33167ea5b8c6a",
+    "verification.py": "710cd5bbc9b193d32a9536e26aec3769c5ccf1ec4f3fafd761b32b11f78d7af9",
+    "visualization.py": "3a72c99cf9f5823dfb38b4701b0898a4115e89056398595926136f3bda4ba422"
+  }
+}

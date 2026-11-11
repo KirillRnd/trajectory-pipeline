@@ -1,0 +1,248 @@
+{
+  "case_id": "earth_mercury_2029",
+  "epoch_jd": 2462047.5,
+  "time_scale": "TDB",
+  "center": "Sun",
+  "frame": "ECLIPJ2000",
+  "model": "Pazov bounded acceleration / mass homotopy",
+  "status": "verified_extremal",
+  "stage": "psi_limit",
+  "mission": {
+    "case_id": "earth_mercury_2029",
+    "departure": "Earth",
+    "target": "Mercury",
+    "launch_tdb": "2028-10-03T00:00:00",
+    "tof_days": 363.01333222381413,
+    "center": "Sun",
+    "mode": "rendezvous",
+    "position_tolerance_m": 1000,
+    "velocity_tolerance_m_s": 0.01,
+    "mass_kg": 156,
+    "departure_mode": "bounded_norm",
+    "vinf_max_m_s": 3000,
+    "vinf_vector_m_s": null,
+    "spacecraft": {
+      "thrust_N": 0.05,
+      "exhaust_velocity_m_s": 40000,
+      "dry_mass_kg": 90
+    },
+    "solver": {
+      "budget_s": 30,
+      "compare_seeds": true,
+      "departure_budget_s": 40,
+      "limit_budget_s": 60,
+      "pazov_budget_s": 60,
+      "psi_budget_s": 60,
+      "bounded_attempt_s": 20,
+      "pipeline_pazov_alpha": 0.5,
+      "psi_mass_alpha": 0.5
+    },
+    "lunar": null
+  },
+  "scales": {
+    "distance_m": 149680937611.1806,
+    "mu_m3_s2": 1.32712440018e+20
+  },
+  "initial_state_si": [
+    147446403914.21722,
+    25767053535.488453,
+    -3004483.990755216,
+    -7664.235739947023,
+    27190.381486899016,
+    811.6689242722276
+  ],
+  "target_state_si": [
+    9949827111.343739,
+    44827228381.40436,
+    2751167442.319876,
+    -57323.87004237823,
+    12368.74610676252,
+    6268.006638123089
+  ],
+  "costate_convention": "dimensionless [p_r,p_v,p_m] for normalized remaining mass",
+  "costates_initial": [
+    -0.46956180370806944,
+    -0.3444971927477525,
+    -0.14589563983994713,
+    -0.2186379767629615,
+    -0.2164240696853158,
+    0.08670880234085658,
+    -0.535191318459939
+  ],
+  "functional_dimensionless": 0.2826632165651281,
+  "chosen_seed": {
+    "source": "ILTT",
+    "lambda_turns": 2.0395134417116307,
+    "kappa": 0.3868831330764359,
+    "route": "shooting",
+    "independent_check": {
+      "position_residual_m": 32.902065329302516,
+      "velocity_residual_m_s": 3.525158611562788e-05,
+      "free_velocity_transversality": 0.0839865246519562,
+      "difference_r_m": 34.88160274277832,
+      "difference_v_m_s": 3.744924383446316e-05
+    },
+    "nfev": 52,
+    "integrations": 52,
+    "optimizer_success": true,
+    "residual_norm": 1.640054281719022e-13,
+    "position_residual_m": 2.0061785503080705,
+    "velocity_residual_m_s": 2.222916433124033e-06,
+    "free_velocity_transversality": 0.08398652470633035,
+    "accepted": true
+  },
+  "title": "Earth → Mercury: ограниченное ускорение",
+  "ephemerides": {
+    "Earth": {
+      "body": "earth",
+      "start_jd": 2287184.5,
+      "stop_jd": 2688976.5,
+      "source": "KIAM 6.1.6 / bundled JPLEPH",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "center": "requested",
+      "interpolation": "KIAM native ephemeris",
+      "representation": "body center"
+    },
+    "Mercury": {
+      "body": "mercury",
+      "start_jd": 2287184.5,
+      "stop_jd": 2688976.5,
+      "source": "KIAM 6.1.6 / bundled JPLEPH",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "center": "requested",
+      "interpolation": "KIAM native ephemeris",
+      "representation": "body center"
+    }
+  },
+  "overlays": [
+    {
+      "array": "departure_orbit_m",
+      "label": "Орбита Earth"
+    },
+    {
+      "array": "target_orbit_m",
+      "label": "Орбита Mercury",
+      "linestyle": "-.",
+      "color": ".65"
+    }
+  ],
+  "markers": [
+    {
+      "label": "Earth, старт",
+      "r_m": [
+        147446403914.21722,
+        25767053535.488453,
+        -3004483.990755216
+      ]
+    },
+    {
+      "label": "Mercury, прибытие",
+      "r_m": [
+        9949827111.343739,
+        44827228381.40436,
+        2751167442.319876
+      ]
+    }
+  ],
+  "configuration_sha256": "6974af5ff34607e55f69d38fc1e31b2526293fab2b1b67e66e057b7d16ae8a23",
+  "configuration_hash_version": 2,
+  "schema_version": 1,
+  "departure": {
+    "mode": "bounded_norm",
+    "bound_active": true,
+    "vector_m_s": [
+      -2052.1336833265304,
+      -2031.353975459413,
+      813.8478802220501
+    ],
+    "norm_m_s": 2999.9999999999995,
+    "bound_m_s": 3000
+  },
+  "bounded_model": {
+    "a_max": 0.08931124497631387,
+    "alpha": 0.5,
+    "beta": 0.938125,
+    "q": 0.06648424199352998,
+    "variable_mass": true,
+    "gravity_spec": null
+  },
+  "body_initial_state_si": [
+    147446403914.21722,
+    25767053535.488453,
+    -3004483.990755216,
+    -5612.1020566204925,
+    29221.73546235843,
+    -2.178955949822466
+  ],
+  "hardware_limit_reached": false,
+  "collocation_tolerance": 2e-08,
+  "collocation_derivatives": "analytic central-field",
+  "collocation_nodes": 2423,
+  "collocation_iterations": 13,
+  "intermediate_time": {
+    "method": "bounded_scalar_with_BVP_correction",
+    "seed_tof_days": 360.89134732189257,
+    "resolved_tof_days": 363.01333222381413,
+    "bounds_days": [
+      150.0,
+      450.0
+    ],
+    "requested_bounds_days": [
+      150.0,
+      450.0
+    ],
+    "objective": "current_model_functional",
+    "seed_objective": 0.2828588390329762,
+    "objective_value": 0.2826632165651281,
+    "optimizer_success": true,
+    "stop_reason": "Solution found.",
+    "trials": 22,
+    "physical_solution": false,
+    "global_optimality": false
+  },
+  "verification": {
+    "passed": true,
+    "position_residual_m": 115.51337168187507,
+    "velocity_residual_m_s": 0.00012861270149047414,
+    "parameter_audit": {
+      "passed": true,
+      "configuration_sha256": "6974af5ff34607e55f69d38fc1e31b2526293fab2b1b67e66e057b7d16ae8a23",
+      "configuration_hash_version": 2,
+      "requested": {
+        "mass_kg": 156,
+        "thrust_N": 0.05,
+        "exhaust_velocity_m_s": 40000,
+        "dry_mass_kg": 90,
+        "launch_tdb": "2028-10-03T00:00:00",
+        "tof_days": 363.01333222381413,
+        "departure": "Earth",
+        "target": "Mercury",
+        "mode": "rendezvous"
+      },
+      "recovered_model": {
+        "model_thrust_N": 0.0825295326714886,
+        "thrust_to_requested_ratio": 1.650590653429772,
+        "alpha": 0.5,
+        "beta": 0.938125,
+        "variable_mass": true,
+        "hardware_limit_reached": false,
+        "exhaust_velocity_m_s": 40000.0
+      },
+      "geometry": null,
+      "final_admission": false
+    },
+    "trajectory_difference_m": 116.10992587806062,
+    "velocity_difference_m_s": 0.0001287992556842189,
+    "stored_throttle_error": 0.0,
+    "stored_throttle_minimum": 0.5170865022373058,
+    "stored_throttle_maximum": 1.0,
+    "canonical_boundary_residual": 4.387756265632143e-09,
+    "method": "LSODA with independent bounded/mass equations",
+    "scope": "Numerical extremal and constraints; no global optimality proof",
+    "departure_norm_m_s": 2999.9999999999995,
+    "minimum_mass_kg": 96.99622397909886
+  },
+  "arrays_sha256": "fcacc76200ca94da7bf44fa451e11be8ccec27d8d82f0e84f15186ea4ecb8819"
+}
