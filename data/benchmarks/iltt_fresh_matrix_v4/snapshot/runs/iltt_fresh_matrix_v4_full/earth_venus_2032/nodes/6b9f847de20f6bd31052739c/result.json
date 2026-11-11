@@ -1,0 +1,192 @@
+{
+  "status": "completed",
+  "phase": "final",
+  "mission": {
+    "case_id": "earth_venus_2032",
+    "departure": "Earth",
+    "target": "Venus",
+    "launch_tdb": "2032-11-01T00:00:00",
+    "tof_days": 241.10616306380314,
+    "center": "Sun",
+    "mode": "rendezvous",
+    "position_tolerance_m": 1000,
+    "velocity_tolerance_m_s": 0.01,
+    "mass_kg": 156,
+    "departure_mode": "bounded_norm",
+    "vinf_max_m_s": 3000,
+    "vinf_vector_m_s": null,
+    "spacecraft": {
+      "thrust_N": 0.05,
+      "exhaust_velocity_m_s": 40000,
+      "dry_mass_kg": 90
+    },
+    "solver": {
+      "budget_s": 45,
+      "compare_seeds": true,
+      "departure_budget_s": 60,
+      "limit_budget_s": 60,
+      "pazov_budget_s": 90,
+      "psi_budget_s": 120,
+      "bounded_attempt_s": 20,
+      "irt_entry": "date",
+      "iltt_branch": 0,
+      "pipeline_pazov_alpha": 0.5,
+      "psi_mass_alpha": 0.5,
+      "iltt_resolved": {
+        "binding": {
+          "departure": "Earth",
+          "target": "Venus",
+          "launch_tdb": "2032-11-01T00:00:00",
+          "center": "Sun",
+          "max_abs_k": 5,
+          "duration_bounds_days": null,
+          "angular_min": 0.0
+        },
+        "branch_rank": 0,
+        "branches": [
+          {
+            "k": 0,
+            "lambda_initial": 0.8047828226111396,
+            "approximation_family": "long"
+          },
+          {
+            "k": -1,
+            "lambda_initial": 4.728033661408214,
+            "approximation_family": "long"
+          },
+          {
+            "k": -2,
+            "lambda_initial": 8.651284500205286,
+            "approximation_family": "long"
+          },
+          {
+            "k": -3,
+            "lambda_initial": 12.57453533900236,
+            "approximation_family": "long"
+          },
+          {
+            "k": -4,
+            "lambda_initial": 16.497786177799433,
+            "approximation_family": "long"
+          },
+          {
+            "k": -5,
+            "lambda_initial": 20.421037016596507,
+            "approximation_family": "long"
+          }
+        ],
+        "phase_rad": -1.4538249893459219,
+        "k": 0,
+        "lambda_initial": 0.8047828226111396,
+        "lambda_corrected": 0.8366439253041604,
+        "kappa": 0.735447276869222,
+        "x_initial": [
+          0.013844499433845463,
+          0.9288643729873619,
+          1.3367644284402542,
+          2.2978780338294302,
+          0.7287383375787396,
+          0.8047828226111396
+        ],
+        "x_corrected": [
+          0.06577324009855065,
+          0.666170591668273,
+          1.307153077197859,
+          10.929999343302866,
+          0.735447276869222,
+          0.8366439253041604
+        ],
+        "tof_days": 241.10616306380314,
+        "initial_tof_days": 230.48906807396958,
+        "costates": [
+          -0.03100416387296773,
+          -0.031100481060718426,
+          -0.014025509713328511,
+          0.030317100483405007,
+          -0.04182333266891941,
+          0.024678028108813116
+        ],
+        "orbit_phase_residual": [
+          7.751577157932843e-13,
+          -4.106645579149415e-13,
+          6.240832503556781e-13,
+          3.327560449406519e-12,
+          3.0707747455949175e-10,
+          -1.0256684390697046e-11
+        ],
+        "evaluations": 48,
+        "source": "ILTT/transfer_legacy.py: phase -> a_OM branches -> make_F_function -> moving-target orbit correction",
+        "duration_role": "derived from ILTT; input tof_days was not used"
+      }
+    },
+    "lunar": null
+  },
+  "fuel_kg": 14.047238884388003,
+  "verification": {
+    "passed": true,
+    "position_residual_m": 0.7036716872887584,
+    "velocity_residual_m_s": 1.833654396553425e-07,
+    "parameter_audit": {
+      "passed": true,
+      "configuration_sha256": "0df2c3cc3418c8f4caea11681d3824cc96ba13db611f85ab07ab9e19b6c964a4",
+      "configuration_hash_version": 2,
+      "requested": {
+        "mass_kg": 156,
+        "thrust_N": 0.05,
+        "exhaust_velocity_m_s": 40000,
+        "dry_mass_kg": 90,
+        "launch_tdb": "2032-11-01T00:00:00",
+        "tof_days": 241.10616306380314,
+        "departure": "Earth",
+        "target": "Venus",
+        "mode": "rendezvous"
+      },
+      "recovered_model": {
+        "model_thrust_N": 0.05,
+        "thrust_to_requested_ratio": 1.0,
+        "alpha": 1.0,
+        "beta": 1.0,
+        "variable_mass": true,
+        "hardware_limit_reached": true,
+        "exhaust_velocity_m_s": 40000.0
+      },
+      "geometry": null,
+      "final_admission": true
+    },
+    "trajectory_difference_m": 0.7402495390429971,
+    "velocity_difference_m_s": 1.8559987714452582e-07,
+    "stored_throttle_error": 0.0,
+    "stored_throttle_minimum": 0.0,
+    "stored_throttle_maximum": 1.0,
+    "canonical_boundary_residual": 7.85876910858539e-12,
+    "method": "LSODA with independent bounded/mass equations",
+    "scope": "Numerical extremal and constraints; no global optimality proof",
+    "departure_norm_m_s": 3000.000000000002,
+    "switching_sign_violation": 4.284425759166586e-12,
+    "switching_node_residual": 4.284425759166586e-12,
+    "minimum_mass_kg": 141.952761115612,
+    "fuel_kg": 14.047238884388003,
+    "mass_difference_kg": 8.659739592076221e-14,
+    "stored_thrust_error_N": 0.0,
+    "mass_balance_error_kg": 9.769962616701378e-14
+  },
+  "kiam_verification": {
+    "passed": true,
+    "source": "Unmodified KIAM Astro compiled Fortran equations and published control API",
+    "package_version": "6.1.6",
+    "samples": 101,
+    "maximum_dimensionless_rhs_error": 6.661338147750939e-16,
+    "maximum_dimensionless_force_error": 1.3877787807814457e-17,
+    "maximum_third_body_decomposition_error": 0.0,
+    "nbody_gravity": {
+      "passed": true,
+      "applicable": false
+    },
+    "costate_map": "p_r,v(KIAM)=p_r,v/vex; p_m(KIAM)=1+p_m/vex; normalized initial mass=1",
+    "scope": "KIAM central mass-optimal equations/control, plus independent third-body decomposition when present; not a separate global optimization"
+  },
+  "elapsed_s": 16.298109038965777,
+  "artifact": "runs/iltt_fresh_matrix_v4_full/earth_venus_2032/nodes/6b9f847de20f6bd31052739c/final",
+  "metadata_sha256": "af856b5a1bf00e49b63d2b72c04f1330dcaf683969f2cffac2476a297c5ae86c",
+  "arrays_sha256": "8b245764f6ddce12dd0b0c350475015805d2fdc8220100a33034a7e5dfd415b6"
+}

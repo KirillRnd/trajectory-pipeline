@@ -1,0 +1,340 @@
+{
+  "case_id": "earth_polyhymnia_2029",
+  "epoch_jd": 2462196.5,
+  "time_scale": "TDB",
+  "center": "Sun",
+  "frame": "ECLIPJ2000",
+  "model": "Pazov bounded acceleration / mass homotopy",
+  "status": "verified_extremal",
+  "stage": "psi_mass",
+  "mission": {
+    "case_id": "earth_polyhymnia_2029",
+    "departure": "Earth",
+    "target": "Polyhymnia",
+    "launch_tdb": "2029-03-01T00:00:00",
+    "tof_days": 1404.6670288970777,
+    "center": "Sun",
+    "mode": "rendezvous",
+    "position_tolerance_m": 1000,
+    "velocity_tolerance_m_s": 0.01,
+    "mass_kg": 156,
+    "departure_mode": "bounded_norm",
+    "vinf_max_m_s": 3000,
+    "vinf_vector_m_s": null,
+    "spacecraft": {
+      "thrust_N": 0.025,
+      "exhaust_velocity_m_s": 20000,
+      "dry_mass_kg": 90
+    },
+    "solver": {
+      "budget_s": 45,
+      "compare_seeds": true,
+      "departure_budget_s": 60,
+      "limit_budget_s": 60,
+      "pazov_budget_s": 90,
+      "psi_budget_s": 120,
+      "bounded_attempt_s": 20,
+      "irt_entry": "date",
+      "iltt_branch": 0,
+      "pipeline_pazov_alpha": 0.7,
+      "psi_mass_alpha": 0.7,
+      "iltt_resolved": {
+        "binding": {
+          "departure": "Earth",
+          "target": "Polyhymnia",
+          "launch_tdb": "2029-03-01T00:00:00",
+          "center": "Sun",
+          "max_abs_k": 5,
+          "duration_bounds_days": null,
+          "angular_min": 0.0
+        },
+        "branch_rank": 0,
+        "branches": [
+          {
+            "k": 0,
+            "lambda_initial": 0.8082597997420303,
+            "approximation_family": "long"
+          },
+          {
+            "k": 1,
+            "lambda_initial": 2.449805046273914,
+            "approximation_family": "long"
+          },
+          {
+            "k": 2,
+            "lambda_initial": 4.091350292805798,
+            "approximation_family": "long"
+          },
+          {
+            "k": 3,
+            "lambda_initial": 5.732895539337681,
+            "approximation_family": "long"
+          },
+          {
+            "k": 4,
+            "lambda_initial": 7.374440785869567,
+            "approximation_family": "long"
+          },
+          {
+            "k": 5,
+            "lambda_initial": 9.01598603240145,
+            "approximation_family": "long"
+          }
+        ],
+        "phase_rad": 2.8802502121857145,
+        "k": 0,
+        "lambda_initial": 0.8082597997420303,
+        "lambda_corrected": 1.234026306582106,
+        "kappa": 3.8002431670079186,
+        "x_initial": [
+          -0.05513638544195483,
+          -0.06572116195997084,
+          0.14134836409141496,
+          6.056361991306485,
+          2.8931628651004657,
+          0.8082597997420303
+        ],
+        "x_corrected": [
+          -0.013897341486419985,
+          -0.018825930976644326,
+          -30.886738791262413,
+          5.4163605441003835,
+          3.8002431670079186,
+          1.234026306582106
+        ],
+        "tof_days": 1288.4772314582776,
+        "initial_tof_days": 700.8136749445092,
+        "costates": [
+          -0.037509397711705736,
+          0.01519263369780931,
+          0.0005793828706378101,
+          -0.01153094457879728,
+          -0.03373081796019833,
+          -0.0004325797353704817
+        ],
+        "orbit_phase_residual": [
+          -1.679767436257862e-11,
+          -7.355147740861767e-11,
+          -1.204016886191539e-10,
+          4.670397651951319e-09,
+          2.807976073881946e-11,
+          -2.5871083053630173e-10
+        ],
+        "evaluations": 105,
+        "source": "ILTT/transfer_legacy.py: phase -> a_OM branches -> make_F_function -> moving-target orbit correction",
+        "duration_role": "derived from ILTT; input tof_days was not used"
+      }
+    },
+    "lunar": null
+  },
+  "scales": {
+    "distance_m": 148218150231.92538,
+    "mu_m3_s2": 1.32712440018e+20
+  },
+  "initial_state_si": [
+    -139523946102.6892,
+    50016882323.22916,
+    -2184427.0109043373,
+    -11751.541902845938,
+    -30845.900962942684,
+    -436.00228961024
+  ],
+  "target_state_si": [
+    -327940035587.2518,
+    -326134478824.52686,
+    -8974517548.031595,
+    14616.306697857412,
+    -7094.853957733343,
+    -294.1253205192983
+  ],
+  "costate_convention": "dimensionless [p_r,p_v,p_m] for normalized remaining mass",
+  "costates_initial": [
+    -0.13131971595666417,
+    0.04151069974973814,
+    0.0023138765162002313,
+    -0.033020001476446424,
+    -0.07334024779089346,
+    -0.01188286249126736,
+    -0.1259748387759834
+  ],
+  "functional_dimensionless": 0.08562432899149093,
+  "chosen_seed": {
+    "source": "ILTT date/phase",
+    "branch_rank": 0,
+    "k": 0,
+    "lambda_turns": 1.234026306582106,
+    "kappa": 3.8002431670079186,
+    "route": "shooting",
+    "independent_check": {
+      "position_residual_m": 116.39662352413181,
+      "velocity_residual_m_s": 2.1747044370444993e-06,
+      "free_velocity_transversality": 0.015463123220606357,
+      "difference_r_m": 155.56740214932182,
+      "difference_v_m_s": 3.5434730814613044e-06
+    },
+    "nfev": 3,
+    "integrations": 3,
+    "optimizer_success": true,
+    "residual_norm": 1.196468504091523e-13,
+    "position_residual_m": 43.45853178326108,
+    "velocity_residual_m_s": 1.4491661465422252e-06,
+    "free_velocity_transversality": 0.015463123210855578,
+    "accepted": true
+  },
+  "title": "Earth → Polyhymnia: ограниченное ускорение",
+  "ephemerides": {
+    "Earth": {
+      "body": "earth",
+      "start_jd": 2287184.5,
+      "stop_jd": 2688976.5,
+      "source": "KIAM 6.1.6 / bundled JPLEPH",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "center": "requested",
+      "interpolation": "KIAM native ephemeris",
+      "representation": "body center"
+    },
+    "Polyhymnia": {
+      "body": "polyhymnia",
+      "source": "https://ssd.jpl.nasa.gov/api/horizons.api",
+      "parameters": {
+        "format": "json",
+        "COMMAND": "'33;'",
+        "CENTER": "'500@10'",
+        "EPHEM_TYPE": "'VECTORS'",
+        "REF_PLANE": "'ECLIPTIC'",
+        "REF_SYSTEM": "'ICRF'",
+        "OUT_UNITS": "'KM-S'",
+        "VEC_CORR": "'NONE'",
+        "CSV_FORMAT": "'YES'",
+        "VEC_TABLE": "'2'",
+        "TIME_TYPE": "'TDB'",
+        "OBJ_DATA": "'YES'",
+        "START_TIME": "'2020-01-01'",
+        "STOP_TIME": "'2080-01-01'",
+        "STEP_SIZE": "'12 h'"
+      },
+      "center": "Sun",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "units": "m,m/s",
+      "start_jd": 2458849.5,
+      "stop_jd": 2480764.5,
+      "knots": 43831,
+      "max_step_days": 0.5,
+      "interpolation": "cubic Hermite, position and velocity from the same polynomial",
+      "arrays_sha256": "c9b5cca4455bf43bb30a49f29b9bb211d1b8ffb8331de337bc5419c6cc370b47",
+      "raw_sha256": "f70ebcf547a40d6b83a02fd1b37190c30a1500f8518ffa9f72abc47a32aae6a0"
+    }
+  },
+  "overlays": [
+    {
+      "array": "departure_orbit_m",
+      "label": "Орбита Earth"
+    },
+    {
+      "array": "target_orbit_m",
+      "label": "Орбита Polyhymnia",
+      "linestyle": "-.",
+      "color": ".65"
+    }
+  ],
+  "markers": [
+    {
+      "label": "Earth, старт",
+      "r_m": [
+        -139523946102.6892,
+        50016882323.22916,
+        -2184427.0109043373
+      ]
+    },
+    {
+      "label": "Polyhymnia, прибытие",
+      "r_m": [
+        -327940035587.2518,
+        -326134478824.52686,
+        -8974517548.031595
+      ]
+    }
+  ],
+  "configuration_sha256": "804018c651806699962358ec4b598121ae0dd7fbc9aadde681ef258eb28808ff",
+  "configuration_hash_version": 2,
+  "schema_version": 1,
+  "departure": {
+    "mode": "bounded_norm",
+    "bound_active": true,
+    "vector_m_s": [
+      -1218.392648359093,
+      -2706.1542926034854,
+      -438.4612856892064
+    ],
+    "norm_m_s": 2999.9999999999977,
+    "bound_m_s": 3000
+  },
+  "bounded_model": {
+    "a_max": 0.02652812493186295,
+    "alpha": 0.2975,
+    "beta": 0.9919921875000001,
+    "q": 0.03969005320134832,
+    "variable_mass": true,
+    "gravity_spec": null
+  },
+  "body_initial_state_si": [
+    -139523946102.6892,
+    50016882323.22916,
+    -2184427.0109043373,
+    -10533.149254486845,
+    -28139.7466703392,
+    2.458996078966436
+  ],
+  "hardware_limit_reached": true,
+  "collocation_tolerance": 2e-09,
+  "collocation_derivatives": "analytic central-field",
+  "collocation_nodes": 2808,
+  "collocation_iterations": 5,
+  "corrector": "bounded single shooting",
+  "corrector_nfev": 6,
+  "verification": {
+    "passed": true,
+    "position_residual_m": 337.0736140428794,
+    "velocity_residual_m_s": 7.889656821951703e-06,
+    "parameter_audit": {
+      "passed": true,
+      "configuration_sha256": "804018c651806699962358ec4b598121ae0dd7fbc9aadde681ef258eb28808ff",
+      "configuration_hash_version": 2,
+      "requested": {
+        "mass_kg": 156,
+        "thrust_N": 0.025,
+        "exhaust_velocity_m_s": 20000,
+        "dry_mass_kg": 90,
+        "launch_tdb": "2029-03-01T00:00:00",
+        "tof_days": 1404.6670288970777,
+        "departure": "Earth",
+        "target": "Polyhymnia",
+        "mode": "rendezvous"
+      },
+      "recovered_model": {
+        "model_thrust_N": 0.025,
+        "thrust_to_requested_ratio": 1.0,
+        "alpha": 0.2975,
+        "beta": 0.9919921875000001,
+        "variable_mass": true,
+        "hardware_limit_reached": true,
+        "exhaust_velocity_m_s": 20000.0
+      },
+      "geometry": null,
+      "final_admission": false
+    },
+    "trajectory_difference_m": 337.0736140428794,
+    "velocity_difference_m_s": 9.200458873322869e-06,
+    "stored_throttle_error": 0.0,
+    "stored_throttle_minimum": 0.0,
+    "stored_throttle_maximum": 1.0,
+    "canonical_boundary_residual": 2.290115519387615e-09,
+    "method": "LSODA with independent bounded/mass equations",
+    "scope": "Numerical extremal and constraints; no global optimality proof",
+    "departure_norm_m_s": 2999.9999999999977,
+    "minimum_mass_kg": 91.34902271464594
+  },
+  "arrays_sha256": "e6047697e5e1c107571bfca50ff35cdd8605624c24098ecd677bb8c0d6e51101"
+}

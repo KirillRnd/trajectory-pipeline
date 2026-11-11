@@ -1,0 +1,132 @@
+{
+  "operation": "physical_continue",
+  "mission": {
+    "case_id": "earth_ceres_2030",
+    "departure": "Earth",
+    "target": "Ceres",
+    "launch_tdb": "2030-05-02T00:00:00",
+    "tof_days": 2073.2754078155485,
+    "center": "Sun",
+    "mode": "rendezvous",
+    "position_tolerance_m": 1000,
+    "velocity_tolerance_m_s": 0.01,
+    "mass_kg": 156,
+    "departure_mode": "bounded_norm",
+    "vinf_max_m_s": 3000,
+    "vinf_vector_m_s": null,
+    "spacecraft": {
+      "thrust_N": 0.025,
+      "exhaust_velocity_m_s": 20000,
+      "dry_mass_kg": 90
+    },
+    "solver": {
+      "budget_s": 45,
+      "compare_seeds": true,
+      "departure_budget_s": 60,
+      "limit_budget_s": 60,
+      "pazov_budget_s": 90,
+      "psi_budget_s": 120,
+      "bounded_attempt_s": 20,
+      "irt_entry": "date",
+      "iltt_branch": 1,
+      "pipeline_pazov_alpha": 0.5,
+      "psi_mass_alpha": 0.5,
+      "iltt_resolved": {
+        "binding": {
+          "departure": "Earth",
+          "target": "Ceres",
+          "launch_tdb": "2030-05-02T00:00:00",
+          "center": "Sun",
+          "max_abs_k": 5,
+          "duration_bounds_days": null,
+          "angular_min": 0.0
+        },
+        "branch_rank": 1,
+        "branches": [
+          {
+            "k": 0,
+            "lambda_initial": 0.7809685587331101,
+            "approximation_family": "long"
+          },
+          {
+            "k": 1,
+            "lambda_initial": 2.4933480692491425,
+            "approximation_family": "long"
+          },
+          {
+            "k": 2,
+            "lambda_initial": 4.205727579765175,
+            "approximation_family": "long"
+          },
+          {
+            "k": 3,
+            "lambda_initial": 5.9181070902812065,
+            "approximation_family": "long"
+          },
+          {
+            "k": 4,
+            "lambda_initial": 7.630486600797239,
+            "approximation_family": "long"
+          },
+          {
+            "k": 5,
+            "lambda_initial": 9.342866111313272,
+            "approximation_family": "long"
+          }
+        ],
+        "phase_rad": 2.641973661864859,
+        "k": 1,
+        "lambda_initial": 2.4933480692491425,
+        "lambda_corrected": 2.6088078532636807,
+        "kappa": 2.839559366746315,
+        "x_initial": [
+          -0.025518896500924208,
+          -0.41024609950134394,
+          1.3992491580481203,
+          2.6273762015325985,
+          2.7455196150853327,
+          2.4933480692491425
+        ],
+        "x_corrected": [
+          -0.027621463072395703,
+          -0.304355435163031,
+          1.5199220454549651,
+          2.366336378254149,
+          2.839559366746315,
+          2.6088078532636807
+        ],
+        "tof_days": 2059.7632188595803,
+        "initial_tof_days": 1924.9011915952444,
+        "costates": [
+          -0.013455739921832454,
+          -0.013094215968663466,
+          0.003964144394401141,
+          0.011738193785367744,
+          -0.015552424576269092,
+          -0.003925644218421349
+        ],
+        "orbit_phase_residual": [
+          8.005596185967079e-12,
+          1.5633327965502986e-12,
+          2.378791608137476e-13,
+          -8.933964679158635e-12,
+          -5.710099060252105e-12,
+          2.4007462684494385e-12
+        ],
+        "evaluations": 53,
+        "source": "ILTT/transfer_legacy.py: phase -> a_OM branches -> make_F_function -> moving-target orbit correction",
+        "duration_role": "derived from ILTT; input tof_days was not used"
+      }
+    },
+    "lunar": null
+  },
+  "budget_s": 300,
+  "reference": null,
+  "parent_artifact": "runs/iltt_missed_inputs_v4/earth_ceres_2030_input_2/nodes/b499469480fb47d36e83beed/intermediate",
+  "parent_sha256": "57035b489f1298fa6a9830e8c7237d987975f1f721b8ebf341f1c94e05774967",
+  "parent_metadata_sha256": "85af372898dd94386a339bc142252a369d9cdba1686a5dc4dd8c781f7d2b8253",
+  "bounds_days": [
+    1029.8816094297902,
+    3089.6448282893707
+  ]
+}

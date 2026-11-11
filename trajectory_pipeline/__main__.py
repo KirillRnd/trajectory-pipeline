@@ -196,24 +196,24 @@ def main():
         print(json.dumps(check,ensure_ascii=False,indent=2))
         return 0 if check['passed'] else 2
     elif args.command=='solve':
+        from pathlib import Path
         from .problem import Mission
         from .runner import run_pipeline
         from .capture_control import apply_capture_flags
         mission=apply_capture_flags(Mission.load(args.mission),args)
         original_cli_request=mission.to_dict()
+        cli_request=dict(mission=original_cli_request,fixed_time=args.fixed_time,tof_bounds_days=args.tof_bounds_days)
+        saved_cli_request=Path(args.output)/'cli_request.json'
+        if args.resume and saved_cli_request.exists() and json.loads(saved_cli_request.read_text())!=cli_request:
+            raise ValueError('CLI resume changed mission or duration policy')
         if args.fixed_time and args.tof_bounds_days:raise ValueError('Choose free-time bounds or --fixed-time')
+        release_time=bool(args.tof_bounds_days) or not any(x is not None for x in (mission.capture,mission.parking_departure,mission.orbital_maneuvers,mission.lunar))
         if args.fixed_time:mission.time_policy=None
-        elif args.tof_bounds_days or not any(x is not None for x in (mission.capture,mission.parking_departure,mission.orbital_maneuvers,mission.lunar)):
-            from .iltt_entry import resolve_date_mission
-            mission=resolve_date_mission(mission)
-            bounds=args.tof_bounds_days or (mission.time_policy or {}).get('bounds_days')
-            mission.time_policy=dict(bounds_days=bounds if bounds is not None else [mission.tof_days*.5,mission.tof_days*1.5])
         mission.validate()
-        result,summary=run_pipeline(mission,args.output,resume=args.resume)
-        from pathlib import Path
+        result,summary=run_pipeline(mission,args.output,resume=args.resume,release_time=release_time and not args.fixed_time,time_bounds_days=args.tof_bounds_days)
         from .data import write_json
         if Path(args.output).exists():
-            write_json(Path(args.output)/'cli_request.json',dict(mission=original_cli_request,fixed_time=args.fixed_time,tof_bounds_days=args.tof_bounds_days))
+            write_json(Path(args.output)/'cli_request.json',cli_request)
         print(json.dumps({k:v for k,v in summary.items() if k!='stages'},ensure_ascii=False,indent=2))
         return exit_code(summary['status'])
     elif args.command=='sweep-solve':

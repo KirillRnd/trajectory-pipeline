@@ -1,0 +1,309 @@
+{
+  "case_id": "earth_mars_2029",
+  "epoch_jd": 2462470.5,
+  "time_scale": "TDB",
+  "center": "Sun",
+  "frame": "ECLIPJ2000",
+  "model": "Pazov bounded acceleration / mass homotopy",
+  "status": "verified_extremal",
+  "stage": "pazov_limit",
+  "mission": {
+    "case_id": "earth_mars_2029",
+    "departure": "Earth",
+    "target": "Mars",
+    "launch_tdb": "2029-11-30T00:00:00",
+    "tof_days": 1395.071300355313,
+    "center": "Sun",
+    "mode": "rendezvous",
+    "position_tolerance_m": 1000,
+    "velocity_tolerance_m_s": 0.01,
+    "mass_kg": 156,
+    "departure_mode": "bounded_norm",
+    "vinf_max_m_s": 3000,
+    "vinf_vector_m_s": null,
+    "spacecraft": {
+      "thrust_N": 0.025,
+      "exhaust_velocity_m_s": 20000,
+      "dry_mass_kg": 90
+    },
+    "solver": {
+      "budget_s": 45,
+      "compare_seeds": true,
+      "departure_budget_s": 60,
+      "limit_budget_s": 60,
+      "pazov_budget_s": 90,
+      "psi_budget_s": 120,
+      "bounded_attempt_s": 20,
+      "irt_entry": "date",
+      "iltt_branch": 0,
+      "pipeline_pazov_alpha": 0.5,
+      "psi_mass_alpha": 0.5,
+      "iltt_resolved": {
+        "binding": {
+          "departure": "Earth",
+          "target": "Mars",
+          "launch_tdb": "2029-11-30T00:00:00",
+          "center": "Sun",
+          "max_abs_k": 5,
+          "duration_bounds_days": null,
+          "angular_min": 0.0
+        },
+        "branch_rank": 0,
+        "branches": [
+          {
+            "k": 1,
+            "lambda_initial": 2.497444145174601,
+            "approximation_family": "long"
+          },
+          {
+            "k": 2,
+            "lambda_initial": 5.985285233578922,
+            "approximation_family": "long"
+          },
+          {
+            "k": 3,
+            "lambda_initial": 9.473126321983242,
+            "approximation_family": "long"
+          },
+          {
+            "k": 4,
+            "lambda_initial": 12.960967410387562,
+            "approximation_family": "long"
+          },
+          {
+            "k": 5,
+            "lambda_initial": 16.448808498791884,
+            "approximation_family": "long"
+          }
+        ],
+        "phase_rad": -1.921915492915492,
+        "k": 1,
+        "lambda_initial": 2.497444145174601,
+        "lambda_corrected": 2.6922974924283376,
+        "kappa": 1.6574015951398617,
+        "x_initial": [
+          -0.09544433518568593,
+          -0.2198304743757503,
+          0.8634562919166461,
+          5.8678468178429135,
+          1.544817046407311,
+          2.497444145174601
+        ],
+        "x_corrected": [
+          -0.08204117144493017,
+          -0.16865001988745068,
+          0.8308561088071832,
+          5.694169163475693,
+          1.6574015951398617,
+          2.6922974924283376
+        ],
+        "tof_days": 1395.0379256382196,
+        "initial_tof_days": 1230.6178078592907,
+        "costates": [
+          0.0029868188658353635,
+          0.011615680887150905,
+          0.0007216797122429411,
+          -0.010513971350823955,
+          0.006145251306202237,
+          0.0019185326891792368
+        ],
+        "orbit_phase_residual": [
+          2.3741009158584347e-12,
+          3.03146396873899e-13,
+          -1.7544299346639036e-13,
+          -2.537969834293108e-13,
+          7.371880883511039e-13,
+          9.844569603956188e-12
+        ],
+        "evaluations": 27,
+        "source": "ILTT/transfer_legacy.py: phase -> a_OM branches -> make_F_function -> moving-target orbit correction",
+        "duration_role": "derived from ILTT; input tof_days was not used"
+      }
+    },
+    "lunar": null
+  },
+  "scales": {
+    "distance_m": 147546349822.1516,
+    "mu_m3_s2": 1.32712440018e+20
+  },
+  "initial_state_si": [
+    56130140684.9567,
+    136452675198.03062,
+    -9155788.784837304,
+    -28399.398680866318,
+    14056.793271777666,
+    945.409602050262
+  ],
+  "target_state_si": [
+    180563679333.03464,
+    -100407113865.13663,
+    -6529134955.27867,
+    12697.114028939253,
+    23251.516016929723,
+    176.22175789908957
+  ],
+  "costate_convention": "dimensionless [p_r,p_v], maximizing Hamiltonian",
+  "costates_initial": [
+    0.00021539350166937038,
+    0.0008743988994506704,
+    0.0006304621967896786,
+    -1.8251100556085247e-05,
+    0.00014053123802471718,
+    4.708847770798274e-05
+  ],
+  "functional_dimensionless": 0.00048093385740025297,
+  "chosen_seed": {
+    "source": "ILTT date/phase",
+    "branch_rank": 0,
+    "k": 1,
+    "lambda_turns": 2.6922974924283376,
+    "kappa": 1.6574015951398617,
+    "route": "shooting",
+    "independent_check": {
+      "position_residual_m": 906.5509877065518,
+      "velocity_residual_m_s": 0.00010654861127053976,
+      "free_velocity_transversality": 0.008902665656947537,
+      "difference_r_m": 932.6369282140971,
+      "difference_v_m_s": 0.00010942752869129873
+    },
+    "nfev": 3,
+    "integrations": 3,
+    "optimizer_success": true,
+    "residual_norm": 1.7245457705762513e-13,
+    "position_residual_m": 26.125433396673348,
+    "velocity_residual_m_s": 2.879158747911239e-06,
+    "free_velocity_transversality": 0.008902665671585147,
+    "accepted": true
+  },
+  "title": "Earth → Mars: ограниченное ускорение",
+  "ephemerides": {
+    "Earth": {
+      "body": "earth",
+      "start_jd": 2287184.5,
+      "stop_jd": 2688976.5,
+      "source": "KIAM 6.1.6 / bundled JPLEPH",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "center": "requested",
+      "interpolation": "KIAM native ephemeris",
+      "representation": "body center"
+    },
+    "Mars": {
+      "body": "mars",
+      "start_jd": 2287184.5,
+      "stop_jd": 2688976.5,
+      "source": "KIAM 6.1.6 / bundled JPLEPH",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "center": "requested",
+      "interpolation": "KIAM native ephemeris",
+      "representation": "body center"
+    }
+  },
+  "overlays": [
+    {
+      "array": "departure_orbit_m",
+      "label": "Орбита Earth"
+    },
+    {
+      "array": "target_orbit_m",
+      "label": "Орбита Mars",
+      "linestyle": "-.",
+      "color": ".65"
+    }
+  ],
+  "markers": [
+    {
+      "label": "Earth, старт",
+      "r_m": [
+        56130140684.9567,
+        136452675198.03062,
+        -9155788.784837304
+      ]
+    },
+    {
+      "label": "Mars, прибытие",
+      "r_m": [
+        180563679333.03464,
+        -100407113865.13663,
+        -6529134955.27867
+      ]
+    }
+  ],
+  "configuration_sha256": "195f410d5b966033128d0c75f62f8981984c877d65c49cb55161de9b5af17ad2",
+  "configuration_hash_version": 2,
+  "schema_version": 1,
+  "departure": {
+    "mode": "bounded_norm",
+    "bound_active": true,
+    "vector_m_s": [
+      -366.659697490275,
+      2823.234744871117,
+      945.994842263352
+    ],
+    "norm_m_s": 3000.000000000001,
+    "bound_m_s": 3000
+  },
+  "bounded_model": {
+    "a_max": 0.026288191875616866,
+    "alpha": 0.0,
+    "beta": 0.0,
+    "q": 0.0,
+    "variable_mass": false,
+    "gravity_spec": null
+  },
+  "body_initial_state_si": [
+    56130140684.9567,
+    136452675198.03062,
+    -9155788.784837304,
+    -28032.738983376043,
+    11233.558526906549,
+    -0.5852402130899463
+  ],
+  "hardware_limit_reached": true,
+  "collocation_tolerance": 2e-08,
+  "collocation_derivatives": "analytic central-field",
+  "collocation_nodes": 1605,
+  "collocation_iterations": 3,
+  "verification": {
+    "passed": true,
+    "position_residual_m": 725.0199767321014,
+    "velocity_residual_m_s": 7.587732300902986e-05,
+    "parameter_audit": {
+      "passed": true,
+      "configuration_sha256": "195f410d5b966033128d0c75f62f8981984c877d65c49cb55161de9b5af17ad2",
+      "configuration_hash_version": 2,
+      "requested": {
+        "mass_kg": 156,
+        "thrust_N": 0.025,
+        "exhaust_velocity_m_s": 20000,
+        "dry_mass_kg": 90,
+        "launch_tdb": "2029-11-30T00:00:00",
+        "tof_days": 1395.071300355313,
+        "departure": "Earth",
+        "target": "Mars",
+        "mode": "rendezvous"
+      },
+      "recovered_model": {
+        "model_thrust_N": 0.025,
+        "thrust_to_requested_ratio": 1.0,
+        "alpha": 0.0,
+        "beta": 0.0,
+        "variable_mass": false,
+        "hardware_limit_reached": true
+      },
+      "geometry": null,
+      "final_admission": false
+    },
+    "trajectory_difference_m": 728.1661130885366,
+    "velocity_difference_m_s": 7.587732300819562e-05,
+    "stored_throttle_error": 0.0,
+    "stored_throttle_minimum": 0.0024125503635243862,
+    "stored_throttle_maximum": 0.4023604685147055,
+    "canonical_boundary_residual": 5.52691371422953e-09,
+    "method": "LSODA with independent bounded/mass equations",
+    "scope": "Numerical extremal and constraints; no global optimality proof",
+    "departure_norm_m_s": 3000.000000000001
+  },
+  "arrays_sha256": "357ce564681f8c7217752b2239eba3ead6be102a7db6c3a4db7e9012c88eec32"
+}

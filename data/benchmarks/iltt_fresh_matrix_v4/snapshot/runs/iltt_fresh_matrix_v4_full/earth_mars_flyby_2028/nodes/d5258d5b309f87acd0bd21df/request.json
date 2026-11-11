@@ -1,0 +1,132 @@
+{
+  "operation": "physical_continue",
+  "mission": {
+    "case_id": "earth_mars_flyby_2028",
+    "departure": "Earth",
+    "target": "Mars",
+    "launch_tdb": "2028-05-05T00:00:00",
+    "tof_days": 2797.705276709697,
+    "center": "Sun",
+    "mode": "flyby",
+    "position_tolerance_m": 1000,
+    "velocity_tolerance_m_s": 0.01,
+    "mass_kg": 156,
+    "departure_mode": "bounded_norm",
+    "vinf_max_m_s": 3000,
+    "vinf_vector_m_s": null,
+    "spacecraft": {
+      "thrust_N": 0.025,
+      "exhaust_velocity_m_s": 20000,
+      "dry_mass_kg": 90
+    },
+    "solver": {
+      "budget_s": 45,
+      "compare_seeds": true,
+      "departure_budget_s": 60,
+      "limit_budget_s": 60,
+      "pazov_budget_s": 90,
+      "psi_budget_s": 120,
+      "bounded_attempt_s": 20,
+      "irt_entry": "date",
+      "iltt_branch": 1,
+      "pipeline_pazov_alpha": 0.7,
+      "psi_mass_alpha": 0.7,
+      "iltt_resolved": {
+        "binding": {
+          "departure": "Earth",
+          "target": "Mars",
+          "launch_tdb": "2028-05-05T00:00:00",
+          "center": "Sun",
+          "max_abs_k": 5,
+          "duration_bounds_days": null,
+          "angular_min": 0.0
+        },
+        "branch_rank": 1,
+        "branches": [
+          {
+            "k": 0,
+            "lambda_initial": 1.733425587230601,
+            "approximation_family": "long"
+          },
+          {
+            "k": 1,
+            "lambda_initial": 5.3876081398479405,
+            "approximation_family": "long"
+          },
+          {
+            "k": 2,
+            "lambda_initial": 9.04179069246528,
+            "approximation_family": "long"
+          },
+          {
+            "k": 3,
+            "lambda_initial": 12.69597324508262,
+            "approximation_family": "long"
+          },
+          {
+            "k": 4,
+            "lambda_initial": 16.35015579769996,
+            "approximation_family": "long"
+          },
+          {
+            "k": 5,
+            "lambda_initial": 20.004338350317298,
+            "approximation_family": "long"
+          }
+        ],
+        "phase_rad": 2.85225197689738,
+        "k": 1,
+        "lambda_initial": 5.3876081398479405,
+        "lambda_corrected": 5.23501387420541,
+        "kappa": 1.6624136201825694,
+        "x_initial": [
+          -0.10273757059957528,
+          -0.234993605994251,
+          0.8634411499081533,
+          5.866920660065262,
+          1.5107293938601138,
+          5.3876081398479405
+        ],
+        "x_corrected": [
+          -0.07280318686742482,
+          -0.20078141194245117,
+          0.89480390731414,
+          5.649224246544381,
+          1.6624136201825694,
+          5.23501387420541
+        ],
+        "tof_days": 2797.7219848732866,
+        "initial_tof_days": 2691.1437943933533,
+        "costates": [
+          -0.004365712043847812,
+          -0.003560095418868733,
+          0.00011983942566668498,
+          0.004115133893230253,
+          -0.003561929010729508,
+          -0.0010742121133923454
+        ],
+        "orbit_phase_residual": [
+          1.917732639356018e-11,
+          5.959746585126879e-13,
+          2.9825586445042518e-12,
+          2.164346479816004e-11,
+          5.236699962551938e-12,
+          6.375688865745133e-11
+        ],
+        "evaluations": 51,
+        "source": "ILTT/transfer_legacy.py: phase -> a_OM branches -> make_F_function -> moving-target orbit correction",
+        "duration_role": "derived from ILTT; input tof_days was not used"
+      }
+    },
+    "lunar": null
+  },
+  "budget_s": 300,
+  "reference": null,
+  "parent_artifact": "runs/iltt_fresh_matrix_v4_full/earth_mars_flyby_2028/nodes/cca66d4877c1ca71fe225447/intermediate",
+  "parent_sha256": "5930cd5f49061138582b025aa54c45300470ca03e383c4f26e8e77b211597291",
+  "parent_metadata_sha256": "ec39c95659f7640c6268cf721e71bc7008e51bb7663f2e0b369d8126a470933a",
+  "bounds_days": [
+    1398.8609924366433,
+    4196.58297730993
+  ]
+}

@@ -1,0 +1,349 @@
+{
+  "case_id": "earth_ryugu_2028",
+  "epoch_jd": 2461743.5,
+  "time_scale": "TDB",
+  "center": "Sun",
+  "frame": "ECLIPJ2000",
+  "model": "Pazov bounded acceleration / mass homotopy",
+  "status": "verified_extremal",
+  "stage": "psi_mass",
+  "mission": {
+    "case_id": "earth_ryugu_2028",
+    "departure": "Earth",
+    "target": "Ryugu",
+    "launch_tdb": "2027-12-04T00:00:00",
+    "tof_days": 1514.0626178703808,
+    "center": "Sun",
+    "mode": "rendezvous",
+    "position_tolerance_m": 1000,
+    "velocity_tolerance_m_s": 0.01,
+    "mass_kg": 156,
+    "departure_mode": "bounded_norm",
+    "vinf_max_m_s": 3000,
+    "vinf_vector_m_s": null,
+    "spacecraft": {
+      "thrust_N": 0.025,
+      "exhaust_velocity_m_s": 20000,
+      "dry_mass_kg": 90
+    },
+    "solver": {
+      "budget_s": 45,
+      "compare_seeds": true,
+      "departure_budget_s": 60,
+      "limit_budget_s": 60,
+      "pazov_budget_s": 90,
+      "psi_budget_s": 120,
+      "bounded_attempt_s": 20,
+      "irt_entry": "date",
+      "iltt_branch": 0,
+      "pipeline_pazov_alpha": 0.7,
+      "psi_mass_alpha": 0.7,
+      "iltt_resolved": {
+        "binding": {
+          "departure": "Earth",
+          "target": "Ryugu",
+          "launch_tdb": "2027-12-04T00:00:00",
+          "center": "Sun",
+          "max_abs_k": 5,
+          "duration_bounds_days": null,
+          "angular_min": 0.0
+        },
+        "branch_rank": 0,
+        "branches": [
+          {
+            "k": 0,
+            "lambda_initial": 3.455467809600791,
+            "approximation_family": "long"
+          },
+          {
+            "k": 1,
+            "lambda_initial": 10.952523909452681,
+            "approximation_family": "long"
+          },
+          {
+            "k": 2,
+            "lambda_initial": 18.449580009304572,
+            "approximation_family": "long"
+          },
+          {
+            "k": 3,
+            "lambda_initial": 25.94663610915646,
+            "approximation_family": "long"
+          },
+          {
+            "k": 4,
+            "lambda_initial": 33.443692209008354,
+            "approximation_family": "long"
+          },
+          {
+            "k": 5,
+            "lambda_initial": 40.94074830886024,
+            "approximation_family": "long"
+          }
+        ],
+        "phase_rad": 2.85953986202722,
+        "k": 0,
+        "lambda_initial": 3.455467809600791,
+        "lambda_corrected": 3.2168133691848255,
+        "kappa": 1.4545759818391353,
+        "x_initial": [
+          -0.3662201618636321,
+          -1.8752102768578436,
+          4.385645744740228,
+          1.7933644533102384,
+          1.208068229596129,
+          3.455467809600791
+        ],
+        "x_corrected": [
+          -0.20654362742543134,
+          -0.9351109146765831,
+          4.36525493434838,
+          1.6932629794984884,
+          1.4545759818391353,
+          3.2168133691848255
+        ],
+        "tof_days": 1514.0626178703808,
+        "initial_tof_days": 1420.7974537937548,
+        "costates": [
+          0.002913467714647713,
+          0.005302881751535616,
+          -0.000206768797562201,
+          -0.008012486345713063,
+          0.0015885036659241028,
+          -0.006145857904060684
+        ],
+        "orbit_phase_residual": [
+          2.1950441464468895e-11,
+          -3.853579955137576e-11,
+          -8.195777390085368e-12,
+          1.991828924019501e-11,
+          -2.2210677741441032e-11,
+          1.3228618200855635e-10
+        ],
+        "evaluations": 53,
+        "source": "ILTT/transfer_legacy.py: phase -> a_OM branches -> make_F_function -> moving-target orbit correction",
+        "duration_role": "derived from ILTT; input tof_days was not used"
+      }
+    },
+    "lunar": null
+  },
+  "scales": {
+    "distance_m": 147466497654.7011,
+    "mu_m3_s2": 1.32712440018e+20
+  },
+  "initial_state_si": [
+    47518099562.66245,
+    139600852639.6101,
+    -9316154.620203862,
+    -29987.268773223434,
+    8763.89355914896,
+    -2611.2096889040563
+  ],
+  "target_state_si": [
+    52572743125.66999,
+    -205245897312.55426,
+    11890159263.548258,
+    21645.85997379543,
+    5808.535598063012,
+    1914.5294902722173
+  ],
+  "costate_convention": "dimensionless [p_r,p_v,p_m] for normalized remaining mass",
+  "costates_initial": [
+    0.002479921042087803,
+    -0.0011021224070882662,
+    -0.0005900403987908432,
+    -0.003489894317305525,
+    -0.0019272367508283614,
+    -0.0070317165517647245,
+    -0.0001838049594533716
+  ],
+  "functional_dimensionless": 0.0007199425281346843,
+  "chosen_seed": {
+    "source": "ILTT date/phase",
+    "branch_rank": 0,
+    "k": 0,
+    "lambda_turns": 3.2168133691848255,
+    "kappa": 1.4545759818391353,
+    "route": "shooting",
+    "independent_check": {
+      "position_residual_m": 38.67114496594097,
+      "velocity_residual_m_s": 4.588886942905409e-06,
+      "free_velocity_transversality": 0.007306286077460811,
+      "difference_r_m": 74.71087789820582,
+      "difference_v_m_s": 9.664336708272068e-06
+    },
+    "nfev": 3,
+    "integrations": 3,
+    "optimizer_success": true,
+    "residual_norm": 5.644438714460993e-14,
+    "position_residual_m": 43.61402097599371,
+    "velocity_residual_m_s": 5.165638760885488e-06,
+    "free_velocity_transversality": 0.007306286079427276,
+    "accepted": true
+  },
+  "title": "Earth → Ryugu: ограниченное ускорение",
+  "ephemerides": {
+    "Earth": {
+      "body": "earth",
+      "start_jd": 2287184.5,
+      "stop_jd": 2688976.5,
+      "source": "KIAM 6.1.6 / bundled JPLEPH",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "center": "requested",
+      "interpolation": "KIAM native ephemeris",
+      "representation": "body center"
+    },
+    "Ryugu": {
+      "body": "ryugu",
+      "source": "https://ssd.jpl.nasa.gov/api/horizons.api",
+      "parameters": {
+        "format": "json",
+        "COMMAND": "'162173;'",
+        "CENTER": "'500@10'",
+        "EPHEM_TYPE": "'VECTORS'",
+        "REF_PLANE": "'ECLIPTIC'",
+        "REF_SYSTEM": "'ICRF'",
+        "OUT_UNITS": "'KM-S'",
+        "VEC_CORR": "'NONE'",
+        "CSV_FORMAT": "'YES'",
+        "VEC_TABLE": "'2'",
+        "TIME_TYPE": "'TDB'",
+        "OBJ_DATA": "'YES'",
+        "START_TIME": "'2020-01-01'",
+        "STOP_TIME": "'2080-01-01'",
+        "STEP_SIZE": "'12 h'"
+      },
+      "center": "Sun",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "units": "m,m/s",
+      "start_jd": 2458849.5,
+      "stop_jd": 2480764.5,
+      "knots": 43831,
+      "max_step_days": 0.5,
+      "interpolation": "cubic Hermite, position and velocity from the same polynomial",
+      "arrays_sha256": "7baad7237cb3a2ca1aa5195d966257a9779401d64351eb5901daea1681ca2a62",
+      "raw_sha256": "73f3c070752bbd42ac7ee560d8981b1673a2c0a42c724e08eab0889a0c0054ee"
+    }
+  },
+  "overlays": [
+    {
+      "array": "departure_orbit_m",
+      "label": "Орбита Earth"
+    },
+    {
+      "array": "target_orbit_m",
+      "label": "Орбита Ryugu",
+      "linestyle": "-.",
+      "color": ".65"
+    }
+  ],
+  "markers": [
+    {
+      "label": "Earth, старт",
+      "r_m": [
+        47518099562.66245,
+        139600852639.6101,
+        -9316154.62020386
+      ]
+    },
+    {
+      "label": "Earth, прибытие",
+      "r_m": [
+        -84868313606.47646,
+        120355323819.9335,
+        -7746292.890923806
+      ],
+      "hollow": true
+    },
+    {
+      "label": "Ryugu",
+      "r_m": [
+        52572743125.66999,
+        -205245897312.55426,
+        11890159263.548258
+      ],
+      "color": "#df1111",
+      "role": "target"
+    }
+  ],
+  "configuration_sha256": "7baff6203c155016f769999cc7fdcf5746a1f01be08a4bbd6ab22bfb3bcbf260",
+  "configuration_hash_version": 2,
+  "verification": {
+    "passed": true,
+    "position_residual_m": 460.4239731610838,
+    "velocity_residual_m_s": 6.173214950275562e-05,
+    "parameter_audit": {
+      "passed": true,
+      "configuration_sha256": "7baff6203c155016f769999cc7fdcf5746a1f01be08a4bbd6ab22bfb3bcbf260",
+      "configuration_hash_version": 2,
+      "requested": {
+        "mass_kg": 156,
+        "thrust_N": 0.025,
+        "exhaust_velocity_m_s": 20000,
+        "dry_mass_kg": 90,
+        "launch_tdb": "2027-12-04T00:00:00",
+        "tof_days": 1514.0626178703808,
+        "departure": "Earth",
+        "target": "Ryugu",
+        "mode": "rendezvous"
+      },
+      "recovered_model": {
+        "model_thrust_N": 0.025,
+        "thrust_to_requested_ratio": 1.0,
+        "alpha": 0.008749999999999999,
+        "beta": 0.2,
+        "variable_mass": true,
+        "hardware_limit_reached": true,
+        "exhaust_velocity_m_s": 20000.0
+      },
+      "geometry": null,
+      "final_admission": false
+    },
+    "trajectory_difference_m": 460.4239731610838,
+    "velocity_difference_m_s": 6.173214950275562e-05,
+    "stored_throttle_error": 0.0,
+    "stored_throttle_minimum": 0.0,
+    "stored_throttle_maximum": 0.471422038198873,
+    "canonical_boundary_residual": 3.739362127418708e-09,
+    "method": "LSODA with independent bounded/mass equations",
+    "scope": "Numerical extremal and constraints; no global optimality proof",
+    "departure_norm_m_s": 2999.9999999999986,
+    "minimum_mass_kg": 153.21418992751862
+  },
+  "schema_version": 1,
+  "arrays_sha256": "b523c53f9705c3e531c5d954cac082cbb476e40574a7bc2656def6eda15774d2",
+  "departure": {
+    "mode": "bounded_norm",
+    "bound_active": true,
+    "vector_m_s": [
+      -1295.2347274737658,
+      -715.2720801195737,
+      -2609.7419129383984
+    ],
+    "norm_m_s": 2999.9999999999986,
+    "bound_m_s": 3000
+  },
+  "bounded_model": {
+    "a_max": 0.026259745206940823,
+    "alpha": 0.008749999999999999,
+    "beta": 0.2,
+    "q": 0.03938851851255563,
+    "variable_mass": true,
+    "gravity_spec": null
+  },
+  "body_initial_state_si": [
+    47518099562.66245,
+    139600852639.6101,
+    -9316154.620203862,
+    -28692.034045749668,
+    9479.165639268535,
+    -1.4677759656578928
+  ],
+  "hardware_limit_reached": true,
+  "collocation_tolerance": 2e-09,
+  "collocation_derivatives": "analytic central-field",
+  "collocation_nodes": 4859,
+  "collocation_iterations": 5
+}

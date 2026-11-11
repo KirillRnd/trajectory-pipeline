@@ -1,0 +1,138 @@
+{
+  "status": "partial",
+  "phase": "psi",
+  "error": null,
+  "checkpoint": "runs/iltt_fresh_matrix_v4_full/earth_mars_2028/nodes/722068d91713ec8314c80039/run",
+  "elapsed_s": 188.10618890199112,
+  "last_model": {
+    "a_max": 0.028048449124900208,
+    "alpha": 0.3,
+    "beta": 1.0,
+    "q": 0.041928685696053326,
+    "variable_mass": true,
+    "gravity_spec": null
+  },
+  "mission": {
+    "case_id": "earth_mars_2028",
+    "departure": "Earth",
+    "target": "Mars",
+    "launch_tdb": "2028-11-01T00:00:00",
+    "tof_days": 364.7580441797355,
+    "center": "Sun",
+    "mode": "rendezvous",
+    "position_tolerance_m": 1000,
+    "velocity_tolerance_m_s": 0.01,
+    "mass_kg": 156,
+    "departure_mode": "bounded_norm",
+    "vinf_max_m_s": 3000,
+    "vinf_vector_m_s": null,
+    "spacecraft": {
+      "thrust_N": 0.025,
+      "exhaust_velocity_m_s": 20000,
+      "dry_mass_kg": 90
+    },
+    "solver": {
+      "budget_s": 45,
+      "compare_seeds": true,
+      "departure_budget_s": 60,
+      "limit_budget_s": 60,
+      "pazov_budget_s": 90,
+      "psi_budget_s": 120,
+      "bounded_attempt_s": 20,
+      "irt_entry": "date",
+      "iltt_branch": 0,
+      "pipeline_pazov_alpha": 0.3,
+      "psi_mass_alpha": 0.3,
+      "iltt_resolved": {
+        "binding": {
+          "departure": "Earth",
+          "target": "Mars",
+          "launch_tdb": "2028-11-01T00:00:00",
+          "center": "Sun",
+          "max_abs_k": 5,
+          "duration_bounds_days": null,
+          "angular_min": 0.0
+        },
+        "branch_rank": 0,
+        "branches": [
+          {
+            "k": 0,
+            "lambda_initial": 0.8821486532768535,
+            "approximation_family": "long"
+          },
+          {
+            "k": 1,
+            "lambda_initial": 4.414929696444436,
+            "approximation_family": "long"
+          },
+          {
+            "k": 2,
+            "lambda_initial": 7.94771073961202,
+            "approximation_family": "long"
+          },
+          {
+            "k": 3,
+            "lambda_initial": 11.480491782779604,
+            "approximation_family": "long"
+          },
+          {
+            "k": 4,
+            "lambda_initial": 15.013272825947189,
+            "approximation_family": "long"
+          },
+          {
+            "k": 5,
+            "lambda_initial": 18.546053869114772,
+            "approximation_family": "long"
+          }
+        ],
+        "phase_rad": 1.4338160892316618,
+        "k": 0,
+        "lambda_initial": 0.8821486532768535,
+        "lambda_corrected": 0.6925924611044075,
+        "kappa": 1.6071632815628838,
+        "x_initial": [
+          -0.09679822540841602,
+          -0.22388400672304634,
+          0.8634399703072974,
+          5.866536876696507,
+          1.535172387200176,
+          0.8821486532768535
+        ],
+        "x_corrected": [
+          -0.05248293679986898,
+          -0.08629405746605792,
+          0.8029540117168443,
+          5.46183438405227,
+          1.6071632815628838,
+          0.6925924611044075
+        ],
+        "tof_days": 364.7580441797355,
+        "initial_tof_days": 442.67725870779105,
+        "costates": [
+          0.04344284376643569,
+          0.053092154035664675,
+          3.139678342044181e-05,
+          -0.03587524336911883,
+          0.072020296265455,
+          0.00642747265614085
+        ],
+        "orbit_phase_residual": [
+          -1.1259881915748338e-12,
+          3.787942182142956e-14,
+          1.7266743590482747e-12,
+          5.514477763313153e-13,
+          6.179945444273471e-12,
+          -2.9034552539997094e-12
+        ],
+        "evaluations": 30,
+        "source": "ILTT/transfer_legacy.py: phase -> a_OM branches -> make_F_function -> moving-target orbit correction",
+        "duration_role": "derived from ILTT; input tof_days was not used"
+      }
+    },
+    "lunar": null
+  },
+  "artifact": "runs/iltt_fresh_matrix_v4_full/earth_mars_2028/nodes/722068d91713ec8314c80039/intermediate",
+  "metadata_sha256": "5e9bafdbc5736de8f0234bf1559b4a0a72481afd654ffeb67866cbbd3d977aab",
+  "arrays_sha256": "b77b7cd1e401c64037ea81c7d39a08b521e3f8edf7a3d39adc32b91f9fa21b61"
+}

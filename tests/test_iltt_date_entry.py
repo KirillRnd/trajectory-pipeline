@@ -1,5 +1,6 @@
 import json
 import unittest
+from tempfile import TemporaryDirectory
 from pathlib import Path
 from dataclasses import replace
 from unittest.mock import patch
@@ -58,13 +59,34 @@ class DateFirstILTTTests(unittest.TestCase):
 
     def test_cli_resolves_date_before_default_time_bounds(self):
         from trajectory_pipeline.__main__ import main
-        with patch('sys.argv',['pipeline','solve','unused.json','--output','unused']), \
-             patch.object(Mission,'load',return_value=self.mission), \
-             patch('trajectory_pipeline.runner.run_pipeline',return_value=(None,{'status':'partial'})) as run:
-            main()
+        def stop_at_time_controller(mission,output,resume=False):
+            Path(output).mkdir()
+            return None,{'status':'partial'}
+        with TemporaryDirectory() as temporary:
+            output=Path(temporary)/'case'
+            with patch('sys.argv',['pipeline','solve','unused.json','--output',str(output)]), \
+                 patch.object(Mission,'load',return_value=self.mission), \
+                 patch('trajectory_pipeline.free_time.run_time_pipeline',side_effect=stop_at_time_controller) as run:
+                main()
+            self.assertIsNone(json.loads((output/'entry_request.json').read_text())['tof_days'])
+            with patch('sys.argv',['pipeline','solve','unused.json','--output',str(output),'--resume','--fixed-time']), \
+                 patch.object(Mission,'load',return_value=self.mission), \
+                 patch('trajectory_pipeline.runner.run_pipeline',side_effect=AssertionError('Changed flags reached computation')):
+                with self.assertRaisesRegex(ValueError,'duration policy'):main()
         submitted=run.call_args.args[0]
         self.assertAlmostEqual(submitted.tof_days,self.resolved.tof_days)
         self.assertEqual(submitted.time_policy['bounds_days'],[self.resolved.tof_days*.5,self.resolved.tof_days*1.5])
+
+    def test_cli_reports_real_iltt_filter_failure_before_time_dispatch(self):
+        from trajectory_pipeline.__main__ import main
+        constrained=replace(self.mission,solver=dict(self.mission.solver,iltt_duration_bounds_days=[150,600]))
+        with TemporaryDirectory() as temporary:
+            output=Path(temporary)/'case'
+            with patch('sys.argv',['pipeline','solve','unused.json','--output',str(output)]),patch.object(Mission,'load',return_value=constrained):
+                self.assertEqual(main(),1)
+            summary=json.loads((output/'summary.json').read_text())
+            self.assertEqual(summary['status'],'initial_failed')
+            self.assertEqual(summary['phase'],'iltt_entry')
 
     def test_short_formula_is_admissible(self):
         short=resolve_date_mission(replace(self.mission,launch_tdb='2029-01-01T00:00:00'))

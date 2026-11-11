@@ -1,0 +1,51 @@
+{
+  "max_inputs_per_case": 2,
+  "selection": "Resolved and covered date/branch inputs with unvisited hardware; at most two pairs per case across both protocol versions; same ordering, only missing engines",
+  "engines": [
+    {
+      "name": "reference_25mN_20kms",
+      "thrust_N": 0.025,
+      "exhaust_velocity_m_s": 20000
+    },
+    {
+      "name": "candidate_50mN_40kms",
+      "thrust_N": 0.05,
+      "exhaust_velocity_m_s": 40000
+    }
+  ],
+  "population": 2,
+  "generations": 1,
+  "wall_budget_s": 1800,
+  "history": [],
+  "source_commit": "e113b305013ae6e7e2fc529d957a195e35ab2d5b",
+  "environment": {
+    "python": "3.12.16",
+    "executable": "/usr/local/bin/python",
+    "system": "Linux",
+    "machine": "x86_64",
+    "libc": [
+      "glibc",
+      "2.41"
+    ],
+    "kernel": "6.6.87.2-microsoft-standard-WSL2",
+    "container": true,
+    "runtime": "docker-linux",
+    "image_id": "sha256:fc5198261292a626adfb0c4a52ac9695dab1931884aaa10f3104462e1538956a",
+    "dependencies": {
+      "numpy": "2.2.5",
+      "scipy": "1.15.1",
+      "matplotlib": "3.10.0",
+      "pandas": "2.2.3",
+      "kiam-astro": "6.1.6",
+      "daceypy": "1.4.0",
+      "pillow": "13.0.0"
+    },
+    "thread_limits": {
+      "OPENBLAS_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1"
+    }
+  },
+  "preflight_sha256": "98edc7ed5e92af57fc9a772724a8decb861703b91e7888f0388a3852e04ef49c",
+  "version": 2
+}

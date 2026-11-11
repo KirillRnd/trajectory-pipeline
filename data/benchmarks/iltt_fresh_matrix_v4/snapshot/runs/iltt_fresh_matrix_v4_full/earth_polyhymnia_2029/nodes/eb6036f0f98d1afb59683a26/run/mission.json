@@ -1,0 +1,115 @@
+{
+  "case_id": "earth_polyhymnia_2029",
+  "departure": "Earth",
+  "target": "Polyhymnia",
+  "launch_tdb": "2028-09-02T00:00:00",
+  "tof_days": 1441.698811115511,
+  "center": "Sun",
+  "mode": "rendezvous",
+  "position_tolerance_m": 1000,
+  "velocity_tolerance_m_s": 0.01,
+  "mass_kg": 156,
+  "departure_mode": "bounded_norm",
+  "vinf_max_m_s": 3000,
+  "vinf_vector_m_s": null,
+  "spacecraft": {
+    "thrust_N": 0.025,
+    "exhaust_velocity_m_s": 20000,
+    "dry_mass_kg": 90
+  },
+  "solver": {
+    "budget_s": 45,
+    "compare_seeds": true,
+    "departure_budget_s": 60,
+    "limit_budget_s": 60,
+    "pazov_budget_s": 90,
+    "psi_budget_s": 120,
+    "bounded_attempt_s": 20,
+    "irt_entry": "date",
+    "iltt_branch": 0,
+    "pipeline_pazov_alpha": 0.5,
+    "psi_mass_alpha": 0.5,
+    "iltt_resolved": {
+      "binding": {
+        "departure": "Earth",
+        "target": "Polyhymnia",
+        "launch_tdb": "2028-09-02T00:00:00",
+        "center": "Sun",
+        "max_abs_k": 5,
+        "duration_bounds_days": null,
+        "angular_min": 0.0
+      },
+      "branch_rank": 0,
+      "branches": [
+        {
+          "k": 1,
+          "lambda_initial": 1.3714275340944204,
+          "approximation_family": "long"
+        },
+        {
+          "k": 2,
+          "lambda_initial": 3.0370113476200036,
+          "approximation_family": "long"
+        },
+        {
+          "k": 3,
+          "lambda_initial": 4.702595161145587,
+          "approximation_family": "long"
+        },
+        {
+          "k": 4,
+          "lambda_initial": 6.36817897467117,
+          "approximation_family": "long"
+        },
+        {
+          "k": 5,
+          "lambda_initial": 8.033762788196753,
+          "approximation_family": "long"
+        }
+      ],
+      "phase_rad": -1.3269226969858483,
+      "k": 1,
+      "lambda_initial": 1.3714275340944204,
+      "lambda_corrected": 1.6641362452823274,
+      "kappa": 3.0793711048397983,
+      "x_initial": [
+        -0.05684295540593175,
+        -0.06729415509309021,
+        0.14132729708958627,
+        6.05647321433558,
+        2.840752328550513,
+        1.3714275340944204
+      ],
+      "x_corrected": [
+        -0.05137800518379004,
+        -0.02441016646034161,
+        0.6138200531891866,
+        6.282344367816484,
+        3.0793711048397983,
+        1.6641362452823274
+      ],
+      "tof_days": 1441.698811115511,
+      "initial_tof_days": 1132.104375701074,
+      "costates": [
+        0.028720148576096255,
+        -0.01041637627762748,
+        -0.0006323603858951004,
+        0.012723512397332656,
+        0.03408144735706295,
+        0.00044216059418706965
+      ],
+      "orbit_phase_residual": [
+        -2.282618538629322e-13,
+        2.7422508708241367e-14,
+        8.26561041833429e-14,
+        -2.149613820279228e-12,
+        3.481659405224491e-13,
+        -3.326228181776969e-13
+      ],
+      "evaluations": 78,
+      "source": "ILTT/transfer_legacy.py: phase -> a_OM branches -> make_F_function -> moving-target orbit correction",
+      "duration_role": "derived from ILTT; input tof_days was not used"
+    }
+  },
+  "lunar": null
+}

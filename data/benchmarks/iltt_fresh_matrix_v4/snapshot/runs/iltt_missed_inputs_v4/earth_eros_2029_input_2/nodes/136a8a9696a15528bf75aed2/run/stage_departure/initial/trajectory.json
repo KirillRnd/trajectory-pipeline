@@ -1,0 +1,279 @@
+{
+  "case_id": "earth_eros_2029",
+  "epoch_jd": 2462106.5,
+  "time_scale": "TDB",
+  "center": "Sun",
+  "frame": "ECLIPJ2000",
+  "model": "IRT two-body minimum integral acceleration squared / 2",
+  "status": "verified_extremal",
+  "stage": "irt",
+  "mission": {
+    "case_id": "earth_eros_2029",
+    "departure": "Earth",
+    "target": "Eros",
+    "launch_tdb": "2028-12-01T00:00:00",
+    "tof_days": 3173.5464444354616,
+    "center": "Sun",
+    "mode": "rendezvous",
+    "position_tolerance_m": 1000,
+    "velocity_tolerance_m_s": 0.01,
+    "mass_kg": 156,
+    "departure_mode": "bounded_norm",
+    "vinf_max_m_s": 3000,
+    "vinf_vector_m_s": null,
+    "spacecraft": {
+      "thrust_N": 0.025,
+      "exhaust_velocity_m_s": 20000,
+      "dry_mass_kg": 90
+    },
+    "solver": {
+      "budget_s": 45,
+      "compare_seeds": true,
+      "departure_budget_s": 60,
+      "limit_budget_s": 60,
+      "pazov_budget_s": 90,
+      "psi_budget_s": 120,
+      "bounded_attempt_s": 20,
+      "irt_entry": "date",
+      "iltt_branch": 1,
+      "pipeline_pazov_alpha": 0.5,
+      "psi_mass_alpha": 0.5,
+      "iltt_resolved": {
+        "binding": {
+          "departure": "Earth",
+          "target": "Eros",
+          "launch_tdb": "2028-12-01T00:00:00",
+          "center": "Sun",
+          "max_abs_k": 5,
+          "duration_bounds_days": null,
+          "angular_min": 0.0
+        },
+        "branch_rank": 1,
+        "branches": [
+          {
+            "k": 1,
+            "lambda_initial": 2.768377799614879,
+            "approximation_family": "long"
+          },
+          {
+            "k": 2,
+            "lambda_initial": 6.59911564038281,
+            "approximation_family": "long"
+          },
+          {
+            "k": 3,
+            "lambda_initial": 10.429853481150742,
+            "approximation_family": "long"
+          },
+          {
+            "k": 4,
+            "lambda_initial": 14.260591321918673,
+            "approximation_family": "long"
+          },
+          {
+            "k": 5,
+            "lambda_initial": 18.091329162686606,
+            "approximation_family": "long"
+          }
+        ],
+        "phase_rad": -1.8615992193020576,
+        "k": 2,
+        "lambda_initial": 6.59911564038281,
+        "lambda_corrected": 6.425001811182638,
+        "kappa": 1.5611940502250932,
+        "x_initial": [
+          -0.24610570363361026,
+          -1.4746171854636732,
+          5.310363988907958,
+          2.1504499678623965,
+          1.4788827839942482,
+          6.59911564038281
+        ],
+        "x_corrected": [
+          -0.27347080180155203,
+          -1.2712618409403684,
+          5.350746954131211,
+          2.1396020062455428,
+          1.5611940502250932,
+          6.425001811182638
+        ],
+        "tof_days": 3173.5464444354616,
+        "initial_tof_days": 3137.1327917260014,
+        "costates": [
+          0.0024020644963672977,
+          0.003169212189288913,
+          0.004195895568870771,
+          -0.004776691653553351,
+          0.000606911841405208,
+          -0.002561763522566094
+        ],
+        "orbit_phase_residual": [
+          -6.963984944263757e-12,
+          2.7599311724912923e-12,
+          1.1105005803813128e-13,
+          -5.498712596363475e-12,
+          3.8267167212779896e-12,
+          -3.937472570214595e-11
+        ],
+        "evaluations": 43,
+        "source": "ILTT/transfer_legacy.py: phase -> a_OM branches -> make_F_function -> moving-target orbit correction",
+        "duration_role": "derived from ILTT; input tof_days was not used"
+      }
+    },
+    "lunar": null
+  },
+  "scales": {
+    "distance_m": 147510463557.9794,
+    "mu_m3_s2": 1.32712440018e+20
+  },
+  "initial_state_si": [
+    53061766261.823944,
+    137636425866.51093,
+    -9744638.447476117,
+    -28268.786415143928,
+    10598.637960214519,
+    0.2353935552054806
+  ],
+  "target_state_si": [
+    160102253601.50812,
+    -213174714986.66907,
+    2400910736.939153,
+    15212.510631274394,
+    11925.086275735433,
+    3688.552389504633
+  ],
+  "costate_convention": "dimensionless [p_r,p_v], H=p_r*v+p_v*(g+u)-|u|^2/2, u=p_v",
+  "costates_initial": [
+    0.0024020644632020273,
+    0.0031692120952415094,
+    0.0041958955697413225,
+    -0.004776691545352227,
+    0.000606911795060997,
+    -0.0025617635239235776
+  ],
+  "functional_dimensionless": 0.0008553586683381703,
+  "chosen_seed": {
+    "source": "ILTT date/phase",
+    "branch_rank": 1,
+    "k": 2,
+    "lambda_turns": 6.425001811182638,
+    "kappa": 1.5611940502250932,
+    "route": "shooting",
+    "independent_check": {
+      "position_residual_m": 144.88024994905476,
+      "velocity_residual_m_s": 1.1685102319934983e-05,
+      "free_velocity_transversality": 0.007551989919933989,
+      "difference_r_m": 321.0534355737986,
+      "difference_v_m_s": 5.106845937632046e-05
+    },
+    "nfev": 3,
+    "integrations": 3,
+    "optimizer_success": true,
+    "residual_norm": 1.2021776956299666e-12,
+    "position_residual_m": 66.96422693757597,
+    "velocity_residual_m_s": 7.215005003379565e-06,
+    "free_velocity_transversality": 0.007551989921940632,
+    "accepted": true
+  },
+  "title": "Earth → Eros: ИРТ",
+  "ephemerides": {
+    "Earth": {
+      "body": "earth",
+      "start_jd": 2287184.5,
+      "stop_jd": 2688976.5,
+      "source": "KIAM 6.1.6 / bundled JPLEPH",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "center": "requested",
+      "interpolation": "KIAM native ephemeris",
+      "representation": "body center"
+    },
+    "Eros": {
+      "body": "eros",
+      "source": "https://ssd.jpl.nasa.gov/api/horizons.api",
+      "parameters": {
+        "format": "json",
+        "COMMAND": "'433;'",
+        "CENTER": "'500@10'",
+        "EPHEM_TYPE": "'VECTORS'",
+        "REF_PLANE": "'ECLIPTIC'",
+        "REF_SYSTEM": "'ICRF'",
+        "OUT_UNITS": "'KM-S'",
+        "VEC_CORR": "'NONE'",
+        "CSV_FORMAT": "'YES'",
+        "VEC_TABLE": "'2'",
+        "TIME_TYPE": "'TDB'",
+        "OBJ_DATA": "'YES'",
+        "START_TIME": "'2020-01-01'",
+        "STOP_TIME": "'2080-01-01'",
+        "STEP_SIZE": "'12 h'"
+      },
+      "center": "Sun",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "units": "m,m/s",
+      "start_jd": 2458849.5,
+      "stop_jd": 2480764.5,
+      "knots": 43831,
+      "max_step_days": 0.5,
+      "interpolation": "cubic Hermite, position and velocity from the same polynomial",
+      "arrays_sha256": "2c9f4e361f40d43c98eb5c121b6da286af972f01f8a014350127615a14716609",
+      "raw_sha256": "6074a73a8223cefb7060f9110791c7a7e0dd0109eeabab26a39cdbeb6c56f4db"
+    }
+  },
+  "overlays": [
+    {
+      "array": "departure_orbit_m",
+      "label": "Орбита Earth"
+    },
+    {
+      "array": "target_orbit_m",
+      "label": "Орбита Eros",
+      "linestyle": "-.",
+      "color": ".65"
+    }
+  ],
+  "markers": [
+    {
+      "label": "Earth, старт",
+      "r_m": [
+        53061766261.823944,
+        137636425866.51093,
+        -9744638.447476117
+      ]
+    },
+    {
+      "label": "Earth, прибытие",
+      "r_m": [
+        110514483692.94228,
+        -103864693184.6698,
+        8238295.420173193
+      ],
+      "hollow": true
+    },
+    {
+      "label": "Eros",
+      "r_m": [
+        160102253601.50812,
+        -213174714986.66907,
+        2400910736.939153
+      ],
+      "color": "#df1111",
+      "role": "target"
+    }
+  ],
+  "configuration_sha256": "5d12d57da6bae1d0e2171f7358e0acf5883175114d75438f565da209fe30976d",
+  "configuration_hash_version": 2,
+  "verification": {
+    "passed": true,
+    "method": "LSODA, independently implemented Hamiltonian RHS",
+    "position_residual_m": 144.88025336910638,
+    "velocity_residual_m_s": 1.1685103110428472e-05,
+    "trajectory_difference_m": 321.0534371211914,
+    "velocity_difference_m_s": 5.10684594852263e-05,
+    "free_velocity_transversality": 0.007551989919933989,
+    "scope": "Numerical extremal and endpoint consistency; not proof of local/global optimality or N-body fidelity"
+  },
+  "schema_version": 1,
+  "arrays_sha256": "26f6572e2d6e10e9b9169c6183a3f35162a6e3606e2e1de5a07452409703844f"
+}

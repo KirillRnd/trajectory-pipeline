@@ -1,0 +1,132 @@
+{
+  "operation": "release",
+  "mission": {
+    "case_id": "earth_venus_2032",
+    "departure": "Earth",
+    "target": "Venus",
+    "launch_tdb": "2032-08-03T00:00:00",
+    "tof_days": 403.9870907343292,
+    "center": "Sun",
+    "mode": "rendezvous",
+    "position_tolerance_m": 1000,
+    "velocity_tolerance_m_s": 0.01,
+    "mass_kg": 156,
+    "departure_mode": "bounded_norm",
+    "vinf_max_m_s": 3000,
+    "vinf_vector_m_s": null,
+    "spacecraft": {
+      "thrust_N": 0.025,
+      "exhaust_velocity_m_s": 20000,
+      "dry_mass_kg": 90
+    },
+    "solver": {
+      "budget_s": 45,
+      "compare_seeds": true,
+      "departure_budget_s": 60,
+      "limit_budget_s": 60,
+      "pazov_budget_s": 90,
+      "psi_budget_s": 120,
+      "bounded_attempt_s": 20,
+      "irt_entry": "date",
+      "iltt_branch": 0,
+      "pipeline_pazov_alpha": 0.5,
+      "psi_mass_alpha": 0.5,
+      "iltt_resolved": {
+        "binding": {
+          "departure": "Earth",
+          "target": "Venus",
+          "launch_tdb": "2032-08-03T00:00:00",
+          "center": "Sun",
+          "max_abs_k": 5,
+          "duration_bounds_days": null,
+          "angular_min": 0.0
+        },
+        "branch_rank": 0,
+        "branches": [
+          {
+            "k": 0,
+            "lambda_initial": 1.3032118340492234,
+            "approximation_family": "long"
+          },
+          {
+            "k": -1,
+            "lambda_initial": 4.951227688229066,
+            "approximation_family": "long"
+          },
+          {
+            "k": -2,
+            "lambda_initial": 8.599243542408908,
+            "approximation_family": "long"
+          },
+          {
+            "k": -3,
+            "lambda_initial": 12.247259396588753,
+            "approximation_family": "long"
+          },
+          {
+            "k": -4,
+            "lambda_initial": 15.895275250768597,
+            "approximation_family": "long"
+          },
+          {
+            "k": -5,
+            "lambda_initial": 19.54329110494844,
+            "approximation_family": "long"
+          }
+        ],
+        "phase_rad": -2.4364224765763787,
+        "k": 0,
+        "lambda_initial": 1.3032118340492234,
+        "lambda_corrected": 1.3928549877352474,
+        "kappa": 0.7134918201643236,
+        "x_initial": [
+          0.007183441062263484,
+          0.8758293702204941,
+          1.3367685899289594,
+          2.297296865529475,
+          0.7128061819572749,
+          1.3032118340492234
+        ],
+        "x_corrected": [
+          -0.025117941203713322,
+          0.7556340834166724,
+          1.376620534707385,
+          8.0983363828576,
+          0.7134918201643236,
+          1.3928549877352474
+        ],
+        "tof_days": 403.9870907343292,
+        "initial_tof_days": 377.9045351176494,
+        "costates": [
+          -0.019959969797552577,
+          0.01565176253246336,
+          -0.017090330304540085,
+          -0.020131241405418925,
+          -0.01118948435281716,
+          -0.013769374664522105
+        ],
+        "orbit_phase_residual": [
+          -9.2148511043888e-15,
+          -3.0003777240494856e-14,
+          2.9455517885912386e-13,
+          1.3433698597964394e-13,
+          -3.440536744392375e-11,
+          3.3519853559482726e-12
+        ],
+        "evaluations": 74,
+        "source": "ILTT/transfer_legacy.py: phase -> a_OM branches -> make_F_function -> moving-target orbit correction",
+        "duration_role": "derived from ILTT; input tof_days was not used"
+      }
+    },
+    "lunar": null
+  },
+  "budget_s": 90,
+  "reference": null,
+  "parent_artifact": "runs/iltt_fresh_matrix_v4_full/earth_venus_2032/nodes/55a04e0f4d18c1dc4f1c7d74/final",
+  "parent_sha256": "828c857c9010707b7b7f85a88e56ea9e85fb320562a72b2016fef0c54895bf5a",
+  "parent_metadata_sha256": "e9bd4b07c1e65e29972af81f1a82cef7c73265af336f3cfb65e6d81a3bff52f4",
+  "bounds_days": [
+    201.9935453671646,
+    605.9806361014937
+  ]
+}

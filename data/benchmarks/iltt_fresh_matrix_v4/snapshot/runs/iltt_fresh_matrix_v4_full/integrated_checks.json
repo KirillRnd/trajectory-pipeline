@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "tests": 21,
+  "suites": [
+    "test_iltt_date_entry",
+    "test_free_time",
+    "test_intermediate_time"
+  ],
+  "scope": "Targeted date-first dispatch and time-release checks; not full suite",
+  "runtime": "Linux Docker",
+  "command": "docker compose run --rm -T -e PYTHONPATH=/workspace:/workspace/tests --entrypoint python pipeline -m unittest test_iltt_date_entry test_free_time test_intermediate_time"
+}

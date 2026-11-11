@@ -1,0 +1,258 @@
+{
+  "case_id": "earth_mercury_2029",
+  "epoch_jd": 2461867.5,
+  "time_scale": "TDB",
+  "center": "Sun",
+  "frame": "ECLIPJ2000",
+  "model": "IRT two-body minimum integral acceleration squared / 2",
+  "status": "verified_extremal",
+  "stage": "irt",
+  "mission": {
+    "case_id": "earth_mercury_2029",
+    "departure": "Earth",
+    "target": "Mercury",
+    "launch_tdb": "2028-04-06T00:00:00",
+    "tof_days": 259.3242618688051,
+    "center": "Sun",
+    "mode": "rendezvous",
+    "position_tolerance_m": 1000,
+    "velocity_tolerance_m_s": 0.01,
+    "mass_kg": 156,
+    "departure_mode": "bounded_norm",
+    "vinf_max_m_s": 3000,
+    "vinf_vector_m_s": null,
+    "spacecraft": {
+      "thrust_N": 0.025,
+      "exhaust_velocity_m_s": 20000,
+      "dry_mass_kg": 90
+    },
+    "solver": {
+      "budget_s": 45,
+      "compare_seeds": true,
+      "departure_budget_s": 60,
+      "limit_budget_s": 60,
+      "pazov_budget_s": 90,
+      "psi_budget_s": 120,
+      "bounded_attempt_s": 20,
+      "irt_entry": "date",
+      "iltt_branch": 1,
+      "pipeline_pazov_alpha": 0.5,
+      "psi_mass_alpha": 0.5,
+      "iltt_resolved": {
+        "binding": {
+          "departure": "Earth",
+          "target": "Mercury",
+          "launch_tdb": "2028-04-06T00:00:00",
+          "center": "Sun",
+          "max_abs_k": 5,
+          "duration_bounds_days": null,
+          "angular_min": 0.0
+        },
+        "branch_rank": 1,
+        "branches": [
+          {
+            "k": -1,
+            "lambda_initial": 0.2752788991677593,
+            "approximation_family": "short"
+          },
+          {
+            "k": -2,
+            "lambda_initial": 1.4293324818097697,
+            "approximation_family": "long"
+          },
+          {
+            "k": -3,
+            "lambda_initial": 2.5833860644517794,
+            "approximation_family": "long"
+          },
+          {
+            "k": -4,
+            "lambda_initial": 3.73743964709379,
+            "approximation_family": "long"
+          },
+          {
+            "k": -5,
+            "lambda_initial": 4.891493229735801,
+            "approximation_family": "long"
+          }
+        ],
+        "phase_rad": 2.692938562165069,
+        "k": -2,
+        "lambda_initial": 1.4293324818097697,
+        "lambda_corrected": 1.4424519904134696,
+        "kappa": 0.3881247920472506,
+        "x_initial": [
+          0.18468873622788798,
+          0.9233074382866178,
+          0.8429083536478283,
+          1.3498023676141193,
+          0.3868377546085691,
+          1.4293324818097697
+        ],
+        "x_corrected": [
+          0.21376660852811488,
+          0.7875645381139504,
+          0.8626103780925602,
+          1.3359967575394789,
+          0.3881247920472506,
+          1.4424519904134696
+        ],
+        "tof_days": 259.3242618688051,
+        "initial_tof_days": 256.4559501840054,
+        "costates": [
+          0.0879925691788372,
+          0.03723034222745922,
+          0.02305220604419735,
+          -0.027932616380498113,
+          0.10564002968321565,
+          -0.057721933575399904
+        ],
+        "orbit_phase_residual": [
+          8.393286066166183e-14,
+          1.457167719820518e-14,
+          5.002387393204799e-13,
+          -4.759526106568046e-13,
+          2.156941292241754e-12,
+          1.1036505043193756e-11
+        ],
+        "evaluations": 19,
+        "source": "ILTT/transfer_legacy.py: phase -> a_OM branches -> make_F_function -> moving-target orbit correction",
+        "duration_role": "derived from ILTT; input tof_days was not used"
+      }
+    },
+    "lunar": null
+  },
+  "scales": {
+    "distance_m": 149698976304.96667,
+    "mu_m3_s2": 1.32712440018e+20
+  },
+  "initial_state_si": [
+    -143662304211.4652,
+    -42082369716.69583,
+    3799305.2126721926,
+    7894.6427667123,
+    -28688.66128638786,
+    2.7911134802461897
+  ],
+  "target_state_si": [
+    51808149843.12291,
+    -26172786088.405567,
+    -6890390049.759363,
+    12436.34378936523,
+    45692.60692867619,
+    2593.8105895794747
+  ],
+  "costate_convention": "dimensionless [p_r,p_v], H=p_r*v+p_v*(g+u)-|u|^2/2, u=p_v",
+  "costates_initial": [
+    0.08799256914026272,
+    0.03723034219656066,
+    0.023052206044078167,
+    -0.027932616390257344,
+    0.10564002961967509,
+    -0.05772193357459387
+  ],
+  "functional_dimensionless": 0.051937545219265135,
+  "chosen_seed": {
+    "source": "ILTT date/phase",
+    "branch_rank": 1,
+    "k": -2,
+    "lambda_turns": 1.4424519904134696,
+    "kappa": 0.3881247920472506,
+    "route": "shooting",
+    "independent_check": {
+      "position_residual_m": 12.44059221814803,
+      "velocity_residual_m_s": 1.0537866184195649e-05,
+      "free_velocity_transversality": 0.21394045089254238,
+      "difference_r_m": 14.127574800373603,
+      "difference_v_m_s": 1.1861854536201658e-05
+    },
+    "nfev": 2,
+    "integrations": 2,
+    "optimizer_success": true,
+    "residual_norm": 1.9692654248981962e-14,
+    "position_residual_m": 1.6983540567096764,
+    "velocity_residual_m_s": 1.3305523000268827e-06,
+    "free_velocity_transversality": 0.21394045096032466,
+    "accepted": true
+  },
+  "title": "Earth → Mercury: ИРТ",
+  "ephemerides": {
+    "Earth": {
+      "body": "earth",
+      "start_jd": 2287184.5,
+      "stop_jd": 2688976.5,
+      "source": "KIAM 6.1.6 / bundled JPLEPH",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "center": "requested",
+      "interpolation": "KIAM native ephemeris",
+      "representation": "body center"
+    },
+    "Mercury": {
+      "body": "mercury",
+      "start_jd": 2287184.5,
+      "stop_jd": 2688976.5,
+      "source": "KIAM 6.1.6 / bundled JPLEPH",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "center": "requested",
+      "interpolation": "KIAM native ephemeris",
+      "representation": "body center"
+    }
+  },
+  "overlays": [
+    {
+      "array": "departure_orbit_m",
+      "label": "Орбита Earth"
+    },
+    {
+      "array": "target_orbit_m",
+      "label": "Орбита Mercury",
+      "linestyle": "-.",
+      "color": ".65"
+    }
+  ],
+  "markers": [
+    {
+      "label": "Earth, старт",
+      "r_m": [
+        -143662304211.4652,
+        -42082369716.69583,
+        3799305.2126721926
+      ]
+    },
+    {
+      "label": "Earth, прибытие",
+      "r_m": [
+        1098184076.4400723,
+        147165323147.86566,
+        -10092779.342932794
+      ],
+      "hollow": true
+    },
+    {
+      "label": "Mercury",
+      "r_m": [
+        51808149843.12291,
+        -26172786088.405567,
+        -6890390049.759363
+      ],
+      "color": "#df1111",
+      "role": "target"
+    }
+  ],
+  "configuration_sha256": "976f6b0186b7fe81f68cf2c929ad2820fa17b513ceb604835fa03a535c3b76c6",
+  "configuration_hash_version": 2,
+  "verification": {
+    "passed": true,
+    "method": "LSODA, independently implemented Hamiltonian RHS",
+    "position_residual_m": 12.44059093649626,
+    "velocity_residual_m_s": 1.0537866243119965e-05,
+    "trajectory_difference_m": 14.12757351153107,
+    "velocity_difference_m_s": 1.1861855759122275e-05,
+    "free_velocity_transversality": 0.21394045089254238,
+    "scope": "Numerical extremal and endpoint consistency; not proof of local/global optimality or N-body fidelity"
+  },
+  "schema_version": 1,
+  "arrays_sha256": "5f8adb1e9cd502b1f6a02b724ed1ae8c3d0b36a47b0783313b7c2164b8610830"
+}

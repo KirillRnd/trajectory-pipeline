@@ -1,0 +1,150 @@
+{
+  "status": "intermediate",
+  "phase": "intermediate_release",
+  "elapsed_s": 111.78396350500407,
+  "duration_search": {
+    "method": "bounded_scalar_with_BVP_correction",
+    "seed_tof_days": 1853.08220609376,
+    "resolved_tof_days": 1869.2956273586383,
+    "bounds_days": [
+      926.54110304688,
+      2779.6233091406402
+    ],
+    "requested_bounds_days": [
+      926.54110304688,
+      2779.6233091406402
+    ],
+    "objective": "current_model_functional",
+    "seed_objective": 0.0003712839019098052,
+    "objective_value": 0.0003710812086079396,
+    "optimizer_success": true,
+    "stop_reason": "Solution found.",
+    "trials": 25,
+    "physical_solution": false,
+    "global_optimality": false
+  },
+  "last_model": null,
+  "mission": {
+    "case_id": "earth_bennu_2029",
+    "departure": "Earth",
+    "target": "Bennu",
+    "launch_tdb": "2028-12-03T00:00:00",
+    "tof_days": 1869.2956273586383,
+    "center": "Sun",
+    "mode": "rendezvous",
+    "position_tolerance_m": 1000,
+    "velocity_tolerance_m_s": 0.01,
+    "mass_kg": 156,
+    "departure_mode": "bounded_norm",
+    "vinf_max_m_s": 3000,
+    "vinf_vector_m_s": null,
+    "spacecraft": {
+      "thrust_N": 0.05,
+      "exhaust_velocity_m_s": 40000,
+      "dry_mass_kg": 90
+    },
+    "solver": {
+      "budget_s": 45,
+      "compare_seeds": true,
+      "departure_budget_s": 60,
+      "limit_budget_s": 60,
+      "pazov_budget_s": 90,
+      "psi_budget_s": 120,
+      "bounded_attempt_s": 20,
+      "irt_entry": "date",
+      "iltt_branch": 0,
+      "pipeline_pazov_alpha": 0.5,
+      "psi_mass_alpha": 0.5,
+      "iltt_resolved": {
+        "binding": {
+          "departure": "Earth",
+          "target": "Bennu",
+          "launch_tdb": "2028-12-03T00:00:00",
+          "center": "Sun",
+          "max_abs_k": 5,
+          "duration_bounds_days": null,
+          "angular_min": 0.0
+        },
+        "branch_rank": 0,
+        "branches": [
+          {
+            "k": 0,
+            "lambda_initial": 3.534615809187574,
+            "approximation_family": "long"
+          },
+          {
+            "k": 1,
+            "lambda_initial": 14.023837247936978,
+            "approximation_family": "long"
+          },
+          {
+            "k": 2,
+            "lambda_initial": 24.51305868668638,
+            "approximation_family": "long"
+          },
+          {
+            "k": 3,
+            "lambda_initial": 35.00228012543579,
+            "approximation_family": "long"
+          },
+          {
+            "k": 4,
+            "lambda_initial": 45.49150156418519,
+            "approximation_family": "long"
+          },
+          {
+            "k": 5,
+            "lambda_initial": 55.980723002934596,
+            "approximation_family": "long"
+          }
+        ],
+        "phase_rad": 2.0980074663276294,
+        "k": 0,
+        "lambda_initial": 3.534615809187574,
+        "lambda_corrected": 3.8628823466164195,
+        "kappa": 1.4952885480225373,
+        "x_initial": [
+          -0.43830029501644974,
+          -2.8021213474263225,
+          0.034271037619554245,
+          1.1928812337986834,
+          1.14227371422,
+          3.534615809187574
+        ],
+        "x_corrected": [
+          -0.13549472831586357,
+          -0.8956625737095867,
+          -0.024961219298564555,
+          1.0551623763716913,
+          1.4952885480225373,
+          3.8628823466164195
+        ],
+        "tof_days": 1853.08220609376,
+        "initial_tof_days": 1394.6906982871658,
+        "costates": [
+          0.0014878841694221919,
+          0.005462048360784442,
+          0.005483642735106404,
+          -0.007276231695200741,
+          0.002901690675854669,
+          0.0017766336716882986
+        ],
+        "orbit_phase_residual": [
+          -1.170175067954915e-13,
+          -1.12267833918267e-11,
+          -2.2725765713715873e-11,
+          1.2693353312887012e-11,
+          -1.3324896741551129e-11,
+          -6.685052511556933e-11
+        ],
+        "evaluations": 101,
+        "source": "ILTT/transfer_legacy.py: phase -> a_OM branches -> make_F_function -> moving-target orbit correction",
+        "duration_role": "derived from ILTT; input tof_days was not used"
+      }
+    },
+    "lunar": null
+  },
+  "artifact": "runs/iltt_fresh_matrix_v4_full/earth_bennu_2029/nodes/533d2078445db08fb480c64f/intermediate",
+  "metadata_sha256": "7a17af57b654fb4ec687a33f05ada2234dbadc81b2ccb98092aaf9e2d127ea98",
+  "arrays_sha256": "9a6cacdd9f5dfe6f85c0b0757f71a31d9f34ed27af3c2f149bc74ce1693818f7"
+}

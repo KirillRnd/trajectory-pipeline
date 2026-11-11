@@ -1,0 +1,20 @@
+# Граф поиска траекторий
+
+Статус: finished. Узлов: 12; принятых: 0; попаданий в кеш: 4.
+
+Принятые решения сохранены независимо от неудач их улучшения. Изменения относятся к исходной постановке. Физическая недостижимость не доказывается.
+
+| Узел | Операция | Статус | Причина |
+|---|---|---|---|
+| b7b736ad9743397ce420a06b | cold | initial_failed | ValueError: ILTT phase/orbit correction failed: The iteration is not making good progress, as measured by the   improvement from the last ten iterations.; residual=[ 4.42900513 -0.11680304 -0.77534928  0.87381966 -0.55683134 -0.65413502]; x=[  -3.79343118   -0.46223897  -12.95497832 -366.63809962    0.52899706     1.21367739]; x0=[-0.0061393  -0.05131651  1.7546292   0.25108251  5.13538212  0.90182252] |
+| 0f79b99bcbb7e070311c1d9c | cold | initial_failed | ValueError: ILTT phase/orbit correction failed: The iteration is not making good progress, as measured by the   improvement from the last ten iterations.; residual=[ 4.42900513 -0.11680304 -0.77534928  0.87381966 -0.55683134 -0.65413502]; x=[  -3.79343118   -0.46223897  -12.95497832 -366.63809962    0.52899706     1.21367739]; x0=[-0.0061393  -0.05131651  1.7546292   0.25108251  5.13538212  0.90182252] |
+| 161ad61d4350dd3617045e4c | cold | initial_failed | ValueError: ILTT phase/orbit correction failed: The iteration is not making good progress, as measured by the   improvement from the last five Jacobian evaluations.; residual=[ 3.82030859 -0.7679308   0.02535606 -2.5765664  -0.817197   -0.56475377]; x=[0.01747702 0.52300491 2.31932846 7.64780884 5.85201215 2.09496573]; x0=[-0.0061393  -0.05131651  1.7546292   0.25108251  5.13538212  2.020141  ] |
+| bae344b44c9406574f77da14 | cold | initial_failed | ValueError: ILTT phase/orbit correction failed: The iteration is not making good progress, as measured by the   improvement from the last five Jacobian evaluations.; residual=[ 3.82030859 -0.7679308   0.02535606 -2.5765664  -0.817197   -0.56475377]; x=[0.01747702 0.52300491 2.31932846 7.64780884 5.85201215 2.09496573]; x0=[-0.0061393  -0.05131651  1.7546292   0.25108251  5.13538212  2.020141  ] |
+| 29a3819225e34cb34ba85a6e | cold | failed | Worker wall-time budget reached |
+| a03ec6723dd39d1bd1275557 | cold | initial_failed | ValueError: math domain error |
+| 298feb175f062f4f10888544 | cold | initial_failed | ValueError: jupiter epoch outside local coverage [2458849.5, 2480764.5]; extrapolation forbidden |
+| 19554828871784d436cff342 | cold | initial_failed | ValueError: Invalid ILTT-derived duration |
+| c73830e52fc55d9f0ff1c6af | cold | initial_failed | ValueError: ILTT phase/orbit correction failed: The iteration is not making good progress, as measured by the   improvement from the last ten iterations.; residual=[ 4.42900513 -0.11680304 -0.77534928  0.87381966 -0.55683134 -0.65413502]; x=[  -3.79343118   -0.46223897  -12.95497832 -366.63809962    0.52899706     1.21367739]; x0=[-0.0061393  -0.05131651  1.7546292   0.25108251  5.13538212  0.90182252] |
+| fe0ffcb322b9acef7fc0fa82 | cold | initial_failed | ValueError: ILTT phase/orbit correction failed: The iteration is not making good progress, as measured by the   improvement from the last ten iterations.; residual=[ 0.34060148 -0.62010295 -0.50423146  0.66501475  0.86943694 -1.47741692]; x=[-0.14246599 -0.79200536  8.83254406  0.18795907  2.48802668  1.4254558 ]; x0=[-4.65099860e-03  1.08348478e-01  1.75430889e+00  2.61169521e-01   5.16423393e+00  1.66835980e+00] |
+| 91a9e04a3555623f50d3e43b | cold | initial_failed | ValueError: ILTT phase/orbit correction failed: The iteration is not making good progress, as measured by the   improvement from the last ten iterations.; residual=[ 4.42900513 -0.11680304 -0.77534928  0.87381966 -0.55683134 -0.65413502]; x=[  -3.79343118   -0.46223897  -12.95497832 -366.63809962    0.52899706     1.21367739]; x0=[-0.0061393  -0.05131651  1.7546292   0.25108251  5.13538212  0.90182252] |
+| 1f81313b6e3b466824b0c76d | cold | initial_failed | No independently verified IRT; see diagnostics.json for each attempted branch/corrector |

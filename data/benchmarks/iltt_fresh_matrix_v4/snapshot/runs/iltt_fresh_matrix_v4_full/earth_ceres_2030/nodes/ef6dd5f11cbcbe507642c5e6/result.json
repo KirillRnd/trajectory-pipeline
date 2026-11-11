@@ -1,0 +1,145 @@
+{
+  "status": "intermediate",
+  "phase": "intermediate_release",
+  "elapsed_s": 120.03654046996962,
+  "duration_search": {
+    "method": "bounded_scalar_with_BVP_correction",
+    "seed_tof_days": 2270.655031671853,
+    "resolved_tof_days": 2270.671732017777,
+    "bounds_days": [
+      1135.3275158359265,
+      3405.9825475077796
+    ],
+    "requested_bounds_days": [
+      1135.3275158359265,
+      3405.9825475077796
+    ],
+    "objective": "current_model_functional",
+    "seed_objective": 0.00205509828356609,
+    "objective_value": 0.0020550798144693375,
+    "optimizer_success": false,
+    "stop_reason": "Intermediate duration budget reached",
+    "trials": 9,
+    "physical_solution": false,
+    "global_optimality": false
+  },
+  "last_model": null,
+  "mission": {
+    "case_id": "earth_ceres_2030",
+    "departure": "Earth",
+    "target": "Ceres",
+    "launch_tdb": "2030-02-01T00:00:00",
+    "tof_days": 2270.671732017777,
+    "center": "Sun",
+    "mode": "rendezvous",
+    "position_tolerance_m": 1000,
+    "velocity_tolerance_m_s": 0.01,
+    "mass_kg": 156,
+    "departure_mode": "bounded_norm",
+    "vinf_max_m_s": 3000,
+    "vinf_vector_m_s": null,
+    "spacecraft": {
+      "thrust_N": 0.05,
+      "exhaust_velocity_m_s": 40000,
+      "dry_mass_kg": 90
+    },
+    "solver": {
+      "budget_s": 45,
+      "compare_seeds": true,
+      "departure_budget_s": 60,
+      "limit_budget_s": 60,
+      "pazov_budget_s": 90,
+      "psi_budget_s": 120,
+      "bounded_attempt_s": 20,
+      "irt_entry": "date",
+      "iltt_branch": 1,
+      "pipeline_pazov_alpha": 0.5,
+      "psi_mass_alpha": 0.5,
+      "iltt_resolved": {
+        "binding": {
+          "departure": "Earth",
+          "target": "Ceres",
+          "launch_tdb": "2030-02-01T00:00:00",
+          "center": "Sun",
+          "max_abs_k": 5,
+          "duration_bounds_days": null,
+          "angular_min": 0.0
+        },
+        "branch_rank": 1,
+        "branches": [
+          {
+            "k": 1,
+            "lambda_initial": 1.058589999403102,
+            "approximation_family": "long"
+          },
+          {
+            "k": 2,
+            "lambda_initial": 2.740006463834146,
+            "approximation_family": "long"
+          },
+          {
+            "k": 3,
+            "lambda_initial": 4.42142292826519,
+            "approximation_family": "long"
+          },
+          {
+            "k": 4,
+            "lambda_initial": 6.102839392696234,
+            "approximation_family": "long"
+          },
+          {
+            "k": 5,
+            "lambda_initial": 7.784255857127278,
+            "approximation_family": "long"
+          }
+        ],
+        "phase_rad": -2.546966214401739,
+        "k": 2,
+        "lambda_initial": 2.740006463834146,
+        "lambda_corrected": 2.9510501706168686,
+        "kappa": 2.8932994126233873,
+        "x_initial": [
+          -0.014889974301006564,
+          -0.41328523471278555,
+          1.3992870808642057,
+          2.627621852100264,
+          2.807560341608852,
+          2.740006463834146
+        ],
+        "x_corrected": [
+          -0.013856042148529561,
+          -0.29213444044642606,
+          1.4611704342333987,
+          2.3862524059890005,
+          2.8932994126233873,
+          2.9510501706168686
+        ],
+        "tof_days": 2270.655031671853,
+        "initial_tof_days": 2069.902917109645,
+        "costates": [
+          -0.00999989033911017,
+          0.012268670221316528,
+          0.0033557742317947207,
+          -0.01193006215338896,
+          -0.011258325377067982,
+          0.0030526452452812446
+        ],
+        "orbit_phase_residual": [
+          4.792655161622861e-11,
+          -1.2887413358697586e-11,
+          -1.2924773751255003e-10,
+          2.0588908355989588e-10,
+          -1.0100893454989546e-09,
+          1.4061543041066216e-09
+        ],
+        "evaluations": 59,
+        "source": "ILTT/transfer_legacy.py: phase -> a_OM branches -> make_F_function -> moving-target orbit correction",
+        "duration_role": "derived from ILTT; input tof_days was not used"
+      }
+    },
+    "lunar": null
+  },
+  "artifact": "runs/iltt_fresh_matrix_v4_full/earth_ceres_2030/nodes/ef6dd5f11cbcbe507642c5e6/intermediate",
+  "metadata_sha256": "8507331d8f801c1172ebca02cd745b8f0d61df9856375cbf723afb8114d92561",
+  "arrays_sha256": "4f28d329495aa89be8134e0bab2be3dcbddd195967629962164b6f20f85a3cd4"
+}

@@ -1,0 +1,120 @@
+{
+  "case_id": "earth_bennu_2029",
+  "departure": "Earth",
+  "target": "Bennu",
+  "launch_tdb": "2029-11-28T00:00:00",
+  "tof_days": 5662.780916368644,
+  "center": "Sun",
+  "mode": "rendezvous",
+  "position_tolerance_m": 1000,
+  "velocity_tolerance_m_s": 0.01,
+  "mass_kg": 156,
+  "departure_mode": "bounded_norm",
+  "vinf_max_m_s": 3000,
+  "vinf_vector_m_s": null,
+  "spacecraft": {
+    "thrust_N": 0.025,
+    "exhaust_velocity_m_s": 20000,
+    "dry_mass_kg": 90
+  },
+  "solver": {
+    "budget_s": 45,
+    "compare_seeds": true,
+    "departure_budget_s": 60,
+    "limit_budget_s": 60,
+    "pazov_budget_s": 90,
+    "psi_budget_s": 120,
+    "bounded_attempt_s": 20,
+    "irt_entry": "date",
+    "iltt_branch": 1,
+    "pipeline_pazov_alpha": 0.5,
+    "psi_mass_alpha": 0.5,
+    "iltt_resolved": {
+      "binding": {
+        "departure": "Earth",
+        "target": "Bennu",
+        "launch_tdb": "2029-11-28T00:00:00",
+        "center": "Sun",
+        "max_abs_k": 5,
+        "duration_bounds_days": null,
+        "angular_min": 0.0
+      },
+      "branch_rank": 1,
+      "branches": [
+        {
+          "k": 0,
+          "lambda_initial": 1.7647799452005328,
+          "approximation_family": "long"
+        },
+        {
+          "k": 1,
+          "lambda_initial": 12.325062461863943,
+          "approximation_family": "long"
+        },
+        {
+          "k": 2,
+          "lambda_initial": 22.88534497852736,
+          "approximation_family": "long"
+        },
+        {
+          "k": 3,
+          "lambda_initial": 33.44562749519077,
+          "approximation_family": "long"
+        },
+        {
+          "k": 4,
+          "lambda_initial": 44.00591001185418,
+          "approximation_family": "long"
+        },
+        {
+          "k": 5,
+          "lambda_initial": 54.5661925285176,
+          "approximation_family": "long"
+        }
+      ],
+      "phase_rad": 1.0309865036678778,
+      "k": 1,
+      "lambda_initial": 12.325062461863943,
+      "lambda_corrected": 12.163729698754445,
+      "kappa": 1.4359757573145986,
+      "x_initial": [
+        -0.44180837712531223,
+        -2.8246328191947687,
+        0.03423027605964973,
+        1.192742200650887,
+        1.141213012413953,
+        12.325062461863943
+      ],
+      "x_corrected": [
+        -0.16856132901171642,
+        -1.0934383164432837,
+        0.004794383609713569,
+        1.1294008037280903,
+        1.4359757573145986,
+        12.163729698754445
+      ],
+      "tof_days": 5662.780916368644,
+      "initial_tof_days": 4864.771004408905,
+      "costates": [
+        0.0005978778373828063,
+        0.0013830621371106733,
+        0.0017874117308057304,
+        -0.0020239178031960956,
+        0.0009320594379542986,
+        0.0008157722894551691
+      ],
+      "orbit_phase_residual": [
+        2.71380695693324e-11,
+        7.921865941007411e-11,
+        -3.3731878401610516e-11,
+        -2.633702630983059e-10,
+        8.564617903772387e-10,
+        9.545056078863468e-09
+      ],
+      "evaluations": 125,
+      "source": "ILTT/transfer_legacy.py: phase -> a_OM branches -> make_F_function -> moving-target orbit correction",
+      "duration_role": "derived from ILTT; input tof_days was not used"
+    }
+  },
+  "lunar": null
+}

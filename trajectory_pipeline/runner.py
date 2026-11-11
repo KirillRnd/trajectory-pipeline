@@ -321,7 +321,7 @@ def _run_pipeline(mission,output,resume=False):
     return final,summary
 
 
-def run_pipeline(mission,output,resume=False):
+def run_pipeline(mission,output,resume=False,*,release_time=False,time_bounds_days=None):
     from .iltt_entry import resolve_date_mission,date_entry
     original_mission=mission
     if resume and (Path(output)/'mission.json').exists():
@@ -337,6 +337,11 @@ def run_pipeline(mission,output,resume=False):
             summary=dict(case_id=mission.case_id,status='initial_failed',phase='iltt_entry',error=type(exc).__name__+': '+str(exc))
             write_json(output/'summary.json',summary)
             return None,summary
+    if release_time:
+        from dataclasses import replace
+        bounds=time_bounds_days or (mission.time_policy or {}).get('bounds_days')
+        mission=replace(mission,time_policy=dict(bounds_days=list(bounds) if bounds is not None else [mission.tof_days*.5,mission.tof_days*1.5]))
+        mission.validate()
     output=Path(output)
     owned=not output.exists()
     if resume and (output/'mission.json').exists():

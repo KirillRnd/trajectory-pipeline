@@ -1,0 +1,187 @@
+{
+  "status": "completed",
+  "phase": "final",
+  "mission": {
+    "case_id": "earth_venus_2032",
+    "departure": "Earth",
+    "target": "Venus",
+    "launch_tdb": "2032-05-05T00:00:00",
+    "tof_days": 569.9062128604398,
+    "center": "Sun",
+    "mode": "rendezvous",
+    "position_tolerance_m": 1000,
+    "velocity_tolerance_m_s": 0.01,
+    "mass_kg": 156,
+    "departure_mode": "bounded_norm",
+    "vinf_max_m_s": 3000,
+    "vinf_vector_m_s": null,
+    "spacecraft": {
+      "thrust_N": 0.025,
+      "exhaust_velocity_m_s": 20000,
+      "dry_mass_kg": 90
+    },
+    "solver": {
+      "budget_s": 45,
+      "compare_seeds": true,
+      "departure_budget_s": 60,
+      "limit_budget_s": 60,
+      "pazov_budget_s": 90,
+      "psi_budget_s": 120,
+      "bounded_attempt_s": 20,
+      "irt_entry": "date",
+      "iltt_branch": 0,
+      "pipeline_pazov_alpha": 0.5,
+      "psi_mass_alpha": 0.5,
+      "iltt_resolved": {
+        "binding": {
+          "departure": "Earth",
+          "target": "Venus",
+          "launch_tdb": "2032-05-05T00:00:00",
+          "center": "Sun",
+          "max_abs_k": 5,
+          "duration_bounds_days": null,
+          "angular_min": 0.0
+        },
+        "branch_rank": 0,
+        "branches": [
+          {
+            "k": -1,
+            "lambda_initial": 1.9376104684717717,
+            "approximation_family": "long"
+          },
+          {
+            "k": -2,
+            "lambda_initial": 5.657963097631672,
+            "approximation_family": "long"
+          },
+          {
+            "k": -3,
+            "lambda_initial": 9.378315726791572,
+            "approximation_family": "long"
+          },
+          {
+            "k": -4,
+            "lambda_initial": 13.098668355951471,
+            "approximation_family": "long"
+          },
+          {
+            "k": -5,
+            "lambda_initial": 16.819020985111372,
+            "approximation_family": "long"
+          }
+        ],
+        "phase_rad": 2.8266530392719558,
+        "k": -1,
+        "lambda_initial": 1.9376104684717717,
+        "lambda_corrected": 1.9582199450219977,
+        "kappa": 0.7273753336153425,
+        "x_initial": [
+          0.013305089422212741,
+          0.8941230422874499,
+          1.3367718163949132,
+          2.2989586685600867,
+          0.717171961159381,
+          1.9376104684717717
+        ],
+        "x_corrected": [
+          0.0371074759819369,
+          0.8665145083569128,
+          1.3434546926803743,
+          4.876667140069835,
+          0.7273753336153425,
+          1.9582199450219977
+        ],
+        "tof_days": 569.9062128604398,
+        "initial_tof_days": 557.9071091985243,
+        "costates": [
+          0.011054884197453077,
+          0.012486783499769734,
+          0.00717083965206329,
+          -0.010595101171673133,
+          0.012555979788523509,
+          -0.011982761364090195
+        ],
+        "orbit_phase_residual": [
+          2.6201263381153694e-14,
+          -7.500944310123714e-15,
+          2.5066754227864863e-15,
+          -3.352873534367973e-14,
+          -1.3642420526593924e-12,
+          1.8482992913959606e-12
+        ],
+        "evaluations": 92,
+        "source": "ILTT/transfer_legacy.py: phase -> a_OM branches -> make_F_function -> moving-target orbit correction",
+        "duration_role": "derived from ILTT; input tof_days was not used"
+      }
+    },
+    "lunar": null
+  },
+  "fuel_kg": 28.61321532293865,
+  "verification": {
+    "passed": true,
+    "position_residual_m": 2.9268403683576234,
+    "velocity_residual_m_s": 8.979790653783696e-07,
+    "parameter_audit": {
+      "passed": true,
+      "configuration_sha256": "80670861d6b0c6b30754124f44d6dcb19bf4f266e298cf4cb9b763be3acc9280",
+      "configuration_hash_version": 2,
+      "requested": {
+        "mass_kg": 156,
+        "thrust_N": 0.025,
+        "exhaust_velocity_m_s": 20000,
+        "dry_mass_kg": 90,
+        "launch_tdb": "2032-05-05T00:00:00",
+        "tof_days": 569.9062128604398,
+        "departure": "Earth",
+        "target": "Venus",
+        "mode": "rendezvous"
+      },
+      "recovered_model": {
+        "model_thrust_N": 0.025,
+        "thrust_to_requested_ratio": 1.0,
+        "alpha": 1.0,
+        "beta": 1.0,
+        "variable_mass": true,
+        "hardware_limit_reached": true,
+        "exhaust_velocity_m_s": 20000.0
+      },
+      "geometry": null,
+      "final_admission": true
+    },
+    "trajectory_difference_m": 3.291273817069298,
+    "velocity_difference_m_s": 9.34584150156944e-07,
+    "stored_throttle_error": 0.0,
+    "stored_throttle_minimum": 0.0,
+    "stored_throttle_maximum": 1.0,
+    "canonical_boundary_residual": 3.6985140717278927e-11,
+    "method": "LSODA with independent bounded/mass equations",
+    "scope": "Numerical extremal and constraints; no global optimality proof",
+    "departure_norm_m_s": 2699.5867918968474,
+    "switching_sign_violation": 1.2360140737247062e-10,
+    "switching_node_residual": 1.2360153357851843e-10,
+    "minimum_mass_kg": 127.38678467706134,
+    "fuel_kg": 28.61321532293865,
+    "mass_difference_kg": 4.676259379721159e-13,
+    "stored_thrust_error_N": 0.0,
+    "mass_balance_error_kg": 2.2382096176443156e-13
+  },
+  "kiam_verification": {
+    "passed": true,
+    "source": "Unmodified KIAM Astro compiled Fortran equations and published control API",
+    "package_version": "6.1.6",
+    "samples": 99,
+    "maximum_dimensionless_rhs_error": 1.7763568394002505e-15,
+    "maximum_dimensionless_force_error": 6.938893903907228e-18,
+    "maximum_third_body_decomposition_error": 0.0,
+    "nbody_gravity": {
+      "passed": true,
+      "applicable": false
+    },
+    "costate_map": "p_r,v(KIAM)=p_r,v/vex; p_m(KIAM)=1+p_m/vex; normalized initial mass=1",
+    "scope": "KIAM central mass-optimal equations/control, plus independent third-body decomposition when present; not a separate global optimization"
+  },
+  "elapsed_s": 21.13404127099784,
+  "artifact": "runs/iltt_fresh_matrix_v4_full/earth_venus_2032/nodes/d273dc149aea6bad1235e8d8/final",
+  "metadata_sha256": "344fa8674313306f81c6714db7095c2e898be839b315d6091df5ad9e66cf6d07",
+  "arrays_sha256": "b7c62cefcffaa8cded56a5114cbc701fb7fc15bdd09d3d4ed72fbf11ed57d00e"
+}

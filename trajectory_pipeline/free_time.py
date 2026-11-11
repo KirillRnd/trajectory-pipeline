@@ -94,6 +94,8 @@ def run_time_pipeline(mission,output,resume=False):
                 recovery.append(step)
                 if status['status']=='completed' or current is None:break
             row['intermediate_recovery']=recovery
+            row['phase']=status.get('phase',row['phase'])
+            row['error']=status.get('error',row['error'])
         if status['status']=='completed':
             # Keep an accepted physical parent even if optimization fails;
             # it is explicitly not labelled a free-time optimized result.
