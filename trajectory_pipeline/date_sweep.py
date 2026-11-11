@@ -244,6 +244,8 @@ def _run_plan(output, plan, missions, resume):
     fallback = [m.to_dict() for i, m in enumerate(missions) if fast[i]['status'] != 'completed' or i in flags]
     # A reference produced by the legacy fixed-time route must not silently
     # force that route on a new standard ILTT calculation.
+    policy=plan['time_policy']
+    fixed_time=policy is None
     for request in fallback:
         request['solver']=dict(request['solver'],irt_entry='fixed_time' if fixed_time else 'date')
         request['solver'].pop('iltt_resolved',None)
