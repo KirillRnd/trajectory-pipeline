@@ -126,3 +126,17 @@ class DateFirstILTTTests(unittest.TestCase):
             # must recover trial handling without turning failure into success.
             with self.assertRaisesRegex(ValueError,'phase/orbit correction failed:.*rejected_coverage_trials=1'):
                 resolve_date_mission(mission,eph)
+
+    def test_explicit_dm_limit_reaches_R_without_changing_default(self):
+        tb,*_=angular_branches(self.mission)
+        default=tb.calculate_Reo_matrix_noapprox(.75,.3)
+        relaxed=tb.calculate_Reo_matrix_noapprox(.75,.3,dm_limit=.8)
+        self.assertGreater(np.linalg.norm(default-relaxed),.01)
+        np.testing.assert_array_equal(default,tb.calculate_Reo_matrix_noapprox(.75,.3))
+        np.testing.assert_array_equal(tb.calculate_Reo_matrix_noapprox(.9,.3,dm_limit=.8),
+                                      tb.calculate_Reo_matrix_noapprox(.8,.3,dm_limit=.8))
+        with self.assertRaises(ValueError):tb.calculate_Reo_matrix_noapprox(.75,.3,dm_limit=1.3)
+        changed=replace(self.resolved,solver=dict(self.resolved.solver,iltt_dm_limit=.8))
+        refreshed=resolve_date_mission(changed)
+        self.assertEqual(refreshed.solver['iltt_resolved']['binding']['dm_limit'],.8)
+        self.assertLessEqual(abs(refreshed.solver['iltt_resolved']['x_corrected'][0]),.8)

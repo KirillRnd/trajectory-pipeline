@@ -47,7 +47,10 @@ def angular_branches(mission,eph=None):
 def resolve_date_mission(mission,eph=None):
     if not date_entry(mission):return mission
     binding={k:getattr(mission,k) for k in ('departure','target','launch_tdb','center')}
-    binding.update(max_abs_k=mission.solver.get('iltt_max_abs_k',5),duration_bounds_days=mission.solver.get('iltt_duration_bounds_days'),angular_min=0.)
+    dm_limit=mission.solver.get('iltt_dm_limit',.999*abs(np.sin(.642)))
+    if type(dm_limit) not in (int,float,np.float64) or not np.isfinite(dm_limit) or not 0<dm_limit<1/np.cos(.642):
+        raise ValueError('iltt_dm_limit must be positive and below the R singularity 1/cos(0.642)')
+    binding.update(max_abs_k=mission.solver.get('iltt_max_abs_k',5),duration_bounds_days=mission.solver.get('iltt_duration_bounds_days'),angular_min=0.,dm_limit=float(dm_limit))
     if type(binding['max_abs_k']) is not int or binding['max_abs_k']<1:raise ValueError('iltt_max_abs_k must be a positive integer')
     bounds=binding['duration_bounds_days']
     if bounds is not None and (not isinstance(bounds,list) or len(bounds)!=2 or not np.isfinite(bounds).all() or not 0<bounds[0]<bounds[1]):
@@ -60,7 +63,7 @@ def resolve_date_mission(mission,eph=None):
     tb,eph,scale,initial,el,phase,branches=angular_branches(mission,eph)
     if rank>=len(branches):raise ValueError('Requested angular-distance branch does not exist')
     chosen=branches[rank];lam=chosen['lambda_initial'];kappa=float(el[0])
-    F,x0=tb.make_F_function(initial[:3][None,:],initial[3:][None,:],lam,kappa,0,1,float(el[2]),float(el[3]),float(el[1]),float(el[8]))
+    F,x0=tb.make_F_function(initial[:3][None,:],initial[3:][None,:],lam,kappa,0,1,float(el[2]),float(el[3]),float(el[1]),float(el[8]),dm_limit=dm_limit)
     deadline=perf_counter()+float(mission.solver.get('iltt_budget_s',30))
     calls=0
     rejected_coverage_trials=0
@@ -85,7 +88,6 @@ def resolve_date_mission(mission,eph=None):
     # The toolbox clips dm internally. Starting outside that interval makes
     # its entire Jacobian column exactly zero, so unconstrained Newton cannot
     # recover. Keep the existing R model, but correct inside its active domain.
-    dm_limit=.999*abs(np.sin(.642))
     saturated=bool(abs(x0[0])>=dm_limit)
     attempts=[];opt=None;residual=np.full(6,np.inf)
     if not saturated:
@@ -95,7 +97,7 @@ def resolve_date_mission(mission,eph=None):
             attempts.append(dict(route='hybr',residual_norm=float(np.linalg.norm(residual)),message=str(opt.message)))
         except (ValueError,OverflowError,np.linalg.LinAlgError) as exc:
             attempts.append(dict(route='hybr',error=str(exc)))
-    if not np.isfinite(residual).all() or np.linalg.norm(residual)>1e-7:
+    if not np.isfinite(residual).all() or np.linalg.norm(residual)>1e-7 or abs(opt.x[0])>dm_limit:
         # A declared finite trust domain also prevents a failed local step
         # from sending the transformed inclination or orbit size to infinity.
         lo=np.array([-dm_limit,-30,-np.inf,-np.inf,.1,lower])
@@ -119,13 +121,14 @@ def resolve_date_mission(mission,eph=None):
                              trust_domain=dict(dm=[-dm_limit,dm_limit],j=[-30,30],kappa=[.1,10],lambda_turns=[lower,float(upper) if np.isfinite(upper) else None])))
     if not np.isfinite(residual).all() or np.linalg.norm(residual)>1e-7:
         raise ValueError('ILTT phase/orbit correction failed: '+str(opt.message)+'; residual='+str(residual)+'; x='+str(opt.x)+'; x0='+str(x0)+'; rejected_coverage_trials='+str(rejected_coverage_trials))
+    if abs(opt.x[0])>dm_limit:raise ValueError('ILTT correction left its declared R dm interval')
     if not lower<float(opt.x[5])<upper:raise ValueError('ILTT correction left its angular-distance branch')
     bounds=mission.solver.get('iltt_duration_bounds_days')
     if bounds is not None and not bounds[0]<=duration<=bounds[1]:
         raise ValueError(f'ILTT-derived duration {duration:.6f} days outside declared filter {bounds}')
     dm,j,node,peri,kappa,lam=map(float,opt.x)
     start=tb.rv2orb(initial[:3,None],initial[3:,None],1)[6][0]
-    R=tb.calculate_RiO_matrix_noapprox(j,node-start)@tb.calculate_Reo_matrix_noapprox(dm,peri-start)@tb.calculate_R_matrix(initial[:3][None,:],initial[3:][None,:])
+    R=tb.calculate_RiO_matrix_noapprox(j,node-start)@tb.calculate_Reo_matrix_noapprox(dm,peri-start,dm_limit=dm_limit)@tb.calculate_R_matrix(initial[:3][None,:],initial[3:][None,:])
     pr,pv=tb.apply_R(R,*tb.get_initial_adjoint(lam,kappa,1))
     record=dict(binding=binding,branch_rank=rank,branches=branches,phase_rad=phase,k=chosen['k'],
                 lambda_initial=chosen['lambda_initial'],lambda_corrected=lam,kappa=kappa,

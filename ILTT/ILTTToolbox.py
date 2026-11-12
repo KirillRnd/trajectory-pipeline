@@ -59,10 +59,13 @@ def calculate_j_for_RiO_matrix(k, Omega_target, i_target):
         j = -i_target / delta_i_coef
     return j
 
-def calculate_Reo_matrix_noapprox(dm, omega_target):
+def calculate_Reo_matrix_noapprox(dm, omega_target, dm_limit=None):
     theta = 0.642
     
-    dmax = 0.999 * abs(np.sin(theta))   # чуть меньше, чтобы не попасть на ноль
+    # Empirical moderate-nonlinearity range; dm is geometric, not spacecraft mass.
+    dmax = 0.999 * abs(np.sin(theta)) if dm_limit is None else float(dm_limit)
+    if not np.isfinite(dmax) or not 0 < dmax < 1 / np.cos(theta):
+        raise ValueError('R dm_limit must stay inside the nonsingular interval around zero')
     dm_clipped = np.clip(dm, -dmax, dmax)
     
     m = -np.sin(theta) + dm_clipped  # X_rotated
@@ -802,7 +805,7 @@ def orb2rv(p, e, i, O, o, nu, mu):
 
     return rECI, vECI
 
-def make_F_function(r0, v0, lmbd, kappa, t0,  d, i_target, O_target, e_target, o_target, calculate_ini_fin=False, calculate_full_traj=False, L_correction=False):
+def make_F_function(r0, v0, lmbd, kappa, t0,  d, i_target, O_target, e_target, o_target, calculate_ini_fin=False, calculate_full_traj=False, L_correction=False, dm_limit=None):
     [a,eMag,i,O,o,nu,truLon,argLat,lonPer,p] = rv2orb(r0.T,v0.T,1)
     start_an = truLon[0]
     j = calculate_j_for_RiO_matrix(kappa, O_target-start_an, i_target)
@@ -824,7 +827,7 @@ def make_F_function(r0, v0, lmbd, kappa, t0,  d, i_target, O_target, e_target, o
         
         T = 2*np.pi*T_a(lmbd, kappa)
         #print("F:", lmbd, kappa, T)
-        result_dict = get_approx_trajectory_j_dm_v2(r0, v0, lmbd, kappa, T, t0, d, j, O_target, dm, o_target, calculate_ini_fin, calculate_full_traj)
+        result_dict = get_approx_trajectory_j_dm_v2(r0, v0, lmbd, kappa, T, t0, d, j, O_target, dm, o_target, calculate_ini_fin, calculate_full_traj, dm_limit=dm_limit)
         return result_dict
     
     return F, x_initial
@@ -907,7 +910,7 @@ def find_min_positive_lmbd(OM, a0, a_OM, max_abs_k=200):
         return None, None  # положительных не найдено в заданном диапазоне
     return best_val, best_k
 
-def get_approx_trajectory_j_dm_v2(r0, v0, lmbd, kappa, T, t0=0, d=1, j=0, O_target=0, dm=0, o_target=0, calculate_ini_fin=True, calculate_full_traj=False):
+def get_approx_trajectory_j_dm_v2(r0, v0, lmbd, kappa, T, t0=0, d=1, j=0, O_target=0, dm=0, o_target=0, calculate_ini_fin=True, calculate_full_traj=False, dm_limit=None):
     #if lmbd < 0.75:
     #    d=0
         
@@ -915,7 +918,7 @@ def get_approx_trajectory_j_dm_v2(r0, v0, lmbd, kappa, T, t0=0, d=1, j=0, O_targ
     [a,eMag,i,O,o,nu,truLon,argLat,lonPer,p] = rv2orb(r0.T,v0.T,1)
     start_an = truLon[0]
     
-    R_eo = calculate_Reo_matrix_noapprox(dm, o_target-start_an)
+    R_eo = calculate_Reo_matrix_noapprox(dm, o_target-start_an, dm_limit=dm_limit)
     R_iO = calculate_RiO_matrix_noapprox(j, O_target-start_an)
     
     R = calculate_R_matrix(r0, v0)
