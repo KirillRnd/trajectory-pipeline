@@ -13,6 +13,20 @@ ROOT=Path(__file__).resolve().parents[1]
 
 
 class PhysicalTests(unittest.TestCase):
+    def test_rescaled_real_mesh_stays_inside_integrated_arcs(self):
+        source=Trajectory.load(ROOT/'data/benchmarks/psi/earth_bennu_2029')
+        scale=Scales(**source.metadata['scales']).time_s
+        old=source.arrays['t_s']/scale
+        for factor in np.linspace(.5,1.5,101):
+            end=old[-1]*factor
+            edges=np.r_[0,np.asarray(source.metadata['switch_times_s'])/scale*factor,end]
+            samples=np.r_[old*end/old[-1],np.nextafter(end,np.inf)]
+            merged=_sampling_times(samples,edges,scale)
+            self.assertEqual(merged[0],0.)
+            self.assertEqual(merged[-1],end)
+            covered=np.any([(merged>=a)&(merged<=b) for a,b in zip(edges[:-1],edges[1:])],axis=0)
+            self.assertTrue(covered.all())
+
     def test_real_switch_grid_survives_dimensional_rounding(self):
         source=Trajectory.load(ROOT/'data/benchmarks/psi/earth_bennu_2029')
         scale=Scales(**source.metadata['scales']).time_s

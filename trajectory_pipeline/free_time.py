@@ -210,9 +210,11 @@ def release_duration(source,previous,bounds_days,deadline):
                 dict(label=resolved.target+', прибытие',r_m=context.metadata['target_state_si'][:3])]
             from .bangbang import _sampling_times
             times=_sampling_times(old_t*edges[-1]/old_t[-1],edges,scales.time_s)
-            states=np.empty((14,len(times)));throttles=np.empty(len(times))
+            states=np.full((14,len(times)),np.nan);throttles=np.full(len(times),np.nan)
             for i,sol in enumerate(solutions):
                 mask=(times>=edges[i])&(times<=edges[i+1]);states[:,mask]=sol.sol(times[mask]);throttles[mask]=first if i%2==0 else 1-first
+            if not np.isfinite(states).all() or not np.isfinite(throttles).all():
+                raise ValueError('Free-duration output contains an uncovered or nonfinite sample')
             result=assemble(context,model,times,states,'free' if face=='free' else 'active','psi',
                 extra=dict(switch_times_s=(edges[1:-1]*scales.time_s).tolist(),initial_throttle=first,
                            functional_dimensionless=float(model.a_max*np.dot(np.diff(edges),[first if i%2==0 else 1-first for i in range(len(edges)-1)])),

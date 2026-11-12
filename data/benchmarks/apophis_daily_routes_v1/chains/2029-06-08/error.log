@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/workspace/runs/apophis_daily_routes.py", line 45, in chain
+    current,status=run_pazov(current,folder/'02_pazov',target_alpha=.5,resume=(folder/'02_pazov').exists());record('pazov',status)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/trajectory_pipeline/pazov.py", line 65, in run_pazov
+    result,state=continue_parameter(limited,output/'functional',correct_functional,profile=profile,
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/trajectory_pipeline/continuation.py", line 26, in continue_parameter
+    raise ValueError('Resume configuration/source differs from checkpoint')
+ValueError: Resume configuration/source differs from checkpoint

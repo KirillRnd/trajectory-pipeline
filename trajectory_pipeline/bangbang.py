@@ -16,7 +16,11 @@ def _sampling_times(times, arc_edges, time_scale_s):
     Distinct normalized floats may round to the same SI second. A previous
     mesh point must not displace the new switch or create a repeated time.
     """
-    samples=times[~np.isin(times*time_scale_s,arc_edges*time_scale_s)]
+    # Rescaling an old mesh can put its last point one ULP past the new
+    # endpoint. Such a point belongs to no integrated arc; never export an
+    # unfilled state there. The authoritative endpoints are the arc edges.
+    samples=times[(times>=arc_edges[0]) & (times<=arc_edges[-1])]
+    samples=samples[~np.isin(samples*time_scale_s,arc_edges*time_scale_s)]
     merged=np.unique(np.r_[samples,arc_edges])
     _,indices=np.unique(merged*time_scale_s,return_index=True)
     return merged[indices]
@@ -130,12 +134,14 @@ def solve_bangbang(source,previous,model,deadline,stage,*,costate_frame=None,
                               x_scale='jac',max_nfev=80,xtol=1e-11,ftol=1e-11,gtol=1e-11)
             initial,final,nodes,arc_edges,solutions=integrate(chart@opt.x,dense=True)
             evaluation=_sampling_times(times,arc_edges,scales.time_s)
-            y=np.empty((model.dimension,len(evaluation)))
-            control=np.empty(len(evaluation))
+            y=np.full((model.dimension,len(evaluation)),np.nan)
+            control=np.full(len(evaluation),np.nan)
             for k,sol in enumerate(solutions):
                 mask=(evaluation>=arc_edges[k])&(evaluation<=arc_edges[k+1])
                 y[:,mask]=sol.sol(evaluation[mask])
                 control[mask]=first if k%2==0 else 1-first
+            if not np.isfinite(y).all() or not np.isfinite(control).all():
+                raise ValueError('Exact-arc output contains an uncovered or nonfinite sample')
             result=assemble_result(source,model,evaluation,y,face,stage,
                             extra=dict(switch_times_s=(arc_edges[1:-1]*scales.time_s).tolist(),
                                        functional_dimensionless=float(model.a_max*np.dot(np.diff(arc_edges),[first if k%2==0 else 1-first for k in range(len(arc_edges)-1)])),

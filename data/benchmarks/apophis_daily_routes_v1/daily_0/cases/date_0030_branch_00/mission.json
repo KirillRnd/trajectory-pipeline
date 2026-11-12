@@ -1,0 +1,156 @@
+{
+  "case_id": "date_0030_branch_00",
+  "departure": "Earth",
+  "target": "Apophis",
+  "launch_tdb": "2028-02-27T00:00:00",
+  "tof_days": 348.0059044507822,
+  "center": "Sun",
+  "mode": "rendezvous",
+  "position_tolerance_m": 1000,
+  "velocity_tolerance_m_s": 0.01,
+  "mass_kg": 204,
+  "departure_mode": "bounded_norm",
+  "vinf_max_m_s": 3000,
+  "vinf_vector_m_s": null,
+  "spacecraft": {
+    "thrust_N": 0.036,
+    "exhaust_velocity_m_s": 11767.98,
+    "dry_mass_kg": 140
+  },
+  "solver": {
+    "budget_s": 60,
+    "compare_seeds": false,
+    "departure_budget_s": 240,
+    "limit_budget_s": 300,
+    "pazov_budget_s": 300,
+    "psi_budget_s": 600,
+    "bounded_attempt_s": 45,
+    "irt_entry": "date",
+    "attempt_budget_s": 60,
+    "iltt_budget_s": 60,
+    "iltt_max_abs_k": 5,
+    "iltt_branch": 0,
+    "iltt_duration_bounds_days": [
+      1e-08,
+      1095.75
+    ],
+    "iltt_resolved": {
+      "binding": {
+        "departure": "Earth",
+        "target": "Apophis",
+        "launch_tdb": "2028-02-27T00:00:00",
+        "center": "Sun",
+        "max_abs_k": 5,
+        "duration_bounds_days": [
+          1e-08,
+          1095.75
+        ],
+        "angular_min": 0.0,
+        "dm_limit": 0.5981996389807971
+      },
+      "branch_rank": 0,
+      "branches": [
+        {
+          "k": 0,
+          "lambda_initial": 1.2764047509645977,
+          "approximation_family": "long"
+        },
+        {
+          "k": -1,
+          "lambda_initial": 19.90868251758655,
+          "approximation_family": "long"
+        },
+        {
+          "k": -2,
+          "lambda_initial": 38.5409602842085,
+          "approximation_family": "long"
+        },
+        {
+          "k": -3,
+          "lambda_initial": 57.173238050830456,
+          "approximation_family": "long"
+        },
+        {
+          "k": -4,
+          "lambda_initial": 75.8055158174524,
+          "approximation_family": "long"
+        },
+        {
+          "k": -5,
+          "lambda_initial": 94.43779358407436,
+          "approximation_family": "long"
+        }
+      ],
+      "phase_rad": -0.4371831922795577,
+      "k": 0,
+      "lambda_initial": 1.2764047509645977,
+      "lambda_corrected": 1.1321094665998925,
+      "kappa": 0.8091902783501788,
+      "x_initial": [
+        0.8665317726072421,
+        3.61843474789033,
+        3.558400690357776,
+        5.769031093905987,
+        0.9315876518753105,
+        1.2764047509645977
+      ],
+      "x_corrected": [
+        0.35573477476251053,
+        1.217282010588994,
+        3.517091936819073,
+        6.110852962784203,
+        0.8091902783501788,
+        1.1321094665998925
+      ],
+      "tof_days": 348.0059044507822,
+      "initial_tof_days": 435.68327917851025,
+      "costates": [
+        0.009791087845812214,
+        -0.005684105023841654,
+        -0.014746097658417374,
+        0.007437695917029352,
+        0.0244319593160104,
+        0.014082962622126292
+      ],
+      "orbit_phase_residual": [
+        9.992007221626409e-16,
+        -1.908195823574488e-15,
+        -8.049116928532385e-16,
+        4.884981308350689e-15,
+        -1.7763568394002505e-15,
+        -4.11226608321158e-13
+      ],
+      "evaluations": 250,
+      "initial_transform_saturated": true,
+      "correction_attempts": [
+        {
+          "route": "bounded_R",
+          "residual_norm": 4.11265886469501e-13,
+          "message": "`gtol` termination condition is satisfied.",
+          "trust_domain": {
+            "dm": [
+              -0.5981996389807971,
+              0.5981996389807971
+            ],
+            "j": [
+              -30,
+              30
+            ],
+            "kappa": [
+              0.1,
+              10
+            ],
+            "lambda_turns": [
+              0.0,
+              10.592543634275573
+            ]
+          }
+        }
+      ],
+      "rejected_coverage_trials": 0,
+      "source": "ILTT/transfer_legacy.py: phase -> a_OM branches -> make_F_function -> moving-target orbit correction",
+      "duration_role": "derived from ILTT; input tof_days was not used"
+    }
+  },
+  "lunar": null
+}

@@ -1,0 +1,165 @@
+{
+  "source": "runs/apophis_daily_routes_v1/daily_0/cases/date_0019_branch_00/irt",
+  "source_sha256": "eac9e3e1cca3af3c1d0b58857f2ed0c5d5c4a556393c4fcf48f56b64a81c5e6f",
+  "mission": {
+    "case_id": "date_0019_branch_00",
+    "departure": "Earth",
+    "target": "Apophis",
+    "launch_tdb": "2028-02-16T00:00:00",
+    "tof_days": 368.3522774389343,
+    "center": "Sun",
+    "mode": "rendezvous",
+    "position_tolerance_m": 1000,
+    "velocity_tolerance_m_s": 0.01,
+    "mass_kg": 204,
+    "departure_mode": "bounded_norm",
+    "vinf_max_m_s": 3000,
+    "vinf_vector_m_s": null,
+    "spacecraft": {
+      "thrust_N": 0.036,
+      "exhaust_velocity_m_s": 11767.98,
+      "dry_mass_kg": 140
+    },
+    "solver": {
+      "budget_s": 180,
+      "compare_seeds": false,
+      "departure_budget_s": 240,
+      "limit_budget_s": 300,
+      "pazov_budget_s": 300,
+      "psi_budget_s": 600,
+      "bounded_attempt_s": 45,
+      "irt_entry": "date",
+      "attempt_budget_s": 90,
+      "iltt_budget_s": 90,
+      "iltt_max_abs_k": 5,
+      "iltt_branch": 0,
+      "iltt_duration_bounds_days": [
+        1e-08,
+        1095.75
+      ],
+      "iltt_resolved": {
+        "binding": {
+          "departure": "Earth",
+          "target": "Apophis",
+          "launch_tdb": "2028-02-16T00:00:00",
+          "center": "Sun",
+          "max_abs_k": 5,
+          "duration_bounds_days": [
+            1e-08,
+            1095.75
+          ],
+          "angular_min": 0.0,
+          "dm_limit": 0.5981996389807971
+        },
+        "branch_rank": 0,
+        "branches": [
+          {
+            "k": 0,
+            "lambda_initial": 1.2000494480485242,
+            "approximation_family": "long"
+          },
+          {
+            "k": -1,
+            "lambda_initial": 20.509249031135102,
+            "approximation_family": "long"
+          },
+          {
+            "k": -2,
+            "lambda_initial": 39.81844861422169,
+            "approximation_family": "long"
+          },
+          {
+            "k": -3,
+            "lambda_initial": 59.12764819730826,
+            "approximation_family": "long"
+          },
+          {
+            "k": -4,
+            "lambda_initial": 78.43684778039486,
+            "approximation_family": "long"
+          },
+          {
+            "k": -5,
+            "lambda_initial": 97.74604736348144,
+            "approximation_family": "long"
+          }
+        ],
+        "phase_rad": -0.3967762948579243,
+        "k": 0,
+        "lambda_initial": 1.2000494480485242,
+        "lambda_corrected": 1.1683913055192876,
+        "kappa": 0.8414339817162056,
+        "x_initial": [
+          0.8877428844531888,
+          3.7387256500874635,
+          3.5584095617565215,
+          5.7690237185647675,
+          0.9338638251620547,
+          1.2000494480485242
+        ],
+        "x_corrected": [
+          0.4317028229631941,
+          1.3975589750733513,
+          3.5291036495894295,
+          6.052882874132248,
+          0.8414339817162056,
+          1.1683913055192876
+        ],
+        "tof_days": 368.3522774389343,
+        "initial_tof_days": 408.8727067939724,
+        "costates": [
+          0.005460929238066418,
+          -0.007653775312380433,
+          -0.016654700697856316,
+          0.00825562380312589,
+          0.019878111657582496,
+          0.009426027827614524
+        ],
+        "orbit_phase_residual": [
+          -1.9984014443252818e-15,
+          0.0,
+          -3.3306690738754696e-16,
+          1.7763568394002505e-15,
+          2.6645352591003757e-15,
+          -1.4077627952246985e-13
+        ],
+        "evaluations": 243,
+        "initial_transform_saturated": true,
+        "correction_attempts": [
+          {
+            "route": "bounded_R",
+            "residual_norm": 1.4082727225169815e-13,
+            "message": "`gtol` termination condition is satisfied.",
+            "trust_domain": {
+              "dm": [
+                -0.5981996389807971,
+                0.5981996389807971
+              ],
+              "j": [
+                -30,
+                30
+              ],
+              "kappa": [
+                0.1,
+                10
+              ],
+              "lambda_turns": [
+                0.0,
+                10.854649239591813
+              ]
+            }
+          }
+        ],
+        "rejected_coverage_trials": 0,
+        "source": "ILTT/transfer_legacy.py: phase -> a_OM branches -> make_F_function -> moving-target orbit correction",
+        "duration_role": "derived from ILTT; input tof_days was not used"
+      }
+    },
+    "lunar": null
+  },
+  "bounds_days": [
+    184.17613871946716,
+    552.5284161584015
+  ],
+  "dm_policy": "original empirical bound only"
+}
