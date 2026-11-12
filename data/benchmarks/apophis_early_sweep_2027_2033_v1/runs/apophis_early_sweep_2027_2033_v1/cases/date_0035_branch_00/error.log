@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/workspace/trajectory_pipeline/runner.py", line 32, in run_irt
+    mission=resolve_date_mission(mission)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/trajectory_pipeline/iltt_entry.py", line 102, in resolve_date_mission
+    raise ValueError('ILTT phase/orbit correction failed: '+str(opt.message)+'; residual='+str(residual)+'; x='+str(opt.x)+'; x0='+str(x0))
+ValueError: ILTT phase/orbit correction failed: `xtol` termination condition is satisfied.; residual=[ 0.29423169  0.01115467 -0.04838644 -0.00048     0.02863252 -0.00835339]; x=[0.59819964 0.57777827 3.52077986 4.86348983 0.8409384  3.43146113]; x0=[0.69878618 2.86162832 3.55851671 5.76869958 0.91413797 2.81813144]

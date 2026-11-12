@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/workspace/trajectory_pipeline/runner.py", line 32, in run_irt
+    mission=resolve_date_mission(mission)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/trajectory_pipeline/iltt_entry.py", line 102, in resolve_date_mission
+    raise ValueError('ILTT phase/orbit correction failed: '+str(opt.message)+'; residual='+str(residual)+'; x='+str(opt.x)+'; x0='+str(x0))
+ValueError: ILTT phase/orbit correction failed: The maximum number of function evaluations is exceeded.; residual=[ 0.10259056 -0.08674766  0.1559533  -0.00114971 -0.01322951  0.02067901]; x=[ 0.59819951 13.28738754  3.53102103  4.7446787   0.97292451  2.08238257]; x0=[1.29968809 3.30232739 3.5585097  5.76867714 0.924763   2.0696802 ]

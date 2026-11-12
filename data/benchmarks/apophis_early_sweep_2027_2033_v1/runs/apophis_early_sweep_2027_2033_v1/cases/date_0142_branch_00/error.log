@@ -1,0 +1,31 @@
+Traceback (most recent call last):
+  File "/workspace/trajectory_pipeline/runner.py", line 32, in run_irt
+    mission=resolve_date_mission(mission)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/trajectory_pipeline/iltt_entry.py", line 95, in resolve_date_mission
+    opt=least_squares(lambda x:evaluate(x)[0],seed,bounds=(lo,hi),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/scipy/optimize/_lsq/least_squares.py", line 947, in least_squares
+    result = trf(fun_wrapped, jac_wrapped, x0, f0, J0, lb, ub, ftol, xtol,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/scipy/optimize/_lsq/trf.py", line 123, in trf
+    return trf_bounds(
+           ^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/scipy/optimize/_lsq/trf.py", line 338, in trf_bounds
+    f_new = fun(x_new)
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/scipy/optimize/_lsq/least_squares.py", line 836, in fun_wrapped
+    return np.atleast_1d(fun(x, *args, **kwargs))
+                         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/trajectory_pipeline/iltt_entry.py", line 95, in <lambda>
+    opt=least_squares(lambda x:evaluate(x)[0],seed,bounds=(lo,hi),
+                               ^^^^^^^^^^^
+  File "/workspace/trajectory_pipeline/iltt_entry.py", line 68, in evaluate
+    target=scale.normalize_state(eph.state(mission.target,mission.launch_jd+duration,mission.center))
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/trajectory_pipeline/ephemerides.py", line 199, in state
+    result = self._heliocentric(body, times)-self._heliocentric(center, times)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/trajectory_pipeline/ephemerides.py", line 174, in _heliocentric
+    raise ValueError(f'{key} epoch outside local coverage [{jd[0]}, {jd[-1]}]; extrapolation forbidden')
+ValueError: apophis epoch outside local coverage [2458849.5, 2480764.5]; extrapolation forbidden

@@ -44,6 +44,8 @@ def main():
     sweep = sub.add_parser('sweep-irt', help='Run a matrix of real IRT transfer configurations')
     sweep.add_argument('matrix')
     sweep.add_argument('--output', required=True)
+    sweep.add_argument('--design',help='Early date/KLO catalogue design; positional input is then one mission')
+    sweep.add_argument('--resume',action='store_true')
     departure = sub.add_parser('departure', help='Continue a verified IRT result in departure excess')
     departure.add_argument('source')
     departure.add_argument('--output', required=True)
@@ -163,6 +165,13 @@ def main():
         print(json.dumps(result,ensure_ascii=False,indent=2))
         return exit_code(result['status'])
     elif args.command == 'sweep-irt':
+        if args.design:
+            from .seed_sweep import run_seed_sweep
+            from .problem import Mission
+            from pathlib import Path
+            summary=run_seed_sweep(Mission.load(args.matrix),json.loads(Path(args.design).read_text()),args.output,args.resume)
+            return 0 if summary['totals']['accepted_dates'] else 2
+        if args.resume:raise ValueError('Resume is supported for sweep-irt --design')
         from .runner import sweep_irt
         results=sweep_irt(args.matrix,args.output)
         return 0 if all(x['status']=='completed_stage' for x in results) else 2
