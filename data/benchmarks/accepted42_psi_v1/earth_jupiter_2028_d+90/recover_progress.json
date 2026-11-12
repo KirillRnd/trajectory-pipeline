@@ -1,0 +1,110 @@
+{
+  "events": [
+    {
+      "operation": "coupled",
+      "input_stage": "psi_mass",
+      "input_days": 1032.2373091672316,
+      "status": "partial",
+      "stopped_phase": "mass_and_thrust",
+      "details": {
+        "status": "partial",
+        "phase": "mass_and_thrust",
+        "reached_parameter": 0.8875000000000001,
+        "last_result": "mass_and_thrust/point_0008"
+      },
+      "checkpoint": "runs/accepted42_psi_v1/earth_jupiter_2028_d+90/coupled_checkpoint"
+    },
+    {
+      "operation": "release_intermediate",
+      "bounds_days": [
+        516.1186545836158,
+        1548.3559637508474
+      ],
+      "input_days": 1032.2373091672316,
+      "status": "completed_stage",
+      "output_days": 1304.6777898759137,
+      "details": {
+        "method": "bounded_scalar_with_BVP_correction",
+        "seed_tof_days": 1032.2373091672316,
+        "resolved_tof_days": 1304.6777898759137,
+        "bounds_days": [
+          516.1186545836158,
+          1548.3559637508474
+        ],
+        "requested_bounds_days": [
+          516.1186545836158,
+          1548.3559637508474
+        ],
+        "objective": "current_model_functional",
+        "seed_objective": 0.2609025852047473,
+        "objective_value": 0.187715145491626,
+        "optimizer_success": false,
+        "stop_reason": "Intermediate duration budget reached",
+        "trials": 7,
+        "physical_solution": false,
+        "global_optimality": false
+      },
+      "checkpoint": "runs/accepted42_psi_v1/earth_jupiter_2028_d+90/release_intermediate_checkpoint"
+    },
+    {
+      "operation": "after_release",
+      "input_stage": "psi_limit",
+      "input_days": 1304.6777898759137,
+      "status": "partial",
+      "stopped_phase": "mass_and_thrust",
+      "details": {
+        "status": "partial",
+        "phase": "mass_and_thrust",
+        "reached_parameter": 0.0,
+        "last_result": "mass_and_thrust/initial"
+      },
+      "checkpoint": "runs/accepted42_psi_v1/earth_jupiter_2028_d+90/after_release_checkpoint"
+    },
+    {
+      "operation": "release_early",
+      "bounds_days": [
+        516.1186545836158,
+        2064.4746183344632
+      ],
+      "input_days": 1032.2373091672316,
+      "status": "completed_stage",
+      "output_days": 2064.4746183344632,
+      "details": {
+        "method": "bounded_scalar_with_BVP_correction",
+        "seed_tof_days": 1032.2373091672316,
+        "resolved_tof_days": 2064.4746183344632,
+        "bounds_days": [
+          516.1186545836158,
+          2064.4746183344632
+        ],
+        "requested_bounds_days": [
+          516.1186545836158,
+          2064.4746183344632
+        ],
+        "objective": "current_model_functional",
+        "seed_objective": 0.014199125823078945,
+        "objective_value": 0.005269248746866664,
+        "optimizer_success": true,
+        "stop_reason": "Solution found.",
+        "trials": 23,
+        "physical_solution": false,
+        "global_optimality": false
+      },
+      "checkpoint": "runs/accepted42_psi_v1/earth_jupiter_2028_d+90/release_early_checkpoint"
+    },
+    {
+      "operation": "early_continue",
+      "input_stage": "departure",
+      "input_days": 2064.4746183344632,
+      "status": "partial",
+      "stopped_phase": "mass_and_thrust",
+      "details": {
+        "status": "partial",
+        "phase": "mass_and_thrust",
+        "reached_parameter": 0.059375000000000004,
+        "last_result": "mass_and_thrust/point_0006"
+      },
+      "checkpoint": "runs/accepted42_psi_v1/earth_jupiter_2028_d+90/early_continue_checkpoint"
+    }
+  ]
+}

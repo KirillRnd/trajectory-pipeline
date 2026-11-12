@@ -1,0 +1,91 @@
+{
+  "case_id": "earth_mars_2029_d+90",
+  "phase": "recover",
+  "status": "partial",
+  "source": "data/benchmarks/coordinate_matrix_v1/primary/earth_mars_2029_d+90/costates",
+  "events": [
+    {
+      "operation": "coupled",
+      "input_stage": "pazov_limit",
+      "input_days": 1395.0379256382196,
+      "status": "partial",
+      "stopped_phase": "fuel",
+      "details": {
+        "status": "partial",
+        "phase": "fuel",
+        "reached_parameter": 0.003125,
+        "last_result": "fuel/point_0006"
+      },
+      "checkpoint": "runs/accepted42_psi_v1/earth_mars_2029_d+90/coupled_checkpoint"
+    },
+    {
+      "operation": "release_intermediate",
+      "bounds_days": [
+        697.5189628191098,
+        2092.5568884573295
+      ],
+      "input_days": 1395.0379256382196,
+      "status": "failed",
+      "error": "RuntimeError: No independently verified changed-duration intermediate; see trials.json",
+      "checkpoint": "runs/accepted42_psi_v1/earth_mars_2029_d+90/release_intermediate_checkpoint"
+    },
+    {
+      "operation": "release_early",
+      "bounds_days": [
+        697.5189628191098,
+        2790.075851276439
+      ],
+      "input_days": 1395.0379256382196,
+      "status": "completed_stage",
+      "output_days": 1575.044498650178,
+      "details": {
+        "method": "bounded_scalar_with_BVP_correction",
+        "seed_tof_days": 1395.0379256382196,
+        "resolved_tof_days": 1575.044498650178,
+        "bounds_days": [
+          697.5189628191098,
+          2790.075851276439
+        ],
+        "requested_bounds_days": [
+          697.5189628191098,
+          2790.075851276439
+        ],
+        "objective": "current_model_functional",
+        "seed_objective": 0.00048096358744251813,
+        "objective_value": 0.00041906759338476387,
+        "optimizer_success": false,
+        "stop_reason": "Intermediate duration budget reached",
+        "trials": 23,
+        "physical_solution": false,
+        "global_optimality": false
+      },
+      "checkpoint": "runs/accepted42_psi_v1/earth_mars_2029_d+90/release_early_checkpoint"
+    },
+    {
+      "operation": "early_continue",
+      "input_stage": "departure",
+      "input_days": 1575.044498650178,
+      "status": "partial",
+      "stopped_phase": "mass_and_thrust",
+      "details": {
+        "status": "partial",
+        "phase": "mass_and_thrust",
+        "reached_parameter": 0.9750000000000001,
+        "last_result": "mass_and_thrust/point_0007"
+      },
+      "checkpoint": "runs/accepted42_psi_v1/earth_mars_2029_d+90/early_continue_checkpoint"
+    }
+  ],
+  "last_checkpoint": "runs/accepted42_psi_v1/earth_mars_2029_d+90/recover_last",
+  "last_stage": "psi_limit",
+  "last_model": {
+    "a_max": 0.026288191875616866,
+    "alpha": 0.0,
+    "beta": 0.9750000000000001,
+    "q": 0.0394205157902953,
+    "variable_mass": true,
+    "gravity_spec": null
+  },
+  "last_days": 1575.044498650178,
+  "elapsed_s": 364.5572867230003
+}

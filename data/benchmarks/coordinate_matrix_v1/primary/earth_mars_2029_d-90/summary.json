@@ -1,0 +1,187 @@
+{
+  "case_id": "earth_mars_2029_d-90",
+  "target": "Mars",
+  "departure": "Earth",
+  "mode": "rendezvous",
+  "date": "2029-06-03T00:00:00",
+  "stages": [
+    {
+      "coordinates": "iltt",
+      "accepted": true,
+      "diagnostics": {
+        "status": "solved_extremal",
+        "attempts": [
+          {
+            "source": "orbit-source boundary correction",
+            "route": "shooting",
+            "last_costates": [
+              -0.003422080766001339,
+              -0.00827938138063129,
+              -0.00064310565841677,
+              0.008897908939919217,
+              -0.002215924658555305,
+              -0.001598660088819537
+            ],
+            "independent_check": {
+              "position_residual_m": 94.83646965831912,
+              "velocity_residual_m_s": 9.78316660868823e-06,
+              "free_velocity_transversality": 0.003935228664472109,
+              "difference_r_m": 105.41823210985446,
+              "difference_v_m_s": 1.0965948568027343e-05
+            },
+            "nfev": 3,
+            "integrations": 3,
+            "optimizer_success": true,
+            "residual_norm": 4.005416230359644e-13,
+            "coordinates": "iltt",
+            "conversion": {
+              "costate_roundtrip_error": 0.0,
+              "unanchored_fit_error": 0.0,
+              "anchored": false,
+              "costate_offset": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "nfev": 1,
+              "jacobian_singular_values": [
+                0.015877331885665605,
+                0.011283445312401625,
+                0.008719386803907561,
+                0.0017737406343100684,
+                0.0009261063211702225,
+                6.844016303089036e-06
+              ],
+              "local_rank": 6
+            },
+            "iltt_parameters": [
+              -0.06821044311772248,
+              -0.1934509240006407,
+              0.8962949367580874,
+              5.392832403310642,
+              1.6896530298190169,
+              3.2165444988358414
+            ],
+            "iltt_chart": {
+              "version": 1,
+              "initial_state_normalized": [
+                -0.3038940446911645,
+                -0.9527058337040079,
+                6.346334450835565e-05,
+                0.9430181442630333,
+                -0.3101810909708612,
+                -6.555576766071026e-06
+              ],
+              "reference": [
+                -0.06821044474985555,
+                -0.19345092367815261,
+                0.8962949382873369,
+                5.392832406664392,
+                1.6896530341728404,
+                3.216544507253807
+              ],
+              "parameters": [
+                -0.06821044311772248,
+                -0.1934509240006407,
+                0.8962949367580874,
+                5.392832403310642,
+                1.6896530298190169,
+                3.2165444988358414
+              ],
+              "dm_limit": 0.5981996389807971,
+              "costate_offset": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "convention": "p = ILTT(parameters, initial_state) + costate_offset; duration independent"
+            },
+            "position_residual_m": 11.86373496784723,
+            "velocity_residual_m_s": 1.1973202682067133e-06,
+            "free_velocity_transversality": 0.003935228646251004,
+            "accepted": true,
+            "elapsed_s": 0.30426601199906145
+          }
+        ],
+        "elapsed_s": 0.3118813230012165
+      },
+      "verification": {
+        "passed": true,
+        "method": "LSODA, independently implemented Hamiltonian RHS",
+        "position_residual_m": 94.83646482281154,
+        "velocity_residual_m_s": 9.783166607170147e-06,
+        "trajectory_difference_m": 105.41823161632225,
+        "velocity_difference_m_s": 1.096594840358285e-05,
+        "free_velocity_transversality": 0.003935228664472109,
+        "scope": "Numerical extremal and endpoint consistency; not proof of local/global optimality or N-body fidelity"
+      }
+    },
+    {
+      "coordinates": "costates",
+      "accepted": true,
+      "diagnostics": {
+        "status": "solved_extremal",
+        "attempts": [
+          {
+            "source": "orbit-source boundary correction",
+            "route": "shooting",
+            "last_costates": [
+              -0.003422080766001325,
+              -0.008279381380631192,
+              -0.0006431056584167692,
+              0.008897908939919177,
+              -0.002215924658555259,
+              -0.0015986600888195372
+            ],
+            "independent_check": {
+              "position_residual_m": 238.7074512485468,
+              "velocity_residual_m_s": 2.6509864154988276e-05,
+              "free_velocity_transversality": 0.003935228660821173,
+              "difference_r_m": 250.51721894616014,
+              "difference_v_m_s": 2.7701281226894123e-05
+            },
+            "nfev": 2,
+            "integrations": 2,
+            "optimizer_success": true,
+            "residual_norm": 2.7670599883268367e-13,
+            "coordinates": "costates",
+            "conversion": {},
+            "position_residual_m": 11.825857563524105,
+            "velocity_residual_m_s": 1.1931009490395728e-06,
+            "free_velocity_transversality": 0.003935228646252268,
+            "accepted": true,
+            "elapsed_s": 0.20450629699917044
+          }
+        ],
+        "elapsed_s": 0.21574990399858507
+      },
+      "verification": {
+        "passed": true,
+        "method": "LSODA, independently implemented Hamiltonian RHS",
+        "position_residual_m": 238.70745079985167,
+        "velocity_residual_m_s": 2.6509864123818358e-05,
+        "trajectory_difference_m": 250.51721710391786,
+        "velocity_difference_m_s": 2.770128104544191e-05,
+        "free_velocity_transversality": 0.003935228660821173,
+        "scope": "Numerical extremal and endpoint consistency; not proof of local/global optimality or N-body fidelity"
+      }
+    }
+  ],
+  "accepted": true,
+  "entry": {
+    "accepted": true,
+    "tof_days": 1759.49343192999,
+    "lambda_initial": 3.408096439740318
+  },
+  "tof_days": 1759.49343192999,
+  "last_result": "costates",
+  "rescued_by_costates": false,
+  "rescued_after_entry_failure": false,
+  "stopped_stage": null
+}

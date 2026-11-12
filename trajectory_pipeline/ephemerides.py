@@ -9,6 +9,7 @@ import csv
 import io
 import json
 import threading
+import struct
 import urllib.parse
 import urllib.request
 import numpy as np
@@ -28,6 +29,20 @@ ASTEROIDS = {'apophis': '99942;', 'eros': '433;', 'bennu': '101955;',
              'ryugu': '162173;', 'polyhymnia': '33;', 'ceres': '1;',
              'vesta': '4;', '2015re36': '2015 RE36;'}
 _KIAM_LOCK = threading.RLock()  # KIAM changes cwd and uses Fortran module globals.
+
+
+@lru_cache(maxsize=1)
+def native_coverage():
+    """Read the installed JPL header; never probe Fortran outside its file."""
+    import kiam_astro
+    with (Path(kiam_astro.__file__).parent/'JPLEPH').open('rb') as stream:
+        stream.seek(3*84+400*6)
+        raw=stream.read(24)
+    for endian in ('<','>'):
+        start,stop,step=struct.unpack(endian+'3d',raw)
+        if 1e6<start<stop<4e6 and 0<step<=1024:
+            return start,stop
+    raise ValueError('Unrecognized KIAM JPLEPH time header')
 
 
 def canonical(body):
@@ -150,7 +165,7 @@ class Ephemerides:
         rounded = np.round(offsets, 3)
         if np.max(np.abs(offsets-rounded)) < 0.0002:
             offsets = rounded
-        spline = CubicHermiteSpline(offsets, s[:, :3], s[:, 3:], extrapolate=False)
+        spline = CubicHermiteSpline(offsets, s[:, :3], s[:, 3:], extrapolate=True)
         return jd, spline, meta
 
     def coverage(self, body):
@@ -158,7 +173,8 @@ class Ephemerides:
         if (self.cache/key/'metadata.json').exists():
             return dict(self._table(key)[2])
         if key in MAJOR:
-            return dict(body=key, start_jd=2287184.5, stop_jd=2688976.5,
+            start,stop=native_coverage()
+            return dict(body=key, start_jd=start, stop_jd=stop,
                         source='KIAM 6.1.6 / bundled JPLEPH', frame='ECLIPJ2000',
                         time_scale='TDB', center='requested', interpolation='KIAM native ephemeris',
                         representation='system barycenter' if key in ('jupiter','saturn','uranus','neptune','pluto') else 'body center')
@@ -170,14 +186,23 @@ class Ephemerides:
             return np.zeros((len(epochs), 6))
         if (self.cache/key/'metadata.json').exists():
             jd, spline, _ = self._table(key)
-            if np.any(epochs < jd[0]) or np.any(epochs > jd[-1]):
-                raise ValueError(f'{key} epoch outside local coverage [{jd[0]}, {jd[-1]}]; extrapolation forbidden')
             t = (epochs-jd[0])*DAY_S
             return np.c_[spline(t), spline(t, 1)]
         if key in MAJOR:
             from kiam_astro import kiam
-            if np.any(epochs < 2287184.5) or np.any(epochs > 2688976.5):
-                raise ValueError('Epoch outside bundled JPLEPH coverage')
+            start,stop=native_coverage()
+            outside=(epochs<start)|(epochs>stop)
+            if np.any(outside):
+                state=np.empty((len(epochs),6))
+                if np.any(~outside):state[~outside]=self._heliocentric(key,epochs[~outside])
+                for mask,knots in ((epochs<start,np.array([start,start+1.])),
+                                   (epochs>stop,np.array([stop-1.,stop]))):
+                    if not np.any(mask):continue
+                    boundary=self._heliocentric(key,knots)
+                    extension=CubicHermiteSpline((knots-knots[0])*DAY_S,boundary[:,:3],boundary[:,3:],extrapolate=True)
+                    t=(epochs[mask]-knots[0])*DAY_S
+                    state[mask]=np.c_[extension(t),extension(t,1)]
+                return state
             with _KIAM_LOCK:
                 state = np.array([kiam.planet_state(float(jd), 'Sun', MAJOR[key][0]) for jd in epochs])
             # IAU76 J2000 obliquity, the Horizons ECLIPTIC/ICRF convention.
@@ -185,10 +210,18 @@ class Ephemerides:
             rot = np.array([[1, 0, 0], [0, np.cos(eps), np.sin(eps)], [0, -np.sin(eps), np.cos(eps)]])
             return np.c_[state[:, :3]@rot.T, state[:, 3:]@rot.T]*1000
         jd, spline, _ = self._table(key)
-        if np.any(epochs < jd[0]) or np.any(epochs > jd[-1]):
-            raise ValueError(f'{key} epoch outside local coverage [{jd[0]}, {jd[-1]}]; extrapolation forbidden')
         t = (epochs-jd[0])*DAY_S
         return np.c_[spline(t), spline(t, 1)]
+
+    def evaluation_record(self,body,epochs):
+        values=np.atleast_1d(np.asarray(epochs,dtype=float))
+        if canonical(body)=='sun':return dict(body='sun',extrapolated=False,method='heliocentric origin')
+        coverage=self.coverage(body)
+        outside=(values<coverage['start_jd'])|(values>coverage['stop_jd'])
+        return dict(body=canonical(body),table_start_jd=coverage['start_jd'],table_stop_jd=coverage['stop_jd'],
+                    requested_start_jd=float(values.min()),requested_stop_jd=float(values.max()),
+                    extrapolated=bool(np.any(outside)),extrapolated_samples=int(outside.sum()),
+                    method='endpoint cubic Hermite with derivative velocity' if np.any(outside) else coverage.get('interpolation','source propagation'))
 
     def state(self, body, jd_tdb, center='Sun'):
         values = np.asarray(jd_tdb, dtype=float)

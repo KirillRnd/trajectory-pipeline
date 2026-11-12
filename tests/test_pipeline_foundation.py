@@ -66,14 +66,18 @@ class FoundationTests(unittest.TestCase):
         self.assertTrue(np.all((distances > 3.4e8) & (distances < 4.1e8)))
         np.testing.assert_allclose(moon, eph.state('Moon',epochs)-eph.state('Earth',epochs), atol=0)
 
-    def test_extrapolation_forbidden(self):
+    def test_extrapolation_is_available_with_derivative_velocity(self):
         eph = Ephemerides()
-        with self.assertRaisesRegex(ValueError, 'coverage'):
-            eph.state('Apophis',2461771.49)
-        with self.assertRaisesRegex(ValueError, 'coverage'):
-            eph.state('Vesta',2464328.51)
-        with self.assertRaisesRegex(ValueError, 'coverage'):
-            eph.state('Moon',2287184.)
+        for body,epoch in [('Apophis',eph.coverage('Apophis')['start_jd']-.01),
+                           ('Vesta',eph.coverage('Vesta')['stop_jd']+.01),
+                           ('Moon',eph.coverage('Moon')['start_jd']-.5),
+                           ('Moon',eph.coverage('Moon')['stop_jd']+.5)]:
+            state=eph.state(body,epoch)
+            self.assertTrue(np.isfinite(state).all())
+            self.assertTrue(eph.evaluation_record(body,epoch)['extrapolated'])
+            times=np.array([epoch-.001,epoch+.001]);states=eph.state(body,times)
+            derivative=(states[1,:3]-states[0,:3])/((times[1]-times[0])*86400)
+            np.testing.assert_allclose(derivative,state[3:],rtol=1e-6,atol=.05)
 
 
 if __name__ == '__main__':

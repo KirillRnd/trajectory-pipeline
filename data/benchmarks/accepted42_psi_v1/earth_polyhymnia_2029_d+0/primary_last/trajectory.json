@@ -1,0 +1,282 @@
+{
+  "case_id": "earth_polyhymnia_2029_d+0",
+  "epoch_jd": 2462196.5,
+  "time_scale": "TDB",
+  "center": "Sun",
+  "frame": "ECLIPJ2000",
+  "model": "Pazov bounded acceleration / mass homotopy",
+  "status": "verified_extremal",
+  "stage": "psi_mass",
+  "mission": {
+    "case_id": "earth_polyhymnia_2029_d+0",
+    "departure": "Earth",
+    "target": "Polyhymnia",
+    "launch_tdb": "2029-03-01T00:00:00",
+    "tof_days": 1288.4772314582776,
+    "center": "Sun",
+    "mode": "rendezvous",
+    "position_tolerance_m": 1000,
+    "velocity_tolerance_m_s": 0.01,
+    "mass_kg": 156,
+    "departure_mode": "bounded_norm",
+    "vinf_max_m_s": 3000,
+    "vinf_vector_m_s": null,
+    "spacecraft": {
+      "thrust_N": 0.025,
+      "exhaust_velocity_m_s": 20000,
+      "dry_mass_kg": 90
+    },
+    "solver": {
+      "budget_s": 20,
+      "compare_seeds": false,
+      "departure_budget_s": 45,
+      "limit_budget_s": 60,
+      "pazov_budget_s": 60,
+      "psi_budget_s": 90,
+      "bounded_attempt_s": 15,
+      "irt_entry": "fixed_time",
+      "iltt_budget_s": 8,
+      "iltt_branch": 0,
+      "iltt_coordinate_reference": [
+        -0.013897341486419985,
+        -0.018825930976644326,
+        -30.886738791262413,
+        5.4163605441003835,
+        3.8002431670079186,
+        1.234026306582106
+      ],
+      "attempt_budget_s": 20,
+      "max_nfev": 70,
+      "irt_coordinates": "costates",
+      "exact_attempt_s": 25,
+      "pipeline_pazov_alpha": 0.5,
+      "psi_mass_alpha": 0.5
+    },
+    "lunar": null
+  },
+  "scales": {
+    "distance_m": 148218150231.92538,
+    "mu_m3_s2": 1.32712440018e+20
+  },
+  "initial_state_si": [
+    -139523946102.6892,
+    50016882323.22916,
+    -2184427.0109043373,
+    -11402.84169259101,
+    -31006.332310778602,
+    -159.7810394581012
+  ],
+  "target_state_si": [
+    -452095532711.88275,
+    -236616056914.8676,
+    -5537402032.269078,
+    10100.85797459695,
+    -10404.89837381283,
+    -379.80970807926104
+  ],
+  "costate_convention": "dimensionless [p_r,p_v,p_m] for normalized remaining mass",
+  "costates_initial": [
+    -0.55220280780715,
+    0.17137089640475958,
+    0.02367204084026767,
+    -0.06683212764252242,
+    -0.22028479152663574,
+    -0.012467449742781354,
+    -0.03396203751140078
+  ],
+  "functional_dimensionless": 0.16430262659489253,
+  "chosen_seed": {
+    "source": "orbit-source boundary correction",
+    "route": "shooting",
+    "last_costates": [
+      -0.0375093977246911,
+      0.015192633703161589,
+      0.0005793828631627731,
+      -0.01153094458258297,
+      -0.03373081797206679,
+      -0.000432579736229063
+    ],
+    "independent_check": {
+      "position_residual_m": 116.7516186549355,
+      "velocity_residual_m_s": 2.177886463087408e-06,
+      "free_velocity_transversality": 0.015463123220680984,
+      "difference_r_m": 155.862912897666,
+      "difference_v_m_s": 3.5445254838937925e-06
+    },
+    "nfev": 2,
+    "integrations": 2,
+    "optimizer_success": true,
+    "residual_norm": 1.2670958667381917e-13,
+    "coordinates": "costates",
+    "conversion": {},
+    "position_residual_m": 43.43100125454554,
+    "velocity_residual_m_s": 1.447874449597723e-06,
+    "free_velocity_transversality": 0.015463123210855878,
+    "accepted": true
+  },
+  "title": "Earth → Polyhymnia: ограниченное ускорение",
+  "ephemerides": {
+    "Earth": {
+      "body": "earth",
+      "start_jd": 2287184.5,
+      "stop_jd": 2688976.5,
+      "source": "KIAM 6.1.6 / bundled JPLEPH",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "center": "requested",
+      "interpolation": "KIAM native ephemeris",
+      "representation": "body center"
+    },
+    "Polyhymnia": {
+      "body": "polyhymnia",
+      "source": "https://ssd.jpl.nasa.gov/api/horizons.api",
+      "parameters": {
+        "format": "json",
+        "COMMAND": "'33;'",
+        "CENTER": "'500@10'",
+        "EPHEM_TYPE": "'VECTORS'",
+        "REF_PLANE": "'ECLIPTIC'",
+        "REF_SYSTEM": "'ICRF'",
+        "OUT_UNITS": "'KM-S'",
+        "VEC_CORR": "'NONE'",
+        "CSV_FORMAT": "'YES'",
+        "VEC_TABLE": "'2'",
+        "TIME_TYPE": "'TDB'",
+        "OBJ_DATA": "'YES'",
+        "START_TIME": "'2020-01-01'",
+        "STOP_TIME": "'2080-01-01'",
+        "STEP_SIZE": "'12 h'"
+      },
+      "center": "Sun",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "units": "m,m/s",
+      "start_jd": 2458849.5,
+      "stop_jd": 2480764.5,
+      "knots": 43831,
+      "max_step_days": 0.5,
+      "interpolation": "cubic Hermite, position and velocity from the same polynomial",
+      "arrays_sha256": "c9b5cca4455bf43bb30a49f29b9bb211d1b8ffb8331de337bc5419c6cc370b47",
+      "raw_sha256": "f70ebcf547a40d6b83a02fd1b37190c30a1500f8518ffa9f72abc47a32aae6a0"
+    }
+  },
+  "overlays": [
+    {
+      "array": "departure_orbit_m",
+      "label": "Орбита Earth"
+    },
+    {
+      "array": "target_orbit_m",
+      "label": "Орбита Polyhymnia",
+      "linestyle": "-.",
+      "color": ".65"
+    }
+  ],
+  "markers": [
+    {
+      "label": "Earth, старт",
+      "r_m": [
+        -139523946102.6892,
+        50016882323.22916,
+        -2184427.0109043373
+      ]
+    },
+    {
+      "label": "Earth, прибытие",
+      "r_m": [
+        146740483780.63065,
+        -34186972952.712685,
+        1406776.7001037567
+      ],
+      "hollow": true
+    },
+    {
+      "label": "Polyhymnia",
+      "r_m": [
+        -452095532711.88275,
+        -236616056914.8676,
+        -5537402032.269078
+      ],
+      "color": "#df1111",
+      "role": "target"
+    }
+  ],
+  "configuration_sha256": "0cca486c99f57bb4ed54dad2aea4acfd522b4ab7330b1d066e4a4f313824ca9e",
+  "configuration_hash_version": 2,
+  "verification": {
+    "passed": true,
+    "position_residual_m": 197.41590899054108,
+    "velocity_residual_m_s": 4.339663697702523e-06,
+    "parameter_audit": {
+      "passed": true,
+      "configuration_sha256": "0cca486c99f57bb4ed54dad2aea4acfd522b4ab7330b1d066e4a4f313824ca9e",
+      "configuration_hash_version": 2,
+      "requested": {
+        "mass_kg": 156,
+        "thrust_N": 0.025,
+        "exhaust_velocity_m_s": 20000,
+        "dry_mass_kg": 90,
+        "launch_tdb": "2029-03-01T00:00:00",
+        "tof_days": 1288.4772314582776,
+        "departure": "Earth",
+        "target": "Polyhymnia",
+        "mode": "rendezvous"
+      },
+      "recovered_model": {
+        "model_thrust_N": 0.025,
+        "thrust_to_requested_ratio": 1.0,
+        "alpha": 0.30000000000000004,
+        "beta": 0.05,
+        "variable_mass": true,
+        "hardware_limit_reached": true,
+        "exhaust_velocity_m_s": 20000.0
+      },
+      "geometry": null,
+      "final_admission": false
+    },
+    "trajectory_difference_m": 197.41590899054108,
+    "velocity_difference_m_s": 4.783771771937109e-06,
+    "stored_throttle_error": 0.0,
+    "stored_throttle_minimum": 0.0,
+    "stored_throttle_maximum": 1.0,
+    "canonical_boundary_residual": 1.3398010700893563e-09,
+    "method": "LSODA with independent bounded/mass equations",
+    "scope": "Numerical extremal and constraints; no global optimality proof",
+    "departure_norm_m_s": 3000.000000000003,
+    "minimum_mass_kg": 149.80003205222778
+  },
+  "schema_version": 1,
+  "arrays_sha256": "321b3ad248a2c669b70dcc53ce8442685e8a9031a340b8cc780be3cecd00aeb2",
+  "departure": {
+    "mode": "bounded_norm",
+    "bound_active": true,
+    "vector_m_s": [
+      -869.6924381041645,
+      -2866.5856404394035,
+      -162.24003553706763
+    ],
+    "norm_m_s": 3000.000000000003,
+    "bound_m_s": 3000
+  },
+  "bounded_model": {
+    "a_max": 0.02652812493186295,
+    "alpha": 0.30000000000000004,
+    "beta": 0.05,
+    "q": 0.03969005320134832,
+    "variable_mass": true,
+    "gravity_spec": null
+  },
+  "body_initial_state_si": [
+    -139523946102.6892,
+    50016882323.22916,
+    -2184427.0109043373,
+    -10533.149254486845,
+    -28139.7466703392,
+    2.458996078966436
+  ],
+  "hardware_limit_reached": true,
+  "collocation_tolerance": 2e-09,
+  "collocation_derivatives": "analytic central-field",
+  "collocation_nodes": 2091,
+  "collocation_iterations": 7
+}

@@ -198,12 +198,7 @@ def run_date_sweep(reference_path, output, start, stop, *, step_days=1, fast_bud
     policy=None if fixed_time else dict(bounds_days=list(time_bounds_days or [base.tof_days*.5,base.tof_days*1.5]))
     missions = [replace(base, case_id=f'date_{i:06d}', launch_tdb=date.isoformat(),time_policy=policy).validate()
                 for i, date in enumerate(dates)]
-    ephemerides = Ephemerides()
-    for body in (base.departure, base.target):
-        coverage = ephemerides.coverage(body)
-        final_jd=missions[-1].launch_jd+(policy['bounds_days'][1] if policy else base.tof_days)
-        if missions[0].launch_jd < coverage['start_jd'] or final_jd > coverage['stop_jd']:
-            raise ValueError(f'{body} ephemeris does not cover the full sweep and its standard reruns')
+    ephemerides = base.ephemerides()
     plan = dict(reference=source.as_posix(), reference_sha256=reference_hash,
                 time_policy=policy,
                 start=first.isoformat(), stop=last.isoformat(), step_days=step_days,

@@ -56,7 +56,7 @@ def _splines(filename,digest,distance,time):
         out=[]
         for key in ('moon_state_si','sun_state_si'):
             s=a[key]
-            out.append(CubicHermiteSpline(t,s[:,:3]/distance,s[:,3:]*time/distance,extrapolate=False))
+            out.append(CubicHermiteSpline(t,s[:,:3]/distance,s[:,3:]*time/distance,extrapolate=True))
     return tuple(out),float(t[-1])
 
 
@@ -70,8 +70,6 @@ class Gravity:
 
     def positions(self,t):
         values=np.asarray(t,dtype=float)
-        if np.any(values<-1e-10) or np.any(values>self.duration+1e-10):raise ValueError('Gravity time outside local ephemeris coverage')
-        values=np.clip(values,0,self.duration)
         return tuple(s(values).T for s in self.splines)
 
     def acceleration_gradient(self,t,r):

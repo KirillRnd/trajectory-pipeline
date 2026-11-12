@@ -1,0 +1,214 @@
+{
+  "case_id": "earth_ceres_2030_d+90",
+  "epoch_jd": 2462623.5,
+  "time_scale": "TDB",
+  "center": "Sun",
+  "frame": "ECLIPJ2000",
+  "model": "IRT two-body minimum integral acceleration squared / 2",
+  "status": "verified_extremal",
+  "stage": "irt",
+  "mission": {
+    "case_id": "earth_ceres_2030_d+90",
+    "departure": "Earth",
+    "target": "Ceres",
+    "launch_tdb": "2030-05-02T00:00:00",
+    "tof_days": 652.4805209580529,
+    "center": "Sun",
+    "mode": "rendezvous",
+    "position_tolerance_m": 1000,
+    "velocity_tolerance_m_s": 0.01,
+    "mass_kg": 156,
+    "departure_mode": "bounded_norm",
+    "vinf_max_m_s": 3000,
+    "vinf_vector_m_s": null,
+    "spacecraft": {
+      "thrust_N": 0.025,
+      "exhaust_velocity_m_s": 20000,
+      "dry_mass_kg": 90
+    },
+    "solver": {
+      "budget_s": 20,
+      "compare_seeds": false,
+      "departure_budget_s": 60,
+      "limit_budget_s": 60,
+      "pazov_budget_s": 90,
+      "psi_budget_s": 120,
+      "bounded_attempt_s": 20,
+      "irt_entry": "fixed_time",
+      "iltt_budget_s": 8,
+      "iltt_branch": 0,
+      "iltt_coordinate_reference": [
+        0.015996217698587983,
+        -0.18016696181891867,
+        1.0301568365280624,
+        3.965903193431999,
+        2.6524977158412764,
+        0.7935017975421529
+      ],
+      "attempt_budget_s": 20,
+      "max_nfev": 70,
+      "irt_coordinates": "costates"
+    },
+    "lunar": null
+  },
+  "scales": {
+    "distance_m": 150749396759.21292,
+    "mu_m3_s2": 1.32712440018e+20
+  },
+  "initial_state_si": [
+    -113372153483.54909,
+    -99358620078.59186,
+    7338066.987087543,
+    19156.381281452526,
+    -22525.0862902813,
+    2.227069402318409
+  ],
+  "target_state_si": [
+    -331928732781.7428,
+    175315927332.63025,
+    66705547013.64337,
+    -8867.407631481341,
+    -17196.162683444225,
+    1083.8864362024924
+  ],
+  "costate_convention": "dimensionless [p_r,p_v], H=p_r*v+p_v*(g+u)-|u|^2/2, u=p_v",
+  "costates_initial": [
+    -0.055361052347864606,
+    -0.0421627839087524,
+    0.004478797054513421,
+    0.053034956945568645,
+    -0.0587057814586336,
+    -0.013947952518197462
+  ],
+  "functional_dimensionless": 0.010962453567367208,
+  "chosen_seed": {
+    "source": "orbit-source boundary correction",
+    "route": "shooting",
+    "last_costates": [
+      -0.055361052347864606,
+      -0.0421627839087524,
+      0.004478797054513421,
+      0.053034956945568645,
+      -0.0587057814586336,
+      -0.013947952518197462
+    ],
+    "independent_check": {
+      "position_residual_m": 31.912622229656638,
+      "velocity_residual_m_s": 1.271626769365345e-06,
+      "free_velocity_transversality": 0.04952699335844212,
+      "difference_r_m": 36.722077818340736,
+      "difference_v_m_s": 1.4624627816556287e-06
+    },
+    "nfev": 1,
+    "integrations": 1,
+    "optimizer_success": true,
+    "residual_norm": 2.3492361872275742e-14,
+    "coordinates": "costates",
+    "conversion": {},
+    "position_residual_m": 4.810027939073938,
+    "velocity_residual_m_s": 1.9933615261772999e-07,
+    "free_velocity_transversality": 0.04952699334048836,
+    "accepted": true
+  },
+  "title": "Earth → Ceres: ИРТ",
+  "ephemerides": {
+    "Earth": {
+      "body": "earth",
+      "start_jd": 2287184.5,
+      "stop_jd": 2688976.5,
+      "source": "KIAM 6.1.6 / bundled JPLEPH",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "center": "requested",
+      "interpolation": "KIAM native ephemeris",
+      "representation": "body center"
+    },
+    "Ceres": {
+      "body": "ceres",
+      "source": "https://ssd.jpl.nasa.gov/api/horizons.api",
+      "parameters": {
+        "format": "json",
+        "COMMAND": "'1;'",
+        "CENTER": "'500@10'",
+        "EPHEM_TYPE": "'VECTORS'",
+        "REF_PLANE": "'ECLIPTIC'",
+        "REF_SYSTEM": "'ICRF'",
+        "OUT_UNITS": "'KM-S'",
+        "VEC_CORR": "'NONE'",
+        "CSV_FORMAT": "'YES'",
+        "VEC_TABLE": "'2'",
+        "TIME_TYPE": "'TDB'",
+        "OBJ_DATA": "'YES'",
+        "START_TIME": "'2020-01-01'",
+        "STOP_TIME": "'2080-01-01'",
+        "STEP_SIZE": "'12 h'"
+      },
+      "center": "Sun",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "units": "m,m/s",
+      "start_jd": 2458849.5,
+      "stop_jd": 2480764.5,
+      "knots": 43831,
+      "max_step_days": 0.5,
+      "interpolation": "cubic Hermite, position and velocity from the same polynomial",
+      "arrays_sha256": "5fff1ecafddcc186d2f8998d82e20e3701cee04010f5d63e2bd318bfd2df2340",
+      "raw_sha256": "e5469b9aa565044ab05384693cdbee47bb321c165627902c3d0c5eeeb245fedd"
+    }
+  },
+  "overlays": [
+    {
+      "array": "departure_orbit_m",
+      "label": "Орбита Earth"
+    },
+    {
+      "array": "target_orbit_m",
+      "label": "Орбита Ceres",
+      "linestyle": "-.",
+      "color": ".65"
+    }
+  ],
+  "markers": [
+    {
+      "label": "Earth, старт",
+      "r_m": [
+        -113372153483.54909,
+        -99358620078.59186,
+        7338066.987087543
+      ]
+    },
+    {
+      "label": "Earth, прибытие",
+      "r_m": [
+        -119286788448.26451,
+        87081453791.85185,
+        -5785198.727304665
+      ],
+      "hollow": true
+    },
+    {
+      "label": "Ceres",
+      "r_m": [
+        -331928732781.7428,
+        175315927332.63025,
+        66705547013.64337
+      ],
+      "color": "#df1111",
+      "role": "target"
+    }
+  ],
+  "configuration_sha256": "dcc86300901a1a59e6265c842f8cb69e1c981a25f1154499ff943a6aa8db78df",
+  "configuration_hash_version": 2,
+  "verification": {
+    "passed": true,
+    "method": "LSODA, independently implemented Hamiltonian RHS",
+    "position_residual_m": 31.912604836933113,
+    "velocity_residual_m_s": 1.271627310711021e-06,
+    "trajectory_difference_m": 36.72207743375515,
+    "velocity_difference_m_s": 1.4624638725454155e-06,
+    "free_velocity_transversality": 0.04952699335844212,
+    "scope": "Numerical extremal and endpoint consistency; not proof of local/global optimality or N-body fidelity"
+  },
+  "schema_version": 1,
+  "arrays_sha256": "8cfe4046e6795f71f2c120846746da38ad6ecc032d3fecbb6346ec0f88f726c5"
+}

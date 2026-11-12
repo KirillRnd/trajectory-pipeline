@@ -60,7 +60,7 @@ def validate_design(design, base):
     if axis=='duration_factors' and base.tof_days is None:raise ValueError('Fixed-time design requires tof_days')
     required = {'date_offsets_days',axis,'engines','mass_alphas','routes',
                 'population','generations','seed','wall_budget_s','node_budget_s','release_budget_s','time_bounds_factors'}
-    optional={'intermediate_release_budget_s','physical_continue_budget_s','intermediate_rounds'}
+    optional={'intermediate_release_budget_s','physical_continue_budget_s','intermediate_rounds','terminal_models','ummp_budget_s'}
     if not required<=set(design) or set(design)-required-optional:raise ValueError('Search design keys differ: '+str(set(design)^required))
     for key in ('date_offsets_days',axis,'mass_alphas','time_bounds_factors'):
         values=design[key]
@@ -80,7 +80,8 @@ def validate_design(design, base):
         if type(design[key]) is not int or design[key] < (0 if key=='seed' else 1):raise ValueError('Invalid '+key)
     for key in ('wall_budget_s','node_budget_s','release_budget_s'):
         if type(design[key]) not in (int,float) or not math.isfinite(design[key]) or design[key]<=0:raise ValueError('Invalid '+key)
-    for key in optional-{'intermediate_rounds'}:
+    if any(x!='ummp' for x in design.get('terminal_models',[])):raise ValueError('Unknown terminal model')
+    for key in optional-{'intermediate_rounds','terminal_models'}:
         if key in design and (type(design[key]) not in (int,float) or not math.isfinite(design[key]) or design[key]<=0):raise ValueError('Invalid '+key)
     if not design['engines']:raise ValueError('Declare at least one engine')
     for engine in design['engines']:
@@ -225,6 +226,19 @@ def worker(request_path):
             path=Path(request['parent_artifact'])
             if sha256(path/'trajectory.npz')!=request['parent_sha256'] or sha256(path/'trajectory.json')!=request['parent_metadata_sha256']:
                 raise ValueError('Parent artifact changed')
+        if operation=='ummp':
+            from .ummp import run_ummp,verify_ummp
+            source=Trajectory.load(request['parent_artifact']);check_result(source,mission)
+            result,state=run_ummp(source,folder/'ummp')
+            if state['status']!='completed_stage':
+                write_json(folder/'result.json',dict(status='partial',phase='ummp',details=state));return
+            check=verify_ummp(result)
+            if not check['passed']:raise ValueError('UMMP replay failed')
+            result.save(folder/'final')
+            write_json(folder/'result.json',dict(status='completed',phase='ummp',target_model='ummp',mission=result.metadata['mission'],
+                fuel_kg=float(result.arrays['mass_kg'][0]-result.arrays['mass_kg'][-1]),verification=check,
+                artifact=str(folder/'final'),metadata_sha256=sha256(folder/'final/trajectory.json'),arrays_sha256=sha256(folder/'final/trajectory.npz')))
+            return
         if operation=='cold':
             from .runner import run_pipeline
             result,status=run_pipeline(mission,folder/'run')
@@ -284,6 +298,9 @@ def worker(request_path):
         else:raise ValueError('Unknown graph operation')
         actual=Mission(**result.metadata['mission'])
         # Reference reuse must match all physical conditions, not just target name.
+        if operation=='cold':
+            from .source_pipeline import needs_source_transition,physical_sources
+            if needs_source_transition(mission):mission=replace(mission,orbit_sources=physical_sources(mission))
         if operation not in ('release','r_release'):audit_configuration(result,mission,make_request(mission),require_final=True)
         check,kiam=check_result(result,actual)
         result.metadata.update(verification=check,kiam_verification=kiam)
@@ -353,7 +370,7 @@ def run_search(mission_path, design_path, history_roots, output, resume=False):
     save.last=start
     def node(operation,mission,reference=None,parent=None):
         request=dict(operation=operation,mission=mission.to_dict(),budget_s=design['node_budget_s'],reference=reference)
-        anchor=mission.solver.get('iltt_resolved',{}).get('tof_days',base.tof_days) if 'angular_branches' in design else base.tof_days
+        anchor=mission.solver.get('iltt_resolved',{}).get('tof_days',mission.tof_days) if 'angular_branches' in design else base.tof_days
         if operation=='r_release':request.update(bounds_days=[x*base.tof_days for x in design['time_bounds_factors']],budget_s=design['release_budget_s'])
         if parent:
             request.update(parent_artifact=state['nodes'][parent]['artifact'],parent_sha256=state['nodes'][parent]['arrays_sha256'],
@@ -361,6 +378,7 @@ def run_search(mission_path, design_path, history_roots, output, resume=False):
                            bounds_days=[x*anchor for x in design['time_bounds_factors']],budget_s=design['release_budget_s'])
         if operation=='intermediate_release':request['budget_s']=design.get('intermediate_release_budget_s',design['release_budget_s'])
         if operation=='physical_continue':request['budget_s']=design.get('physical_continue_budget_s',design['node_budget_s'])
+        if operation=='ummp':request['budget_s']=design.get('ummp_budget_s',design['node_budget_s'])
         key=digest(request)[:24]
         if key in state['nodes']:
             cached=state['nodes'][key]
@@ -379,7 +397,9 @@ def run_search(mission_path, design_path, history_roots, output, resume=False):
             except subprocess.TimeoutExpired:
                 result=dict(status='failed',phase=operation,error='Worker wall-time budget reached')
         state['nodes'][key]=dict(result,request=request)
-        if result['status']=='completed':
+        if result['status']=='completed' and operation=='ummp':
+            state.setdefault('terminal_solutions',[]).append(dict(node=key,model='ummp',artifact=result['artifact']))
+        elif result['status']=='completed':
             actual=Mission(**result['mission']);delta=changes(base,actual)
             solution=dict(node=key,artifact=result['artifact'],changes=delta,original_conditions=not delta,
                           objectives=objectives(base,actual,result['fuel_kg']))
@@ -419,6 +439,7 @@ def run_search(mission_path, design_path, history_roots, output, resume=False):
                 result=state['nodes'][accepted]
                 if result['status']=='completed':
                     score=[1]+[-x for x in objectives(base,Mission(**result['mission']),result['fuel_kg'])]
+                    for terminal_model in design.get('terminal_models',[]):node(terminal_model,Mission(**result['mission']),parent=accepted)
                 else:
                     model=result.get('last_model') or {}
                     score=[0,{'irt':1,'departure':2,'pazov':3,'psi':4,'mass':4,'mass_and_thrust':4,'physical_thrust_limit':4,'fuel':4}.get(result.get('phase'),0),model.get('beta',0),model.get('alpha',0)]
@@ -434,6 +455,7 @@ def run_search(mission_path, design_path, history_roots, output, resume=False):
                  nodes=len(state['nodes']),cache_hits=sum(e['cache_hit'] for e in state['edges']),
                  accepted=len(state['solutions']),original_conditions_found=any(s['original_conditions'] for s in state['solutions']),
                  pareto=state['pareto'],elapsed_s=state['elapsed_s'],physically_unreachable_proven=False)
+    summary['terminal_solutions']=state.get('terminal_solutions',[])
     summary['accepted_configurations']=len({digest(physical_spec(Mission(**state['nodes'][s['node']]['mission']))) for s in state['solutions']})
     write_json(root/'summary.json',summary)
     lines=['# Граф поиска траекторий','',f'Статус: {summary["status"]}. Узлов: {summary["nodes"]}; принятых: {summary["accepted"]}; попаданий в кеш: {summary["cache_hits"]}.',

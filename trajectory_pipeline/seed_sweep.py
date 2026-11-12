@@ -31,7 +31,7 @@ def catalogue(mission,design):
         if type(design[key]) is not int:raise ValueError(key+' must be an integer')
     first=datetime.fromisoformat(design['start_tdb']);last=datetime.fromisoformat(design['stop_tdb'])
     if first.tzinfo or last.tzinfo or last<first:raise ValueError('Invalid TDB date range')
-    eph=Ephemerides();rows=[];requests=[];i=0
+    eph=mission.ephemerides();rows=[];requests=[];i=0
     while first+timedelta(days=i*design['step_days'])<=last:
         date=(first+timedelta(days=i*design['step_days'])).isoformat();i+=1
         settings={k:v for k,v in mission.solver.items() if k not in ('iltt_resolved','iltt_branch','iltt_duration_bounds_days')}
@@ -51,10 +51,7 @@ def catalogue(mission,design):
                     elif duration>design['max_duration_days']:candidate.update(status='screened',reason='KLO_duration_above_horizon')
                     else:
                         # Filter the derived KLO candidate, never fit lambda to a requested time.
-                        for body in (current.departure,current.target):
-                            coverage=eph.coverage(body)
-                            if current.launch_jd<coverage['start_jd'] or current.launch_jd+duration>coverage['stop_jd']:
-                                raise ValueError('Initial interval outside ephemerides: '+body)
+                        candidate['ephemeris_evaluation']={body:eph.evaluation_record(body,[current.launch_jd,current.launch_jd+duration]) for body in (current.departure,current.target)}
                         identity=f'date_{i-1:04d}_branch_{rank:02d}'
                         resolved=replace(current,case_id=identity,solver=dict(settings,iltt_branch=rank,
                             iltt_duration_bounds_days=[1e-8,design['max_duration_days']]))
@@ -81,11 +78,16 @@ def collect_case(folder,mission,process_error=None):
         model=result.metadata['mission']
         for key in ('launch_tdb','departure','target','mass_kg','spacecraft'):
             if model[key]!=mission.to_dict()[key]:raise ValueError('Changed sweep input '+key)
-        if result.metadata['chosen_seed']['source']!='ILTT date/phase':raise ValueError('Non-KLO seed')
+        if result.metadata['chosen_seed']['source'] not in ('ILTT date/phase','ILTT date/phase approximation'):raise ValueError('Non-KLO seed')
+        from .contract import audit_configuration,make_request
+        audit_configuration(result,replace(mission,tof_days=model['tof_days']),make_request(replace(mission,tof_days=model['tof_days'])))
+        if not 0<model['tof_days']<=mission.solver['iltt_duration_bounds_days'][1]:raise ValueError('IRT outside horizon')
+        entry=model['solver'].get('iltt_resolved',{})
+        fallback=model['solver'].get('irt_date_fallback',{})
         scales=Scales(**result.metadata['scales']);J=float(result.metadata['functional_dimensionless'])
         row.update(status='accepted',phase='irt',error=None,artifact=str(artifact),duration_days=model['tof_days'],
-                   lambda_corrected=model['solver']['iltt_resolved']['lambda_corrected'],
-                   k=model['solver']['iltt_resolved']['k'],functional_dimensionless=J,
+                   lambda_corrected=entry.get('lambda_corrected'),
+                   k=entry.get('k',fallback.get('branch',{}).get('k')),entry_route=result.metadata.get('entry_route'),functional_dimensionless=J,
                    functional_si_m2_s3=J*scales.acceleration_m_s2**2*scales.time_s,
                    verification=check,arrays_sha256=sha256(artifact/'trajectory.npz'),metadata_sha256=sha256(artifact/'trajectory.json'))
     if summary.get('elapsed_s') is not None:row['solver_elapsed_s']=summary['elapsed_s']
@@ -142,7 +144,7 @@ def run_seed_sweep(mission,design,output,resume=False):
             with log.open('w') as stream:
                 try:
                     done=subprocess.run([sys.executable,'-m','trajectory_pipeline','solve-irt',str(request),'--output',str(folder)],
-                                        stdout=stream,stderr=subprocess.STDOUT,timeout=design['worker_timeout_s'])
+                                        stdout=stream,stderr=subprocess.STDOUT,timeout=max(design['worker_timeout_s'],design['iltt_budget_s']+3*design['irt_budget_s']+30))
                     if done.returncode and not (folder/'summary.json').exists():error='Worker exit '+str(done.returncode)
                 except subprocess.TimeoutExpired:error='Hard worker time limit'
             row=collect_case(folder,m,error)

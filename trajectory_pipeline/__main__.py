@@ -10,6 +10,15 @@ def exit_code(status):
 def main():
     parser = argparse.ArgumentParser(description='Shared trajectory tools')
     sub = parser.add_subparsers(dest='command', required=True)
+    transition=sub.add_parser('reconcile-irt',help='Correct a verified IRT onto explicitly selected orbit sources')
+    transition.add_argument('source')
+    transition.add_argument('--sources',required=True,help='JSON per-body orbit_sources object')
+    transition.add_argument('--output',required=True)
+    transition.add_argument('--coordinates',nargs='+',choices=['costates','iltt'])
+    rechart=sub.add_parser('recoordinate-irt',help='Correct a saved IRT using an explicit optimization coordinate schedule')
+    rechart.add_argument('source')
+    rechart.add_argument('--coordinates',nargs='+',choices=['costates','iltt'],required=True)
+    rechart.add_argument('--output',required=True)
     search=sub.add_parser('search',help='Genetic graph search over declared dates, engines and existing routes')
     search.add_argument('mission')
     search.add_argument('--design',required=True)
@@ -158,6 +167,17 @@ def main():
         eph = Ephemerides()
         for body in args.bodies:
             print(json.dumps(eph.coverage(body), ensure_ascii=False))
+    elif args.command == 'recoordinate-irt':
+        from .coordinate_pipeline import recoordinate_irt
+        summary=recoordinate_irt(Trajectory.load(args.source),args.coordinates,args.output)
+        print(json.dumps(summary,ensure_ascii=False,indent=2))
+        return exit_code(summary['status'])
+    elif args.command == 'reconcile-irt':
+        from pathlib import Path
+        from .orbit_transition import reconcile_irt
+        _,summary=reconcile_irt(Trajectory.load(args.source),json.loads(Path(args.sources).read_text()),args.output,coordinates=args.coordinates)
+        print(json.dumps(summary,ensure_ascii=False,indent=2))
+        return exit_code(summary['status'])
     elif args.command == 'solve-irt':
         from .problem import Mission
         from .runner import run_irt

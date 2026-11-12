@@ -1,0 +1,214 @@
+{
+  "case_id": "earth_ryugu_2028_d+90",
+  "epoch_jd": 2462013.5,
+  "time_scale": "TDB",
+  "center": "Sun",
+  "frame": "ECLIPJ2000",
+  "model": "IRT two-body minimum integral acceleration squared / 2",
+  "status": "verified_extremal",
+  "stage": "irt",
+  "mission": {
+    "case_id": "earth_ryugu_2028_d+90",
+    "departure": "Earth",
+    "target": "Ryugu",
+    "launch_tdb": "2028-08-30T00:00:00",
+    "tof_days": 691.2839662767665,
+    "center": "Sun",
+    "mode": "rendezvous",
+    "position_tolerance_m": 1000,
+    "velocity_tolerance_m_s": 0.01,
+    "mass_kg": 156,
+    "departure_mode": "bounded_norm",
+    "vinf_max_m_s": 3000,
+    "vinf_vector_m_s": null,
+    "spacecraft": {
+      "thrust_N": 0.025,
+      "exhaust_velocity_m_s": 20000,
+      "dry_mass_kg": 90
+    },
+    "solver": {
+      "budget_s": 20,
+      "compare_seeds": false,
+      "departure_budget_s": 60,
+      "limit_budget_s": 60,
+      "pazov_budget_s": 90,
+      "psi_budget_s": 120,
+      "bounded_attempt_s": 20,
+      "irt_entry": "fixed_time",
+      "iltt_budget_s": 8,
+      "iltt_branch": 0,
+      "iltt_coordinate_reference": [
+        -0.5613943518885081,
+        -2.1584796726854174,
+        4.385577724401232,
+        1.7932467898634676,
+        1.1795326418956238,
+        1.649261475384506
+      ],
+      "attempt_budget_s": 20,
+      "max_nfev": 70,
+      "irt_coordinates": "costates"
+    },
+    "lunar": null
+  },
+  "scales": {
+    "distance_m": 151040637978.3203,
+    "mu_m3_s2": 1.32712440018e+20
+  },
+  "initial_state_si": [
+    138783154064.80783,
+    -59602940017.72691,
+    3156751.492484648,
+    11258.963865253547,
+    27258.604535757535,
+    -2.918406361203228
+  ],
+  "target_state_si": [
+    -93908498265.64252,
+    -177319725739.84375,
+    -3285550315.461336,
+    19267.64703745666,
+    -14179.927403358233,
+    2342.9046114930093
+  ],
+  "costate_convention": "dimensionless [p_r,p_v], H=p_r*v+p_v*(g+u)-|u|^2/2, u=p_v",
+  "costates_initial": [
+    -0.0017283701237058426,
+    -0.004436309667268479,
+    0.01639769089015936,
+    -0.005707537963478012,
+    -0.00048071122501506527,
+    0.0033650428894452197
+  ],
+  "functional_dimensionless": 0.001551192550164708,
+  "chosen_seed": {
+    "source": "orbit-source boundary correction",
+    "route": "shooting",
+    "last_costates": [
+      -0.0017283701237058426,
+      -0.004436309667268479,
+      0.01639769089015936,
+      -0.005707537963478012,
+      -0.00048071122501506527,
+      0.0033650428894452197
+    ],
+    "independent_check": {
+      "position_residual_m": 4.600625930525487,
+      "velocity_residual_m_s": 7.5644243588019e-07,
+      "free_velocity_transversality": 0.02035206334666767,
+      "difference_r_m": 9.230956432743138,
+      "difference_v_m_s": 1.499180549087067e-06
+    },
+    "nfev": 6,
+    "integrations": 6,
+    "optimizer_success": true,
+    "residual_norm": 6.105675638747418e-15,
+    "coordinates": "costates",
+    "conversion": {},
+    "position_residual_m": 5.939836165143956,
+    "velocity_residual_m_s": 7.501302661764943e-07,
+    "free_velocity_transversality": 0.02035206334725565,
+    "accepted": true
+  },
+  "title": "Earth → Ryugu: ИРТ",
+  "ephemerides": {
+    "Earth": {
+      "body": "earth",
+      "start_jd": 2287184.5,
+      "stop_jd": 2688976.5,
+      "source": "KIAM 6.1.6 / bundled JPLEPH",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "center": "requested",
+      "interpolation": "KIAM native ephemeris",
+      "representation": "body center"
+    },
+    "Ryugu": {
+      "body": "ryugu",
+      "source": "https://ssd.jpl.nasa.gov/api/horizons.api",
+      "parameters": {
+        "format": "json",
+        "COMMAND": "'162173;'",
+        "CENTER": "'500@10'",
+        "EPHEM_TYPE": "'VECTORS'",
+        "REF_PLANE": "'ECLIPTIC'",
+        "REF_SYSTEM": "'ICRF'",
+        "OUT_UNITS": "'KM-S'",
+        "VEC_CORR": "'NONE'",
+        "CSV_FORMAT": "'YES'",
+        "VEC_TABLE": "'2'",
+        "TIME_TYPE": "'TDB'",
+        "OBJ_DATA": "'YES'",
+        "START_TIME": "'2020-01-01'",
+        "STOP_TIME": "'2080-01-01'",
+        "STEP_SIZE": "'12 h'"
+      },
+      "center": "Sun",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "units": "m,m/s",
+      "start_jd": 2458849.5,
+      "stop_jd": 2480764.5,
+      "knots": 43831,
+      "max_step_days": 0.5,
+      "interpolation": "cubic Hermite, position and velocity from the same polynomial",
+      "arrays_sha256": "7baad7237cb3a2ca1aa5195d966257a9779401d64351eb5901daea1681ca2a62",
+      "raw_sha256": "73f3c070752bbd42ac7ee560d8981b1673a2c0a42c724e08eab0889a0c0054ee"
+    }
+  },
+  "overlays": [
+    {
+      "array": "departure_orbit_m",
+      "label": "Орбита Earth"
+    },
+    {
+      "array": "target_orbit_m",
+      "label": "Орбита Ryugu",
+      "linestyle": "-.",
+      "color": ".65"
+    }
+  ],
+  "markers": [
+    {
+      "label": "Earth, старт",
+      "r_m": [
+        138783154064.80783,
+        -59602940017.72691,
+        3156751.492484648
+      ]
+    },
+    {
+      "label": "Earth, прибытие",
+      "r_m": [
+        73948223192.18016,
+        -132794888490.4597,
+        8492909.169623425
+      ],
+      "hollow": true
+    },
+    {
+      "label": "Ryugu",
+      "r_m": [
+        -93908498265.64252,
+        -177319725739.84375,
+        -3285550315.461336
+      ],
+      "color": "#df1111",
+      "role": "target"
+    }
+  ],
+  "configuration_sha256": "d959bb1fa22e9739bc9c0eac090837666042222cdfe40ea0360e174c634adafd",
+  "configuration_hash_version": 2,
+  "verification": {
+    "passed": true,
+    "method": "LSODA, independently implemented Hamiltonian RHS",
+    "position_residual_m": 4.60063004387566,
+    "velocity_residual_m_s": 7.564414082537097e-07,
+    "trajectory_difference_m": 9.230956657766438,
+    "velocity_difference_m_s": 1.4991783300683748e-06,
+    "free_velocity_transversality": 0.02035206334666767,
+    "scope": "Numerical extremal and endpoint consistency; not proof of local/global optimality or N-body fidelity"
+  },
+  "schema_version": 1,
+  "arrays_sha256": "75e8928a6539d0a78b49c5e90fa4ce65dca232662aeeed634454ed5032906c56"
+}

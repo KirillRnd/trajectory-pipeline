@@ -55,6 +55,7 @@ class Mission:
     orbital_maneuvers: dict | None = None
     mass_reference: str | None = None
     time_policy: dict | None = None
+    orbit_sources: dict | None = None
 
     @classmethod
     def load(cls, path):
@@ -77,6 +78,8 @@ class Mission:
             return isinstance(value,(int,float,np.integer,np.floating)) and not isinstance(value,(bool,np.bool_)) and np.isfinite(value)
         if not isinstance(self.case_id,str) or not self.case_id.strip():
             raise ValueError('case_id must be a nonempty string')
+        from .orbit_sources import validate_sources
+        validate_sources(self.orbit_sources)
         for body in (self.departure, self.target, self.center):
             canonical(body)
         if self.mode not in ('rendezvous', 'flyby'):
@@ -149,10 +152,14 @@ class Mission:
                 raise ValueError('This capture interface currently supports the planet orbital plane and sunward apoapsis')
         return self
 
+    def ephemerides(self):
+        from .orbit_sources import OrbitSources
+        return OrbitSources(self.orbit_sources)
+
     def boundary(self, eph=None):
         self.validate()
         if self.orbital_maneuvers is not None and (self.departure_offset_state_si is None or self.arrival_offset_state_si is None):raise ValueError('Orbital interfaces unresolved; use solve')
-        eph = eph or Ephemerides()
+        eph = eph or self.ephemerides()
         if canonical(self.center) != 'sun':
             if canonical(self.center)=='earth' and self.lunar is not None:
                 from .lunar import lunar_boundary
@@ -171,7 +178,7 @@ class Mission:
     def to_dict(self):
         result=asdict(self)
         # Preserve serialized/hash identity of all pre-capture missions.
-        for key in ('capture','arrival_offset_state_si','parking_departure','departure_offset_state_si','orbital_maneuvers','mass_reference','time_policy'):
+        for key in ('capture','arrival_offset_state_si','parking_departure','departure_offset_state_si','orbital_maneuvers','mass_reference','time_policy','orbit_sources'):
             if result[key] is None:result.pop(key)
         if self.parking_departure is not None:
             from .parking_departure import ParkingDeparture

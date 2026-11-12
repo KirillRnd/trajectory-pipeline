@@ -30,7 +30,12 @@ class LunarTests(unittest.TestCase):
             h=1e-6
             finite=np.column_stack([(field.independent_scalar(t,r+e*h)[0]-field.independent_scalar(t,r-e*h)[0])/(2*h) for e in np.eye(3)])
             np.testing.assert_allclose(j,finite,rtol=2e-8,atol=2e-8)
-        with self.assertRaises(ValueError):field.positions(times[-1]+1)
+        for t in (-.01,times[-1]+.01):
+            extended=field.positions(t)
+            self.assertTrue(all(np.isfinite(value).all() for value in extended))
+            for value,spline in zip(extended,field.splines):
+                np.testing.assert_allclose(value,spline(t))
+            self.assertGreater(np.linalg.norm(extended[0]-field.positions(np.clip(t,0,times[-1]))[0]),0)
 
 
 if __name__=='__main__':unittest.main()

@@ -12,6 +12,9 @@ from .planetary_capture import CaptureOrbit,backward_capture,orient_capture,corr
 
 
 def verify_capture_mission(folder):
+    from .composed_time import verify_selection
+    selection=verify_selection(folder,verify_capture_mission)
+    if selection is not None:return selection
     from .contract import audit_configuration
     from .bounded import verify_bounded
     from .kiam_verification import verify_kiam_psi
@@ -23,7 +26,7 @@ def verify_capture_mission(folder):
     if om.to_dict()!=expected.to_dict():raise ValueError('Capture outer segment changed the requested mission')
     audit=audit_configuration(outer,expected,req,require_final=True)
     orbit=CaptureOrbit(**{k:mission.capture[k] for k in CaptureOrbit.__dataclass_fields__})
-    planet=Ephemerides().state(mission.target,om.arrival_jd)
+    planet=mission.ephemerides().state(mission.target,om.arrival_jd)
     rjoin=planet[:3]+inner.arrays['r_m'][0];vjoin=planet[3:]+inner.arrays['v_m_s'][0]
     dr=float(np.linalg.norm(rjoin-outer.arrays['r_m'][-1]));dv=float(np.linalg.norm(vjoin-outer.arrays['v_m_s'][-1]))
     dm=abs(float(inner.arrays['mass_kg'][0]-outer.arrays['mass_kg'][-1]))
@@ -38,9 +41,9 @@ def verify_capture_mission(folder):
     balance=abs(fuel-fuel_outer-fuel_capture)
     q=mission.spacecraft['thrust_N']/mission.spacecraft['exhaust_velocity_m_s']
     capture_balance=abs(fuel_capture-q*(meta['duration_s']-meta['burn_start_s']))
-    expected_r=np.vstack([outer.arrays['r_m'],(Ephemerides().state(mission.target,om.arrival_jd+inner.arrays['t_s'][1:]/DAY_S)[:,:3]+inner.arrays['r_m'][1:])])
+    expected_r=np.vstack([outer.arrays['r_m'],(mission.ephemerides().state(mission.target,om.arrival_jd+inner.arrays['t_s'][1:]/DAY_S)[:,:3]+inner.arrays['r_m'][1:])])
     composition_r=float(np.linalg.norm(joint.arrays['r_m']-expected_r,axis=1).max())
-    ep=Ephemerides().state(mission.target,om.arrival_jd+inner.arrays['t_s'][1:]/DAY_S)
+    ep=mission.ephemerides().state(mission.target,om.arrival_jd+inner.arrays['t_s'][1:]/DAY_S)
     expected_v=np.vstack([outer.arrays['v_m_s'],ep[:,3:]+inner.arrays['v_m_s'][1:]])
     composition_v=float(np.linalg.norm(joint.arrays['v_m_s']-expected_v,axis=1).max())
     composition_m=float(np.max(np.abs(joint.arrays['mass_kg']-np.r_[outer.arrays['mass_kg'],inner.arrays['mass_kg'][1:]])))
@@ -119,7 +122,7 @@ def run_capture_pipeline(mission,output,resume=False):
         if seed_summary['status']!='completed':
             summary.update(status='partial',stop_kind='capture_seed_unavailable',error='Heliocentric seed did not complete')
             write_json(output/'summary.json',summary);return seed,summary
-    planet=Ephemerides().state(mission.target,mission.arrival_jd)
+    planet=mission.ephemerides().state(mission.target,mission.arrival_jd)
     evaluations={};history=[];latest=seed;started=perf_counter()
     def evaluate(mf):
         nonlocal latest
@@ -179,7 +182,7 @@ def run_capture_pipeline(mission,output,resume=False):
                 (output/name).rename(output/f'{name}_previous_{index:03d}')
         inner.save(output/'capture')
         inner=Trajectory.load(output/'capture')
-        ep=Ephemerides().state(mission.target,mission.arrival_jd+inner.arrays['t_s'][1:]/DAY_S)
+        ep=mission.ephemerides().state(mission.target,mission.arrival_jd+inner.arrays['t_s'][1:]/DAY_S)
         arrays=dict(t_s=np.r_[outer.arrays['t_s'],outer.arrays['t_s'][-1]+inner.arrays['t_s'][1:]],
                     r_m=np.vstack([outer.arrays['r_m'],ep[:,:3]+inner.arrays['r_m'][1:]]),
                     v_m_s=np.vstack([outer.arrays['v_m_s'],ep[:,3:]+inner.arrays['v_m_s'][1:]]),

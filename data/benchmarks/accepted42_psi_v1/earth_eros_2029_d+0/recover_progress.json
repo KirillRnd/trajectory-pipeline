@@ -1,0 +1,75 @@
+{
+  "events": [
+    {
+      "operation": "coupled",
+      "input_stage": "psi_mass",
+      "input_days": 1118.737301147728,
+      "status": "partial",
+      "stopped_phase": "mass_and_thrust",
+      "details": {
+        "status": "partial",
+        "phase": "mass_and_thrust",
+        "reached_parameter": 0.0,
+        "last_result": "mass_and_thrust/initial"
+      },
+      "checkpoint": "runs/accepted42_psi_v1/earth_eros_2029_d+0/coupled_checkpoint"
+    },
+    {
+      "operation": "release_intermediate",
+      "bounds_days": [
+        559.368650573864,
+        1678.105951721592
+      ],
+      "input_days": 1118.737301147728,
+      "status": "failed",
+      "error": "RuntimeError: No independently verified changed-duration intermediate; see trials.json",
+      "checkpoint": "runs/accepted42_psi_v1/earth_eros_2029_d+0/release_intermediate_checkpoint"
+    },
+    {
+      "operation": "release_early",
+      "bounds_days": [
+        559.368650573864,
+        2237.474602295456
+      ],
+      "input_days": 1118.737301147728,
+      "status": "completed_stage",
+      "output_days": 1158.0543375925329,
+      "details": {
+        "method": "bounded_scalar_with_BVP_correction",
+        "seed_tof_days": 1118.737301147728,
+        "resolved_tof_days": 1158.0543375925329,
+        "bounds_days": [
+          559.368650573864,
+          2237.474602295456
+        ],
+        "requested_bounds_days": [
+          559.368650573864,
+          2237.474602295456
+        ],
+        "objective": "current_model_functional",
+        "seed_objective": 0.0013927523102683912,
+        "objective_value": 0.0013163980457217906,
+        "optimizer_success": false,
+        "stop_reason": "Intermediate duration budget reached",
+        "trials": 9,
+        "physical_solution": false,
+        "global_optimality": false
+      },
+      "checkpoint": "runs/accepted42_psi_v1/earth_eros_2029_d+0/release_early_checkpoint"
+    },
+    {
+      "operation": "early_continue",
+      "input_stage": "departure",
+      "input_days": 1158.0543375925329,
+      "status": "partial",
+      "stopped_phase": "fuel",
+      "details": {
+        "status": "partial",
+        "phase": "fuel",
+        "reached_parameter": 0.028515625000000003,
+        "last_result": "fuel/point_0009"
+      },
+      "checkpoint": "runs/accepted42_psi_v1/earth_eros_2029_d+0/early_continue_checkpoint"
+    }
+  ]
+}

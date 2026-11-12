@@ -1,0 +1,237 @@
+{
+  "case_id": "date_0064_branch_00",
+  "epoch_jd": 2461854.5,
+  "time_scale": "TDB",
+  "center": "Sun",
+  "frame": "ECLIPJ2000",
+  "model": "IRT two-body minimum integral acceleration squared / 2",
+  "status": "verified_extremal",
+  "stage": "irt",
+  "mission": {
+    "case_id": "date_0064_branch_00",
+    "departure": "Earth",
+    "target": "Apophis",
+    "launch_tdb": "2028-03-24T00:00:00",
+    "tof_days": 907.1100458005516,
+    "center": "Sun",
+    "mode": "rendezvous",
+    "position_tolerance_m": 1000,
+    "velocity_tolerance_m_s": 0.01,
+    "mass_kg": 204,
+    "departure_mode": "bounded_norm",
+    "vinf_max_m_s": 3000,
+    "vinf_vector_m_s": null,
+    "spacecraft": {
+      "thrust_N": 0.036,
+      "exhaust_velocity_m_s": 11767.98,
+      "dry_mass_kg": 140
+    },
+    "solver": {
+      "budget_s": 20,
+      "compare_seeds": false,
+      "departure_budget_s": 240,
+      "limit_budget_s": 300,
+      "pazov_budget_s": 300,
+      "psi_budget_s": 600,
+      "bounded_attempt_s": 45,
+      "irt_entry": "fixed_time",
+      "attempt_budget_s": 20,
+      "iltt_budget_s": 60,
+      "iltt_max_abs_k": 5,
+      "iltt_branch": 0,
+      "iltt_duration_bounds_days": [
+        1e-08,
+        1095.75
+      ],
+      "iltt_coordinate_reference": [
+        -0.598199628980797,
+        -1.3966255072596307,
+        3.5531513971342847,
+        4.799183125282046,
+        1.105552377973243,
+        2.3112596427554557
+      ],
+      "max_nfev": 70,
+      "irt_coordinates": "costates"
+    },
+    "lunar": null,
+    "orbit_sources": {
+      "earth": {
+        "kind": "kepler",
+        "preset": "EarthSimple"
+      },
+      "apophis": {
+        "kind": "kepler",
+        "preset": "ApophisNew"
+      }
+    }
+  },
+  "scales": {
+    "distance_m": 149306171620.6494,
+    "mu_m3_s2": 1.32712440018e+20
+  },
+  "initial_state_si": [
+    -148471970947.1961,
+    -15760923699.363441,
+    -3348524.106805896,
+    2653.7805985201167,
+    -29724.597110100207,
+    0.9899004251223387
+  ],
+  "target_state_si": [
+    108564412668.73753,
+    -89116711231.24344,
+    4854872556.68709,
+    23777.80539874378,
+    22782.160091713657,
+    -441.14143183915434
+  ],
+  "costate_convention": "dimensionless [p_r,p_v], H=p_r*v+p_v*(g+u)-|u|^2/2, u=p_v",
+  "costates_initial": [
+    -0.0003988217640108588,
+    0.00492200924033236,
+    -0.0013445211376547398,
+    0.004990907255817287,
+    0.0008706524177976336,
+    0.004641881760561633
+  ],
+  "functional_dimensionless": 0.0006486274865423443,
+  "chosen_seed": {
+    "source": "orbit-source boundary correction",
+    "route": "shooting",
+    "last_costates": [
+      -0.0003988217640108588,
+      0.00492200924033236,
+      -0.0013445211376547398,
+      0.004990907255817287,
+      0.0008706524177976336,
+      0.004641881760561633
+    ],
+    "independent_check": {
+      "position_residual_m": 175.49666953979192,
+      "velocity_residual_m_s": 3.7676384784418605e-05,
+      "free_velocity_transversality": 0.0127623254992105,
+      "difference_r_m": 192.76188944843534,
+      "difference_v_m_s": 4.164599052330893e-05
+    },
+    "nfev": 12,
+    "integrations": 12,
+    "optimizer_success": true,
+    "residual_norm": 6.0974560405695065e-15,
+    "coordinates": "costates",
+    "conversion": {},
+    "position_residual_m": 17.2791593368772,
+    "velocity_residual_m_s": 3.9168065796998065e-06,
+    "free_velocity_transversality": 0.012762325477227,
+    "accepted": true
+  },
+  "title": "Earth → Apophis: ИРТ",
+  "ephemerides": {
+    "Earth": {
+      "body": "earth",
+      "source": "frozen_kepler",
+      "selection": {
+        "kind": "kepler",
+        "preset": "EarthSimple"
+      },
+      "elements": {
+        "epoch_jd": 2457390.5,
+        "a_m": 149597870700.0,
+        "e": 0.01682781268763978,
+        "i_deg": 0.002312212390408654,
+        "node_deg": 219.8210990481491,
+        "peri_deg": 241.9337242483841,
+        "M_deg": 2.6357242780180967,
+        "mu_m3_s2": 1.3271243994e+20
+      },
+      "center": "Sun",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "units": "m,m/s",
+      "start_jd": -1000000000.0,
+      "stop_jd": 1000000000.0,
+      "scope": "Mathematical propagation domain, NOT physical validity across encounters"
+    },
+    "Apophis": {
+      "body": "apophis",
+      "source": "frozen_kepler",
+      "selection": {
+        "kind": "kepler",
+        "preset": "ApophisNew"
+      },
+      "elements": {
+        "epoch_jd": 2462257.5,
+        "a_m": 165065793040.2574,
+        "e": 0.1893017331777165,
+        "i_deg": 2.222322326773371,
+        "node_deg": 203.5805790268064,
+        "peri_deg": 71.40876042371015,
+        "M_deg": 322.8906098836029,
+        "mu_m3_s2": 1.3271244004127939e+20
+      },
+      "center": "Sun",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "units": "m,m/s",
+      "start_jd": -1000000000.0,
+      "stop_jd": 1000000000.0,
+      "scope": "Mathematical propagation domain, NOT physical validity across encounters",
+      "raw_sha256": "08274e53296d450185680a1f64b54e84fd1fb9f1375dcf17425166c56d3647a1"
+    }
+  },
+  "overlays": [
+    {
+      "array": "departure_orbit_m",
+      "label": "Орбита Earth"
+    },
+    {
+      "array": "target_orbit_m",
+      "label": "Орбита Apophis",
+      "linestyle": "-.",
+      "color": ".65"
+    }
+  ],
+  "markers": [
+    {
+      "label": "Earth, старт",
+      "r_m": [
+        -148471970947.1961,
+        -15760923699.363441,
+        -3348524.106805896
+      ]
+    },
+    {
+      "label": "Earth, прибытие",
+      "r_m": [
+        149920156369.00928,
+        -9608910458.607412,
+        4172291.331488395
+      ],
+      "hollow": true
+    },
+    {
+      "label": "Apophis",
+      "r_m": [
+        108564412668.73753,
+        -89116711231.24344,
+        4854872556.68709
+      ],
+      "color": "#df1111",
+      "role": "target"
+    }
+  ],
+  "configuration_sha256": "bc7a6d9fc2142f197a66de8f08adc557644ceb326ea380ec8cc5dec58ddcd21b",
+  "configuration_hash_version": 2,
+  "verification": {
+    "passed": true,
+    "method": "LSODA, independently implemented Hamiltonian RHS",
+    "position_residual_m": 175.49666584111964,
+    "velocity_residual_m_s": 3.767638423449003e-05,
+    "trajectory_difference_m": 192.76189835227072,
+    "velocity_difference_m_s": 4.1645992941714906e-05,
+    "free_velocity_transversality": 0.0127623254992105,
+    "scope": "Numerical extremal and endpoint consistency; not proof of local/global optimality or N-body fidelity"
+  },
+  "schema_version": 1,
+  "arrays_sha256": "89c8cc3007029f12d78db8e98b18f0729f77d04a2bb2701fa01858c51bae2840"
+}

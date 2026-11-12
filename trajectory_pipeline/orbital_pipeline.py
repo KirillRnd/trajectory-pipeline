@@ -28,7 +28,7 @@ def correct_outer(seed,mission,folder):
     old=Mission(**seed.metadata['mission'])
     if (old.launch_tdb,old.tof_days,old.departure,old.target)!=(mission.launch_tdb,mission.tof_days,mission.departure,mission.target):raise ValueError('Outer warm seed uses different dates or bodies')
     if not (seed.metadata['bounded_model']['alpha']==1 and seed.metadata['bounded_model']['beta']==1):raise ValueError('Orbital matching requires a physical PSI seed')
-    eph=Ephemerides();earth=eph.state(mission.departure,mission.launch_jd)
+    eph=mission.ephemerides();earth=eph.state(mission.departure,mission.launch_jd)
     target_body=eph.state(mission.target,mission.arrival_jd)
     start_old=np.asarray(seed.metadata['body_initial_state_si'])-earth
     # The nominal body's velocity is not an orbital velocity offset. Its tiny
@@ -128,7 +128,7 @@ def run_orbital_pipeline(mission,output,resume=False):
                  departure_kind=d['kind'],arrival_kind=a['kind'],completion_scope='initial_orbit_to_final_orbit')
     write_json(output/'summary.json',summary)
     F=mission.spacecraft['thrust_N'];c=mission.spacecraft['exhaust_velocity_m_s']
-    dry=mission.spacecraft['dry_mass_kg'];eph=Ephemerides()
+    dry=mission.spacecraft['dry_mass_kg'];eph=mission.ephemerides()
     earth=eph.state(mission.departure,mission.launch_jd);planet=eph.state(mission.target,mission.arrival_jd)
     normal=np.cross(earth[:3],earth[3:]);normal/=np.linalg.norm(normal)
     parking=ParkingDeparture(**{k:v for k,v in d.items() if k!='kind'})
@@ -278,6 +278,9 @@ def run_orbital_pipeline(mission,output,resume=False):
 
 
 def verify_orbital_mission(folder):
+    from .composed_time import verify_selection
+    selection=verify_selection(folder,verify_orbital_mission)
+    if selection is not None:return selection
     """Verify physical local laws, events, request and the entire composition."""
     from .bounded import verify_bounded
     from .kiam_verification import verify_kiam_psi
@@ -298,7 +301,7 @@ def verify_orbital_mission(folder):
     if joint.metadata['mission']!=m.to_dict() or joint.metadata['center']!='Sun' or joint.metadata['frame']!='ECLIPJ2000' or joint.metadata['time_scale']!='TDB':raise ValueError('Joint mission metadata mismatch')
     links=all(joint.metadata['source_arrays_sha256'][k]==Trajectory.load(p/k).metadata['arrays_sha256'] for k in ('departure','outer','arrival'))
     links &= joint.metadata['impulses_sha256']==sha256(p/'impulses.json')
-    ep=Ephemerides();earth=ep.state(m.departure,m.launch_jd);planet=ep.state(m.target,m.arrival_jd)
+    ep=m.ephemerides();earth=ep.state(m.departure,m.launch_jd);planet=ep.state(m.target,m.arrival_jd)
     D=dep.arrays;O=outer.arrays;A=arr.arrays;J=joint.arrays
     desired=replace(m,mass_kg=float(D['mass_kg'][-1]),mass_reference='interplanetary_departure',
                     departure_offset_state_si=outer.metadata['mission']['departure_offset_state_si'],

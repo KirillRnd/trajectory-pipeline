@@ -18,6 +18,11 @@ def _local_curve(arrays):
 
 def render_orbital_mission(folder,output):
     p=Path(folder);output=Path(output);output.mkdir(parents=True,exist_ok=True)
+    if (p/'time_selection.json').exists():
+        from .orbital_pipeline import verify_orbital_mission
+        check=verify_orbital_mission(p)
+        if not check['passed']:raise ValueError('Composed time selection failed verification')
+        return render_orbital_mission(p/check['duration_search']['artifact'],output)
     if (p/'capture_search.json').exists():
         from .capture_search import verify_capture_search
         check=verify_capture_search(p)

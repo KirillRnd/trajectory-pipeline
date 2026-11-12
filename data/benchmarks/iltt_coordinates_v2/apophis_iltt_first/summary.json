@@ -1,0 +1,166 @@
+{
+  "status": "completed_stage",
+  "stage": "orbit_source_transition",
+  "from_sources": {
+    "earth": {
+      "kind": "kepler",
+      "preset": "EarthSimple"
+    },
+    "apophis": {
+      "kind": "kepler",
+      "preset": "ApophisNew"
+    }
+  },
+  "to_sources": {
+    "earth": {
+      "kind": "ephemerides"
+    },
+    "apophis": {
+      "kind": "ephemerides"
+    }
+  },
+  "launch_tdb": "2029-06-15T00:00:00",
+  "tof_days": 351.8288040681021,
+  "initial_shift_m": 6446326215.774973,
+  "target_shift_m": 638854041.3156106,
+  "target_shift_m_s": 108.70961124524538,
+  "attempts": [
+    {
+      "alpha": 1.0,
+      "diagnostics": {
+        "status": "solved_extremal",
+        "attempts": [
+          {
+            "source": "orbit-source boundary correction",
+            "route": "shooting",
+            "independent_check": {
+              "position_residual_m": 1.2112815689257688,
+              "velocity_residual_m_s": 2.5472860808486104e-07,
+              "free_velocity_transversality": 0.05440234918697413,
+              "difference_r_m": 1.2765223097312846,
+              "difference_v_m_s": 2.057496575234343e-07
+            },
+            "coordinate_steps": [
+              {
+                "nfev": 21,
+                "integrations": 21,
+                "optimizer_success": true,
+                "residual_norm": 0.001001722317126445,
+                "coordinates": "iltt",
+                "conversion": {
+                  "costate_roundtrip_error": 0.0,
+                  "unanchored_fit_error": 0.0009759548989358261,
+                  "anchored": true,
+                  "costate_offset": [
+                    0.001180228100120446,
+                    3.2488949472525563e-05,
+                    0.000224471793429026,
+                    0.00023427093630964263,
+                    0.0011920792765724181,
+                    -0.0005315930598057119
+                  ],
+                  "nfev": 7,
+                  "jacobian_singular_values": [
+                    0.196683573587146,
+                    0.04720896236617885,
+                    0.024953079552340572,
+                    0.022981074058322008,
+                    0.013505489133319134,
+                    0.005231258631917866
+                  ],
+                  "local_rank": 6
+                },
+                "iltt_parameters": [
+                  -0.598199638980797,
+                  -0.880068858318813,
+                  3.661401282777909,
+                  5.118505650699332,
+                  1.2242303828004362,
+                  0.9290316558525594
+                ],
+                "iltt_chart": {
+                  "version": 1,
+                  "initial_state_normalized": [
+                    -0.10820568854653653,
+                    -0.9941285250119143,
+                    6.872994748207937e-05,
+                    0.9860296273323592,
+                    -0.11264754240586598,
+                    3.729481122750158e-05
+                  ],
+                  "reference": [
+                    -0.3345995158106404,
+                    -0.5463358320575453,
+                    3.5523806145372894,
+                    5.160363567291218,
+                    1.2441575264815936,
+                    0.7965595561180667
+                  ],
+                  "parameters": [
+                    -0.598199638980797,
+                    -0.880068858318813,
+                    3.661401282777909,
+                    5.118505650699332,
+                    1.2242303828004362,
+                    0.9290316558525594
+                  ],
+                  "dm_limit": 0.5981996389807971,
+                  "costate_offset": [
+                    0.001180228100120446,
+                    3.2488949472525563e-05,
+                    0.000224471793429026,
+                    0.00023427093630964263,
+                    0.0011920792765724181,
+                    -0.0005315930598057119
+                  ],
+                  "convention": "p = ILTT(parameters, initial_state) + costate_offset; duration independent"
+                }
+              },
+              {
+                "nfev": 4,
+                "integrations": 4,
+                "optimizer_success": true,
+                "residual_norm": 1.150761999601463e-14,
+                "coordinates": "costates",
+                "conversion": {}
+              }
+            ],
+            "nfev": 25,
+            "integrations": 25,
+            "optimizer_success": true,
+            "residual_norm": 1.150761999601463e-14,
+            "position_residual_m": 0.6696266119465583,
+            "velocity_residual_m_s": 7.188100407563305e-08,
+            "free_velocity_transversality": 0.05440234918294458,
+            "accepted": true,
+            "elapsed_s": 0.9902565289994527
+          }
+        ],
+        "elapsed_s": 0.9972767050003313
+      },
+      "accepted": true,
+      "verification": {
+        "passed": true,
+        "method": "LSODA, independently implemented Hamiltonian RHS",
+        "position_residual_m": 1.211272403461129,
+        "velocity_residual_m_s": 2.5472883731676843e-07,
+        "trajectory_difference_m": 1.276517505948514,
+        "velocity_difference_m_s": 2.057495455936887e-07,
+        "free_velocity_transversality": 0.05440234918697413,
+        "scope": "Numerical extremal and endpoint consistency; not proof of local/global optimality or N-body fidelity"
+      }
+    }
+  ],
+  "last_result": "irt",
+  "verification": {
+    "passed": true,
+    "method": "LSODA, independently implemented Hamiltonian RHS",
+    "position_residual_m": 1.211272403461129,
+    "velocity_residual_m_s": 2.5472883731676843e-07,
+    "trajectory_difference_m": 1.276517505948514,
+    "velocity_difference_m_s": 2.057495455936887e-07,
+    "free_velocity_transversality": 0.05440234918697413,
+    "scope": "Numerical extremal and endpoint consistency; not proof of local/global optimality or N-body fidelity"
+  },
+  "reached_alpha": 1.0
+}

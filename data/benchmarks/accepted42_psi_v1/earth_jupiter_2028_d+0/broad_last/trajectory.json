@@ -1,0 +1,840 @@
+{
+  "case_id": "earth_jupiter_2028_d+0",
+  "epoch_jd": 2461923.5,
+  "time_scale": "TDB",
+  "center": "Sun",
+  "frame": "ECLIPJ2000",
+  "model": "IRT two-body minimum integral acceleration squared / 2",
+  "status": "verified_extremal",
+  "stage": "departure",
+  "mission": {
+    "case_id": "earth_jupiter_2028_d+0",
+    "departure": "Earth",
+    "target": "Jupiter",
+    "launch_tdb": "2028-06-01T00:00:00",
+    "tof_days": 2295.43078406924,
+    "center": "Sun",
+    "mode": "rendezvous",
+    "position_tolerance_m": 1000,
+    "velocity_tolerance_m_s": 0.01,
+    "mass_kg": 156,
+    "departure_mode": "bounded_norm",
+    "vinf_max_m_s": 3000,
+    "vinf_vector_m_s": null,
+    "spacecraft": {
+      "thrust_N": 0.025,
+      "exhaust_velocity_m_s": 20000,
+      "dry_mass_kg": 90
+    },
+    "solver": {
+      "budget_s": 20,
+      "compare_seeds": false,
+      "departure_budget_s": 45,
+      "limit_budget_s": 60,
+      "pazov_budget_s": 60,
+      "psi_budget_s": 90,
+      "bounded_attempt_s": 15,
+      "irt_entry": "fixed_time",
+      "iltt_budget_s": 8,
+      "iltt_branch": 0,
+      "iltt_coordinate_reference": [
+        -0.006139298150586103,
+        -0.05131650741328594,
+        1.7546292043563694,
+        0.2510825096156703,
+        5.1353821182475725,
+        0.9018225227964333
+      ],
+      "attempt_budget_s": 20,
+      "max_nfev": 70,
+      "irt_coordinates": "costates",
+      "exact_attempt_s": 25,
+      "pipeline_pazov_alpha": 0.3,
+      "psi_mass_alpha": 0.3
+    },
+    "lunar": null
+  },
+  "scales": {
+    "distance_m": 151698431252.37823,
+    "mu_m3_s2": 1.32712440018e+20
+  },
+  "initial_state_si": [
+    -50280672910.02913,
+    -143123261130.34283,
+    9978119.907125074,
+    27621.66173137535,
+    -9973.273747926782,
+    1.1552967168296797
+  ],
+  "target_state_si": [
+    735914227758.2308,
+    86829307472.92535,
+    -16824718378.113493,
+    -1688.8422586516092,
+    13597.191074432467,
+    -18.783919792939134
+  ],
+  "costate_convention": "dimensionless [p_r,p_v], H=p_r*v+p_v*(g+u)-|u|^2/2, u=p_v",
+  "costates_initial": [
+    -0.01849356352567457,
+    -0.04728697622658034,
+    8.94112878459178e-05,
+    0.04552912647753647,
+    -0.015926125706006967,
+    -0.00023891320450340859
+  ],
+  "functional_dimensionless": 0.008668564492095441,
+  "chosen_seed": {
+    "source": "orbit-source boundary correction",
+    "route": "shooting",
+    "last_costates": [
+      -0.013716168465106145,
+      -0.034811409115526465,
+      0.0004759816095335242,
+      0.028718223563604137,
+      -0.008764069197434044,
+      -0.00021204062306177468
+    ],
+    "independent_check": {
+      "position_residual_m": 411.5082591753496,
+      "velocity_residual_m_s": 1.1628614969839839e-05,
+      "free_velocity_transversality": 0.03667010370536428,
+      "difference_r_m": 436.0512105681346,
+      "difference_v_m_s": 1.1822820852959889e-05
+    },
+    "nfev": 6,
+    "integrations": 6,
+    "optimizer_success": true,
+    "residual_norm": 2.9929331756606875e-13,
+    "coordinates": "costates",
+    "conversion": {},
+    "position_residual_m": 100.16710384947211,
+    "velocity_residual_m_s": 2.4825688963909315e-06,
+    "free_velocity_transversality": 0.03667010367340002,
+    "accepted": true
+  },
+  "title": "Earth → Jupiter: ИРТ",
+  "ephemerides": {
+    "Earth": {
+      "body": "earth",
+      "start_jd": 2287184.5,
+      "stop_jd": 2688976.5,
+      "source": "KIAM 6.1.6 / bundled JPLEPH",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "center": "requested",
+      "interpolation": "KIAM native ephemeris",
+      "representation": "body center"
+    },
+    "Jupiter": {
+      "body": "jupiter",
+      "source": "https://ssd.jpl.nasa.gov/api/horizons.api",
+      "parameters": {
+        "format": "json",
+        "COMMAND": "'599'",
+        "CENTER": "'500@10'",
+        "EPHEM_TYPE": "'VECTORS'",
+        "REF_PLANE": "'ECLIPTIC'",
+        "REF_SYSTEM": "'ICRF'",
+        "OUT_UNITS": "'KM-S'",
+        "VEC_CORR": "'NONE'",
+        "CSV_FORMAT": "'YES'",
+        "VEC_TABLE": "'2'",
+        "TIME_TYPE": "'TDB'",
+        "OBJ_DATA": "'YES'",
+        "START_TIME": "'2020-01-01'",
+        "STOP_TIME": "'2080-01-01'",
+        "STEP_SIZE": "'12 h'"
+      },
+      "center": "Sun",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "units": "m,m/s",
+      "start_jd": 2458849.5,
+      "stop_jd": 2480764.5,
+      "knots": 189746,
+      "max_step_days": 0.125,
+      "interpolation": "cubic Hermite, position and velocity from the same polynomial",
+      "arrays_sha256": "728afced7858f53164dc7f1d2c175e75a96b2674c6abbd7e965706d15cec42ae",
+      "raw_sha256": "d9b8f9b7eab962d853abe2fce9e6d26dbe5cd0257a111c7f0a6f987d806d3cb1",
+      "refinements": [
+        {
+          "parameters": {
+            "format": "json",
+            "COMMAND": "'599'",
+            "CENTER": "'500@10'",
+            "EPHEM_TYPE": "'VECTORS'",
+            "REF_PLANE": "'ECLIPTIC'",
+            "REF_SYSTEM": "'ICRF'",
+            "OUT_UNITS": "'KM-S'",
+            "VEC_CORR": "'NONE'",
+            "CSV_FORMAT": "'YES'",
+            "VEC_TABLE": "'2'",
+            "TIME_TYPE": "'TDB'",
+            "OBJ_DATA": "'YES'",
+            "START_TIME": "'JD2458849.5'",
+            "STOP_TIME": "'JD2480764.5'",
+            "STEP_SIZE": "'6 h'"
+          },
+          "raw": "horizons_refinement_1.txt",
+          "raw_sha256": "66f8494e81c202846c15d974792d995837626c73616a4a71da31412832140333"
+        },
+        {
+          "parameters": {
+            "format": "json",
+            "COMMAND": "'599'",
+            "CENTER": "'500@10'",
+            "EPHEM_TYPE": "'VECTORS'",
+            "REF_PLANE": "'ECLIPTIC'",
+            "REF_SYSTEM": "'ICRF'",
+            "OUT_UNITS": "'KM-S'",
+            "VEC_CORR": "'NONE'",
+            "CSV_FORMAT": "'YES'",
+            "VEC_TABLE": "'2'",
+            "TIME_TYPE": "'TDB'",
+            "OBJ_DATA": "'YES'",
+            "START_TIME": "'JD2459555.436419355'",
+            "STOP_TIME": "'JD2459557.436419355'",
+            "STEP_SIZE": "'5 m'"
+          },
+          "raw": "horizons_refinement_2.txt",
+          "raw_sha256": "137498fd4fc03f32fbe60cd5bcb226039824b5708294f5854d8c6732587d81a7"
+        },
+        {
+          "parameters": {
+            "format": "json",
+            "COMMAND": "'599'",
+            "CENTER": "'500@10'",
+            "EPHEM_TYPE": "'VECTORS'",
+            "REF_PLANE": "'ECLIPTIC'",
+            "REF_SYSTEM": "'ICRF'",
+            "OUT_UNITS": "'KM-S'",
+            "VEC_CORR": "'NONE'",
+            "CSV_FORMAT": "'YES'",
+            "VEC_TABLE": "'2'",
+            "TIME_TYPE": "'TDB'",
+            "OBJ_DATA": "'YES'",
+            "START_TIME": "'JD2460969.307258065'",
+            "STOP_TIME": "'JD2460971.307258065'",
+            "STEP_SIZE": "'5 m'"
+          },
+          "raw": "horizons_refinement_3.txt",
+          "raw_sha256": "62e3096c478d6bbb63a8aacacb6480351fed0fd279b7276bd8afb5de657badb8"
+        },
+        {
+          "parameters": {
+            "format": "json",
+            "COMMAND": "'599'",
+            "CENTER": "'500@10'",
+            "EPHEM_TYPE": "'VECTORS'",
+            "REF_PLANE": "'ECLIPTIC'",
+            "REF_SYSTEM": "'ICRF'",
+            "OUT_UNITS": "'KM-S'",
+            "VEC_CORR": "'NONE'",
+            "CSV_FORMAT": "'YES'",
+            "VEC_TABLE": "'2'",
+            "TIME_TYPE": "'TDB'",
+            "OBJ_DATA": "'YES'",
+            "START_TIME": "'JD2461676.242677419'",
+            "STOP_TIME": "'JD2461678.242677419'",
+            "STEP_SIZE": "'5 m'"
+          },
+          "raw": "horizons_refinement_4.txt",
+          "raw_sha256": "fde855e6c9250a8099db9c6b2901ecd2ca7a93c6369446c49839da1cdb73279e"
+        },
+        {
+          "parameters": {
+            "format": "json",
+            "COMMAND": "'599'",
+            "CENTER": "'500@10'",
+            "EPHEM_TYPE": "'VECTORS'",
+            "REF_PLANE": "'ECLIPTIC'",
+            "REF_SYSTEM": "'ICRF'",
+            "OUT_UNITS": "'KM-S'",
+            "VEC_CORR": "'NONE'",
+            "CSV_FORMAT": "'YES'",
+            "VEC_TABLE": "'2'",
+            "TIME_TYPE": "'TDB'",
+            "OBJ_DATA": "'YES'",
+            "START_TIME": "'JD2462383.178096774'",
+            "STOP_TIME": "'JD2462385.178096774'",
+            "STEP_SIZE": "'5 m'"
+          },
+          "raw": "horizons_refinement_5.txt",
+          "raw_sha256": "953339e3a1b8cb4014444d3aad14034b8d2e22bc63a9f87e9186481fbda050d5"
+        },
+        {
+          "parameters": {
+            "format": "json",
+            "COMMAND": "'599'",
+            "CENTER": "'500@10'",
+            "EPHEM_TYPE": "'VECTORS'",
+            "REF_PLANE": "'ECLIPTIC'",
+            "REF_SYSTEM": "'ICRF'",
+            "OUT_UNITS": "'KM-S'",
+            "VEC_CORR": "'NONE'",
+            "CSV_FORMAT": "'YES'",
+            "VEC_TABLE": "'2'",
+            "TIME_TYPE": "'TDB'",
+            "OBJ_DATA": "'YES'",
+            "START_TIME": "'JD2463090.113516129'",
+            "STOP_TIME": "'JD2463092.113516129'",
+            "STEP_SIZE": "'5 m'"
+          },
+          "raw": "horizons_refinement_6.txt",
+          "raw_sha256": "c31340b434cdeb082e9ec6b46139f34f8559544f96004791ee7206d009b45bab"
+        },
+        {
+          "parameters": {
+            "format": "json",
+            "COMMAND": "'599'",
+            "CENTER": "'500@10'",
+            "EPHEM_TYPE": "'VECTORS'",
+            "REF_PLANE": "'ECLIPTIC'",
+            "REF_SYSTEM": "'ICRF'",
+            "OUT_UNITS": "'KM-S'",
+            "VEC_CORR": "'NONE'",
+            "CSV_FORMAT": "'YES'",
+            "VEC_TABLE": "'2'",
+            "TIME_TYPE": "'TDB'",
+            "OBJ_DATA": "'YES'",
+            "START_TIME": "'JD2463797.048935484'",
+            "STOP_TIME": "'JD2463799.048935484'",
+            "STEP_SIZE": "'5 m'"
+          },
+          "raw": "horizons_refinement_7.txt",
+          "raw_sha256": "eafdb7a9ac7d5bbc366fe30f882d8b8316e6466d6d74c845860ecadf8471c18d"
+        },
+        {
+          "parameters": {
+            "format": "json",
+            "COMMAND": "'599'",
+            "CENTER": "'500@10'",
+            "EPHEM_TYPE": "'VECTORS'",
+            "REF_PLANE": "'ECLIPTIC'",
+            "REF_SYSTEM": "'ICRF'",
+            "OUT_UNITS": "'KM-S'",
+            "VEC_CORR": "'NONE'",
+            "CSV_FORMAT": "'YES'",
+            "VEC_TABLE": "'2'",
+            "TIME_TYPE": "'TDB'",
+            "OBJ_DATA": "'YES'",
+            "START_TIME": "'JD2464503.984354839'",
+            "STOP_TIME": "'JD2464505.984354839'",
+            "STEP_SIZE": "'5 m'"
+          },
+          "raw": "horizons_refinement_8.txt",
+          "raw_sha256": "d24e56fbf55db820b4cdc842ea306a1a06701e74f79f3ec56da5dc268355deac"
+        },
+        {
+          "parameters": {
+            "format": "json",
+            "COMMAND": "'599'",
+            "CENTER": "'500@10'",
+            "EPHEM_TYPE": "'VECTORS'",
+            "REF_PLANE": "'ECLIPTIC'",
+            "REF_SYSTEM": "'ICRF'",
+            "OUT_UNITS": "'KM-S'",
+            "VEC_CORR": "'NONE'",
+            "CSV_FORMAT": "'YES'",
+            "VEC_TABLE": "'2'",
+            "TIME_TYPE": "'TDB'",
+            "OBJ_DATA": "'YES'",
+            "START_TIME": "'JD2465210.919774194'",
+            "STOP_TIME": "'JD2465212.919774194'",
+            "STEP_SIZE": "'5 m'"
+          },
+          "raw": "horizons_refinement_9.txt",
+          "raw_sha256": "a8a3707a1226c009a598ad67cee7eeb40f7ed86207db0db1e20fdefa10ac9c2d"
+        },
+        {
+          "parameters": {
+            "format": "json",
+            "COMMAND": "'599'",
+            "CENTER": "'500@10'",
+            "EPHEM_TYPE": "'VECTORS'",
+            "REF_PLANE": "'ECLIPTIC'",
+            "REF_SYSTEM": "'ICRF'",
+            "OUT_UNITS": "'KM-S'",
+            "VEC_CORR": "'NONE'",
+            "CSV_FORMAT": "'YES'",
+            "VEC_TABLE": "'2'",
+            "TIME_TYPE": "'TDB'",
+            "OBJ_DATA": "'YES'",
+            "START_TIME": "'JD2465917.855193548'",
+            "STOP_TIME": "'JD2465919.855193548'",
+            "STEP_SIZE": "'5 m'"
+          },
+          "raw": "horizons_refinement_10.txt",
+          "raw_sha256": "f08afda1521c40ca68afb5a775df6f9b767b7d79c47033aadc8b6535da830495"
+        },
+        {
+          "parameters": {
+            "format": "json",
+            "COMMAND": "'599'",
+            "CENTER": "'500@10'",
+            "EPHEM_TYPE": "'VECTORS'",
+            "REF_PLANE": "'ECLIPTIC'",
+            "REF_SYSTEM": "'ICRF'",
+            "OUT_UNITS": "'KM-S'",
+            "VEC_CORR": "'NONE'",
+            "CSV_FORMAT": "'YES'",
+            "VEC_TABLE": "'2'",
+            "TIME_TYPE": "'TDB'",
+            "OBJ_DATA": "'YES'",
+            "START_TIME": "'JD2466624.790612903'",
+            "STOP_TIME": "'JD2466626.790612903'",
+            "STEP_SIZE": "'5 m'"
+          },
+          "raw": "horizons_refinement_11.txt",
+          "raw_sha256": "f81e4eb5b685a6725e6c31cecd093b983199e94859c0e9912028582aa00312a4"
+        },
+        {
+          "parameters": {
+            "format": "json",
+            "COMMAND": "'599'",
+            "CENTER": "'500@10'",
+            "EPHEM_TYPE": "'VECTORS'",
+            "REF_PLANE": "'ECLIPTIC'",
+            "REF_SYSTEM": "'ICRF'",
+            "OUT_UNITS": "'KM-S'",
+            "VEC_CORR": "'NONE'",
+            "CSV_FORMAT": "'YES'",
+            "VEC_TABLE": "'2'",
+            "TIME_TYPE": "'TDB'",
+            "OBJ_DATA": "'YES'",
+            "START_TIME": "'JD2467331.726032258'",
+            "STOP_TIME": "'JD2467333.726032258'",
+            "STEP_SIZE": "'5 m'"
+          },
+          "raw": "horizons_refinement_12.txt",
+          "raw_sha256": "3af39a21f7a81a94d376dffec831f40427cd112af61e1851b64f4a752b091cb3"
+        },
+        {
+          "parameters": {
+            "format": "json",
+            "COMMAND": "'599'",
+            "CENTER": "'500@10'",
+            "EPHEM_TYPE": "'VECTORS'",
+            "REF_PLANE": "'ECLIPTIC'",
+            "REF_SYSTEM": "'ICRF'",
+            "OUT_UNITS": "'KM-S'",
+            "VEC_CORR": "'NONE'",
+            "CSV_FORMAT": "'YES'",
+            "VEC_TABLE": "'2'",
+            "TIME_TYPE": "'TDB'",
+            "OBJ_DATA": "'YES'",
+            "START_TIME": "'JD2468038.661451613'",
+            "STOP_TIME": "'JD2468040.661451613'",
+            "STEP_SIZE": "'5 m'"
+          },
+          "raw": "horizons_refinement_13.txt",
+          "raw_sha256": "98576f2d1a1df3d26239115260363fc727068161f6ae7ca198901667b52d0072"
+        },
+        {
+          "parameters": {
+            "format": "json",
+            "COMMAND": "'599'",
+            "CENTER": "'500@10'",
+            "EPHEM_TYPE": "'VECTORS'",
+            "REF_PLANE": "'ECLIPTIC'",
+            "REF_SYSTEM": "'ICRF'",
+            "OUT_UNITS": "'KM-S'",
+            "VEC_CORR": "'NONE'",
+            "CSV_FORMAT": "'YES'",
+            "VEC_TABLE": "'2'",
+            "TIME_TYPE": "'TDB'",
+            "OBJ_DATA": "'YES'",
+            "START_TIME": "'JD2468745.596870968'",
+            "STOP_TIME": "'JD2468747.596870968'",
+            "STEP_SIZE": "'5 m'"
+          },
+          "raw": "horizons_refinement_14.txt",
+          "raw_sha256": "95f1136c6242cc2386caa4dc44d12022f9e0ad6b84fe89f3e9c7af8abf60df61"
+        },
+        {
+          "parameters": {
+            "format": "json",
+            "COMMAND": "'599'",
+            "CENTER": "'500@10'",
+            "EPHEM_TYPE": "'VECTORS'",
+            "REF_PLANE": "'ECLIPTIC'",
+            "REF_SYSTEM": "'ICRF'",
+            "OUT_UNITS": "'KM-S'",
+            "VEC_CORR": "'NONE'",
+            "CSV_FORMAT": "'YES'",
+            "VEC_TABLE": "'2'",
+            "TIME_TYPE": "'TDB'",
+            "OBJ_DATA": "'YES'",
+            "START_TIME": "'JD2469452.532290323'",
+            "STOP_TIME": "'JD2469454.532290323'",
+            "STEP_SIZE": "'5 m'"
+          },
+          "raw": "horizons_refinement_15.txt",
+          "raw_sha256": "8135206e50817bda1b9eae5f788082fb4386342958437539afe73bd97ec6afdd"
+        },
+        {
+          "parameters": {
+            "format": "json",
+            "COMMAND": "'599'",
+            "CENTER": "'500@10'",
+            "EPHEM_TYPE": "'VECTORS'",
+            "REF_PLANE": "'ECLIPTIC'",
+            "REF_SYSTEM": "'ICRF'",
+            "OUT_UNITS": "'KM-S'",
+            "VEC_CORR": "'NONE'",
+            "CSV_FORMAT": "'YES'",
+            "VEC_TABLE": "'2'",
+            "TIME_TYPE": "'TDB'",
+            "OBJ_DATA": "'YES'",
+            "START_TIME": "'JD2470159.467709677'",
+            "STOP_TIME": "'JD2470161.467709677'",
+            "STEP_SIZE": "'5 m'"
+          },
+          "raw": "horizons_refinement_16.txt",
+          "raw_sha256": "a5f9d80eb19224b4e4892bc27cc01b05441160c728eabb0e41b7961eab0b593e"
+        },
+        {
+          "parameters": {
+            "format": "json",
+            "COMMAND": "'599'",
+            "CENTER": "'500@10'",
+            "EPHEM_TYPE": "'VECTORS'",
+            "REF_PLANE": "'ECLIPTIC'",
+            "REF_SYSTEM": "'ICRF'",
+            "OUT_UNITS": "'KM-S'",
+            "VEC_CORR": "'NONE'",
+            "CSV_FORMAT": "'YES'",
+            "VEC_TABLE": "'2'",
+            "TIME_TYPE": "'TDB'",
+            "OBJ_DATA": "'YES'",
+            "START_TIME": "'JD2470866.403129032'",
+            "STOP_TIME": "'JD2470868.403129032'",
+            "STEP_SIZE": "'5 m'"
+          },
+          "raw": "horizons_refinement_17.txt",
+          "raw_sha256": "377b5eeadb48a85e8543fcb3ebc8cd877f1d63d243c7451a7589db9974037a02"
+        },
+        {
+          "parameters": {
+            "format": "json",
+            "COMMAND": "'599'",
+            "CENTER": "'500@10'",
+            "EPHEM_TYPE": "'VECTORS'",
+            "REF_PLANE": "'ECLIPTIC'",
+            "REF_SYSTEM": "'ICRF'",
+            "OUT_UNITS": "'KM-S'",
+            "VEC_CORR": "'NONE'",
+            "CSV_FORMAT": "'YES'",
+            "VEC_TABLE": "'2'",
+            "TIME_TYPE": "'TDB'",
+            "OBJ_DATA": "'YES'",
+            "START_TIME": "'JD2471573.338548387'",
+            "STOP_TIME": "'JD2471575.338548387'",
+            "STEP_SIZE": "'5 m'"
+          },
+          "raw": "horizons_refinement_18.txt",
+          "raw_sha256": "dc06c26213a9689b7d16ad8c3e7cf46572dec541dd56f69a13436ea3667df9d6"
+        },
+        {
+          "parameters": {
+            "format": "json",
+            "COMMAND": "'599'",
+            "CENTER": "'500@10'",
+            "EPHEM_TYPE": "'VECTORS'",
+            "REF_PLANE": "'ECLIPTIC'",
+            "REF_SYSTEM": "'ICRF'",
+            "OUT_UNITS": "'KM-S'",
+            "VEC_CORR": "'NONE'",
+            "CSV_FORMAT": "'YES'",
+            "VEC_TABLE": "'2'",
+            "TIME_TYPE": "'TDB'",
+            "OBJ_DATA": "'YES'",
+            "START_TIME": "'JD2472280.273967742'",
+            "STOP_TIME": "'JD2472282.273967742'",
+            "STEP_SIZE": "'5 m'"
+          },
+          "raw": "horizons_refinement_19.txt",
+          "raw_sha256": "821cbf3df1a03a160208a77656a5d2d080a08549311970ada732a05e14db0654"
+        },
+        {
+          "parameters": {
+            "format": "json",
+            "COMMAND": "'599'",
+            "CENTER": "'500@10'",
+            "EPHEM_TYPE": "'VECTORS'",
+            "REF_PLANE": "'ECLIPTIC'",
+            "REF_SYSTEM": "'ICRF'",
+            "OUT_UNITS": "'KM-S'",
+            "VEC_CORR": "'NONE'",
+            "CSV_FORMAT": "'YES'",
+            "VEC_TABLE": "'2'",
+            "TIME_TYPE": "'TDB'",
+            "OBJ_DATA": "'YES'",
+            "START_TIME": "'JD2472987.209387097'",
+            "STOP_TIME": "'JD2472989.209387097'",
+            "STEP_SIZE": "'5 m'"
+          },
+          "raw": "horizons_refinement_20.txt",
+          "raw_sha256": "c00b992c78e6a510891a91e9bc2b5dbf46603b95bcf3242b92358ac0364978ed"
+        },
+        {
+          "parameters": {
+            "format": "json",
+            "COMMAND": "'599'",
+            "CENTER": "'500@10'",
+            "EPHEM_TYPE": "'VECTORS'",
+            "REF_PLANE": "'ECLIPTIC'",
+            "REF_SYSTEM": "'ICRF'",
+            "OUT_UNITS": "'KM-S'",
+            "VEC_CORR": "'NONE'",
+            "CSV_FORMAT": "'YES'",
+            "VEC_TABLE": "'2'",
+            "TIME_TYPE": "'TDB'",
+            "OBJ_DATA": "'YES'",
+            "START_TIME": "'JD2473694.144806452'",
+            "STOP_TIME": "'JD2473696.144806452'",
+            "STEP_SIZE": "'5 m'"
+          },
+          "raw": "horizons_refinement_21.txt",
+          "raw_sha256": "bfd34f5d7f1640a449f78a194547c1311b0c126ce0ff7d2ad67a8186d0e36fde"
+        },
+        {
+          "parameters": {
+            "format": "json",
+            "COMMAND": "'599'",
+            "CENTER": "'500@10'",
+            "EPHEM_TYPE": "'VECTORS'",
+            "REF_PLANE": "'ECLIPTIC'",
+            "REF_SYSTEM": "'ICRF'",
+            "OUT_UNITS": "'KM-S'",
+            "VEC_CORR": "'NONE'",
+            "CSV_FORMAT": "'YES'",
+            "VEC_TABLE": "'2'",
+            "TIME_TYPE": "'TDB'",
+            "OBJ_DATA": "'YES'",
+            "START_TIME": "'JD2474401.080225806'",
+            "STOP_TIME": "'JD2474403.080225806'",
+            "STEP_SIZE": "'5 m'"
+          },
+          "raw": "horizons_refinement_22.txt",
+          "raw_sha256": "f349e3e80e25e69fdc71170366d5b81ba60940095b9b2c86760f820f18ab7232"
+        },
+        {
+          "parameters": {
+            "format": "json",
+            "COMMAND": "'599'",
+            "CENTER": "'500@10'",
+            "EPHEM_TYPE": "'VECTORS'",
+            "REF_PLANE": "'ECLIPTIC'",
+            "REF_SYSTEM": "'ICRF'",
+            "OUT_UNITS": "'KM-S'",
+            "VEC_CORR": "'NONE'",
+            "CSV_FORMAT": "'YES'",
+            "VEC_TABLE": "'2'",
+            "TIME_TYPE": "'TDB'",
+            "OBJ_DATA": "'YES'",
+            "START_TIME": "'JD2475108.015645161'",
+            "STOP_TIME": "'JD2475110.015645161'",
+            "STEP_SIZE": "'5 m'"
+          },
+          "raw": "horizons_refinement_23.txt",
+          "raw_sha256": "4255520bee63029f12514ef3ad15472d300e86d90db44830e59bbeb972d46f11"
+        },
+        {
+          "parameters": {
+            "format": "json",
+            "COMMAND": "'599'",
+            "CENTER": "'500@10'",
+            "EPHEM_TYPE": "'VECTORS'",
+            "REF_PLANE": "'ECLIPTIC'",
+            "REF_SYSTEM": "'ICRF'",
+            "OUT_UNITS": "'KM-S'",
+            "VEC_CORR": "'NONE'",
+            "CSV_FORMAT": "'YES'",
+            "VEC_TABLE": "'2'",
+            "TIME_TYPE": "'TDB'",
+            "OBJ_DATA": "'YES'",
+            "START_TIME": "'JD2475814.951064516'",
+            "STOP_TIME": "'JD2475816.951064516'",
+            "STEP_SIZE": "'5 m'"
+          },
+          "raw": "horizons_refinement_24.txt",
+          "raw_sha256": "3f09d03ba54ada43deb93c0248dc319f40e53f6f75bdabb6d5677b4722f2aa52"
+        },
+        {
+          "parameters": {
+            "format": "json",
+            "COMMAND": "'599'",
+            "CENTER": "'500@10'",
+            "EPHEM_TYPE": "'VECTORS'",
+            "REF_PLANE": "'ECLIPTIC'",
+            "REF_SYSTEM": "'ICRF'",
+            "OUT_UNITS": "'KM-S'",
+            "VEC_CORR": "'NONE'",
+            "CSV_FORMAT": "'YES'",
+            "VEC_TABLE": "'2'",
+            "TIME_TYPE": "'TDB'",
+            "OBJ_DATA": "'YES'",
+            "START_TIME": "'JD2476521.886483871'",
+            "STOP_TIME": "'JD2476523.886483871'",
+            "STEP_SIZE": "'5 m'"
+          },
+          "raw": "horizons_refinement_25.txt",
+          "raw_sha256": "585fc1402fb99357428d77e02d45de9eafaec01c0581de545da857e640cf28e1"
+        },
+        {
+          "parameters": {
+            "format": "json",
+            "COMMAND": "'599'",
+            "CENTER": "'500@10'",
+            "EPHEM_TYPE": "'VECTORS'",
+            "REF_PLANE": "'ECLIPTIC'",
+            "REF_SYSTEM": "'ICRF'",
+            "OUT_UNITS": "'KM-S'",
+            "VEC_CORR": "'NONE'",
+            "CSV_FORMAT": "'YES'",
+            "VEC_TABLE": "'2'",
+            "TIME_TYPE": "'TDB'",
+            "OBJ_DATA": "'YES'",
+            "START_TIME": "'JD2477228.821903226'",
+            "STOP_TIME": "'JD2477230.821903226'",
+            "STEP_SIZE": "'5 m'"
+          },
+          "raw": "horizons_refinement_26.txt",
+          "raw_sha256": "645cb5c710bdbb64c9398e564902e83d7b5af0c9cc5563833b8963dc058cff4c"
+        },
+        {
+          "parameters": {
+            "format": "json",
+            "COMMAND": "'599'",
+            "CENTER": "'500@10'",
+            "EPHEM_TYPE": "'VECTORS'",
+            "REF_PLANE": "'ECLIPTIC'",
+            "REF_SYSTEM": "'ICRF'",
+            "OUT_UNITS": "'KM-S'",
+            "VEC_CORR": "'NONE'",
+            "CSV_FORMAT": "'YES'",
+            "VEC_TABLE": "'2'",
+            "TIME_TYPE": "'TDB'",
+            "OBJ_DATA": "'YES'",
+            "START_TIME": "'2020-01-01'",
+            "STOP_TIME": "'2050-01-01'",
+            "STEP_SIZE": "'3 h'"
+          },
+          "raw": "horizons_refinement_27.txt",
+          "raw_sha256": "9b22a1c5f5e80fb4729160ce0bb5b64481f0ac997930b2e95295493eda46c8a2"
+        },
+        {
+          "parameters": {
+            "format": "json",
+            "COMMAND": "'599'",
+            "CENTER": "'500@10'",
+            "EPHEM_TYPE": "'VECTORS'",
+            "REF_PLANE": "'ECLIPTIC'",
+            "REF_SYSTEM": "'ICRF'",
+            "OUT_UNITS": "'KM-S'",
+            "VEC_CORR": "'NONE'",
+            "CSV_FORMAT": "'YES'",
+            "VEC_TABLE": "'2'",
+            "TIME_TYPE": "'TDB'",
+            "OBJ_DATA": "'YES'",
+            "START_TIME": "'2050-01-01'",
+            "STOP_TIME": "'2080-01-01'",
+            "STEP_SIZE": "'3 h'"
+          },
+          "raw": "horizons_refinement_28.txt",
+          "raw_sha256": "6048a3b03bc6cdf0a73f73a350e4556973dc2d73774e726e5185252f0370dfa9"
+        }
+      ]
+    }
+  },
+  "overlays": [
+    {
+      "array": "departure_orbit_m",
+      "label": "Орбита Earth"
+    },
+    {
+      "array": "target_orbit_m",
+      "label": "Орбита Jupiter",
+      "linestyle": "-.",
+      "color": ".65"
+    }
+  ],
+  "markers": [
+    {
+      "label": "Earth, старт",
+      "r_m": [
+        -50280672910.02913,
+        -143123261130.34283,
+        9978119.907125074
+      ]
+    },
+    {
+      "label": "Jupiter, прибытие",
+      "r_m": [
+        735914227758.2308,
+        86829307472.92535,
+        -16824718378.113493
+      ]
+    }
+  ],
+  "configuration_sha256": "740a4453afc8d30c06d80ed32a7698f7560381bfc2920b2a03b8581b9a7128ee",
+  "configuration_hash_version": 2,
+  "schema_version": 1,
+  "body_initial_state_si": [
+    -50280672910.02913,
+    -143123261130.34283,
+    9978119.907125074,
+    27621.66173137535,
+    -9973.273747926782,
+    1.1552967168296797
+  ],
+  "departure": {
+    "parameter": 0.0,
+    "mode": "bounded_norm",
+    "bound_m_s": 0.0,
+    "vector_m_s": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "norm_m_s": 0.0,
+    "bound_active": true,
+    "pv0_norm": 0.04823484132170784,
+    "norm_error_m_s": 0.0,
+    "transversality_cross_norm": 0.0
+  },
+  "verification": {
+    "passed": true,
+    "method": "LSODA, independently implemented Hamiltonian RHS",
+    "position_residual_m": 435.3536309953182,
+    "velocity_residual_m_s": 1.4631511124843268e-05,
+    "trajectory_difference_m": 435.3536309953182,
+    "velocity_difference_m_s": 1.4631511124843268e-05,
+    "free_velocity_transversality": 0.006230751941419898,
+    "scope": "Numerical extremal and endpoint consistency; not proof of local/global optimality or N-body fidelity"
+  },
+  "intermediate_time": {
+    "method": "bounded_scalar_with_BVP_correction",
+    "seed_tof_days": 1410.8314937007392,
+    "resolved_tof_days": 2295.43078406924,
+    "bounds_days": [
+      705.4157468503696,
+      2821.6629874014784
+    ],
+    "requested_bounds_days": [
+      705.4157468503696,
+      2821.6629874014784
+    ],
+    "objective": "current_model_functional",
+    "seed_objective": 0.011323861578997941,
+    "objective_value": 0.008668564492095441,
+    "optimizer_success": false,
+    "stop_reason": "Intermediate duration budget reached",
+    "trials": 18,
+    "physical_solution": false,
+    "global_optimality": false
+  },
+  "arrays_sha256": "54193b04916fda4f3c88cba31f3092a83ec15f93ae6bcb7400122a0a6ddf7ec4"
+}

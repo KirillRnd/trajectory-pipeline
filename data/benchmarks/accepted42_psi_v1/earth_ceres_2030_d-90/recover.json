@@ -1,0 +1,126 @@
+{
+  "case_id": "earth_ceres_2030_d-90",
+  "phase": "recover",
+  "status": "partial",
+  "source": "data/benchmarks/coordinate_matrix_v1/primary/earth_ceres_2030_d-90/costates",
+  "events": [
+    {
+      "operation": "coupled",
+      "input_stage": "psi_mass",
+      "input_days": 1252.4820489358965,
+      "status": "partial",
+      "stopped_phase": "mass_and_thrust",
+      "details": {
+        "status": "partial",
+        "phase": "mass_and_thrust",
+        "reached_parameter": 0.9,
+        "last_result": "mass_and_thrust/point_0005"
+      },
+      "checkpoint": "runs/accepted42_psi_v1/earth_ceres_2030_d-90/coupled_checkpoint"
+    },
+    {
+      "operation": "release_intermediate",
+      "bounds_days": [
+        626.2410244679483,
+        1878.7230734038449
+      ],
+      "input_days": 1252.4820489358965,
+      "status": "completed_stage",
+      "output_days": 1104.6465968623515,
+      "details": {
+        "method": "bounded_scalar_with_BVP_correction",
+        "seed_tof_days": 1252.4820489358965,
+        "resolved_tof_days": 1104.6465968623515,
+        "bounds_days": [
+          626.2410244679483,
+          1878.7230734038449
+        ],
+        "requested_bounds_days": [
+          626.2410244679483,
+          1878.7230734038449
+        ],
+        "objective": "current_model_functional",
+        "seed_objective": 0.03942936634781102,
+        "objective_value": 0.041636117383169136,
+        "optimizer_success": false,
+        "stop_reason": "Intermediate duration budget reached",
+        "trials": 6,
+        "physical_solution": false,
+        "global_optimality": false
+      },
+      "checkpoint": "runs/accepted42_psi_v1/earth_ceres_2030_d-90/release_intermediate_checkpoint"
+    },
+    {
+      "operation": "after_release",
+      "input_stage": "psi_limit",
+      "input_days": 1104.6465968623515,
+      "status": "partial",
+      "stopped_phase": "fuel",
+      "details": {
+        "status": "partial",
+        "phase": "fuel",
+        "reached_parameter": 0.24531250000000002,
+        "last_result": "fuel/point_0008"
+      },
+      "checkpoint": "runs/accepted42_psi_v1/earth_ceres_2030_d-90/after_release_checkpoint"
+    },
+    {
+      "operation": "release_early",
+      "bounds_days": [
+        626.2410244679483,
+        2504.964097871793
+      ],
+      "input_days": 1252.4820489358965,
+      "status": "completed_stage",
+      "output_days": 1343.8493830595532,
+      "details": {
+        "method": "bounded_scalar_with_BVP_correction",
+        "seed_tof_days": 1252.4820489358965,
+        "resolved_tof_days": 1343.8493830595532,
+        "bounds_days": [
+          626.2410244679483,
+          2504.964097871793
+        ],
+        "requested_bounds_days": [
+          626.2410244679483,
+          2504.964097871793
+        ],
+        "objective": "current_model_functional",
+        "seed_objective": 0.002796200128572482,
+        "objective_value": 0.0024087823278930902,
+        "optimizer_success": false,
+        "stop_reason": "Intermediate duration budget reached",
+        "trials": 8,
+        "physical_solution": false,
+        "global_optimality": false
+      },
+      "checkpoint": "runs/accepted42_psi_v1/earth_ceres_2030_d-90/release_early_checkpoint"
+    },
+    {
+      "operation": "early_continue",
+      "input_stage": "departure",
+      "input_days": 1343.8493830595532,
+      "status": "partial",
+      "stopped_phase": "mass_and_thrust",
+      "details": {
+        "status": "partial",
+        "phase": "mass_and_thrust",
+        "reached_parameter": 0.034375,
+        "last_result": "mass_and_thrust/point_0006"
+      },
+      "checkpoint": "runs/accepted42_psi_v1/earth_ceres_2030_d-90/early_continue_checkpoint"
+    }
+  ],
+  "last_checkpoint": "runs/accepted42_psi_v1/earth_ceres_2030_d-90/recover_last",
+  "last_stage": "psi_limit",
+  "last_model": {
+    "a_max": 0.02659817384038231,
+    "alpha": 0.195,
+    "beta": 0.034375,
+    "q": 0.03976863003956065,
+    "variable_mass": true,
+    "gravity_spec": null
+  },
+  "last_days": 1343.8493830595532,
+  "elapsed_s": 499.76760949399977
+}

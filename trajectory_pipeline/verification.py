@@ -4,7 +4,7 @@ from scipy.integrate import solve_ivp
 from .data import Scales
 
 
-def replay_irt(initial, p, times,gravity_spec=None):
+def replay_irt(initial, p, times,gravity_spec=None,*,rtol=3e-12):
     """Independent numerical Hamiltonian replay; no optimizer callbacks."""
     if gravity_spec is not None:
         from .gravity import Gravity
@@ -18,7 +18,7 @@ def replay_irt(initial, p, times,gravity_spec=None):
         if gravity is not None:g,jac=gravity.independent_scalar(t,r)
         return np.r_[v,g+pv,-jac.T@pv,-pr]
     return solve_ivp(equations,(0,float(times[-1])),np.r_[initial,p],method='LSODA',
-                     rtol=3e-12,atol=3e-14,t_eval=times,dense_output=gravity is not None)
+                     rtol=rtol,atol=rtol/100,t_eval=times,dense_output=gravity is not None)
 
 
 def verify_irt(trajectory):
@@ -30,7 +30,8 @@ def verify_irt(trajectory):
     initial = scales.normalize_state(m['initial_state_si'])
     target = scales.normalize_state(m['target_state_si'])
     p = np.asarray(m['costates_initial'])
-    sol = replay_irt(initial,p,a['t_s']/scales.time_s,m.get('gravity_spec'))
+    rtol=1.5*float(m['mission'].get('solver',{}).get('irt_integration_rtol',2e-12))
+    sol = replay_irt(initial,p,a['t_s']/scales.time_s,m.get('gravity_spec'),rtol=rtol)
     if not sol.success or len(sol.t)!=len(a['t_s']):
         return dict(passed=False,message='Independent replay did not reach arrival')
     rv = scales.dimensional_state(sol.y[:6].T)

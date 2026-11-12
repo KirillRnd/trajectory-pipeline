@@ -1,0 +1,193 @@
+{
+  "case_id": "earth_venus_2032_d-90",
+  "epoch_jd": 2463447.5,
+  "time_scale": "TDB",
+  "center": "Sun",
+  "frame": "ECLIPJ2000",
+  "model": "IRT two-body minimum integral acceleration squared / 2",
+  "status": "verified_extremal",
+  "stage": "irt",
+  "mission": {
+    "case_id": "earth_venus_2032_d-90",
+    "departure": "Earth",
+    "target": "Venus",
+    "launch_tdb": "2032-08-03T00:00:00",
+    "tof_days": 403.9870907343292,
+    "center": "Sun",
+    "mode": "rendezvous",
+    "position_tolerance_m": 1000,
+    "velocity_tolerance_m_s": 0.01,
+    "mass_kg": 156,
+    "departure_mode": "bounded_norm",
+    "vinf_max_m_s": 3000,
+    "vinf_vector_m_s": null,
+    "spacecraft": {
+      "thrust_N": 0.025,
+      "exhaust_velocity_m_s": 20000,
+      "dry_mass_kg": 90
+    },
+    "solver": {
+      "budget_s": 20,
+      "compare_seeds": false,
+      "departure_budget_s": 60,
+      "limit_budget_s": 60,
+      "pazov_budget_s": 90,
+      "psi_budget_s": 120,
+      "bounded_attempt_s": 20,
+      "irt_entry": "fixed_time",
+      "iltt_budget_s": 8,
+      "iltt_branch": 0,
+      "iltt_coordinate_reference": [
+        -0.025117941203713322,
+        0.7556340834166724,
+        1.376620534707385,
+        8.0983363828576,
+        0.7134918201643236,
+        1.3928549877352474
+      ],
+      "attempt_budget_s": 20,
+      "max_nfev": 70,
+      "irt_coordinates": "costates"
+    },
+    "lunar": null
+  },
+  "scales": {
+    "distance_m": 151806442109.64832,
+    "mu_m3_s2": 1.32712440018e+20
+  },
+  "initial_state_si": [
+    99138705987.9562,
+    -114963962946.90128,
+    8035365.016443672,
+    22085.830501747536,
+    19342.719392530384,
+    -1.0148047452576094
+  ],
+  "target_state_si": [
+    -15190480123.733154,
+    106489305543.58429,
+    2341659712.4327703,
+    -34790.020459468404,
+    -5137.479493291968,
+    1936.4273212071614
+  ],
+  "costate_convention": "dimensionless [p_r,p_v], H=p_r*v+p_v*(g+u)-|u|^2/2, u=p_v",
+  "costates_initial": [
+    -0.019959969786330675,
+    0.015651762527049966,
+    -0.017090330304594788,
+    -0.02013124139563098,
+    -0.011189484355428207,
+    -0.013769374664523324
+  ],
+  "functional_dimensionless": 0.003152913944808396,
+  "chosen_seed": {
+    "source": "orbit-source boundary correction",
+    "route": "shooting",
+    "last_costates": [
+      -0.019959969786330675,
+      0.015651762527049966,
+      -0.017090330304594788,
+      -0.02013124139563098,
+      -0.011189484355428207,
+      -0.013769374664523324
+    ],
+    "independent_check": {
+      "position_residual_m": 14.878715858617591,
+      "velocity_residual_m_s": 4.761631694359957e-06,
+      "free_velocity_transversality": 0.033667892504458466,
+      "difference_r_m": 13.303839519419778,
+      "difference_v_m_s": 4.230313533184283e-06
+    },
+    "nfev": 1,
+    "integrations": 1,
+    "optimizer_success": true,
+    "residual_norm": 8.044018816086629e-15,
+    "coordinates": "costates",
+    "conversion": {},
+    "position_residual_m": 1.5931602437843444,
+    "velocity_residual_m_s": 5.314766388995529e-07,
+    "free_velocity_transversality": 0.033667892507887855,
+    "accepted": true
+  },
+  "title": "Earth → Venus: ИРТ",
+  "ephemerides": {
+    "Earth": {
+      "body": "earth",
+      "start_jd": 2287184.5,
+      "stop_jd": 2688976.5,
+      "source": "KIAM 6.1.6 / bundled JPLEPH",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "center": "requested",
+      "interpolation": "KIAM native ephemeris",
+      "representation": "body center"
+    },
+    "Venus": {
+      "body": "venus",
+      "start_jd": 2287184.5,
+      "stop_jd": 2688976.5,
+      "source": "KIAM 6.1.6 / bundled JPLEPH",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "center": "requested",
+      "interpolation": "KIAM native ephemeris",
+      "representation": "body center"
+    }
+  },
+  "overlays": [
+    {
+      "array": "departure_orbit_m",
+      "label": "Орбита Earth"
+    },
+    {
+      "array": "target_orbit_m",
+      "label": "Орбита Venus",
+      "linestyle": "-.",
+      "color": ".65"
+    }
+  ],
+  "markers": [
+    {
+      "label": "Earth, старт",
+      "r_m": [
+        99138705987.9562,
+        -114963962946.90128,
+        8035365.016443672
+      ]
+    },
+    {
+      "label": "Earth, прибытие",
+      "r_m": [
+        147379737467.61282,
+        -31038764385.248478,
+        1207440.0476252008
+      ],
+      "hollow": true
+    },
+    {
+      "label": "Venus",
+      "r_m": [
+        -15190480123.733154,
+        106489305543.58429,
+        2341659712.4327703
+      ],
+      "color": "#df1111",
+      "role": "target"
+    }
+  ],
+  "configuration_sha256": "502a56d22a6aa9ff56e4c7d9ef33d3c325f864f3a2071f89285d7d82b58318f8",
+  "configuration_hash_version": 2,
+  "verification": {
+    "passed": true,
+    "method": "LSODA, independently implemented Hamiltonian RHS",
+    "position_residual_m": 14.878717073375977,
+    "velocity_residual_m_s": 4.761632248165059e-06,
+    "trajectory_difference_m": 13.303841362370644,
+    "velocity_difference_m_s": 4.230313396691621e-06,
+    "free_velocity_transversality": 0.033667892504458466,
+    "scope": "Numerical extremal and endpoint consistency; not proof of local/global optimality or N-body fidelity"
+  },
+  "schema_version": 1,
+  "arrays_sha256": "4a153ccdee06fd315bab73477cf9c404d7e2e8a7f3282e2c76a5d881e640cb70"
+}

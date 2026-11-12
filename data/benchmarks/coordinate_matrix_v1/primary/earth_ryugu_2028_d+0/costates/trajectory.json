@@ -1,0 +1,214 @@
+{
+  "case_id": "earth_ryugu_2028_d+0",
+  "epoch_jd": 2461923.5,
+  "time_scale": "TDB",
+  "center": "Sun",
+  "frame": "ECLIPJ2000",
+  "model": "IRT two-body minimum integral acceleration squared / 2",
+  "status": "verified_extremal",
+  "stage": "irt",
+  "mission": {
+    "case_id": "earth_ryugu_2028_d+0",
+    "departure": "Earth",
+    "target": "Ryugu",
+    "launch_tdb": "2028-06-01T00:00:00",
+    "tof_days": 868.3999990908997,
+    "center": "Sun",
+    "mode": "rendezvous",
+    "position_tolerance_m": 1000,
+    "velocity_tolerance_m_s": 0.01,
+    "mass_kg": 156,
+    "departure_mode": "bounded_norm",
+    "vinf_max_m_s": 3000,
+    "vinf_vector_m_s": null,
+    "spacecraft": {
+      "thrust_N": 0.025,
+      "exhaust_velocity_m_s": 20000,
+      "dry_mass_kg": 90
+    },
+    "solver": {
+      "budget_s": 20,
+      "compare_seeds": false,
+      "departure_budget_s": 60,
+      "limit_budget_s": 60,
+      "pazov_budget_s": 90,
+      "psi_budget_s": 120,
+      "bounded_attempt_s": 20,
+      "irt_entry": "fixed_time",
+      "iltt_budget_s": 8,
+      "iltt_branch": 0,
+      "iltt_coordinate_reference": [
+        -0.4402303495535847,
+        -2.2399758434171324,
+        4.385604179636111,
+        1.7932530202013546,
+        1.17441481804333,
+        2.0656599141002383
+      ],
+      "attempt_budget_s": 20,
+      "max_nfev": 70,
+      "irt_coordinates": "costates"
+    },
+    "lunar": null
+  },
+  "scales": {
+    "distance_m": 151698431252.37823,
+    "mu_m3_s2": 1.32712440018e+20
+  },
+  "initial_state_si": [
+    -50280672910.02913,
+    -143123261130.34283,
+    9978119.907125074,
+    27621.66173137535,
+    -9973.273747926782,
+    1.1552967168296797
+  ],
+  "target_state_si": [
+    69292504517.96643,
+    -199821457698.11267,
+    13338072494.86626,
+    20980.290992277896,
+    8019.717355986131,
+    1776.8898466282224
+  ],
+  "costate_convention": "dimensionless [p_r,p_v], H=p_r*v+p_v*(g+u)-|u|^2/2, u=p_v",
+  "costates_initial": [
+    0.0019434633125242128,
+    -0.0009983979075655926,
+    0.00024445513265431286,
+    -0.004354922620159841,
+    -0.0006128326141844782,
+    0.011242606293322667
+  ],
+  "functional_dimensionless": 0.0012485211602853903,
+  "chosen_seed": {
+    "source": "orbit-source boundary correction",
+    "route": "shooting",
+    "last_costates": [
+      0.0019434633125242128,
+      -0.0009983979075655926,
+      0.00024445513265431286,
+      -0.004354922620159841,
+      -0.0006128326141844782,
+      0.011242606293322667
+    ],
+    "independent_check": {
+      "position_residual_m": 23.347201122773434,
+      "velocity_residual_m_s": 1.970764310241045e-06,
+      "free_velocity_transversality": 0.011540478659668781,
+      "difference_r_m": 23.726381111881164,
+      "difference_v_m_s": 2.529257596766462e-06
+    },
+    "nfev": 7,
+    "integrations": 7,
+    "optimizer_success": true,
+    "residual_norm": 2.0886343824697763e-14,
+    "coordinates": "costates",
+    "conversion": {},
+    "position_residual_m": 1.1706357367803184,
+    "velocity_residual_m_s": 3.6234434638356764e-07,
+    "free_velocity_transversality": 0.011540478661711985,
+    "accepted": true
+  },
+  "title": "Earth → Ryugu: ИРТ",
+  "ephemerides": {
+    "Earth": {
+      "body": "earth",
+      "start_jd": 2287184.5,
+      "stop_jd": 2688976.5,
+      "source": "KIAM 6.1.6 / bundled JPLEPH",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "center": "requested",
+      "interpolation": "KIAM native ephemeris",
+      "representation": "body center"
+    },
+    "Ryugu": {
+      "body": "ryugu",
+      "source": "https://ssd.jpl.nasa.gov/api/horizons.api",
+      "parameters": {
+        "format": "json",
+        "COMMAND": "'162173;'",
+        "CENTER": "'500@10'",
+        "EPHEM_TYPE": "'VECTORS'",
+        "REF_PLANE": "'ECLIPTIC'",
+        "REF_SYSTEM": "'ICRF'",
+        "OUT_UNITS": "'KM-S'",
+        "VEC_CORR": "'NONE'",
+        "CSV_FORMAT": "'YES'",
+        "VEC_TABLE": "'2'",
+        "TIME_TYPE": "'TDB'",
+        "OBJ_DATA": "'YES'",
+        "START_TIME": "'2020-01-01'",
+        "STOP_TIME": "'2080-01-01'",
+        "STEP_SIZE": "'12 h'"
+      },
+      "center": "Sun",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "units": "m,m/s",
+      "start_jd": 2458849.5,
+      "stop_jd": 2480764.5,
+      "knots": 43831,
+      "max_step_days": 0.5,
+      "interpolation": "cubic Hermite, position and velocity from the same polynomial",
+      "arrays_sha256": "7baad7237cb3a2ca1aa5195d966257a9779401d64351eb5901daea1681ca2a62",
+      "raw_sha256": "73f3c070752bbd42ac7ee560d8981b1673a2c0a42c724e08eab0889a0c0054ee"
+    }
+  },
+  "overlays": [
+    {
+      "array": "departure_orbit_m",
+      "label": "Орбита Earth"
+    },
+    {
+      "array": "target_orbit_m",
+      "label": "Орбита Ryugu",
+      "linestyle": "-.",
+      "color": ".65"
+    }
+  ],
+  "markers": [
+    {
+      "label": "Earth, старт",
+      "r_m": [
+        -50280672910.02913,
+        -143123261130.34283,
+        9978119.907125074
+      ]
+    },
+    {
+      "label": "Earth, прибытие",
+      "r_m": [
+        136593071427.59717,
+        59766520829.16769,
+        -4802676.239839892
+      ],
+      "hollow": true
+    },
+    {
+      "label": "Ryugu",
+      "r_m": [
+        69292504517.96643,
+        -199821457698.11267,
+        13338072494.86626
+      ],
+      "color": "#df1111",
+      "role": "target"
+    }
+  ],
+  "configuration_sha256": "67cb070aa68a373c9b9f77adb0219e474f09fee6d4b1cc8d56514e022ba050b9",
+  "configuration_hash_version": 2,
+  "verification": {
+    "passed": true,
+    "method": "LSODA, independently implemented Hamiltonian RHS",
+    "position_residual_m": 23.347200521427588,
+    "velocity_residual_m_s": 1.970764573697432e-06,
+    "trajectory_difference_m": 23.726180115543855,
+    "velocity_difference_m_s": 2.529258093191112e-06,
+    "free_velocity_transversality": 0.011540478659668781,
+    "scope": "Numerical extremal and endpoint consistency; not proof of local/global optimality or N-body fidelity"
+  },
+  "schema_version": 1,
+  "arrays_sha256": "1a09147c661ac8a522b2424abd57520e138c088835963e2a1399f45211bdd0cc"
+}

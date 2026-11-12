@@ -1,0 +1,71 @@
+{
+  "events": [
+    {
+      "operation": "coupled",
+      "input_stage": "departure",
+      "input_days": 1422.7872026667071,
+      "status": "exception",
+      "error": "ValueError: Initial bounded quadratic conversion failed: {'passed': False, 'position_residual_m': 1227.7216204952424, 'velocity_residual_m_s': 0.00014625310707957033, 'parameter_audit': {'passed': True, 'configuration_sha256': '0bd31054b22864650525e45f81b087823a38b9474ed82dd294d2eaff75163636', 'configuration_hash_version': 2, 'requested': {'mass_kg': 156, 'thrust_N': 0.025, 'exhaust_velocity_m_s': 20000, 'dry_mass_kg': 90, 'launch_tdb': '2028-06-03T00:00:00', 'tof_days': 1422.7872026667071, 'departure': 'Earth', 'target': '2015RE36', 'mode': 'rendezvous'}, 'recovered_model': {'model_thrust_N': np.float64(0.03809163500526486), 'thrust_to_requested_ratio': np.float64(1.5236654002105943), 'alpha': 0.0, 'beta': 0.0, 'variable_mass': False, 'hardware_limit_reached': False}, 'geometry': None, 'final_admission': False}, 'trajectory_difference_m': 1473.603259529551, 'velocity_difference_m_s': 0.00040227330050165923, 'stored_throttle_error': 0.0, 'stored_throttle_minimum': 1.224821733444012e-39, 'stored_throttle_maximum': 0.9708737864077669, 'canonical_boundary_residual': 9.482584674519525e-09, 'method': 'LSODA with independent bounded/mass equations', 'scope': 'Numerical extremal and constraints; no global optimality proof', 'departure_norm_m_s': 675.4137984337885}",
+      "checkpoint": "runs/accepted42_psi_v1/earth_2015re36_2028_d-90/coupled_checkpoint"
+    },
+    {
+      "operation": "release_intermediate",
+      "bounds_days": [
+        711.3936013333536,
+        2134.1808040000606
+      ],
+      "input_days": 1422.7872026667071,
+      "status": "completed_stage",
+      "output_days": 1590.7244513397634,
+      "details": {
+        "method": "bounded_scalar_with_BVP_correction",
+        "seed_tof_days": 1422.7872026667071,
+        "resolved_tof_days": 1590.7244513397634,
+        "bounds_days": [
+          711.3936013333536,
+          2134.1808040000606
+        ],
+        "requested_bounds_days": [
+          711.3936013333536,
+          2134.1808040000606
+        ],
+        "objective": "current_model_functional",
+        "seed_objective": 0.003427353407944757,
+        "objective_value": 0.003388119652591621,
+        "optimizer_success": false,
+        "stop_reason": "Intermediate duration budget reached",
+        "trials": 11,
+        "physical_solution": false,
+        "global_optimality": false
+      },
+      "checkpoint": "runs/accepted42_psi_v1/earth_2015re36_2028_d-90/release_intermediate_checkpoint"
+    },
+    {
+      "operation": "after_release",
+      "input_stage": "departure",
+      "input_days": 1590.7244513397634,
+      "status": "exception",
+      "error": "ValueError: Initial bounded quadratic conversion failed: {'passed': False, 'position_residual_m': 1154.2600409705205, 'velocity_residual_m_s': 0.00011726354627748515, 'parameter_audit': {'passed': True, 'configuration_sha256': '6bc67c46897a3fbffe8d9c5bcf0969a70218b30ad5d35a9a73602a65f12006d9', 'configuration_hash_version': 2, 'requested': {'mass_kg': 156, 'thrust_N': 0.025, 'exhaust_velocity_m_s': 20000, 'dry_mass_kg': 90, 'launch_tdb': '2028-06-03T00:00:00', 'tof_days': 1590.7244513397634, 'departure': 'Earth', 'target': '2015RE36', 'mode': 'rendezvous'}, 'recovered_model': {'model_thrust_N': np.float64(0.037663963683364804), 'thrust_to_requested_ratio': np.float64(1.5065585473345922), 'alpha': 0.0, 'beta': 0.0, 'variable_mass': False, 'hardware_limit_reached': False}, 'geometry': None, 'final_admission': False}, 'trajectory_difference_m': 1264.0116610393447, 'velocity_difference_m_s': 0.00020402311374420365, 'stored_throttle_error': 0.0, 'stored_throttle_minimum': 0.0, 'stored_throttle_maximum': 0.9708737864077669, 'canonical_boundary_residual': 8.578183281334022e-09, 'method': 'LSODA with independent bounded/mass equations', 'scope': 'Numerical extremal and constraints; no global optimality proof', 'departure_norm_m_s': 654.3408393571063}",
+      "checkpoint": "runs/accepted42_psi_v1/earth_2015re36_2028_d-90/after_release_checkpoint"
+    },
+    {
+      "operation": "release_early",
+      "bounds_days": [
+        711.3936013333536,
+        2845.5744053334142
+      ],
+      "input_days": 1422.7872026667071,
+      "status": "failed",
+      "error": "RuntimeError: No independently verified changed-duration intermediate; see trials.json",
+      "checkpoint": "runs/accepted42_psi_v1/earth_2015re36_2028_d-90/release_early_checkpoint"
+    },
+    {
+      "operation": "early_continue",
+      "input_stage": "departure",
+      "input_days": 1422.7872026667071,
+      "status": "exception",
+      "error": "ValueError: Initial bounded quadratic conversion failed: {'passed': False, 'position_residual_m': 1227.7216204952424, 'velocity_residual_m_s': 0.00014625310707957033, 'parameter_audit': {'passed': True, 'configuration_sha256': '0bd31054b22864650525e45f81b087823a38b9474ed82dd294d2eaff75163636', 'configuration_hash_version': 2, 'requested': {'mass_kg': 156, 'thrust_N': 0.025, 'exhaust_velocity_m_s': 20000, 'dry_mass_kg': 90, 'launch_tdb': '2028-06-03T00:00:00', 'tof_days': 1422.7872026667071, 'departure': 'Earth', 'target': '2015RE36', 'mode': 'rendezvous'}, 'recovered_model': {'model_thrust_N': np.float64(0.03809163500526486), 'thrust_to_requested_ratio': np.float64(1.5236654002105943), 'alpha': 0.0, 'beta': 0.0, 'variable_mass': False, 'hardware_limit_reached': False}, 'geometry': None, 'final_admission': False}, 'trajectory_difference_m': 1473.603259529551, 'velocity_difference_m_s': 0.00040227330050165923, 'stored_throttle_error': 0.0, 'stored_throttle_minimum': 1.224821733444012e-39, 'stored_throttle_maximum': 0.9708737864077669, 'canonical_boundary_residual': 9.482584674519525e-09, 'method': 'LSODA with independent bounded/mass equations', 'scope': 'Numerical extremal and constraints; no global optimality proof', 'departure_norm_m_s': 675.4137984337885}",
+      "checkpoint": "runs/accepted42_psi_v1/earth_2015re36_2028_d-90/early_continue_checkpoint"
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "verification": {
+    "passed": true,
+    "position_residual_m": 3.9062648373802116,
+    "velocity_residual_m_s": 6.662741157186644e-07,
+    "parameter_audit": {
+      "passed": true,
+      "configuration_sha256": "78e4cd5dd3ed447f93ff1c40cc885cb8fefc9bf4bc1a6bf37f8762455073083c",
+      "configuration_hash_version": 2,
+      "requested": {
+        "mass_kg": 156,
+        "thrust_N": 0.025,
+        "exhaust_velocity_m_s": 20000,
+        "dry_mass_kg": 90,
+        "launch_tdb": "2029-06-01T00:00:00",
+        "tof_days": 724.2317127853099,
+        "departure": "Earth",
+        "target": "Bennu",
+        "mode": "rendezvous"
+      },
+      "recovered_model": {
+        "model_thrust_N": 0.025,
+        "thrust_to_requested_ratio": 1.0,
+        "alpha": 1.0,
+        "beta": 1.0,
+        "variable_mass": true,
+        "hardware_limit_reached": true,
+        "exhaust_velocity_m_s": 20000.0
+      },
+      "geometry": null,
+      "final_admission": true
+    },
+    "trajectory_difference_m": 3.907892702689189,
+    "velocity_difference_m_s": 6.668292083256524e-07,
+    "stored_throttle_error": 0.0,
+    "stored_throttle_minimum": 0.0,
+    "stored_throttle_maximum": 1.0,
+    "canonical_boundary_residual": 3.4343422204670784e-11,
+    "method": "LSODA with independent bounded/mass equations",
+    "scope": "Numerical extremal and constraints; no global optimality proof",
+    "departure_norm_m_s": 1876.950928419678,
+    "switching_sign_violation": 1.0976989698354116e-10,
+    "switching_node_residual": 1.0976989698354116e-10,
+    "minimum_mass_kg": 124.88182409569399,
+    "fuel_kg": 31.11817590430601,
+    "mass_difference_kg": 1.9051427102567686e-13,
+    "stored_thrust_error_N": 0.0,
+    "mass_balance_error_kg": 2.4868995751603507e-14
+  },
+  "kiam_verification": {
+    "passed": true,
+    "source": "Unmodified KIAM Astro compiled Fortran equations and published control API",
+    "package_version": "6.1.6",
+    "samples": 100,
+    "maximum_dimensionless_rhs_error": 6.661338147750939e-16,
+    "maximum_dimensionless_force_error": 6.938893903907228e-18,
+    "maximum_third_body_decomposition_error": 0.0,
+    "nbody_gravity": {
+      "passed": true,
+      "applicable": false
+    },
+    "costate_map": "p_r,v(KIAM)=p_r,v/vex; p_m(KIAM)=1+p_m/vex; normalized initial mass=1",
+    "scope": "KIAM central mass-optimal equations/control, plus independent third-body decomposition when present; not a separate global optimization"
+  },
+  "original_request_audit": {
+    "passed": true,
+    "configuration_sha256": "78e4cd5dd3ed447f93ff1c40cc885cb8fefc9bf4bc1a6bf37f8762455073083c",
+    "configuration_hash_version": 2,
+    "requested": {
+      "mass_kg": 156,
+      "thrust_N": 0.025,
+      "exhaust_velocity_m_s": 20000,
+      "dry_mass_kg": 90,
+      "launch_tdb": "2029-06-01T00:00:00",
+      "tof_days": 724.2317127853099,
+      "departure": "Earth",
+      "target": "Bennu",
+      "mode": "rendezvous"
+    },
+    "recovered_model": {
+      "model_thrust_N": 0.025,
+      "thrust_to_requested_ratio": 1.0,
+      "alpha": 1.0,
+      "beta": 1.0,
+      "variable_mass": true,
+      "hardware_limit_reached": true,
+      "exhaust_velocity_m_s": 20000.0
+    },
+    "geometry": {
+      "epoch_jd": 2462288.5,
+      "arrival_jd": 2463012.731712785,
+      "departure_position_difference_m": 7.62939453125e-06,
+      "arrival_position_difference_m": 0.0
+    },
+    "final_admission": true
+  }
+}

@@ -87,12 +87,7 @@ def release_intermediate_duration(source,bounds_days,deadline,output):
     mission=Mission(**source.metadata['mission']);lo,hi=map(float,bounds_days)
     if not np.isfinite([lo,hi]).all() or not 0<lo<=mission.tof_days<=hi or lo==hi:
         raise ValueError('Intermediate duration bounds must contain source duration')
-    eph=Ephemerides();requested_bounds=[lo,hi]
-    for body in (mission.departure,mission.target):
-        coverage=eph.coverage(body)
-        if mission.launch_jd<coverage['start_jd']:raise ValueError('Departure epoch outside ephemeris coverage')
-        hi=min(hi,coverage['stop_jd']-mission.launch_jd)
-    if not lo<=mission.tof_days<=hi or lo>=hi:raise ValueError('No covered duration interval containing source')
+    eph=mission.ephemerides();requested_bounds=[lo,hi]
     model=BoundedModel(**source.metadata['bounded_model']) if 'bounded_model' in source.metadata else None
     candidates=[source];history=[];scale=max(abs(source.metadata['functional_dimensionless']),1e-12)
     attempt=float(mission.solver.get('bounded_attempt_s',20))

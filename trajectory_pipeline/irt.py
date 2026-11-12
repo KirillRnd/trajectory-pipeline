@@ -68,13 +68,28 @@ def _physical_errors(sol, target, scales, mode):
 
 
 def correct_shooting(initial, target, tof, guess, *, mode='rendezvous', max_nfev=70,
-                     deadline=np.inf, costate_frame=None):
+                     deadline=np.inf, costate_frame=None, coordinates="costates",
+                     iltt_reference=None, dm_limit=.999*abs(np.sin(.642)), rtol=2e-12):
+    if isinstance(coordinates,(list,tuple)):
+        if not coordinates:raise ValueError('Empty coordinate schedule')
+        current=np.asarray(guess).copy();history=[];reference=iltt_reference
+        for coordinate in coordinates:
+            current,diag=correct_shooting(initial,target,tof,current,mode=mode,max_nfev=max_nfev,
+                deadline=deadline,costate_frame=costate_frame,coordinates=coordinate,
+                iltt_reference=reference,dm_limit=dm_limit,rtol=rtol)
+            history.append(diag)
+            if 'iltt_parameters' in diag:reference=diag['iltt_parameters']
+        return current,dict(coordinate_steps=history,nfev=sum(x['nfev'] for x in history),
+                            integrations=sum(x['integrations'] for x in history),
+                            optimizer_success=history[-1]['optimizer_success'],residual_norm=history[-1]['residual_norm'])
+    if coordinates not in ('costates','iltt'):raise ValueError('Unknown IRT optimization coordinates')
+    if coordinates=='iltt' and costate_frame is not None:raise ValueError('Choose ILTT coordinates or a linear costate frame, not both')
     cm = _module('_pipeline_continuation','ILTT/continuation_methods.py')
     problem = cm.BoundaryProblem(initial[:3],initial[3:],target[:3],target[3:],tof,mode=mode)
     def guard():
         if perf_counter() > deadline:
             raise TimeoutError('IRT integration time budget reached')
-    cfg = cm.ContinuationConfig(rtol=2e-12,atol=2e-14,raise_on_internal_failure=True,integration_guard=guard)
+    cfg = cm.ContinuationConfig(rtol=rtol,atol=rtol/100,raise_on_internal_failure=True,integration_guard=guard)
     last_x = None
     last_eval = None
     calls = 0
@@ -90,13 +105,28 @@ def correct_shooting(initial, target, tof, guess, *, mode='rendezvous', max_nfev
         return last_eval
 
     transform = np.block([[np.zeros((3,3)),np.eye(3)],[-np.eye(3),np.zeros((3,3))]])
-    chart = costate_chart(costate_frame)
-    opt = least_squares(lambda z:evaluate(chart@z).residual,np.linalg.solve(chart,guess),
-                        jac=lambda z:evaluate(chart@z).jacobian@transform@chart,
-                        xtol=1e-11,ftol=1e-11,gtol=1e-11,max_nfev=max_nfev,
+    conversion={}
+    if coordinates=='iltt':
+        from .iltt_coordinates import ILTTCoordinates
+        if iltt_reference is None:raise ValueError('ILTT mode needs an explicit local parameter reference')
+        chart=ILTTCoordinates(initial,iltt_reference,dm_limit=dm_limit)
+        z0,conversion=chart.from_costates(guess,deadline=deadline)
+        decode=chart.to_costates;derivative=chart.jacobian;bounds=(chart.lower,chart.upper)
+    else:
+        chart=costate_chart(costate_frame)
+        z0=np.linalg.solve(chart,guess);decode=lambda z:chart@z
+        derivative=lambda z:chart;bounds=(-np.inf,np.inf)
+    opt = least_squares(lambda z:evaluate(decode(z)).residual,z0,
+                        jac=lambda z:evaluate(decode(z)).jacobian@transform@derivative(z),
+                        bounds=bounds,xtol=1e-11,ftol=1e-11,gtol=1e-11,max_nfev=max_nfev,
                         method='trf',x_scale='jac')
-    return chart@opt.x,dict(nfev=int(opt.nfev),integrations=calls,optimizer_success=bool(opt.success),
-                      residual_norm=float(np.linalg.norm(opt.fun)))
+    diag=dict(nfev=int(opt.nfev),integrations=calls,optimizer_success=bool(opt.success),
+              residual_norm=float(np.linalg.norm(opt.fun)),coordinates=coordinates,conversion=conversion)
+    if coordinates=='iltt':
+        diag['iltt_parameters']=opt.x.tolist()
+        diag['iltt_chart']=chart.record(opt.x)
+    return decode(opt.x),diag
+
 
 
 def collocation_seed(initial,target,tof,guess,mode,deadline):
@@ -127,10 +157,10 @@ def collocation_seed(initial,target,tof,guess,mode,deadline):
     return sol.y[6:12,0]
 
 
-def solve_irt(mission, eph=None):
-    eph = eph or Ephemerides()
+def solve_irt(mission, eph=None, *, costate_seed=None):
+    eph = eph or mission.ephemerides()
     from .iltt_entry import resolve_date_mission,date_entry
-    mission=resolve_date_mission(mission,eph)
+    if costate_seed is None:mission=resolve_date_mission(mission,eph)
     initial_si,target_si,scales = mission.boundary(eph)
     initial,target = scales.normalize_state(initial_si),scales.normalize_state(target_si)
     tof = mission.tof_days*DAY_S/scales.time_s
@@ -139,7 +169,10 @@ def solve_irt(mission, eph=None):
     history = []
     accepted = []
     collocation_attempted = False
-    if date_entry(mission):
+    rtol=float(mission.solver.get('irt_integration_rtol',2e-12))
+    if costate_seed is not None:
+        seeds=[(dict(source='orbit-source boundary correction'),np.asarray(costate_seed,dtype=float))]
+    elif date_entry(mission):
         entry=mission.solver['iltt_resolved']
         seeds=[(dict(source='ILTT date/phase',branch_rank=entry['branch_rank'],k=entry['k'],
                      lambda_turns=entry['lambda_corrected'],kappa=entry['kappa']),np.asarray(entry['costates']))]
@@ -147,7 +180,7 @@ def solve_irt(mission, eph=None):
         seeds = list(iltt_seeds(*[initial[:3],initial[3:],target[:3],target[3:],tof]))
     for info,seed in seeds:
         for route in ('shooting','collocation'):
-            if date_entry(mission) and route=='collocation':continue  # Never silently replace the ILTT branch.
+            if (date_entry(mission) or costate_seed is not None) and route=='collocation':continue  # Never silently replace the ILTT branch.
             if route=='collocation' and collocation_attempted:
                 continue
             if route=='collocation':
@@ -160,9 +193,13 @@ def solve_irt(mission, eph=None):
             try:
                 guess = seed if route=='shooting' else collocation_seed(initial,target,tof,seed,mission.mode,attempt_deadline)
                 costates,diag = correct_shooting(initial,target,tof,guess,mode=mission.mode,
-                                                 max_nfev=int(mission.solver.get('max_nfev',70)),deadline=attempt_deadline)
+                                                 max_nfev=int(mission.solver.get('max_nfev',70)),deadline=attempt_deadline,
+                                                 coordinates=mission.solver.get('irt_coordinates','costates'),
+                                                 iltt_reference=mission.solver.get('iltt_coordinate_reference',mission.solver.get('iltt_resolved',{}).get('x_corrected')),
+                                                 dm_limit=mission.solver.get('iltt_dm_limit',.999*abs(np.sin(.642))),rtol=rtol)
+                attempt['last_costates']=costates.tolist()
                 sol = solve_ivp(rhs,(0,tof),np.r_[initial,costates],method='DOP853',
-                                rtol=2e-12,atol=2e-14,t_eval=np.linspace(0,tof,801))
+                                rtol=rtol,atol=rtol/100,t_eval=np.linspace(0,tof,801))
                 if not sol.success or abs(sol.t[-1]-tof)>1e-12:
                     raise RuntimeError('Final integration did not reach arrival')
                 errors = _physical_errors(sol,target,scales,mission.mode)
@@ -170,7 +207,7 @@ def solve_irt(mission, eph=None):
                 ok &= errors['velocity_residual_m_s']<=mission.velocity_tolerance_m_s if mission.mode=='rendezvous' else errors['free_velocity_transversality']<1e-8
                 if ok:
                     from .verification import replay_irt
-                    independent = replay_irt(initial,costates,sol.t)
+                    independent = replay_irt(initial,costates,sol.t,rtol=1.5*rtol)
                     if not independent.success or independent.y.shape!=sol.y.shape:
                         ok=False
                         attempt['independent_failure']='Independent integration did not reach arrival'

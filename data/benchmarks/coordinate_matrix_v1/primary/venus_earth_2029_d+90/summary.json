@@ -1,0 +1,212 @@
+{
+  "case_id": "venus_earth_2029_d+90",
+  "target": "Earth",
+  "departure": "Venus",
+  "mode": "rendezvous",
+  "date": "2029-04-01T00:00:00",
+  "stages": [
+    {
+      "coordinates": "iltt",
+      "accepted": true,
+      "diagnostics": {
+        "status": "solved_extremal",
+        "attempts": [
+          {
+            "source": "orbit-source boundary correction",
+            "route": "shooting",
+            "last_costates": [
+              0.009729599368924962,
+              0.002888340869438576,
+              0.0039758868649983296,
+              -0.0025643621210833965,
+              0.009273651495082923,
+              -0.0021411975137128657
+            ],
+            "independent_check": {
+              "position_residual_m": 17.982771640290395,
+              "velocity_residual_m_s": 2.5951442270623407e-06,
+              "free_velocity_transversality": 0.007779027003849442,
+              "difference_r_m": 26.837032655171267,
+              "difference_v_m_s": 4.553270734252965e-06
+            },
+            "nfev": 14,
+            "integrations": 14,
+            "optimizer_success": true,
+            "residual_norm": 1.4617474407403067e-13,
+            "coordinates": "iltt",
+            "conversion": {
+              "costate_roundtrip_error": 0.0,
+              "unanchored_fit_error": 0.0,
+              "anchored": false,
+              "costate_offset": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "nfev": 1,
+              "jacobian_singular_values": [
+                0.022807238370739794,
+                0.015540424019245035,
+                0.008885289006057758,
+                0.000791840241503233,
+                2.6370235027141913e-05,
+                4.204337122737833e-06
+              ],
+              "local_rank": 6
+            },
+            "iltt_parameters": [
+              -0.024397489375462666,
+              0.5397550073015823,
+              1.3125653882760489,
+              1.457586039718242,
+              1.451622705382392,
+              2.2849044151556877
+            ],
+            "iltt_chart": {
+              "version": 1,
+              "initial_state_normalized": [
+                0.9595876928159388,
+                0.27664525658272615,
+                -0.05156415233920888,
+                -0.28091553484673676,
+                0.9577718022069497,
+                0.029375454739053328
+              ],
+              "reference": [
+                -0.02492068525146947,
+                -0.0005076793230319246,
+                2.9154523384510878,
+                1.7469289429329213,
+                1.3773244904781743,
+                2.293624719019577
+              ],
+              "parameters": [
+                -0.024397489375462666,
+                0.5397550073015823,
+                1.3125653882760489,
+                1.457586039718242,
+                1.451622705382392,
+                2.2849044151556877
+              ],
+              "dm_limit": 0.5981996389807971,
+              "costate_offset": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "convention": "p = ILTT(parameters, initial_state) + costate_offset; duration independent"
+            },
+            "position_residual_m": 7.408834978789134,
+            "velocity_residual_m_s": 1.4655731904892337e-06,
+            "free_velocity_transversality": 0.007779027012863382,
+            "accepted": true,
+            "elapsed_s": 0.8632905559989013
+          }
+        ],
+        "elapsed_s": 0.8726495290011371
+      },
+      "verification": {
+        "passed": true,
+        "method": "LSODA, independently implemented Hamiltonian RHS",
+        "position_residual_m": 17.982775159551327,
+        "velocity_residual_m_s": 2.5951433202420345e-06,
+        "trajectory_difference_m": 26.837027488668134,
+        "velocity_difference_m_s": 4.55327236775783e-06,
+        "free_velocity_transversality": 0.007779027003849442,
+        "scope": "Numerical extremal and endpoint consistency; not proof of local/global optimality or N-body fidelity"
+      }
+    },
+    {
+      "coordinates": "costates",
+      "accepted": true,
+      "diagnostics": {
+        "status": "solved_extremal",
+        "attempts": [
+          {
+            "source": "orbit-source boundary correction",
+            "route": "shooting",
+            "last_costates": [
+              0.009729599368925049,
+              0.0028883408694386093,
+              0.003975886864998329,
+              -0.0025643621210834112,
+              0.009273651495082977,
+              -0.0021411975137128805
+            ],
+            "independent_check": {
+              "position_residual_m": 15.04939523694701,
+              "velocity_residual_m_s": 2.180603623727128e-06,
+              "free_velocity_transversality": 0.0077790270066002785,
+              "difference_r_m": 25.953189189963208,
+              "difference_v_m_s": 4.3581508844195746e-06
+            },
+            "nfev": 2,
+            "integrations": 2,
+            "optimizer_success": true,
+            "residual_norm": 5.815732790165514e-14,
+            "coordinates": "costates",
+            "conversion": {},
+            "position_residual_m": 7.413489859104199,
+            "velocity_residual_m_s": 1.4664380550195547e-06,
+            "free_velocity_transversality": 0.007779027012862989,
+            "accepted": true,
+            "elapsed_s": 0.16175433799980965
+          }
+        ],
+        "elapsed_s": 0.16878261599958932
+      },
+      "verification": {
+        "passed": true,
+        "method": "LSODA, independently implemented Hamiltonian RHS",
+        "position_residual_m": 15.04940552581769,
+        "velocity_residual_m_s": 2.1806029446005684e-06,
+        "trajectory_difference_m": 25.95318623956268,
+        "velocity_difference_m_s": 4.358151218418034e-06,
+        "free_velocity_transversality": 0.0077790270066002785,
+        "scope": "Numerical extremal and endpoint consistency; not proof of local/global optimality or N-body fidelity"
+      }
+    }
+  ],
+  "accepted": true,
+  "entry": {
+    "accepted": false,
+    "error": "ILTT date/phase correction budget reached"
+  },
+  "fallback_seed": {
+    "kind": "unverified date/phase ILTT approximation",
+    "phase_rad": 3.0508022413599787,
+    "branch": {
+      "k": 0,
+      "lambda_initial": 2.293624719019577,
+      "approximation_family": "long"
+    },
+    "raw_parameters": [
+      -0.02492068525146947,
+      -0.0005076793230319246,
+      2.9154523384510878,
+      1.7469289429329213,
+      1.3773244904781743,
+      2.293624719019577
+    ],
+    "parameters": [
+      -0.02492068525146947,
+      -0.0005076793230319246,
+      2.9154523384510878,
+      1.7469289429329213,
+      1.3773244904781743,
+      2.293624719019577
+    ],
+    "tof_days": 655.9746317072746
+  },
+  "tof_days": 655.9746317072746,
+  "last_result": "costates",
+  "rescued_by_costates": false,
+  "rescued_after_entry_failure": true,
+  "stopped_stage": null
+}

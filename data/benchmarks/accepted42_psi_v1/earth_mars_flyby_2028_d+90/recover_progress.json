@@ -1,0 +1,110 @@
+{
+  "events": [
+    {
+      "operation": "coupled",
+      "input_stage": "psi_limit",
+      "input_days": 179.8306127375666,
+      "status": "partial",
+      "stopped_phase": "mass_and_thrust",
+      "details": {
+        "status": "partial",
+        "phase": "mass_and_thrust",
+        "reached_parameter": 0.0009765625,
+        "last_result": "mass_and_thrust/point_0010"
+      },
+      "checkpoint": "runs/accepted42_psi_v1/earth_mars_flyby_2028_d+90/coupled_checkpoint"
+    },
+    {
+      "operation": "release_intermediate",
+      "bounds_days": [
+        89.9153063687833,
+        269.7459191063499
+      ],
+      "input_days": 179.8306127375666,
+      "status": "completed_stage",
+      "output_days": 179.84728207155229,
+      "details": {
+        "method": "bounded_scalar_with_BVP_correction",
+        "seed_tof_days": 179.8306127375666,
+        "resolved_tof_days": 179.84728207155229,
+        "bounds_days": [
+          89.9153063687833,
+          269.7459191063499
+        ],
+        "requested_bounds_days": [
+          89.9153063687833,
+          269.7459191063499
+        ],
+        "objective": "current_model_functional",
+        "seed_objective": 0.1292221671649359,
+        "objective_value": 0.1289491853364116,
+        "optimizer_success": true,
+        "stop_reason": "Solution found.",
+        "trials": 8,
+        "physical_solution": false,
+        "global_optimality": false
+      },
+      "checkpoint": "runs/accepted42_psi_v1/earth_mars_flyby_2028_d+90/release_intermediate_checkpoint"
+    },
+    {
+      "operation": "after_release",
+      "input_stage": "psi_limit",
+      "input_days": 179.84728207155229,
+      "status": "partial",
+      "stopped_phase": "mass_and_thrust",
+      "details": {
+        "status": "partial",
+        "phase": "mass_and_thrust",
+        "reached_parameter": 0.0009765625,
+        "last_result": "mass_and_thrust/point_0010"
+      },
+      "checkpoint": "runs/accepted42_psi_v1/earth_mars_flyby_2028_d+90/after_release_checkpoint"
+    },
+    {
+      "operation": "release_early",
+      "bounds_days": [
+        89.9153063687833,
+        359.6612254751332
+      ],
+      "input_days": 179.8306127375666,
+      "status": "completed_stage",
+      "output_days": 359.6612254751332,
+      "details": {
+        "method": "bounded_scalar_with_BVP_correction",
+        "seed_tof_days": 179.8306127375666,
+        "resolved_tof_days": 359.6612254751332,
+        "bounds_days": [
+          89.9153063687833,
+          359.6612254751332
+        ],
+        "requested_bounds_days": [
+          89.9153063687833,
+          359.6612254751332
+        ],
+        "objective": "current_model_functional",
+        "seed_objective": 0.009509274481941901,
+        "objective_value": 2.3840447683318228e-05,
+        "optimizer_success": true,
+        "stop_reason": "Solution found.",
+        "trials": 19,
+        "physical_solution": false,
+        "global_optimality": false
+      },
+      "checkpoint": "runs/accepted42_psi_v1/earth_mars_flyby_2028_d+90/release_early_checkpoint"
+    },
+    {
+      "operation": "early_continue",
+      "input_stage": "departure",
+      "input_days": 359.6612254751332,
+      "status": "completed",
+      "stopped_phase": "final",
+      "details": {
+        "status": "completed",
+        "phase": "final",
+        "reached_parameter": 1.0,
+        "last_result": "fuel/point_0011"
+      },
+      "checkpoint": "runs/accepted42_psi_v1/earth_mars_flyby_2028_d+90/early_continue_checkpoint"
+    }
+  ]
+}

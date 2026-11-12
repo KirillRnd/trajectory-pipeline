@@ -1,0 +1,81 @@
+{
+  "status": "completed_stage",
+  "stage": "orbit_source_transition",
+  "from_sources": {
+    "earth": {
+      "kind": "kepler",
+      "preset": "EarthSimple"
+    },
+    "apophis": {
+      "kind": "kepler",
+      "preset": "ApophisNew"
+    }
+  },
+  "to_sources": {
+    "earth": {
+      "kind": "ephemerides"
+    },
+    "apophis": {
+      "kind": "ephemerides"
+    }
+  },
+  "launch_tdb": "2029-06-15T00:00:00",
+  "tof_days": 351.8288040681021,
+  "initial_shift_m": 6446326215.774973,
+  "target_shift_m": 638854041.3156106,
+  "target_shift_m_s": 108.70961124524538,
+  "attempts": [
+    {
+      "alpha": 1.0,
+      "diagnostics": {
+        "status": "solved_extremal",
+        "attempts": [
+          {
+            "source": "orbit-source boundary correction",
+            "route": "shooting",
+            "independent_check": {
+              "position_residual_m": 1.4015149822847277,
+              "velocity_residual_m_s": 3.2001420666637043e-07,
+              "free_velocity_transversality": 0.05440234918689938,
+              "difference_r_m": 1.3119167180282278,
+              "difference_v_m_s": 2.6740481201230195e-07
+            },
+            "nfev": 6,
+            "integrations": 6,
+            "optimizer_success": true,
+            "residual_norm": 3.6087900397783036e-14,
+            "position_residual_m": 0.6710707793129168,
+            "velocity_residual_m_s": 7.222622851468478e-08,
+            "free_velocity_transversality": 0.054402349182944176,
+            "accepted": true,
+            "elapsed_s": 0.1564211869990686
+          }
+        ],
+        "elapsed_s": 0.16238924699973722
+      },
+      "accepted": true,
+      "verification": {
+        "passed": true,
+        "method": "LSODA, independently implemented Hamiltonian RHS",
+        "position_residual_m": 1.4014973584520327,
+        "velocity_residual_m_s": 3.2001487332016216e-07,
+        "trajectory_difference_m": 1.3119104283078744,
+        "velocity_difference_m_s": 2.6740534928591804e-07,
+        "free_velocity_transversality": 0.05440234918689938,
+        "scope": "Numerical extremal and endpoint consistency; not proof of local/global optimality or N-body fidelity"
+      }
+    }
+  ],
+  "last_result": "irt",
+  "verification": {
+    "passed": true,
+    "method": "LSODA, independently implemented Hamiltonian RHS",
+    "position_residual_m": 1.4014973584520327,
+    "velocity_residual_m_s": 3.2001487332016216e-07,
+    "trajectory_difference_m": 1.3119104283078744,
+    "velocity_difference_m_s": 2.6740534928591804e-07,
+    "free_velocity_transversality": 0.05440234918689938,
+    "scope": "Numerical extremal and endpoint consistency; not proof of local/global optimality or N-body fidelity"
+  },
+  "reached_alpha": 1.0
+}

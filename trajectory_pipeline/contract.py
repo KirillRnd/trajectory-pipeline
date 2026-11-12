@@ -89,6 +89,9 @@ def audit_configuration(trajectory,expected=None,request=None,require_final=Fals
         geometry=dict(epoch_jd=request['epoch_jd'],arrival_jd=expected.arrival_jd,
                       departure_position_difference_m=float(np.linalg.norm(body[:3]-np.asarray(request['body_initial_state_si'])[:3])),
                       arrival_position_difference_m=float(np.linalg.norm(target[:3]-np.asarray(request['target_state_si'])[:3])))
+        ephemerides=expected.ephemerides()
+        geometry['ephemeris_evaluation']={b:ephemerides.evaluation_record(b,epochs) for b,epochs in
+            ((expected.departure,[expected.launch_jd]),(expected.target,[expected.arrival_jd]))}
     model=meta.get('bounded_model')
     hardware=expected.spacecraft
     recovered=None

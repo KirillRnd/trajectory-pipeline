@@ -35,6 +35,9 @@ def audit_time_result(result,requested):
 
 def run_time_pipeline(mission,output,resume=False):
     """Cold ILTT path, followed by the same constrained release as the sweep."""
+    if any(x is not None for x in (mission.capture,mission.parking_departure,mission.orbital_maneuvers)):
+        from .composed_time import run_composed_time
+        return run_composed_time(mission,output,resume=resume)
     from pathlib import Path
     import json
     from .runner import run_pipeline
@@ -53,16 +56,12 @@ def run_time_pipeline(mission,output,resume=False):
         raise ValueError('Free-time orbital coupling is not available; a fixed-time mission is not an acceptable substitute')
     write_json(output/'request.json',make_request(mission))
     bounds=mission.time_policy['bounds_days'];base=replace(mission,time_policy=None)
-    ephemerides=Ephemerides()
-    for body in (mission.departure,mission.target):
-        coverage=ephemerides.coverage(body)
-        if mission.launch_jd<coverage['start_jd'] or mission.launch_jd+bounds[1]>coverage['stop_jd']:
-            raise ValueError('Ephemerides do not cover the full free-duration interval: '+body)
+    ephemerides=mission.ephemerides()
     # The date-first ILTT anchor already determines duration. Additional angular
     # branches belong to the search controller, never to an inverse time fit.
     from .iltt_entry import date_entry
     durations=[base.tof_days]
-    if not date_entry(base):
+    if not date_entry(base) and not base.solver.get('irt_artifact'):
         from .irt import _module,iltt_seeds
         initial,target,scales=base.boundary();rf=scales.normalize_state(target)[:3];vf=scales.normalize_state(target)[3:]
         energy=2/np.linalg.norm(rf)-vf@vf;kappa=1/energy if energy>0 else np.linalg.norm(rf)
@@ -139,7 +138,7 @@ def release_duration(source,previous,bounds_days,deadline):
     model=BoundedModel(**source.metadata['bounded_model'])
     if not model.variable_mass or model.alpha!=1 or model.beta!=1 or model.gravity is not None:
         raise ValueError('Duration release requires physical central-field PSI')
-    scales=Scales(**source.metadata['scales']);eph=Ephemerides()
+    scales=Scales(**source.metadata['scales']);eph=mission.ephemerides()
     body,_=origin_and_boundary(source,scales)
     old_t=previous.arrays['t_s']/scales.time_s;guess=canonical(previous,model)
     switches=np.asarray(previous.metadata['switch_times_s'])/scales.time_s

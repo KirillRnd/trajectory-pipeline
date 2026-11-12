@@ -1,0 +1,214 @@
+{
+  "case_id": "earth_polyhymnia_2029_d-90",
+  "epoch_jd": 2462106.5,
+  "time_scale": "TDB",
+  "center": "Sun",
+  "frame": "ECLIPJ2000",
+  "model": "IRT two-body minimum integral acceleration squared / 2",
+  "status": "verified_extremal",
+  "stage": "irt",
+  "mission": {
+    "case_id": "earth_polyhymnia_2029_d-90",
+    "departure": "Earth",
+    "target": "Polyhymnia",
+    "launch_tdb": "2028-12-01T00:00:00",
+    "tof_days": 886.9674700401866,
+    "center": "Sun",
+    "mode": "rendezvous",
+    "position_tolerance_m": 1000,
+    "velocity_tolerance_m_s": 0.01,
+    "mass_kg": 156,
+    "departure_mode": "bounded_norm",
+    "vinf_max_m_s": 3000,
+    "vinf_vector_m_s": null,
+    "spacecraft": {
+      "thrust_N": 0.025,
+      "exhaust_velocity_m_s": 20000,
+      "dry_mass_kg": 90
+    },
+    "solver": {
+      "budget_s": 20,
+      "compare_seeds": false,
+      "departure_budget_s": 60,
+      "limit_budget_s": 60,
+      "pazov_budget_s": 90,
+      "psi_budget_s": 120,
+      "bounded_attempt_s": 20,
+      "irt_entry": "fixed_time",
+      "iltt_budget_s": 8,
+      "iltt_branch": 0,
+      "iltt_coordinate_reference": [
+        -0.09872833153386174,
+        -0.07203156881054311,
+        0.14132994472646462,
+        6.056454714466189,
+        2.9067517531319886,
+        1.0630542246075843
+      ],
+      "attempt_budget_s": 20,
+      "max_nfev": 70,
+      "irt_coordinates": "costates"
+    },
+    "lunar": null
+  },
+  "scales": {
+    "distance_m": 147510463557.9794,
+    "mu_m3_s2": 1.32712440018e+20
+  },
+  "initial_state_si": [
+    53061766261.823944,
+    137636425866.51093,
+    -9744638.447476117,
+    -28268.786415143928,
+    10598.637960214519,
+    0.2353935552054806
+  ],
+  "target_state_si": [
+    -496703469663.7106,
+    265713598533.3146,
+    10782184512.876421,
+    -7394.884044580207,
+    -10331.798213207843,
+    -297.7864505744046
+  ],
+  "costate_convention": "dimensionless [p_r,p_v], H=p_r*v+p_v*(g+u)-|u|^2/2, u=p_v",
+  "costates_initial": [
+    -0.006765756278466653,
+    0.01433980888920641,
+    0.002124205596365845,
+    -0.0023368762106034152,
+    0.01071182456466583,
+    0.0024700979117584067
+  ],
+  "functional_dimensionless": 0.010496564368631816,
+  "chosen_seed": {
+    "source": "orbit-source boundary correction",
+    "route": "shooting",
+    "last_costates": [
+      -0.006765756278466653,
+      0.01433980888920641,
+      0.002124205596365845,
+      -0.0023368762106034152,
+      0.01071182456466583,
+      0.0024700979117584067
+    ],
+    "independent_check": {
+      "position_residual_m": 68.49711182080482,
+      "velocity_residual_m_s": 3.4651586935911768e-06,
+      "free_velocity_transversality": 0.04188504374710535,
+      "difference_r_m": 55.04067201337774,
+      "difference_v_m_s": 2.737871727505914e-06
+    },
+    "nfev": 8,
+    "integrations": 8,
+    "optimizer_success": true,
+    "residual_norm": 5.2590641827610565e-14,
+    "coordinates": "costates",
+    "conversion": {},
+    "position_residual_m": 27.420494701873487,
+    "velocity_residual_m_s": 1.3945984663048953e-06,
+    "free_velocity_transversality": 0.04188504376422119,
+    "accepted": true
+  },
+  "title": "Earth → Polyhymnia: ИРТ",
+  "ephemerides": {
+    "Earth": {
+      "body": "earth",
+      "start_jd": 2287184.5,
+      "stop_jd": 2688976.5,
+      "source": "KIAM 6.1.6 / bundled JPLEPH",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "center": "requested",
+      "interpolation": "KIAM native ephemeris",
+      "representation": "body center"
+    },
+    "Polyhymnia": {
+      "body": "polyhymnia",
+      "source": "https://ssd.jpl.nasa.gov/api/horizons.api",
+      "parameters": {
+        "format": "json",
+        "COMMAND": "'33;'",
+        "CENTER": "'500@10'",
+        "EPHEM_TYPE": "'VECTORS'",
+        "REF_PLANE": "'ECLIPTIC'",
+        "REF_SYSTEM": "'ICRF'",
+        "OUT_UNITS": "'KM-S'",
+        "VEC_CORR": "'NONE'",
+        "CSV_FORMAT": "'YES'",
+        "VEC_TABLE": "'2'",
+        "TIME_TYPE": "'TDB'",
+        "OBJ_DATA": "'YES'",
+        "START_TIME": "'2020-01-01'",
+        "STOP_TIME": "'2080-01-01'",
+        "STEP_SIZE": "'12 h'"
+      },
+      "center": "Sun",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "units": "m,m/s",
+      "start_jd": 2458849.5,
+      "stop_jd": 2480764.5,
+      "knots": 43831,
+      "max_step_days": 0.5,
+      "interpolation": "cubic Hermite, position and velocity from the same polynomial",
+      "arrays_sha256": "c9b5cca4455bf43bb30a49f29b9bb211d1b8ffb8331de337bc5419c6cc370b47",
+      "raw_sha256": "f70ebcf547a40d6b83a02fd1b37190c30a1500f8518ffa9f72abc47a32aae6a0"
+    }
+  },
+  "overlays": [
+    {
+      "array": "departure_orbit_m",
+      "label": "Орбита Earth"
+    },
+    {
+      "array": "target_orbit_m",
+      "label": "Орбита Polyhymnia",
+      "linestyle": "-.",
+      "color": ".65"
+    }
+  ],
+  "markers": [
+    {
+      "label": "Earth, старт",
+      "r_m": [
+        53061766261.823944,
+        137636425866.51093,
+        -9744638.447476117
+      ]
+    },
+    {
+      "label": "Earth, прибытие",
+      "r_m": [
+        -105214787187.86855,
+        -108191241923.94995,
+        8286603.589173542
+      ],
+      "hollow": true
+    },
+    {
+      "label": "Polyhymnia",
+      "r_m": [
+        -496703469663.7106,
+        265713598533.3146,
+        10782184512.876421
+      ],
+      "color": "#df1111",
+      "role": "target"
+    }
+  ],
+  "configuration_sha256": "360aa9abd0d2134020db05f46c4812ffcdb602a6a2e0b1494a5ad3c7841a1b94",
+  "configuration_hash_version": 2,
+  "verification": {
+    "passed": true,
+    "method": "LSODA, independently implemented Hamiltonian RHS",
+    "position_residual_m": 68.49709229614882,
+    "velocity_residual_m_s": 3.4651581536608695e-06,
+    "trajectory_difference_m": 55.04064330599015,
+    "velocity_difference_m_s": 2.737870699686631e-06,
+    "free_velocity_transversality": 0.04188504374710535,
+    "scope": "Numerical extremal and endpoint consistency; not proof of local/global optimality or N-body fidelity"
+  },
+  "schema_version": 1,
+  "arrays_sha256": "0dcd150de53e27a10f20ce37be3847c974aa6b2d47288f53d0dca35d56bf4616"
+}

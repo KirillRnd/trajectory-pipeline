@@ -1,0 +1,75 @@
+{
+  "events": [
+    {
+      "operation": "coupled",
+      "input_stage": "psi_mass",
+      "input_days": 868.3999990908997,
+      "status": "partial",
+      "stopped_phase": "mass_and_thrust",
+      "details": {
+        "status": "partial",
+        "phase": "mass_and_thrust",
+        "reached_parameter": 0.18920898437500003,
+        "last_result": "mass_and_thrust/point_0012"
+      },
+      "checkpoint": "runs/accepted42_psi_v1/earth_ryugu_2028_d+0/coupled_checkpoint"
+    },
+    {
+      "operation": "release_intermediate",
+      "bounds_days": [
+        434.1999995454498,
+        1302.5999986363495
+      ],
+      "input_days": 868.3999990908997,
+      "status": "failed",
+      "error": "RuntimeError: No independently verified changed-duration intermediate; see trials.json",
+      "checkpoint": "runs/accepted42_psi_v1/earth_ryugu_2028_d+0/release_intermediate_checkpoint"
+    },
+    {
+      "operation": "release_early",
+      "bounds_days": [
+        434.1999995454498,
+        1736.7999981817993
+      ],
+      "input_days": 868.3999990908997,
+      "status": "completed_stage",
+      "output_days": 898.9191516907975,
+      "details": {
+        "method": "bounded_scalar_with_BVP_correction",
+        "seed_tof_days": 868.3999990908997,
+        "resolved_tof_days": 898.9191516907975,
+        "bounds_days": [
+          434.1999995454498,
+          1736.7999981817993
+        ],
+        "requested_bounds_days": [
+          434.1999995454498,
+          1736.7999981817993
+        ],
+        "objective": "current_model_functional",
+        "seed_objective": 0.0005777787144650862,
+        "objective_value": 0.0005753890176769423,
+        "optimizer_success": false,
+        "stop_reason": "Intermediate duration budget reached",
+        "trials": 8,
+        "physical_solution": false,
+        "global_optimality": false
+      },
+      "checkpoint": "runs/accepted42_psi_v1/earth_ryugu_2028_d+0/release_early_checkpoint"
+    },
+    {
+      "operation": "early_continue",
+      "input_stage": "departure",
+      "input_days": 898.9191516907975,
+      "status": "partial",
+      "stopped_phase": "fuel",
+      "details": {
+        "status": "partial",
+        "phase": "fuel",
+        "reached_parameter": 0.37265625,
+        "last_result": "fuel/point_0009"
+      },
+      "checkpoint": "runs/accepted42_psi_v1/earth_ryugu_2028_d+0/early_continue_checkpoint"
+    }
+  ]
+}

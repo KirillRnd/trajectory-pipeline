@@ -1,0 +1,179 @@
+{
+  "case_id": "earth_saturn_flyby_2028_d+0_branch1",
+  "target": "Saturn",
+  "departure": "Earth",
+  "mode": "flyby",
+  "date": "2028-06-01T00:00:00",
+  "stages": [
+    {
+      "coordinates": "iltt",
+      "accepted": false,
+      "diagnostics": {
+        "status": "initial_failed",
+        "attempts": [
+          {
+            "source": "orbit-source boundary correction",
+            "route": "shooting",
+            "last_costates": [
+              -0.014087741978088077,
+              -0.04176872051872417,
+              0.005509390180865049,
+              0.03703499065673891,
+              -0.014736953755725053,
+              0.0023322155566843517
+            ],
+            "nfev": 70,
+            "integrations": 70,
+            "optimizer_success": false,
+            "residual_norm": 0.026478197975323477,
+            "coordinates": "iltt",
+            "conversion": {
+              "costate_roundtrip_error": 0.0,
+              "unanchored_fit_error": 0.0,
+              "anchored": false,
+              "costate_offset": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "nfev": 1,
+              "jacobian_singular_values": [
+                0.092456503655028,
+                0.054155283538837126,
+                0.04950239960935083,
+                0.00031787557476872644,
+                0.00024944414147443886,
+                2.546893890670071e-06
+              ],
+              "local_rank": 6
+            },
+            "iltt_parameters": [
+              -0.03705565728798001,
+              -0.13829907464231914,
+              3.1761309050836304,
+              1.137172474572358,
+              6.621406172527825,
+              1.4355047803710337
+            ],
+            "iltt_chart": {
+              "version": 1,
+              "initial_state_normalized": [
+                -0.33145150213437596,
+                -0.9434722557692833,
+                6.577602566320964e-05,
+                0.9338659272936394,
+                -0.3371882773505098,
+                3.905964276348863e-05
+              ],
+              "reference": [
+                -0.002294774095969424,
+                0.005564705646034095,
+                1.9832509083777727,
+                1.6350814040576305,
+                9.392614322183887,
+                1.144641868995642
+              ],
+              "parameters": [
+                -0.03705565728798001,
+                -0.13829907464231914,
+                3.1761309050836304,
+                1.137172474572358,
+                6.621406172527825,
+                1.4355047803710337
+              ],
+              "dm_limit": 0.5981996389807971,
+              "costate_offset": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "convention": "p = ILTT(parameters, initial_state) + costate_offset; duration independent"
+            },
+            "position_residual_m": 126665924.38150047,
+            "velocity_residual_m_s": 22918.05430767848,
+            "free_velocity_transversality": 0.026465029164160978,
+            "accepted": false,
+            "elapsed_s": 4.805913713000336
+          }
+        ],
+        "elapsed_s": 4.805922708999788
+      },
+      "next_seed": "last numerical costates, not verified"
+    },
+    {
+      "coordinates": "costates",
+      "accepted": false,
+      "diagnostics": {
+        "status": "initial_failed",
+        "attempts": [
+          {
+            "source": "orbit-source boundary correction",
+            "route": "shooting",
+            "last_costates": [
+              -0.013996910152985915,
+              -0.04166436899008724,
+              0.0036405224304507902,
+              0.03847929883534714,
+              -0.015491324911425085,
+              -0.00010155724404661422
+            ],
+            "nfev": 70,
+            "integrations": 70,
+            "optimizer_success": false,
+            "residual_norm": 0.01606367038414465,
+            "coordinates": "costates",
+            "conversion": {},
+            "position_residual_m": 237956758.35339242,
+            "velocity_residual_m_s": 13685.652556148125,
+            "free_velocity_transversality": 0.015986899012316903,
+            "accepted": false,
+            "elapsed_s": 4.540886021000915
+          }
+        ],
+        "elapsed_s": 4.540894613001001
+      },
+      "next_seed": "last numerical costates, not verified"
+    }
+  ],
+  "accepted": false,
+  "entry": {
+    "accepted": false,
+    "error": "Worker wall deadline reached inside resolve_date_mission"
+  },
+  "fallback_seed": {
+    "kind": "unverified date/phase ILTT approximation",
+    "phase_rad": 2.4688707005690103,
+    "branch": {
+      "k": 1,
+      "lambda_initial": 1.144641868995642,
+      "approximation_family": "long"
+    },
+    "raw_parameters": [
+      -0.002294774095969424,
+      0.005564705646034095,
+      1.9832509083777727,
+      1.6350814040576305,
+      9.392614322183887,
+      1.144641868995642
+    ],
+    "parameters": [
+      -0.002294774095969424,
+      0.005564705646034095,
+      1.9832509083777727,
+      1.6350814040576305,
+      9.392614322183887,
+      1.144641868995642
+    ],
+    "tof_days": 3235.328075700603
+  },
+  "tof_days": 3235.328075700603,
+  "rescued_by_costates": false,
+  "rescued_after_entry_failure": false,
+  "stopped_stage": "irt_after_both_modes"
+}

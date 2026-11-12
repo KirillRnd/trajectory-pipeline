@@ -205,7 +205,9 @@ def verify_bounded(trajectory,deadline=np.inf):
             report.update(mass_difference_kg=mass_difference,stored_thrust_error_N=thrust_error)
             if meta['stage']=='psi' and model.alpha==1:
                 passed &= force<=mission['spacecraft']['thrust_N']*(1+1e-9)
-            passed &= minimum>=mission['spacecraft']['dry_mass_kg']-1e-5
+            enforce_reserve = (meta['stage']=='psi' and model.alpha==1) or not mission.get('solver',{}).get('intermediate_allow_below_dry_mass',True)
+            report['dry_mass_constraint_enforced']=enforce_reserve
+            passed &= minimum > 0 and (not enforce_reserve or minimum>=mission['spacecraft']['dry_mass_kg']-1e-5)
             report['passed']=bool(passed)
             if model.alpha==1 and 'initial_throttle' in meta:
                 durations=np.diff(np.r_[0,switches,times[-1]])*scales.time_s

@@ -1,0 +1,75 @@
+{
+  "events": [
+    {
+      "operation": "coupled",
+      "input_stage": "pazov",
+      "input_days": 68.4826129364969,
+      "status": "partial",
+      "stopped_phase": "mass_and_thrust",
+      "details": {
+        "status": "partial",
+        "phase": "mass_and_thrust",
+        "reached_parameter": 0.0,
+        "last_result": "mass_and_thrust/initial"
+      },
+      "checkpoint": "runs/accepted42_psi_v1/earth_mercury_2029_d+90/coupled_checkpoint"
+    },
+    {
+      "operation": "release_intermediate",
+      "bounds_days": [
+        34.24130646824845,
+        102.72391940474536
+      ],
+      "input_days": 68.4826129364969,
+      "status": "failed",
+      "error": "RuntimeError: No independently verified changed-duration intermediate; see trials.json",
+      "checkpoint": "runs/accepted42_psi_v1/earth_mercury_2029_d+90/release_intermediate_checkpoint"
+    },
+    {
+      "operation": "release_early",
+      "bounds_days": [
+        34.24130646824845,
+        136.9652258729938
+      ],
+      "input_days": 68.4826129364969,
+      "status": "completed_stage",
+      "output_days": 97.69818531021826,
+      "details": {
+        "method": "bounded_scalar_with_BVP_correction",
+        "seed_tof_days": 68.4826129364969,
+        "resolved_tof_days": 97.69818531021826,
+        "bounds_days": [
+          34.24130646824845,
+          136.9652258729938
+        ],
+        "requested_bounds_days": [
+          34.24130646824845,
+          136.9652258729938
+        ],
+        "objective": "current_model_functional",
+        "seed_objective": 0.6664417437934858,
+        "objective_value": 0.30180345798024244,
+        "optimizer_success": true,
+        "stop_reason": "Solution found.",
+        "trials": 22,
+        "physical_solution": false,
+        "global_optimality": false
+      },
+      "checkpoint": "runs/accepted42_psi_v1/earth_mercury_2029_d+90/release_early_checkpoint"
+    },
+    {
+      "operation": "early_continue",
+      "input_stage": "departure",
+      "input_days": 97.69818531021826,
+      "status": "partial",
+      "stopped_phase": "mass_and_thrust",
+      "details": {
+        "status": "partial",
+        "phase": "mass_and_thrust",
+        "reached_parameter": 0.00625,
+        "last_result": "mass_and_thrust/point_0005"
+      },
+      "checkpoint": "runs/accepted42_psi_v1/earth_mercury_2029_d+90/early_continue_checkpoint"
+    }
+  ]
+}

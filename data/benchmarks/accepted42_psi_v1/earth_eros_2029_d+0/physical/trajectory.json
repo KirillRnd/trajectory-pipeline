@@ -1,0 +1,327 @@
+{
+  "case_id": "earth_eros_2029_d+0",
+  "epoch_jd": 2462196.5,
+  "time_scale": "TDB",
+  "center": "Sun",
+  "frame": "ECLIPJ2000",
+  "model": "physical constant thrust and exhaust, variable mass",
+  "status": "verified_extremal",
+  "stage": "psi",
+  "mission": {
+    "case_id": "earth_eros_2029_d+0",
+    "departure": "Earth",
+    "target": "Eros",
+    "launch_tdb": "2029-03-01T00:00:00",
+    "tof_days": 1158.0543375925329,
+    "center": "Sun",
+    "mode": "rendezvous",
+    "position_tolerance_m": 1000,
+    "velocity_tolerance_m_s": 0.01,
+    "mass_kg": 156,
+    "departure_mode": "bounded_norm",
+    "vinf_max_m_s": 3000,
+    "vinf_vector_m_s": null,
+    "spacecraft": {
+      "thrust_N": 0.025,
+      "exhaust_velocity_m_s": 20000,
+      "dry_mass_kg": 90
+    },
+    "solver": {
+      "budget_s": 20,
+      "compare_seeds": false,
+      "departure_budget_s": 45,
+      "limit_budget_s": 60,
+      "pazov_budget_s": 60,
+      "psi_budget_s": 90,
+      "bounded_attempt_s": 15,
+      "irt_entry": "fixed_time",
+      "iltt_budget_s": 8,
+      "iltt_branch": 0,
+      "iltt_coordinate_reference": [
+        -0.24122100812029817,
+        -1.2669799446038472,
+        5.45481917470892,
+        2.1183092723019414,
+        1.6558124020588592,
+        2.1405827151010226
+      ],
+      "attempt_budget_s": 20,
+      "max_nfev": 70,
+      "irt_coordinates": "costates",
+      "exact_attempt_s": 25,
+      "pipeline_pazov_alpha": 0.3,
+      "psi_mass_alpha": 0.3
+    },
+    "lunar": null
+  },
+  "scales": {
+    "distance_m": 148218150231.92538,
+    "mu_m3_s2": 1.32712440018e+20
+  },
+  "initial_state_si": [
+    -139523946102.6892,
+    50016882323.22916,
+    -2184427.0109043373,
+    -11924.39921649491,
+    -28989.436213810706,
+    -2515.9633717790834
+  ],
+  "target_state_si": [
+    165512924304.10028,
+    -208790950861.7804,
+    3701379766.707371,
+    14800.36093979752,
+    12457.799671436129,
+    3681.365150066871
+  ],
+  "costate_convention": "dimensionless [p_r,p_v,p_m] for normalized remaining mass",
+  "costates_initial": [
+    -0.07623005980717915,
+    -0.04360980745745918,
+    -0.4634069023608516,
+    -0.13282702089571402,
+    -0.08112254003778047,
+    -0.2404417247903402,
+    -0.17281082245370977
+  ],
+  "functional_dimensionless": 0.1518148682467323,
+  "chosen_seed": {
+    "source": "orbit-source boundary correction",
+    "route": "shooting",
+    "last_costates": [
+      -0.01191527137614182,
+      0.0012112948413849148,
+      -0.00730594091469434,
+      -0.007859607892760724,
+      -0.012891436051901413,
+      -0.013592251749513612
+    ],
+    "independent_check": {
+      "position_residual_m": 189.83039821587175,
+      "velocity_residual_m_s": 1.8815024556618714e-05,
+      "free_velocity_transversality": 0.022547336754012742,
+      "difference_r_m": 196.45301971033444,
+      "difference_v_m_s": 1.973547252013866e-05
+    },
+    "nfev": 2,
+    "integrations": 2,
+    "optimizer_success": true,
+    "residual_norm": 4.666447216067158e-14,
+    "coordinates": "costates",
+    "conversion": {},
+    "position_residual_m": 6.628916925452894,
+    "velocity_residual_m_s": 9.227324994315468e-07,
+    "free_velocity_transversality": 0.0225473367517972,
+    "accepted": true
+  },
+  "title": "Earth → Eros: ПСИ 156 кг",
+  "ephemerides": {
+    "Earth": {
+      "body": "earth",
+      "start_jd": 2287184.5,
+      "stop_jd": 2688976.5,
+      "source": "KIAM 6.1.6 / bundled JPLEPH",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "center": "requested",
+      "interpolation": "KIAM native ephemeris",
+      "representation": "body center"
+    },
+    "Eros": {
+      "body": "eros",
+      "source": "https://ssd.jpl.nasa.gov/api/horizons.api",
+      "parameters": {
+        "format": "json",
+        "COMMAND": "'433;'",
+        "CENTER": "'500@10'",
+        "EPHEM_TYPE": "'VECTORS'",
+        "REF_PLANE": "'ECLIPTIC'",
+        "REF_SYSTEM": "'ICRF'",
+        "OUT_UNITS": "'KM-S'",
+        "VEC_CORR": "'NONE'",
+        "CSV_FORMAT": "'YES'",
+        "VEC_TABLE": "'2'",
+        "TIME_TYPE": "'TDB'",
+        "OBJ_DATA": "'YES'",
+        "START_TIME": "'2020-01-01'",
+        "STOP_TIME": "'2080-01-01'",
+        "STEP_SIZE": "'12 h'"
+      },
+      "center": "Sun",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "units": "m,m/s",
+      "start_jd": 2458849.5,
+      "stop_jd": 2480764.5,
+      "knots": 43831,
+      "max_step_days": 0.5,
+      "interpolation": "cubic Hermite, position and velocity from the same polynomial",
+      "arrays_sha256": "2c9f4e361f40d43c98eb5c121b6da286af972f01f8a014350127615a14716609",
+      "raw_sha256": "6074a73a8223cefb7060f9110791c7a7e0dd0109eeabab26a39cdbeb6c56f4db"
+    }
+  },
+  "overlays": [
+    {
+      "array": "departure_orbit_m",
+      "label": "Орбита Earth"
+    },
+    {
+      "array": "target_orbit_m",
+      "label": "Орбита Eros",
+      "linestyle": "-.",
+      "color": ".65"
+    }
+  ],
+  "markers": [
+    {
+      "label": "Earth, старт",
+      "r_m": [
+        -139523946102.6892,
+        50016882323.22916,
+        -2184427.0109043373
+      ]
+    },
+    {
+      "label": "Eros, прибытие",
+      "r_m": [
+        165512924304.10028,
+        -208790950861.7804,
+        3701379766.707371
+      ]
+    }
+  ],
+  "configuration_sha256": "ae3b635dd779927bfde8b97b3f97dd0543f8e8ff14745f37fe57439a16070757",
+  "configuration_hash_version": 2,
+  "schema_version": 1,
+  "departure": {
+    "mode": "bounded_norm",
+    "bound_active": true,
+    "vector_m_s": [
+      -1391.2499620080653,
+      -849.6895434715079,
+      -2518.4223678580497
+    ],
+    "norm_m_s": 3000.0000000000014,
+    "bound_m_s": 3000
+  },
+  "body_initial_state_si": [
+    -139523946102.6892,
+    50016882323.22916,
+    -2184427.0109043373,
+    -10533.149254486845,
+    -28139.7466703392,
+    2.4589960789662655
+  ],
+  "verification": {
+    "passed": true,
+    "position_residual_m": 13.614793525687261,
+    "velocity_residual_m_s": 1.2269650632374126e-06,
+    "parameter_audit": {
+      "passed": true,
+      "configuration_sha256": "ae3b635dd779927bfde8b97b3f97dd0543f8e8ff14745f37fe57439a16070757",
+      "configuration_hash_version": 2,
+      "requested": {
+        "mass_kg": 156,
+        "thrust_N": 0.025,
+        "exhaust_velocity_m_s": 20000,
+        "dry_mass_kg": 90,
+        "launch_tdb": "2029-03-01T00:00:00",
+        "tof_days": 1158.0543375925329,
+        "departure": "Earth",
+        "target": "Eros",
+        "mode": "rendezvous"
+      },
+      "recovered_model": {
+        "model_thrust_N": 0.025,
+        "thrust_to_requested_ratio": 1.0,
+        "alpha": 1.0,
+        "beta": 1,
+        "variable_mass": true,
+        "hardware_limit_reached": true,
+        "exhaust_velocity_m_s": 20000.0
+      },
+      "geometry": null,
+      "final_admission": true
+    },
+    "trajectory_difference_m": 13.610351410029073,
+    "velocity_difference_m_s": 1.6552113434629772e-06,
+    "stored_throttle_error": 0.0,
+    "stored_throttle_minimum": 0.0,
+    "stored_throttle_maximum": 1.0,
+    "canonical_boundary_residual": 1.0067294188741041e-10,
+    "method": "LSODA with independent bounded/mass equations",
+    "scope": "Numerical extremal and constraints; no global optimality proof",
+    "departure_norm_m_s": 3000.0000000000014,
+    "switching_sign_violation": 4.794989040863903e-11,
+    "switching_node_residual": 4.794989040863903e-11,
+    "minimum_mass_kg": 120.56650165741418,
+    "fuel_kg": 35.433498342585814,
+    "mass_difference_kg": 4.849454171562684e-13,
+    "stored_thrust_error_N": 0.0,
+    "mass_balance_error_kg": 3.623767952376511e-13
+  },
+  "intermediate_time": {
+    "method": "bounded_scalar_with_BVP_correction",
+    "seed_tof_days": 1118.737301147728,
+    "resolved_tof_days": 1158.0543375925329,
+    "bounds_days": [
+      559.368650573864,
+      2237.474602295456
+    ],
+    "requested_bounds_days": [
+      559.368650573864,
+      2237.474602295456
+    ],
+    "objective": "current_model_functional",
+    "seed_objective": 0.0013927523102683912,
+    "objective_value": 0.0013163980457217906,
+    "optimizer_success": false,
+    "stop_reason": "Intermediate duration budget reached",
+    "trials": 9,
+    "physical_solution": false,
+    "global_optimality": false
+  },
+  "bounded_model": {
+    "a_max": 0.02652812493186295,
+    "alpha": 1.0,
+    "beta": 1,
+    "q": 0.03969005320134832,
+    "variable_mass": true,
+    "gravity_spec": null
+  },
+  "hardware_limit_reached": true,
+  "collocation_tolerance": 2e-09,
+  "collocation_derivatives": "analytic central-field",
+  "collocation_nodes": 3465,
+  "collocation_iterations": 5,
+  "arrays_sha256": "664852ce1fdd0097b5a2646673d70b4af339869fe6471df1dd434131f2e5e82d",
+  "switch_times_s": [
+    30131160.87987982,
+    33701095.68690865,
+    64287983.66910759,
+    77945546.038113,
+    88936593.26996012
+  ],
+  "initial_throttle": 0.0,
+  "bangbang_corrector": {
+    "nfev": 13,
+    "integrations": 194,
+    "residual_norm": 5.274014708624868e-14,
+    "optimizer_success": true
+  },
+  "kiam_verification": {
+    "passed": true,
+    "source": "Unmodified KIAM Astro compiled Fortran equations and published control API",
+    "package_version": "6.1.6",
+    "samples": 99,
+    "maximum_dimensionless_rhs_error": 4.440892098500626e-16,
+    "maximum_dimensionless_force_error": 6.938893903907228e-18,
+    "maximum_third_body_decomposition_error": 0.0,
+    "nbody_gravity": {
+      "passed": true,
+      "applicable": false
+    },
+    "costate_map": "p_r,v(KIAM)=p_r,v/vex; p_m(KIAM)=1+p_m/vex; normalized initial mass=1",
+    "scope": "KIAM central mass-optimal equations/control, plus independent third-body decomposition when present; not a separate global optimization"
+  }
+}

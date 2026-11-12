@@ -1,0 +1,260 @@
+{
+  "case_id": "earth_mars_2028_d-90",
+  "epoch_jd": 2461986.5,
+  "time_scale": "TDB",
+  "center": "Sun",
+  "frame": "ECLIPJ2000",
+  "model": "IRT two-body minimum integral acceleration squared / 2",
+  "status": "verified_extremal",
+  "stage": "irt",
+  "mission": {
+    "case_id": "earth_mars_2028_d-90",
+    "departure": "Earth",
+    "target": "Mars",
+    "launch_tdb": "2028-08-03T00:00:00",
+    "tof_days": 571.468966781484,
+    "center": "Sun",
+    "mode": "rendezvous",
+    "position_tolerance_m": 1000,
+    "velocity_tolerance_m_s": 0.01,
+    "mass_kg": 156,
+    "departure_mode": "bounded_norm",
+    "vinf_max_m_s": 3000,
+    "vinf_vector_m_s": null,
+    "spacecraft": {
+      "thrust_N": 0.025,
+      "exhaust_velocity_m_s": 20000,
+      "dry_mass_kg": 90
+    },
+    "solver": {
+      "budget_s": 20,
+      "compare_seeds": false,
+      "departure_budget_s": 60,
+      "limit_budget_s": 60,
+      "pazov_budget_s": 90,
+      "psi_budget_s": 120,
+      "bounded_attempt_s": 20,
+      "irt_entry": "fixed_time",
+      "iltt_budget_s": 8,
+      "iltt_branch": 0,
+      "iltt_coordinate_reference": [
+        -0.04084257872456006,
+        -0.23979989242849362,
+        0.9754206592702716,
+        5.195782668980849,
+        1.6121902283952254,
+        1.0642905035433334
+      ],
+      "attempt_budget_s": 20,
+      "max_nfev": 70,
+      "irt_coordinates": "iltt"
+    },
+    "lunar": null
+  },
+  "scales": {
+    "distance_m": 151792525108.24115,
+    "mu_m3_s2": 1.32712440018e+20
+  },
+  "initial_state_si": [
+    99178608301.47462,
+    -114911158226.28362,
+    7015176.5542602185,
+    22054.382056014318,
+    19349.947704476454,
+    -2.4940782178192373
+  ],
+  "target_state_si": [
+    205029973323.4247,
+    45907227842.778145,
+    -4064330124.8459883,
+    -4370.368529849088,
+    25715.70087206217,
+    646.1106157194813
+  ],
+  "costate_convention": "dimensionless [p_r,p_v], H=p_r*v+p_v*(g+u)-|u|^2/2, u=p_v",
+  "costates_initial": [
+    0.015422441193123596,
+    -0.019092640090792805,
+    -0.005872972847605088,
+    0.01909802918868786,
+    0.017297981623132647,
+    -0.0012568977610676743
+  ],
+  "functional_dimensionless": 0.0020221285427962856,
+  "chosen_seed": {
+    "source": "orbit-source boundary correction",
+    "route": "shooting",
+    "last_costates": [
+      0.015422441193123596,
+      -0.019092640090792805,
+      -0.005872972847605088,
+      0.01909802918868786,
+      0.017297981623132647,
+      -0.0012568977610676743
+    ],
+    "independent_check": {
+      "position_residual_m": 19.436416165545843,
+      "velocity_residual_m_s": 2.671536426601196e-06,
+      "free_velocity_transversality": 0.019942702652175417,
+      "difference_r_m": 18.770070071027103,
+      "difference_v_m_s": 2.612548729820027e-06
+    },
+    "nfev": 2,
+    "integrations": 2,
+    "optimizer_success": true,
+    "residual_norm": 5.919040371173167e-14,
+    "coordinates": "iltt",
+    "conversion": {
+      "costate_roundtrip_error": 0.0,
+      "unanchored_fit_error": 0.0,
+      "anchored": false,
+      "costate_offset": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "nfev": 1,
+      "jacobian_singular_values": [
+        0.07033457476549031,
+        0.043971396567379264,
+        0.024838408429782233,
+        0.006603535316038302,
+        0.00600843278484132,
+        1.8296431131685425e-05
+      ],
+      "local_rank": 6
+    },
+    "iltt_parameters": [
+      -0.040842580115524336,
+      -0.2397998915319058,
+      0.9754206587641061,
+      5.1957827052619185,
+      1.6121902451249266,
+      1.064290512902174
+    ],
+    "iltt_chart": {
+      "version": 1,
+      "initial_state_normalized": [
+        0.6533826895016849,
+        -0.7570277794927126,
+        4.621556001692306e-05,
+        0.7458719406731048,
+        0.6544088612233467,
+        -8.434890425814728e-05
+      ],
+      "reference": [
+        -0.04084257872456006,
+        -0.23979989242849362,
+        0.9754206592702716,
+        5.195782668980849,
+        1.6121902283952254,
+        1.0642905035433334
+      ],
+      "parameters": [
+        -0.040842580115524336,
+        -0.2397998915319058,
+        0.9754206587641061,
+        5.1957827052619185,
+        1.6121902451249266,
+        1.064290512902174
+      ],
+      "dm_limit": 0.5981996389807971,
+      "costate_offset": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "convention": "p = ILTT(parameters, initial_state) + costate_offset; duration independent"
+    },
+    "position_residual_m": 1.4729951350808457,
+    "velocity_residual_m_s": 7.256097061158622e-08,
+    "free_velocity_transversality": 0.01994270264824733,
+    "accepted": true
+  },
+  "title": "Earth → Mars: ИРТ",
+  "ephemerides": {
+    "Earth": {
+      "body": "earth",
+      "start_jd": 2287184.5,
+      "stop_jd": 2688976.5,
+      "source": "KIAM 6.1.6 / bundled JPLEPH",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "center": "requested",
+      "interpolation": "KIAM native ephemeris",
+      "representation": "body center"
+    },
+    "Mars": {
+      "body": "mars",
+      "start_jd": 2287184.5,
+      "stop_jd": 2688976.5,
+      "source": "KIAM 6.1.6 / bundled JPLEPH",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "center": "requested",
+      "interpolation": "KIAM native ephemeris",
+      "representation": "body center"
+    }
+  },
+  "overlays": [
+    {
+      "array": "departure_orbit_m",
+      "label": "Орбита Earth"
+    },
+    {
+      "array": "target_orbit_m",
+      "label": "Орбита Mars",
+      "linestyle": "-.",
+      "color": ".65"
+    }
+  ],
+  "markers": [
+    {
+      "label": "Earth, старт",
+      "r_m": [
+        99178608301.47462,
+        -114911158226.28362,
+        7015176.5542602185
+      ]
+    },
+    {
+      "label": "Earth, прибытие",
+      "r_m": [
+        -135773783169.7626,
+        59118043032.49953,
+        -3110127.548603054
+      ],
+      "hollow": true
+    },
+    {
+      "label": "Mars",
+      "r_m": [
+        205029973323.4247,
+        45907227842.778145,
+        -4064330124.8459883
+      ],
+      "color": "#df1111",
+      "role": "target"
+    }
+  ],
+  "configuration_sha256": "e44fa098690918ce32699df14f7fd4835d4008f3b7fc3426e5e0ff02350bdc62",
+  "configuration_hash_version": 2,
+  "verification": {
+    "passed": true,
+    "method": "LSODA, independently implemented Hamiltonian RHS",
+    "position_residual_m": 19.43640688411931,
+    "velocity_residual_m_s": 2.6715359170094977e-06,
+    "trajectory_difference_m": 18.770079253312467,
+    "velocity_difference_m_s": 2.6125486279210554e-06,
+    "free_velocity_transversality": 0.019942702652175417,
+    "scope": "Numerical extremal and endpoint consistency; not proof of local/global optimality or N-body fidelity"
+  },
+  "schema_version": 1,
+  "arrays_sha256": "67a7b5bb5ab5a525756e0cad3474a3574ea29b2124a6d5cd387b71028377e7df"
+}

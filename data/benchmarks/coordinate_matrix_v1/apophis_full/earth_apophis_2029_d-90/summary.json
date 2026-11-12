@@ -1,0 +1,174 @@
+{
+  "status": "completed_stage",
+  "stage": "orbit_source_transition",
+  "from_sources": {
+    "earth": {
+      "kind": "kepler",
+      "preset": "EarthSimple"
+    },
+    "apophis": {
+      "kind": "kepler",
+      "preset": "ApophisNew"
+    }
+  },
+  "to_sources": {
+    "earth": {
+      "kind": "ephemerides"
+    },
+    "apophis": {
+      "kind": "ephemerides"
+    }
+  },
+  "launch_tdb": "2028-11-16T12:00:00",
+  "tof_days": 548.1354059978634,
+  "initial_shift_m": 6753283532.430555,
+  "target_shift_m": 597873233.0552129,
+  "target_shift_m_s": 96.35208923294414,
+  "attempts": [
+    {
+      "alpha": 1.0,
+      "diagnostics": {
+        "status": "solved_extremal",
+        "attempts": [
+          {
+            "source": "orbit-source boundary correction",
+            "route": "shooting",
+            "last_costates": [
+              -0.006755426399388287,
+              0.0010085199075247648,
+              -0.0043258961920921045,
+              0.011332628379691335,
+              -0.0012491834873438216,
+              -0.006937831979785436
+            ],
+            "independent_check": {
+              "position_residual_m": 28.277248678422637,
+              "velocity_residual_m_s": 4.49440782087203e-06,
+              "free_velocity_transversality": 0.022396724228777597,
+              "difference_r_m": 34.30523292350916,
+              "difference_v_m_s": 5.508770218784186e-06
+            },
+            "coordinate_steps": [
+              {
+                "nfev": 29,
+                "integrations": 29,
+                "optimizer_success": true,
+                "residual_norm": 0.0027408088428163054,
+                "coordinates": "iltt",
+                "conversion": {
+                  "costate_roundtrip_error": 9.263427422397553e-19,
+                  "unanchored_fit_error": 0.012702874445191664,
+                  "anchored": true,
+                  "costate_offset": [
+                    -0.008252664036168814,
+                    -0.009986262126950207,
+                    0.00010967456366022931,
+                    0.012454694661486795,
+                    -0.008232270152301968,
+                    -0.00012268240359577555
+                  ],
+                  "nfev": 300,
+                  "jacobian_singular_values": [
+                    0.11912599119869012,
+                    0.009632970660225303,
+                    0.006622928721552385,
+                    0.005806429856236232,
+                    0.0033719785515473337,
+                    0.0018562919059895374
+                  ],
+                  "local_rank": 6
+                },
+                "iltt_parameters": [
+                  -0.598199638980797,
+                  -1.232068371134068,
+                  3.609984363057965,
+                  4.92639457581819,
+                  1.1273146095517355,
+                  1.2746935892800195
+                ],
+                "iltt_chart": {
+                  "version": 1,
+                  "initial_state_normalized": [
+                    0.5841094611772947,
+                    0.8116748944812312,
+                    -5.506407783244741e-05,
+                    -0.8237635485908942,
+                    0.5775004222059726,
+                    -5.662704772483738e-05
+                  ],
+                  "reference": [
+                    -0.598199628980797,
+                    -1.2607584751347787,
+                    3.5531513971342847,
+                    4.799183125709705,
+                    1.116870174267109,
+                    1.4069874243172373
+                  ],
+                  "parameters": [
+                    -0.598199638980797,
+                    -1.232068371134068,
+                    3.609984363057965,
+                    4.92639457581819,
+                    1.1273146095517355,
+                    1.2746935892800195
+                  ],
+                  "dm_limit": 0.5981996389807971,
+                  "costate_offset": [
+                    -0.008252664036168814,
+                    -0.009986262126950207,
+                    0.00010967456366022931,
+                    0.012454694661486795,
+                    -0.008232270152301968,
+                    -0.00012268240359577555
+                  ],
+                  "convention": "p = ILTT(parameters, initial_state) + costate_offset; duration independent"
+                }
+              },
+              {
+                "nfev": 5,
+                "integrations": 5,
+                "optimizer_success": true,
+                "residual_norm": 5.812333321221573e-15,
+                "coordinates": "costates",
+                "conversion": {}
+              }
+            ],
+            "nfev": 34,
+            "integrations": 34,
+            "optimizer_success": true,
+            "residual_norm": 5.812333321221573e-15,
+            "position_residual_m": 6.143736767261898,
+            "velocity_residual_m_s": 1.0250609388717918e-06,
+            "free_velocity_transversality": 0.022396724220891926,
+            "accepted": true,
+            "elapsed_s": 1.5844731929992122
+          }
+        ],
+        "elapsed_s": 1.5903179979995912
+      },
+      "accepted": true,
+      "verification": {
+        "passed": true,
+        "method": "LSODA, independently implemented Hamiltonian RHS",
+        "position_residual_m": 28.27724943244919,
+        "velocity_residual_m_s": 4.49440759026555e-06,
+        "trajectory_difference_m": 34.305229096094756,
+        "velocity_difference_m_s": 5.508769705767779e-06,
+        "free_velocity_transversality": 0.022396724228777597,
+        "scope": "Numerical extremal and endpoint consistency; not proof of local/global optimality or N-body fidelity"
+      }
+    }
+  ],
+  "last_result": "irt",
+  "verification": {
+    "passed": true,
+    "method": "LSODA, independently implemented Hamiltonian RHS",
+    "position_residual_m": 28.27724943244919,
+    "velocity_residual_m_s": 4.49440759026555e-06,
+    "trajectory_difference_m": 34.305229096094756,
+    "velocity_difference_m_s": 5.508769705767779e-06,
+    "free_velocity_transversality": 0.022396724228777597,
+    "scope": "Numerical extremal and endpoint consistency; not proof of local/global optimality or N-body fidelity"
+  },
+  "reached_alpha": 1.0
+}

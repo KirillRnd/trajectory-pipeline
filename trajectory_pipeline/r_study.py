@@ -16,7 +16,7 @@ from .bounded_model import BoundedModel
 from .contract import audit_configuration, make_request
 from .data import DAY_S, Scales, Trajectory, sha256, write_json
 from .date_sweep import _date_context, _reference_mission, _seed
-from .ephemerides import Ephemerides
+from .problem import Mission
 from .kiam_verification import verify_kiam_psi
 from .r_transform import costate_chart, orbital_frame, transport_costates, transport_matrix
 from .verification import replay_irt
@@ -153,7 +153,7 @@ def irt_tail_correction(reference):
     node = np.argmin(np.abs(arrays['t_s']-.5*arrays['t_s'][-1]))
     start = scales.normalize_state(np.r_[arrays['r_m'][node], arrays['v_m_s'][node]])
     end_jd = meta['epoch_jd'] + arrays['t_s'][-1]/DAY_S
-    target = scales.normalize_state(Ephemerides().state(meta['mission']['target'], end_jd+1, meta['center']))
+    target = scales.normalize_state(Mission(**meta['mission']).ephemerides().state(meta['mission']['target'], end_jd+1, meta['center']))
     tof = (arrays['t_s'][-1]-arrays['t_s'][node])/scales.time_s
     guess = arrays['costates'][node]
     rows = {}

@@ -1,0 +1,91 @@
+{
+  "case_id": "earth_mercury_2029_d+0",
+  "phase": "recover",
+  "status": "partial",
+  "source": "data/benchmarks/coordinate_matrix_v1/primary/earth_mercury_2029_d+0/costates",
+  "events": [
+    {
+      "operation": "coupled",
+      "input_stage": "psi_mass",
+      "input_days": 190.52367309235476,
+      "status": "partial",
+      "stopped_phase": "mass_and_thrust",
+      "details": {
+        "status": "partial",
+        "phase": "mass_and_thrust",
+        "reached_parameter": 0.5515625,
+        "last_result": "mass_and_thrust/point_0009"
+      },
+      "checkpoint": "runs/accepted42_psi_v1/earth_mercury_2029_d+0/coupled_checkpoint"
+    },
+    {
+      "operation": "release_intermediate",
+      "bounds_days": [
+        95.26183654617738,
+        285.7855096385321
+      ],
+      "input_days": 190.52367309235476,
+      "status": "failed",
+      "error": "RuntimeError: No independently verified changed-duration intermediate; see trials.json",
+      "checkpoint": "runs/accepted42_psi_v1/earth_mercury_2029_d+0/release_intermediate_checkpoint"
+    },
+    {
+      "operation": "release_early",
+      "bounds_days": [
+        95.26183654617738,
+        381.0473461847095
+      ],
+      "input_days": 190.52367309235476,
+      "status": "completed_stage",
+      "output_days": 291.7329960448348,
+      "details": {
+        "method": "bounded_scalar_with_BVP_correction",
+        "seed_tof_days": 190.52367309235476,
+        "resolved_tof_days": 291.7329960448348,
+        "bounds_days": [
+          95.26183654617738,
+          381.0473461847095
+        ],
+        "requested_bounds_days": [
+          95.26183654617738,
+          381.0473461847095
+        ],
+        "objective": "current_model_functional",
+        "seed_objective": 0.06560988552576114,
+        "objective_value": 0.06504630203412197,
+        "optimizer_success": true,
+        "stop_reason": "Solution found.",
+        "trials": 22,
+        "physical_solution": false,
+        "global_optimality": false
+      },
+      "checkpoint": "runs/accepted42_psi_v1/earth_mercury_2029_d+0/release_early_checkpoint"
+    },
+    {
+      "operation": "early_continue",
+      "input_stage": "departure",
+      "input_days": 291.7329960448348,
+      "status": "partial",
+      "stopped_phase": "mass_and_thrust",
+      "details": {
+        "status": "partial",
+        "phase": "mass_and_thrust",
+        "reached_parameter": 0.00625,
+        "last_result": "mass_and_thrust/point_0005"
+      },
+      "checkpoint": "runs/accepted42_psi_v1/earth_mercury_2029_d+0/early_continue_checkpoint"
+    }
+  ],
+  "last_checkpoint": "runs/accepted42_psi_v1/earth_mercury_2029_d+0/recover_last",
+  "last_stage": "psi_limit",
+  "last_model": {
+    "a_max": 0.24639332513325224,
+    "alpha": 0.0,
+    "beta": 0.00625,
+    "q": 0.37003996859160676,
+    "variable_mass": true,
+    "gravity_spec": null
+  },
+  "last_days": 291.7329960448348,
+  "elapsed_s": 340.43730645699907
+}

@@ -1,0 +1,196 @@
+{
+  "case_id": "date_0049_branch_00",
+  "target": "Apophis",
+  "departure": "Earth",
+  "mode": "rendezvous",
+  "date": "2027-12-10T00:00:00",
+  "stages": [
+    {
+      "coordinates": "iltt",
+      "accepted": false,
+      "diagnostics": {
+        "status": "initial_failed",
+        "attempts": [
+          {
+            "source": "orbit-source boundary correction",
+            "route": "shooting",
+            "last_costates": [
+              -0.0010492931690777954,
+              0.004433795334890862,
+              -0.005096790224624497,
+              -0.0019995326827170357,
+              0.002378392295025487,
+              -0.002859207928849164
+            ],
+            "nfev": 44,
+            "integrations": 44,
+            "optimizer_success": true,
+            "residual_norm": 0.08158334329853308,
+            "coordinates": "iltt",
+            "conversion": {
+              "costate_roundtrip_error": 0.0,
+              "unanchored_fit_error": 0.0,
+              "anchored": false,
+              "costate_offset": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "nfev": 1,
+              "jacobian_singular_values": [
+                0.05832319306966082,
+                0.005399721257308323,
+                0.005353411530771446,
+                0.003775259082383628,
+                0.0022538425491900544,
+                0.0008570518179296101
+              ],
+              "local_rank": 6
+            },
+            "iltt_parameters": [
+              -0.5981996389783367,
+              -2.2138883500294666,
+              3.4199879081513074,
+              5.238210184433663,
+              1.0864646495755141,
+              2.5999549404798183
+            ],
+            "iltt_chart": {
+              "version": 1,
+              "initial_state_normalized": [
+                0.17457107504210603,
+                0.984644575002699,
+                -2.6007648136322417e-05,
+                -0.9933894670689469,
+                0.1698213849836007,
+                -3.093629774102031e-05
+              ],
+              "reference": [
+                -0.5115772437130284,
+                -1.2142246137352724,
+                3.5531513971342843,
+                4.799183125001661,
+                1.1209529701559562,
+                2.29838346372628
+              ],
+              "parameters": [
+                -0.5981996389783367,
+                -2.2138883500294666,
+                3.4199879081513074,
+                5.238210184433663,
+                1.0864646495755141,
+                2.5999549404798183
+              ],
+              "dm_limit": 0.5981996389807971,
+              "costate_offset": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "convention": "p = ILTT(parameters, initial_state) + costate_offset; duration independent"
+            },
+            "position_residual_m": 8116570535.549591,
+            "velocity_residual_m_s": 1805.6692958373058,
+            "free_velocity_transversality": 0.008955778095243278,
+            "accepted": false,
+            "elapsed_s": 3.253850326000247
+          }
+        ],
+        "elapsed_s": 3.2538647479996143
+      },
+      "next_seed": "last numerical costates, not verified"
+    },
+    {
+      "coordinates": "costates",
+      "accepted": true,
+      "diagnostics": {
+        "status": "solved_extremal",
+        "attempts": [
+          {
+            "source": "orbit-source boundary correction",
+            "route": "shooting",
+            "last_costates": [
+              -0.0023830078552110703,
+              -0.0067383893459176895,
+              -0.00406355692419992,
+              0.012386387861344458,
+              -0.0012138196599447801,
+              -0.002727546664094161
+            ],
+            "independent_check": {
+              "position_residual_m": 84.98004625314265,
+              "velocity_residual_m_s": 1.5092445348767635e-05,
+              "free_velocity_transversality": 0.015144767291578423,
+              "difference_r_m": 102.08962370353589,
+              "difference_v_m_s": 1.813819949391707e-05
+            },
+            "nfev": 11,
+            "integrations": 11,
+            "optimizer_success": true,
+            "residual_norm": 1.6260409026905101e-13,
+            "coordinates": "costates",
+            "conversion": {},
+            "position_residual_m": 17.22008469574845,
+            "velocity_residual_m_s": 3.066992398808273e-06,
+            "free_velocity_transversality": 0.015144767291602145,
+            "accepted": true,
+            "elapsed_s": 0.8512596670007042
+          }
+        ],
+        "elapsed_s": 0.8582062800014683
+      },
+      "verification": {
+        "passed": true,
+        "method": "LSODA, independently implemented Hamiltonian RHS",
+        "position_residual_m": 84.98004707952506,
+        "velocity_residual_m_s": 1.5092446088185656e-05,
+        "trajectory_difference_m": 102.0896199917661,
+        "velocity_difference_m_s": 1.813819973196085e-05,
+        "free_velocity_transversality": 0.015144767291578423,
+        "scope": "Numerical extremal and endpoint consistency; not proof of local/global optimality or N-body fidelity"
+      }
+    }
+  ],
+  "accepted": true,
+  "entry": {
+    "accepted": false,
+    "error": "ILTT phase/orbit correction failed: `xtol` termination condition is satisfied.; residual=[ 0.08852759 -0.00246867  0.10037015  0.0005906  -0.00017943 -0.01118201]; x=[-0.59819964 -2.69422148  3.55291241  4.90108665  1.05983973  2.39007772]; x0=[-0.51157724 -1.21422461  3.5531514   4.79918313  1.12095297  2.29838346]; rejected_coverage_trials=0"
+  },
+  "fallback_seed": {
+    "kind": "unverified date/phase ILTT approximation",
+    "phase_rad": 1.173405675821306,
+    "branch": {
+      "k": 0,
+      "lambda_initial": 2.29838346372628,
+      "approximation_family": "long"
+    },
+    "raw_parameters": [
+      -0.5115772437130284,
+      -1.2142246137352724,
+      3.5531513971342843,
+      4.799183125001661,
+      1.1209529701559562,
+      2.29838346372628
+    ],
+    "parameters": [
+      -0.5115772437130284,
+      -1.2142246137352724,
+      3.5531513971342843,
+      4.799183125001661,
+      1.1209529701559562,
+      2.29838346372628
+    ],
+    "tof_days": 892.6483846215206
+  },
+  "tof_days": 892.6483846215206,
+  "last_result": "costates",
+  "rescued_by_costates": true,
+  "rescued_after_entry_failure": true,
+  "stopped_stage": null
+}

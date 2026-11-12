@@ -1,0 +1,64 @@
+{
+  "case_id": "earth_mars_2029_d+90",
+  "status": "partial",
+  "phase": "transfer",
+  "bounds_days": [
+    697.5189628191098,
+    2790.075851276439
+  ],
+  "events": [
+    {
+      "operation": "exact_arcs_cartesian",
+      "parent": "runs/accepted42_psi_v1/earth_mars_2029_d+90/coupled_checkpoint",
+      "alpha_seed": 0.003125,
+      "status": "failed",
+      "error": "Exact arc integration budget reached"
+    },
+    {
+      "operation": "exact_arcs_legacy",
+      "parent": "runs/accepted42_psi_v1/earth_mars_2029_d+90/coupled_checkpoint",
+      "alpha_seed": 0.003125,
+      "status": "failed",
+      "error": "Independent bounded replay budget reached"
+    },
+    {
+      "operation": "exact_arcs_rtn",
+      "parent": "runs/accepted42_psi_v1/earth_mars_2029_d+90/coupled_checkpoint",
+      "alpha_seed": 0.003125,
+      "status": "failed",
+      "error": "Independent bounded replay budget reached"
+    },
+    {
+      "operation": "exact_free_time",
+      "parent": "runs/accepted42_psi_v1/earth_mars_2029_d+90/coupled_checkpoint",
+      "bounds_days": [
+        697.5189628191098,
+        2790.075851276439
+      ],
+      "status": "failed",
+      "error": "Free-duration integration budget reached"
+    },
+    {
+      "operation": "R_fixed",
+      "reference": "runs/accepted42_psi_v1/earth_mars_2028_d+0/recover_physical",
+      "tof_days": 697.5189638191098,
+      "status": "failed",
+      "error": "Exact arc integration budget reached"
+    },
+    {
+      "operation": "R_free",
+      "reference": "runs/accepted42_psi_v1/earth_mars_2028_d+0/recover_physical",
+      "status": "failed",
+      "error": "Free-duration integration budget reached"
+    },
+    {
+      "operation": "broad_early_time",
+      "bounds_days": [
+        697.5189628191098,
+        2790.075851276439
+      ],
+      "status": "failed",
+      "error": "No independently verified changed-duration intermediate; see trials.json"
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "events": [
+    {
+      "operation": "coupled",
+      "input_stage": "psi_limit",
+      "input_days": 364.7580441797355,
+      "status": "partial",
+      "stopped_phase": "mass_and_thrust",
+      "details": {
+        "status": "partial",
+        "phase": "mass_and_thrust",
+        "reached_parameter": 0.00078125,
+        "last_result": "mass_and_thrust/point_0008"
+      },
+      "checkpoint": "runs/accepted42_psi_v1/earth_mars_2028_d+0/coupled_checkpoint"
+    },
+    {
+      "operation": "release_intermediate",
+      "bounds_days": [
+        182.37902208986776,
+        547.1370662696033
+      ],
+      "input_days": 364.7580441797355,
+      "status": "failed",
+      "error": "RuntimeError: No independently verified changed-duration intermediate; see trials.json",
+      "checkpoint": "runs/accepted42_psi_v1/earth_mars_2028_d+0/release_intermediate_checkpoint"
+    },
+    {
+      "operation": "release_early",
+      "bounds_days": [
+        182.37902208986776,
+        729.516088359471
+      ],
+      "input_days": 364.7580441797355,
+      "status": "completed_stage",
+      "output_days": 639.110216734751,
+      "details": {
+        "method": "bounded_scalar_with_BVP_correction",
+        "seed_tof_days": 364.7580441797355,
+        "resolved_tof_days": 639.110216734751,
+        "bounds_days": [
+          182.37902208986776,
+          729.516088359471
+        ],
+        "requested_bounds_days": [
+          182.37902208986776,
+          729.516088359471
+        ],
+        "objective": "current_model_functional",
+        "seed_objective": 0.00203922949089473,
+        "objective_value": 0.0009270418269364543,
+        "optimizer_success": true,
+        "stop_reason": "Solution found.",
+        "trials": 23,
+        "physical_solution": false,
+        "global_optimality": false
+      },
+      "checkpoint": "runs/accepted42_psi_v1/earth_mars_2028_d+0/release_early_checkpoint"
+    },
+    {
+      "operation": "early_continue",
+      "input_stage": "departure",
+      "input_days": 639.110216734751,
+      "status": "completed",
+      "stopped_phase": "final",
+      "details": {
+        "status": "completed",
+        "phase": "final",
+        "reached_parameter": 1.0,
+        "last_result": "fuel/point_0004"
+      },
+      "checkpoint": "runs/accepted42_psi_v1/earth_mars_2028_d+0/early_continue_checkpoint"
+    }
+  ]
+}

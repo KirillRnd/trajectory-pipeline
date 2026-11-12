@@ -136,7 +136,7 @@ def correct_interface(seed,mission,*,budget_s=60.):
                             configuration_sha256=configuration_hash(mission),status='unverified_boundary_seed')
     context.metadata.pop('verification',None)
     # Markers describe the body and the actual nonzero-radius interface.
-    planet=Ephemerides().state(mission.target,mission.arrival_jd,mission.center)
+    planet=mission.ephemerides().state(mission.target,mission.arrival_jd,mission.center)
     context.metadata['markers']=[dict(label=mission.departure+', старт',r_m=initial[:3].tolist()),
                                  dict(label=mission.target,r_m=planet[:3].tolist(),color='#df1111',role='target'),
                                  dict(label='Вход в сферу '+mission.target,r_m=target[:3].tolist(),hollow=True)]

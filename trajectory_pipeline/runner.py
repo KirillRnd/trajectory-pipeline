@@ -15,7 +15,7 @@ from .contract import make_request,audit_configuration,stamp_configuration
 
 
 def run_irt(mission, output,resume=False):
-    from .iltt_entry import resolve_date_mission
+    from .irt_entry_routes import resolve_with_fallback,solve_entry
     original_mission=mission
     output = Path(output)
     output.mkdir(parents=True,exist_ok=resume)
@@ -29,7 +29,7 @@ def run_irt(mission, output,resume=False):
     summary['git_revision']=subprocess.check_output(['git','rev-parse','HEAD'],cwd=root,text=True).strip()
     started = time.perf_counter()
     try:
-        mission=resolve_date_mission(mission)
+        mission=resolve_with_fallback(mission)
         if resume and (output/'mission.json').exists() and Mission.load(output/'mission.json').to_dict()!=mission.to_dict():
             raise ValueError('Resume IRT mission differs from saved configuration')
         write_json(output/'mission.json',mission.to_dict())
@@ -37,7 +37,9 @@ def run_irt(mission, output,resume=False):
         if mission.lunar is not None:
             from .lunar import solve_lunar_irt
             trajectory,diagnostics=solve_lunar_irt(mission,output,resume=resume)
-        else:trajectory, diagnostics = solve_irt(mission)
+        else:
+            mission,trajectory,diagnostics=solve_entry(mission)
+            write_json(output/'mission.json',mission.to_dict())
         write_json(output/'diagnostics.json',diagnostics)
         if trajectory is None:
             summary['status']='initial_failed'
@@ -248,6 +250,14 @@ def _run_pipeline(mission,output,resume=False):
         irt_summary=json.loads((irt_folder/'summary.json').read_text(encoding='utf-8'))
         if irt_summary['status']=='partial' and mission.lunar is not None:
             irt_summary=run_irt(mission,irt_folder,resume=True)
+    elif mission.solver.get('irt_artifact'):
+        current=Trajectory.load(mission.solver['irt_artifact'])
+        audit_configuration(current,mission,request)
+        if not verify_irt(current)['passed']:raise ValueError('Saved IRT seed failed replay')
+        irt_folder.mkdir(parents=True)
+        current.save(irt_folder/'irt')
+        irt_summary=dict(status='completed_stage',last_result='irt',source=mission.solver['irt_artifact'])
+        write_json(irt_folder/'summary.json',irt_summary)
     else:irt_summary=run_irt(mission,irt_folder)
     record('irt',irt_summary)
     if irt_summary['status']!='completed_stage':
@@ -323,6 +333,10 @@ def _run_pipeline(mission,output,resume=False):
 
 def run_pipeline(mission,output,resume=False,*,release_time=False,time_bounds_days=None):
     from .iltt_entry import resolve_date_mission,date_entry
+    from .irt_entry_routes import resolve_with_fallback
+    from .source_pipeline import needs_source_transition,run_source_pipeline
+    if needs_source_transition(mission):
+        return run_source_pipeline(mission,output,resume=resume,release_time=release_time,time_bounds_days=time_bounds_days)
     original_mission=mission
     if resume and (Path(output)/'mission.json').exists():
         entry_request=Path(output)/'entry_request.json'
@@ -330,7 +344,7 @@ def run_pipeline(mission,output,resume=False,*,release_time=False,time_bounds_da
             if json.loads(entry_request.read_text())!=original_mission.to_dict():raise ValueError('Resume date-first entry request differs')
             mission=Mission.load(Path(output)/'mission.json')
     elif date_entry(mission):
-        try:mission=resolve_date_mission(mission)
+        try:mission=resolve_with_fallback(mission)
         except Exception as exc:
             output=Path(output);output.mkdir(parents=True,exist_ok=resume)
             write_json(output/'mission.json',original_mission.to_dict())

@@ -1,0 +1,126 @@
+{
+  "case_id": "earth_polyhymnia_2029_d+0",
+  "phase": "recover",
+  "status": "partial",
+  "source": "data/benchmarks/coordinate_matrix_v1/primary/earth_polyhymnia_2029_d+0/costates",
+  "events": [
+    {
+      "operation": "coupled",
+      "input_stage": "psi_mass",
+      "input_days": 1288.4772314582776,
+      "status": "partial",
+      "stopped_phase": "mass_and_thrust",
+      "details": {
+        "status": "partial",
+        "phase": "mass_and_thrust",
+        "reached_parameter": 0.0,
+        "last_result": "mass_and_thrust/initial"
+      },
+      "checkpoint": "runs/accepted42_psi_v1/earth_polyhymnia_2029_d+0/coupled_checkpoint"
+    },
+    {
+      "operation": "release_intermediate",
+      "bounds_days": [
+        644.2386157291388,
+        1932.7158471874163
+      ],
+      "input_days": 1288.4772314582776,
+      "status": "completed_stage",
+      "output_days": 1440.5613385007196,
+      "details": {
+        "method": "bounded_scalar_with_BVP_correction",
+        "seed_tof_days": 1288.4772314582776,
+        "resolved_tof_days": 1440.5613385007196,
+        "bounds_days": [
+          644.2386157291388,
+          1932.7158471874163
+        ],
+        "requested_bounds_days": [
+          644.2386157291388,
+          1932.7158471874163
+        ],
+        "objective": "current_model_functional",
+        "seed_objective": 0.16430262659489253,
+        "objective_value": 0.12719476022196888,
+        "optimizer_success": false,
+        "stop_reason": "Intermediate duration budget reached",
+        "trials": 5,
+        "physical_solution": false,
+        "global_optimality": false
+      },
+      "checkpoint": "runs/accepted42_psi_v1/earth_polyhymnia_2029_d+0/release_intermediate_checkpoint"
+    },
+    {
+      "operation": "after_release",
+      "input_stage": "psi_mass",
+      "input_days": 1440.5613385007196,
+      "status": "partial",
+      "stopped_phase": "mass_and_thrust",
+      "details": {
+        "status": "partial",
+        "phase": "mass_and_thrust",
+        "reached_parameter": 0.0,
+        "last_result": "mass_and_thrust/initial"
+      },
+      "checkpoint": "runs/accepted42_psi_v1/earth_polyhymnia_2029_d+0/after_release_checkpoint"
+    },
+    {
+      "operation": "release_early",
+      "bounds_days": [
+        644.2386157291388,
+        2576.9544629165553
+      ],
+      "input_days": 1288.4772314582776,
+      "status": "completed_stage",
+      "output_days": 1721.0975128252617,
+      "details": {
+        "method": "bounded_scalar_with_BVP_correction",
+        "seed_tof_days": 1288.4772314582776,
+        "resolved_tof_days": 1721.0975128252617,
+        "bounds_days": [
+          644.2386157291388,
+          2576.9544629165553
+        ],
+        "requested_bounds_days": [
+          644.2386157291388,
+          2576.9544629165553
+        ],
+        "objective": "current_model_functional",
+        "seed_objective": 0.005439176466159426,
+        "objective_value": 0.0035532724836969177,
+        "optimizer_success": false,
+        "stop_reason": "Intermediate duration budget reached",
+        "trials": 23,
+        "physical_solution": false,
+        "global_optimality": false
+      },
+      "checkpoint": "runs/accepted42_psi_v1/earth_polyhymnia_2029_d+0/release_early_checkpoint"
+    },
+    {
+      "operation": "early_continue",
+      "input_stage": "departure",
+      "input_days": 1721.0975128252617,
+      "status": "partial",
+      "stopped_phase": "fuel",
+      "details": {
+        "status": "partial",
+        "phase": "fuel",
+        "reached_parameter": 0.015625,
+        "last_result": "fuel/point_0006"
+      },
+      "checkpoint": "runs/accepted42_psi_v1/earth_polyhymnia_2029_d+0/early_continue_checkpoint"
+    }
+  ],
+  "last_checkpoint": "runs/accepted42_psi_v1/earth_polyhymnia_2029_d+0/recover_last",
+  "last_stage": "psi",
+  "last_model": {
+    "a_max": 0.02652812493186295,
+    "alpha": 0.19465820312499998,
+    "beta": 1,
+    "q": 0.03969005320134832,
+    "variable_mass": true,
+    "gravity_spec": null
+  },
+  "last_days": 1721.0975128252617,
+  "elapsed_s": 502.1382387470003
+}

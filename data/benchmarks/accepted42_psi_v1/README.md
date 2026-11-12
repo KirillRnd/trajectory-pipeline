@@ -1,0 +1,5 @@
+# 42 accepted IRT → physical PSI
+
+See final.json and results.csv. archive_artifact / archive_path are relative to this archive; artifact/path retain the original runs provenance. Source IRT paths are in coordinate_matrix_v1, and their NPZ/JSON SHA256 are frozen in design.json. Only flight duration was allowed to change. Partial checkpoints are not physical acceptance.
+
+executed_sources preserves the controller used for the numerical batches (physical_transfer_routes includes the topology fix; three earlier affected attempts were repaired separately and original errors retained). source contains the final maintained controllers/report. environment.json was captured before the final controller/report housekeeping; SHA256.json binds the delivered archive. Immutable stage initial arrays are authoritative: some original in-memory source-hash labels were inherited from earlier checkpoints; future controller stages reload the saved checkpoint. Final input hashes and physical/source-request audits were checked independently.

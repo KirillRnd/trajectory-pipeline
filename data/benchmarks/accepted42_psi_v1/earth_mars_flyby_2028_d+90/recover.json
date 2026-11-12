@@ -1,0 +1,227 @@
+{
+  "case_id": "earth_mars_flyby_2028_d+90",
+  "phase": "recover",
+  "status": "completed",
+  "source": "data/benchmarks/coordinate_matrix_v1/primary/earth_mars_flyby_2028_d+90/costates",
+  "artifact": "runs/accepted42_psi_v1/earth_mars_flyby_2028_d+90/recover_physical",
+  "route": "early duration -> Pazov(.3) -> coupled mass/thrust -> fuel",
+  "verification": {
+    "passed": true,
+    "position_residual_m": 2.2418979668979584,
+    "velocity_residual_m_s": 6316.302743257424,
+    "parameter_audit": {
+      "passed": true,
+      "configuration_sha256": "7f688b8c934dc1f72b78594789a2d3c3a0a99aa7c9ef3760a2443a0575aeec23",
+      "configuration_hash_version": 2,
+      "requested": {
+        "mass_kg": 156,
+        "thrust_N": 0.025,
+        "exhaust_velocity_m_s": 20000,
+        "dry_mass_kg": 90,
+        "launch_tdb": "2029-01-30T00:00:00",
+        "tof_days": 359.6612254751332,
+        "departure": "Earth",
+        "target": "Mars",
+        "mode": "flyby"
+      },
+      "recovered_model": {
+        "model_thrust_N": 0.025,
+        "thrust_to_requested_ratio": 1.0,
+        "alpha": 1.0,
+        "beta": 1,
+        "variable_mass": true,
+        "hardware_limit_reached": true,
+        "exhaust_velocity_m_s": 20000.0
+      },
+      "geometry": null,
+      "final_admission": true
+    },
+    "trajectory_difference_m": 2.2428325193938505,
+    "velocity_difference_m_s": 2.482695555127728e-07,
+    "stored_throttle_error": 0.0,
+    "stored_throttle_minimum": 0.0,
+    "stored_throttle_maximum": 1.0,
+    "canonical_boundary_residual": 6.251246645167458e-11,
+    "method": "LSODA with independent bounded/mass equations",
+    "scope": "Numerical extremal and constraints; no global optimality proof",
+    "departure_norm_m_s": 2999.9999999999927,
+    "switching_sign_violation": 1.9687244391636063e-12,
+    "switching_node_residual": 1.9687244391636063e-12,
+    "minimum_mass_kg": 153.4357629541313,
+    "fuel_kg": 2.5642370458687154,
+    "mass_difference_kg": 1.212363542890671e-13,
+    "stored_thrust_error_N": 0.0,
+    "mass_balance_error_kg": 7.949196856316121e-14
+  },
+  "kiam_verification": {
+    "passed": true,
+    "source": "Unmodified KIAM Astro compiled Fortran equations and published control API",
+    "package_version": "6.1.6",
+    "samples": 101,
+    "maximum_dimensionless_rhs_error": 6.661338147750939e-16,
+    "maximum_dimensionless_force_error": 3.469446951953614e-18,
+    "maximum_third_body_decomposition_error": 0.0,
+    "nbody_gravity": {
+      "passed": true,
+      "applicable": false
+    },
+    "costate_map": "p_r,v(KIAM)=p_r,v/vex; p_m(KIAM)=1+p_m/vex; normalized initial mass=1",
+    "scope": "KIAM central mass-optimal equations/control, plus independent third-body decomposition when present; not a separate global optimization"
+  },
+  "parameter_audit": {
+    "passed": true,
+    "configuration_sha256": "7f688b8c934dc1f72b78594789a2d3c3a0a99aa7c9ef3760a2443a0575aeec23",
+    "configuration_hash_version": 2,
+    "requested": {
+      "mass_kg": 156,
+      "thrust_N": 0.025,
+      "exhaust_velocity_m_s": 20000,
+      "dry_mass_kg": 90,
+      "launch_tdb": "2029-01-30T00:00:00",
+      "tof_days": 359.6612254751332,
+      "departure": "Earth",
+      "target": "Mars",
+      "mode": "flyby"
+    },
+    "recovered_model": {
+      "model_thrust_N": 0.025,
+      "thrust_to_requested_ratio": 1.0,
+      "alpha": 1.0,
+      "beta": 1,
+      "variable_mass": true,
+      "hardware_limit_reached": true,
+      "exhaust_velocity_m_s": 20000.0
+    },
+    "geometry": {
+      "epoch_jd": 2462166.5,
+      "arrival_jd": 2462526.161225475,
+      "departure_position_difference_m": 1.52587890625e-05,
+      "arrival_position_difference_m": 0.0
+    },
+    "final_admission": true
+  },
+  "tof_days": 359.6612254751332,
+  "fuel_kg": 2.564237045868623,
+  "final_mass_kg": 153.43576295413138,
+  "departure_m_s": 2999.9999999999927,
+  "events": [
+    {
+      "operation": "coupled",
+      "input_stage": "psi_limit",
+      "input_days": 179.8306127375666,
+      "status": "partial",
+      "stopped_phase": "mass_and_thrust",
+      "details": {
+        "status": "partial",
+        "phase": "mass_and_thrust",
+        "reached_parameter": 0.0009765625,
+        "last_result": "mass_and_thrust/point_0010"
+      },
+      "checkpoint": "runs/accepted42_psi_v1/earth_mars_flyby_2028_d+90/coupled_checkpoint"
+    },
+    {
+      "operation": "release_intermediate",
+      "bounds_days": [
+        89.9153063687833,
+        269.7459191063499
+      ],
+      "input_days": 179.8306127375666,
+      "status": "completed_stage",
+      "output_days": 179.84728207155229,
+      "details": {
+        "method": "bounded_scalar_with_BVP_correction",
+        "seed_tof_days": 179.8306127375666,
+        "resolved_tof_days": 179.84728207155229,
+        "bounds_days": [
+          89.9153063687833,
+          269.7459191063499
+        ],
+        "requested_bounds_days": [
+          89.9153063687833,
+          269.7459191063499
+        ],
+        "objective": "current_model_functional",
+        "seed_objective": 0.1292221671649359,
+        "objective_value": 0.1289491853364116,
+        "optimizer_success": true,
+        "stop_reason": "Solution found.",
+        "trials": 8,
+        "physical_solution": false,
+        "global_optimality": false
+      },
+      "checkpoint": "runs/accepted42_psi_v1/earth_mars_flyby_2028_d+90/release_intermediate_checkpoint"
+    },
+    {
+      "operation": "after_release",
+      "input_stage": "psi_limit",
+      "input_days": 179.84728207155229,
+      "status": "partial",
+      "stopped_phase": "mass_and_thrust",
+      "details": {
+        "status": "partial",
+        "phase": "mass_and_thrust",
+        "reached_parameter": 0.0009765625,
+        "last_result": "mass_and_thrust/point_0010"
+      },
+      "checkpoint": "runs/accepted42_psi_v1/earth_mars_flyby_2028_d+90/after_release_checkpoint"
+    },
+    {
+      "operation": "release_early",
+      "bounds_days": [
+        89.9153063687833,
+        359.6612254751332
+      ],
+      "input_days": 179.8306127375666,
+      "status": "completed_stage",
+      "output_days": 359.6612254751332,
+      "details": {
+        "method": "bounded_scalar_with_BVP_correction",
+        "seed_tof_days": 179.8306127375666,
+        "resolved_tof_days": 359.6612254751332,
+        "bounds_days": [
+          89.9153063687833,
+          359.6612254751332
+        ],
+        "requested_bounds_days": [
+          89.9153063687833,
+          359.6612254751332
+        ],
+        "objective": "current_model_functional",
+        "seed_objective": 0.009509274481941901,
+        "objective_value": 2.3840447683318228e-05,
+        "optimizer_success": true,
+        "stop_reason": "Solution found.",
+        "trials": 19,
+        "physical_solution": false,
+        "global_optimality": false
+      },
+      "checkpoint": "runs/accepted42_psi_v1/earth_mars_flyby_2028_d+90/release_early_checkpoint"
+    },
+    {
+      "operation": "early_continue",
+      "input_stage": "departure",
+      "input_days": 359.6612254751332,
+      "status": "completed",
+      "stopped_phase": "final",
+      "details": {
+        "status": "completed",
+        "phase": "final",
+        "reached_parameter": 1.0,
+        "last_result": "fuel/point_0011"
+      },
+      "checkpoint": "runs/accepted42_psi_v1/earth_mars_flyby_2028_d+90/early_continue_checkpoint"
+    }
+  ],
+  "last_checkpoint": "runs/accepted42_psi_v1/earth_mars_flyby_2028_d+90/recover_last",
+  "last_stage": "psi",
+  "last_model": {
+    "a_max": 0.026222750943754387,
+    "alpha": 1.0,
+    "beta": 1,
+    "q": 0.03934689379493991,
+    "variable_mass": true,
+    "gravity_spec": null
+  },
+  "last_days": 359.6612254751332,
+  "elapsed_s": 312.4223575640008
+}

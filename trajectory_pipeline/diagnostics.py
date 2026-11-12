@@ -68,7 +68,7 @@ def diagnose_step(case,phase,output,*,budget_scale=1.,native_prefix=False):
         mission.boundary();mission.boundary()
         irt=Trajectory.load(case/'stage_irt/irt')
         epochs=mission.launch_jd+irt.arrays['t_s']/DAY_S
-        eph=Ephemerides()
+        eph=mission.ephemerides()
         for body in (mission.departure,mission.target):eph.state(body,epochs,mission.center)
     snapshot['native_imported_after_prefix']='FKIAMToolbox' in sys.modules
     write_json(output/'step.json',snapshot)

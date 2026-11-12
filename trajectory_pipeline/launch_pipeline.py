@@ -11,6 +11,9 @@ from .parking_departure import ParkingDeparture,outgoing_hyperbola,verify_outgoi
 
 
 def verify_launch_mission(folder):
+    from .composed_time import verify_selection
+    selection=verify_selection(folder,verify_launch_mission)
+    if selection is not None:return selection
     from .contract import audit_configuration
     from .bounded import verify_bounded
     from .capture_pipeline import verify_capture_mission
@@ -27,7 +30,7 @@ def verify_launch_mission(folder):
     req=json.loads((downstream/('outer_request.json' if mission.capture else 'request.json')).read_text())
     audit_configuration(outer,expected,req,require_final=True)
     launch=Trajectory.load(folder/'launch');joint=Trajectory.load(folder/'final')
-    planet=Ephemerides().state(mission.departure,mission.launch_jd)
+    planet=mission.ephemerides().state(mission.departure,mission.launch_jd)
     spec=ParkingDeparture(**mission.parking_departure)
     info=launch.metadata['injection']
     sol=dict(info,t_s=launch.arrays['t_s'],relative_state_si=np.c_[launch.arrays['r_m'],launch.arrays['v_m_s']])
@@ -37,7 +40,7 @@ def verify_launch_mission(folder):
     dm=abs(float(launch.arrays['mass_kg'][-1]-outer.arrays['mass_kg'][0]))
     mass_error=float(np.max(np.abs(launch.arrays['mass_kg']-mission.mass_kg)))
     downstream_final=Trajectory.load(downstream/('final' if mission.capture else 'outer'))
-    ep=Ephemerides().state(mission.departure,launch.metadata['epoch_jd']+launch.arrays['t_s']/DAY_S)
+    ep=mission.ephemerides().state(mission.departure,launch.metadata['epoch_jd']+launch.arrays['t_s']/DAY_S)
     expected_r=np.vstack([ep[:-1,:3]+launch.arrays['r_m'][:-1],downstream_final.arrays['r_m']])
     expected_v=np.vstack([ep[:-1,3:]+launch.arrays['v_m_s'][:-1],downstream_final.arrays['v_m_s']])
     cr=float(np.linalg.norm(joint.arrays['r_m']-expected_r,axis=1).max())
@@ -92,7 +95,7 @@ def run_launch_pipeline(mission,output,resume=False):
                  completion_scope='parking_to_planetary_orbit' if mission.capture else 'parking_to_target',capture_included=bool(mission.capture))
     write_json(output/'summary.json',summary)
     spec=ParkingDeparture(**mission.parking_departure)
-    planet=Ephemerides().state(mission.departure,mission.launch_jd)
+    planet=mission.ephemerides().state(mission.departure,mission.launch_jd)
     normal=np.cross(planet[:3],planet[3:]);normal/=np.linalg.norm(normal)
     seed_path=mission.solver.get('launch_seed_path')
     if seed_path:
@@ -146,7 +149,7 @@ def run_launch_pipeline(mission,output,resume=False):
         a=dict(t_s=launch['t_s'],r_m=launch['relative_state_si'][:,:3],v_m_s=launch['relative_state_si'][:,3:],
                mass_kg=np.full(len(launch['t_s']),mission.mass_kg),thrust_N=np.zeros(len(launch['t_s'])),active=np.zeros(len(launch['t_s']),dtype=bool))
         segment=Trajectory(meta,a);segment.save(output/'launch');segment=Trajectory.load(output/'launch')
-        ep=Ephemerides().state(mission.departure,epoch+launch['t_s']/DAY_S)
+        ep=mission.ephemerides().state(mission.departure,epoch+launch['t_s']/DAY_S)
         arrays=dict(t_s=np.r_[a['t_s'][:-1],a['t_s'][-1]+downstream.arrays['t_s']],
                     r_m=np.vstack([ep[:-1,:3]+a['r_m'][:-1],downstream.arrays['r_m']]),
                     v_m_s=np.vstack([ep[:-1,3:]+a['v_m_s'][:-1],downstream.arrays['v_m_s']]),
