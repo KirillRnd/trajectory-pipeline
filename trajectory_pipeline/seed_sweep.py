@@ -81,7 +81,8 @@ def collect_case(folder,mission,process_error=None):
         if result.metadata['chosen_seed']['source'] not in ('ILTT date/phase','ILTT date/phase approximation'):raise ValueError('Non-KLO seed')
         from .contract import audit_configuration,make_request
         audit_configuration(result,replace(mission,tof_days=model['tof_days']),make_request(replace(mission,tof_days=model['tof_days'])))
-        if not 0<model['tof_days']<=mission.solver['iltt_duration_bounds_days'][1]:raise ValueError('IRT outside horizon')
+        bounds=mission.solver.get('iltt_duration_bounds_days',[0.,float('inf')])
+        if not (model['tof_days']>0 and bounds[0]<=model['tof_days']<=bounds[1]):raise ValueError('IRT outside horizon')
         entry=model['solver'].get('iltt_resolved',{})
         fallback=model['solver'].get('irt_date_fallback',{})
         scales=Scales(**result.metadata['scales']);J=float(result.metadata['functional_dimensionless'])

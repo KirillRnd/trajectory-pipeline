@@ -1,0 +1,122 @@
+{
+  "events": [
+    {
+      "operation": "coupled",
+      "input_stage": "psi_limit",
+      "input_days": 181.1146229965285,
+      "status": "partial",
+      "stopped_phase": "mass_and_thrust",
+      "details": {
+        "status": "partial",
+        "phase": "mass_and_thrust",
+        "reached_parameter": 0.00625,
+        "last_result": "mass_and_thrust/point_0005"
+      },
+      "checkpoint": "runs/apophis_new_full_psi_v1/routes_spawn/date_0147_branch_00/coupled_checkpoint"
+    },
+    {
+      "operation": "physical_admission",
+      "status": "failed",
+      "route": "alternative: coupled mass/thrust",
+      "error": "Physical PSI requires exact active/passive arcs"
+    },
+    {
+      "operation": "release_intermediate",
+      "bounds_days": [
+        90.55731149826426,
+        271.67193449479277
+      ],
+      "input_days": 181.1146229965285,
+      "status": "completed_stage",
+      "output_days": 228.91657174836536,
+      "details": {
+        "method": "bounded_scalar_with_BVP_correction",
+        "seed_tof_days": 181.1146229965285,
+        "resolved_tof_days": 228.91657174836536,
+        "bounds_days": [
+          90.55731149826426,
+          271.67193449479277
+        ],
+        "requested_bounds_days": [
+          90.55731149826426,
+          271.67193449479277
+        ],
+        "objective": "current_model_functional",
+        "seed_objective": 0.1325570849783119,
+        "objective_value": 0.09501925488161661,
+        "optimizer_success": false,
+        "stop_reason": "Intermediate duration budget reached",
+        "trials": 6,
+        "physical_solution": false,
+        "global_optimality": false
+      },
+      "checkpoint": "runs/apophis_new_full_psi_v1/routes_spawn/date_0147_branch_00/release_intermediate_checkpoint"
+    },
+    {
+      "operation": "after_release",
+      "input_stage": "psi_limit",
+      "input_days": 228.91657174836536,
+      "status": "partial",
+      "stopped_phase": "mass_and_thrust",
+      "details": {
+        "status": "partial",
+        "phase": "mass_and_thrust",
+        "reached_parameter": 0.4375,
+        "last_result": "mass_and_thrust/point_0005"
+      },
+      "checkpoint": "runs/apophis_new_full_psi_v1/routes_spawn/date_0147_branch_00/after_release_checkpoint"
+    },
+    {
+      "operation": "physical_admission",
+      "status": "failed",
+      "route": "intermediate duration -> coupled mass/thrust -> fuel",
+      "error": "Physical PSI requires exact active/passive arcs"
+    },
+    {
+      "operation": "release_early",
+      "bounds_days": [
+        90.55731149826426,
+        362.229245993057
+      ],
+      "input_days": 181.1146229965285,
+      "status": "completed_stage",
+      "output_days": 362.2001870636115,
+      "details": {
+        "method": "bounded_scalar_with_BVP_correction",
+        "seed_tof_days": 181.1146229965285,
+        "resolved_tof_days": 362.2001870636115,
+        "bounds_days": [
+          90.55731149826426,
+          362.229245993057
+        ],
+        "requested_bounds_days": [
+          90.55731149826426,
+          362.229245993057
+        ],
+        "objective": "current_model_functional",
+        "seed_objective": 0.014918963019503365,
+        "objective_value": 0.002042605575676965,
+        "optimizer_success": true,
+        "stop_reason": "Solution found.",
+        "trials": 21,
+        "physical_solution": false,
+        "global_optimality": false
+      },
+      "checkpoint": "runs/apophis_new_full_psi_v1/routes_spawn/date_0147_branch_00/release_early_checkpoint"
+    },
+    {
+      "operation": "early_continue",
+      "input_stage": "departure",
+      "input_days": 362.2001870636115,
+      "status": "completed",
+      "stopped_phase": "final",
+      "details": {
+        "status": "completed",
+        "phase": "final",
+        "reached_parameter": 1.0,
+        "last_result": "fuel/point_0004"
+      },
+      "checkpoint": "runs/apophis_new_full_psi_v1/routes_spawn/date_0147_branch_00/early_continue_checkpoint"
+    }
+  ]
+}

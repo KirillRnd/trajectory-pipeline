@@ -8,7 +8,7 @@ from concurrent.futures import ProcessPoolExecutor,as_completed
 import numpy as np
 from .data import Trajectory,Scales,write_json,sha256
 from .problem import Mission
-from .accepted_irt_routes import physical,SETTINGS,checked_checkpoint
+from .accepted_irt_routes import physical,SETTINGS,checked_checkpoint,save_version,verify_stage
 from .contract import audit_configuration,make_request
 from .date_sweep import _seed,_date_context
 from .bangbang import solve_bangbang
@@ -41,11 +41,22 @@ def exact_time_seed(parent):
 
 def worker(task):
     case,rootstr,reference=task;root=Path(rootstr)/case['case_id'];dest=root/'transfer.json'
-    if dest.exists():return json.loads(dest.read_text())
+    if dest.exists():
+        cached=json.loads(dest.read_text())
+        if cached['status']=='completed':
+            actual=Trajectory.load(cached['artifact']);original=Mission(**Trajectory.load(case['source']).metadata['mission'])
+            physical(actual,replace(original,tof_days=actual.metadata['mission']['tof_days']))
+            return cached
+    attempts=sorted(root.glob('transfer_attempt_*.json'))
+    if len(attempts)>=3:
+        return json.loads(dest.read_text()) if dest.exists() else dict(case_id=case['case_id'],status='partial',phase='transfer',error='Three transfer attempts exhausted')
+    write_json(root/f'transfer_attempt_{len(attempts)+1:02d}.json',dict(source=case['source'],source_sha256=sha256(Path(case['source'])/'trajectory.npz'),reference=reference))
     seed=Trajectory.load(case['source']);original=Mission(**seed.metadata['mission'])
     settings=dict(SETTINGS,**case.get('settings',{}))
     seed.metadata['mission']['solver'].update(settings)
-    bounds=case.get('transfer_bounds_days',[.5*original.tof_days,max(2*original.tof_days,1095.75)])
+    bounds=case.get('transfer_bounds_days',case.get('duration_bounds_days',[.5*original.tof_days,max(2*original.tof_days,1095.75)]))
+    bounds=[bounds[0],min(bounds[1],case.get('horizon_days',float('inf')))]
+    if not 0<bounds[0]<bounds[1]:raise ValueError('Empty physical recovery time interval')
     events=[];summary=dict(case_id=case['case_id'],status='partial',phase='transfer',bounds_days=bounds)
     def accept(result,label):
         check=physical(result);actual=Mission(**result.metadata['mission'])
@@ -53,7 +64,7 @@ def worker(task):
         audit_configuration(result,expected,make_request(expected),require_final=True)
         if not bounds[0]<=actual.tof_days<=bounds[1]:raise ValueError('Time outside declared recovery bounds')
         result.metadata.update(verification=check['verification'],kiam_verification=check['kiam_verification'])
-        result.save(root/'transfer_physical');summary.update(status='completed',artifact=str(root/'transfer_physical'),route=label,**check)
+        output=save_version(result,root/'transfer_physical');summary.update(status='completed',artifact=str(output),route=label,**check)
     # Independently correct exact arcs from the best already verified physical-
     # mass/thrust intermediate, trying the existing costate charts explicitly.
     eligible=[]
@@ -120,12 +131,19 @@ def worker(task):
         # Different starting model and a common wider time domain; no target-specific tuning.
         event=dict(operation='broad_early_time',bounds_days=bounds)
         try:
-            candidate=timed_call(95,release_intermediate_duration,seed,bounds,perf_counter()+90,root/'broad_time')
-            candidate.save(root/'broad_time_checkpoint');candidate=Trajectory.load(root/'broad_time_checkpoint')
+            from .stage_journal import stage
+            def release(initial,out):
+                value=timed_call(95,release_intermediate_duration,initial,bounds,perf_counter()+90,out)
+                return value,dict(status='completed_stage')
+            candidate,_=stage(root,'broad_time',seed,release,verify_stage,recover=checked_checkpoint)
             candidate.metadata['mission']['solver'].update(dict(settings,pipeline_pazov_alpha=.3,psi_mass_alpha=.3))
-            result,state=timed_call(480,continue_physical_model,candidate,root/'broad_continue')
+            def proceed(initial,out):
+                if initial.metadata.get('stage')=='psi':
+                    physical(initial);return initial,dict(status='completed',phase='final')
+                return timed_call(480,continue_physical_model,initial,out)
+            result,state=stage(root,'broad_continue',candidate,proceed,verify_stage,recover=checked_checkpoint)
             event.update(status=state['status'],details=state)
-            result.save(root/'broad_last')
+            summary['last_checkpoint']=str(save_version(result,root/'broad_last'))
             if state['status']=='completed':accept(result,'broad early duration -> coupled physical continuation')
         except Exception as exc:event.update(status='failed',error=str(exc))
         events.append(event)

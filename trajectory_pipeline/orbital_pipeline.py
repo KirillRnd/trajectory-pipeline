@@ -241,6 +241,11 @@ def run_orbital_pipeline(mission,output,resume=False):
                     mass_kg=np.r_[dep.arrays['mass_kg'][:-1],current.arrays['mass_kg'],arr.arrays['mass_kg'][1:]],
                     thrust_N=np.r_[dep.arrays['thrust_N'][:-1],current.arrays['thrust_N'],arr.arrays['thrust_N'][1:]],
                     active=np.r_[dep.arrays['active'][:-1],current.arrays['active'],arr.arrays['active'][1:]])
+        # Distinct samples adjacent to an exact switch can round to the same
+        # float after adding a long departure duration. Keep the right limit
+        # in the display series; the independently replayed segments are intact.
+        keep=np.r_[np.diff(arrays['t_s'])!=0,True]
+        arrays={key:value[keep] for key,value in arrays.items()}
         if a['kind']=='impulse':
             end_planet=eph.state(mission.target,mission.arrival_jd+arrival['duration_s']/DAY_S)
             arrays['r_m'][-1]=end_planet[:3]+final_state[:3];arrays['v_m_s'][-1]=end_planet[3:]+final_state[3:]
@@ -397,12 +402,15 @@ def verify_orbital_mission(folder):
     if a['kind']=='impulse':
         pend=ep.state(m.target,m.arrival_jd+A['t_s'][-1]/DAY_S)
         expected_r[-1]=pend[:3]+end_local[:3];expected_v[-1]=pend[3:]+end_local[3:];expected_m[-1]=end_mass
+    expected_t=np.r_[D['t_s'][:-1],D['t_s'][-1]+O['t_s'],D['t_s'][-1]+m.tof_days*DAY_S+A['t_s'][1:]]
+    keep=np.r_[np.diff(expected_t)!=0,True]
+    expected_t=expected_t[keep];expected_r=expected_r[keep];expected_v=expected_v[keep];expected_m=expected_m[keep]
+    if J['r_m'].shape!=expected_r.shape:raise ValueError('Composed sample grid differs from local segments')
     comp_r=float(np.linalg.norm(J['r_m']-expected_r,axis=1).max());comp_v=float(np.linalg.norm(J['v_m_s']-expected_v,axis=1).max())
     comp_m=float(np.max(abs(J['mass_kg']-expected_m)))
-    expected_t=np.r_[D['t_s'][:-1],D['t_s'][-1]+O['t_s'],D['t_s'][-1]+m.tof_days*DAY_S+A['t_s'][1:]]
     comp_t=float(np.max(abs(J['t_s']-expected_t)))
-    thrust=np.r_[D['thrust_N'][:-1],O['thrust_N'],A['thrust_N'][1:]]
-    flags=np.r_[D['active'][:-1],O['active'],A['active'][1:]]
+    thrust=np.r_[D['thrust_N'][:-1],O['thrust_N'],A['thrust_N'][1:]][keep]
+    flags=np.r_[D['active'][:-1],O['active'],A['active'][1:]][keep]
     composition=comp_r<.001 and comp_v<1e-8 and comp_m<1e-6 and comp_t<1e-6 and np.array_equal(J['thrust_N'],thrust) and np.array_equal(J['active'],flags)
     final_elements=elements(end_local,orbit.mu_m3_s2)
     orbit_error=max(abs(final_elements['periapsis_radius_m']-orbit.planet_radius_m-orbit.periapsis_altitude_m),

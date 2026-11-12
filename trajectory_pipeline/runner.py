@@ -340,11 +340,18 @@ def run_pipeline(mission,output,resume=False,*,release_time=False,time_bounds_da
     original_mission=mission
     if resume and (Path(output)/'mission.json').exists():
         entry_request=Path(output)/'entry_request.json'
+        saved_mission=Mission.load(Path(output)/'mission.json')
         if entry_request.exists():
             if json.loads(entry_request.read_text())!=original_mission.to_dict():raise ValueError('Resume date-first entry request differs')
-            mission=Mission.load(Path(output)/'mission.json')
+            mission=saved_mission
+        elif saved_mission.solver.get('date_entry_request') is not None:
+            if saved_mission.solver['date_entry_request']!=original_mission.to_dict():raise ValueError('Resume date-first entry request differs')
+            mission=saved_mission
     elif date_entry(mission):
-        try:mission=resolve_with_fallback(mission)
+        try:
+            mission=resolve_with_fallback(mission)
+            from dataclasses import replace
+            mission=replace(mission,solver=dict(mission.solver,date_entry_request=original_mission.to_dict()))
         except Exception as exc:
             output=Path(output);output.mkdir(parents=True,exist_ok=resume)
             write_json(output/'mission.json',original_mission.to_dict())
@@ -364,9 +371,9 @@ def run_pipeline(mission,output,resume=False,*,release_time=False,time_bounds_da
         if mission.time_policy is not None:
             from .free_time import run_time_pipeline
             result,summary=run_time_pipeline(mission,output,resume=resume)
-            if date_entry(original_mission) and 'iltt_resolved' in mission.solver:
+            if date_entry(original_mission):
                 write_json(output/'entry_request.json',original_mission.to_dict())
-                write_json(output/'iltt_entry.json',mission.solver['iltt_resolved'])
+                write_json(output/'iltt_entry.json',mission.solver.get('iltt_resolved',mission.solver.get('irt_date_fallback')))
             return result,summary
         if mission.orbital_maneuvers is not None:
             from .orbital_pipeline import run_orbital_pipeline
@@ -378,9 +385,9 @@ def run_pipeline(mission,output,resume=False,*,release_time=False,time_bounds_da
             from .capture_pipeline import run_capture_pipeline
             return run_capture_pipeline(mission,output,resume=resume)
         result,summary=_run_pipeline(mission,output,resume=resume)
-        if date_entry(original_mission) and 'iltt_resolved' in mission.solver:
+        if date_entry(original_mission):
             write_json(output/'entry_request.json',original_mission.to_dict())
-            write_json(output/'iltt_entry.json',mission.solver['iltt_resolved'])
+            write_json(output/'iltt_entry.json',mission.solver.get('iltt_resolved',mission.solver.get('irt_date_fallback')))
         summary['completion_scope']='heliocentric_segment' if mission.center=='Sun' else 'specified_segment'
         summary['capture_included']=False
         write_json(output/'summary.json',summary)

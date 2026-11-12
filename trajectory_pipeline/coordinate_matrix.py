@@ -3,6 +3,7 @@ import argparse,json,signal
 from pathlib import Path
 from dataclasses import replace
 from datetime import datetime,timedelta
+from time import perf_counter
 from concurrent.futures import ProcessPoolExecutor,as_completed
 import numpy as np
 from .problem import Mission
@@ -17,12 +18,14 @@ from .contract import audit_configuration,make_request,stamp_configuration
 def timed_call(seconds,fn,*args,**kwargs):
     """Linux worker deadline also interrupts legacy integration inside F(x)."""
     def expired(signum,frame):raise TimeoutError('Worker wall deadline reached inside '+fn.__name__)
+    remaining,interval=signal.getitimer(signal.ITIMER_REAL);started=perf_counter()
     previous=signal.signal(signal.SIGALRM,expired)
-    signal.setitimer(signal.ITIMER_REAL,seconds)
+    signal.setitimer(signal.ITIMER_REAL,min(seconds,remaining) if remaining else seconds)
     try:return fn(*args,**kwargs)
     finally:
         signal.setitimer(signal.ITIMER_REAL,0)
         signal.signal(signal.SIGALRM,previous)
+        if remaining:signal.setitimer(signal.ITIMER_REAL,max(1e-6,remaining-(perf_counter()-started)),interval)
 
 
 def phase_seed(mission):

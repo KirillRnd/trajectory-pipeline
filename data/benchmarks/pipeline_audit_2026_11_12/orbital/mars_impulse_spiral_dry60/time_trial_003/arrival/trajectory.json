@@ -1,0 +1,73 @@
+{
+  "case_id": "mars_impulse_spiral_dry60",
+  "epoch_jd": 2463336.2639320227,
+  "time_scale": "TDB",
+  "frame": "ECLIPJ2000",
+  "center": "Mars",
+  "model": "patched central-field orbital arrival",
+  "status": "pending_verification",
+  "stage": "orbital_arrival",
+  "mission": {
+    "case_id": "mars_impulse_spiral_dry60",
+    "departure": "Earth",
+    "target": "Mars",
+    "launch_tdb": "2030-12-01T00:00:00",
+    "tof_days": 499.7639320225002,
+    "center": "Sun",
+    "mode": "rendezvous",
+    "position_tolerance_m": 1000,
+    "velocity_tolerance_m_s": 0.01,
+    "mass_kg": 156,
+    "departure_mode": "bounded_norm",
+    "vinf_max_m_s": 3000,
+    "vinf_vector_m_s": null,
+    "spacecraft": {
+      "thrust_N": 0.025,
+      "exhaust_velocity_m_s": 20000,
+      "dry_mass_kg": 60
+    },
+    "solver": {
+      "budget_s": 45,
+      "compare_seeds": true,
+      "departure_budget_s": 60,
+      "limit_budget_s": 60,
+      "pazov_budget_s": 90,
+      "psi_budget_s": 120,
+      "bounded_attempt_s": 20,
+      "orbital_seed_path": "/workspace/runs/audit_orbital_time_v2/mars_impulse_spiral_dry60/time_trial_003_seed",
+      "orbital_time_budget_s": 480,
+      "orbital_time_trial_s": 180,
+      "orbital_time_iterations": 1,
+      "irt_entry": "fixed_time"
+    },
+    "lunar": null,
+    "orbital_maneuvers": {
+      "departure": {
+        "interface_radius_m": 924881552.4165419,
+        "parking_altitude_m": 200000.0,
+        "planet_radius_m": 6378137.0,
+        "mu_m3_s2": 398600435600000.0,
+        "plane_mode": "free",
+        "kind": "impulse"
+      },
+      "arrival": {
+        "mu_m3_s2": 42828375662000.0,
+        "planet_radius_m": 3396190.0,
+        "periapsis_altitude_m": 400000.0,
+        "apoapsis_altitude_m": 30000000.0,
+        "interface_radius_m": 577230383.9421967,
+        "plane": "planet_orbit",
+        "interface_side": "sunward",
+        "kind": "spiral"
+      }
+    },
+    "mass_reference": "initial_orbit"
+  },
+  "maneuver": {
+    "kind": "spiral",
+    "burn_start_s": 3226357.051224533,
+    "duration_s": 10013837.646418944
+  },
+  "schema_version": 1,
+  "arrays_sha256": "33779440c2d7c6b0805e5443a42f3804f556684fa77e5d70b3262f8b250e4ad4"
+}

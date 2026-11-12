@@ -1,0 +1,210 @@
+{
+  "case_id": "date_0110_branch_00",
+  "mission": {
+    "case_id": "date_0110_branch_00",
+    "departure": "Earth",
+    "target": "Apophis",
+    "launch_tdb": "2029-02-09T00:00:00",
+    "tof_days": 266.55276712786383,
+    "center": "Sun",
+    "mode": "rendezvous",
+    "position_tolerance_m": 1000,
+    "velocity_tolerance_m_s": 0.01,
+    "mass_kg": 204,
+    "departure_mode": "bounded_norm",
+    "vinf_max_m_s": 3000,
+    "vinf_vector_m_s": null,
+    "spacecraft": {
+      "thrust_N": 0.036,
+      "exhaust_velocity_m_s": 11767.98,
+      "dry_mass_kg": 140
+    },
+    "solver": {
+      "budget_s": 35,
+      "compare_seeds": false,
+      "departure_budget_s": 45,
+      "limit_budget_s": 60,
+      "pazov_budget_s": 60,
+      "psi_budget_s": 90,
+      "bounded_attempt_s": 15,
+      "irt_entry": "fixed_time",
+      "attempt_budget_s": 35,
+      "iltt_budget_s": 60,
+      "iltt_max_abs_k": 5,
+      "iltt_branch": 0,
+      "iltt_duration_bounds_days": [
+        1e-08,
+        1095.75
+      ],
+      "iltt_coordinate_reference": [
+        -0.598199628980797,
+        -1.246255059286304,
+        3.5531513971342847,
+        4.799183124976807,
+        1.1177248887500757,
+        0.26969080432451764
+      ],
+      "max_nfev": 120,
+      "irt_coordinates": "costates",
+      "exact_attempt_s": 25,
+      "pipeline_pazov_alpha": 0.5,
+      "psi_mass_alpha": 0.5,
+      "intermediate_allow_below_dry_mass": true
+    },
+    "lunar": null,
+    "orbit_sources": {
+      "earth": {
+        "kind": "ephemerides"
+      },
+      "apophis": {
+        "kind": "ephemerides"
+      }
+    }
+  },
+  "scales": {
+    "distance_m": 147597919283.731,
+    "mu_m3_s2": 1.32712440018e+20
+  },
+  "epoch_jd": 2462176.5,
+  "center": "Sun",
+  "time_scale": "TDB",
+  "frame": "ECLIPJ2000",
+  "body_initial_state_si": [
+    -113248527404.9285,
+    94656836979.16801,
+    -5531830.011925016,
+    -19599.9741974123,
+    -22966.961199817546,
+    0.5597682524084509
+  ],
+  "target_state_si": [
+    113459653185.70067,
+    145693267446.6945,
+    -3421171805.809933,
+    -17346.693321192437,
+    18195.659539961158,
+    -915.7876142091792
+  ],
+  "configuration_sha256": "73fb75bca2b4c69429c65708f72018f6c63b271464cbc6def288c707dbbbfe27",
+  "bounded_model": {
+    "a_max": 0.028968177282532172,
+    "alpha": 1.0,
+    "beta": 1.0,
+    "q": 0.07381335532920277,
+    "variable_mass": true,
+    "gravity_spec": null
+  },
+  "stage": "psi",
+  "status": "verified_extremal",
+  "initial_state_si": [
+    -113248527404.9285,
+    94656836979.16801,
+    -5531830.011925016,
+    -17603.168262560885,
+    -23840.76093966395,
+    455.2653530045023
+  ],
+  "costates_initial": [
+    -0.26404856219832573,
+    0.27176315186939515,
+    -0.5518108990556844,
+    0.0,
+    0.0,
+    0.0,
+    -0.09684333715766755
+  ],
+  "model": "physical constant thrust and exhaust, variable mass",
+  "functional_dimensionless": 0.08326608465636064,
+  "hardware_limit_reached": true,
+  "title": "Earth → Apophis: ПСИ 204 кг",
+  "costate_convention": "dimensionless [p_r,p_v,p_m] for normalized remaining mass",
+  "departure": {
+    "mode": "bounded_norm",
+    "bound_active": false,
+    "vector_m_s": [
+      1996.8059348514143,
+      -873.7997398464031,
+      454.70558475209384
+    ],
+    "norm_m_s": 2226.548246865137,
+    "bound_m_s": 3000
+  },
+  "switch_times_s": [
+    5856242.388779174,
+    16689244.457419368,
+    19714624.96470009
+  ],
+  "initial_throttle": 0.0,
+  "bangbang_corrector": {
+    "nfev": 6,
+    "integrations": 67,
+    "residual_norm": 2.4900830474406004e-13,
+    "optimizer_success": true
+  },
+  "verification": {
+    "passed": true,
+    "position_residual_m": 0.5153171567678965,
+    "velocity_residual_m_s": 5.2204503865256345e-08,
+    "parameter_audit": {
+      "passed": true,
+      "configuration_sha256": "73fb75bca2b4c69429c65708f72018f6c63b271464cbc6def288c707dbbbfe27",
+      "configuration_hash_version": 2,
+      "requested": {
+        "mass_kg": 204,
+        "thrust_N": 0.036,
+        "exhaust_velocity_m_s": 11767.98,
+        "dry_mass_kg": 140,
+        "launch_tdb": "2029-02-09T00:00:00",
+        "tof_days": 266.55276712786383,
+        "departure": "Earth",
+        "target": "Apophis",
+        "mode": "rendezvous"
+      },
+      "recovered_model": {
+        "model_thrust_N": 0.036,
+        "thrust_to_requested_ratio": 1.0,
+        "alpha": 1.0,
+        "beta": 1.0,
+        "variable_mass": true,
+        "hardware_limit_reached": true,
+        "exhaust_velocity_m_s": 11767.98
+      },
+      "geometry": null,
+      "final_admission": true
+    },
+    "trajectory_difference_m": 0.5489152835664256,
+    "velocity_difference_m_s": 1.2216281125148737e-07,
+    "stored_throttle_error": 0.0,
+    "stored_throttle_minimum": 0.0,
+    "stored_throttle_maximum": 1.0,
+    "canonical_boundary_residual": 3.919163961665595e-12,
+    "method": "LSODA with independent bounded/mass equations",
+    "scope": "Numerical extremal and constraints; no global optimality proof",
+    "departure_norm_m_s": 2226.548246865137,
+    "switching_sign_violation": 1.5681761134759858e-11,
+    "switching_node_residual": 1.5681761134759858e-11,
+    "minimum_mass_kg": 160.71752479046108,
+    "fuel_kg": 43.28247520953892,
+    "mass_difference_kg": 2.2648549702353193e-13,
+    "stored_thrust_error_N": 0.0,
+    "dry_mass_constraint_enforced": true,
+    "mass_balance_error_kg": 1.2789769243681803e-13
+  },
+  "kiam_verification": {
+    "passed": true,
+    "source": "Unmodified KIAM Astro compiled Fortran equations and published control API",
+    "package_version": "6.1.6",
+    "samples": 101,
+    "maximum_dimensionless_rhs_error": 1.5543122344752192e-15,
+    "maximum_dimensionless_force_error": 1.0408340855860843e-17,
+    "maximum_third_body_decomposition_error": 0.0,
+    "nbody_gravity": {
+      "passed": true,
+      "applicable": false
+    },
+    "costate_map": "p_r,v(KIAM)=p_r,v/vex; p_m(KIAM)=1+p_m/vex; normalized initial mass=1",
+    "scope": "KIAM central mass-optimal equations/control, plus independent third-body decomposition when present; not a separate global optimization"
+  },
+  "schema_version": 1,
+  "arrays_sha256": "cea4724a1be85516a3a01f034700f50173a49c86f385351e2abd0821a737b552"
+}

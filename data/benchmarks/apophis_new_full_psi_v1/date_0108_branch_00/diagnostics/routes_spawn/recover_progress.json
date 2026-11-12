@@ -1,0 +1,81 @@
+{
+  "events": [
+    {
+      "operation": "coupled",
+      "input_stage": "psi_limit",
+      "input_days": 162.72389119190404,
+      "status": "partial",
+      "stopped_phase": "mass_and_thrust",
+      "details": {
+        "status": "partial",
+        "phase": "mass_and_thrust",
+        "reached_parameter": 0.0125,
+        "last_result": "mass_and_thrust/point_0004"
+      },
+      "checkpoint": "runs/apophis_new_full_psi_v1/routes_spawn/date_0108_branch_00/coupled_checkpoint"
+    },
+    {
+      "operation": "physical_admission",
+      "status": "failed",
+      "route": "alternative: coupled mass/thrust",
+      "error": "Physical PSI requires exact active/passive arcs"
+    },
+    {
+      "operation": "release_intermediate",
+      "bounds_days": [
+        81.36194559595202,
+        244.08583678785607
+      ],
+      "input_days": 162.72389119190404,
+      "status": "failed",
+      "error": "RuntimeError: No independently verified changed-duration intermediate; see trials.json",
+      "checkpoint": "runs/apophis_new_full_psi_v1/routes_spawn/date_0108_branch_00/release_intermediate_checkpoint"
+    },
+    {
+      "operation": "release_early",
+      "bounds_days": [
+        81.36194559595202,
+        325.4477823838081
+      ],
+      "input_days": 162.72389119190404,
+      "status": "completed_stage",
+      "output_days": 325.4477823838081,
+      "details": {
+        "method": "bounded_scalar_with_BVP_correction",
+        "seed_tof_days": 162.72389119190404,
+        "resolved_tof_days": 325.4477823838081,
+        "bounds_days": [
+          81.36194559595202,
+          325.4477823838081
+        ],
+        "requested_bounds_days": [
+          81.36194559595202,
+          325.4477823838081
+        ],
+        "objective": "current_model_functional",
+        "seed_objective": 0.0023936899082566696,
+        "objective_value": 0.0011481043670542581,
+        "optimizer_success": true,
+        "stop_reason": "Solution found.",
+        "trials": 21,
+        "physical_solution": false,
+        "global_optimality": false
+      },
+      "checkpoint": "runs/apophis_new_full_psi_v1/routes_spawn/date_0108_branch_00/release_early_checkpoint"
+    },
+    {
+      "operation": "early_continue",
+      "input_stage": "departure",
+      "input_days": 325.4477823838081,
+      "status": "completed",
+      "stopped_phase": "final",
+      "details": {
+        "status": "completed",
+        "phase": "final",
+        "reached_parameter": 1.0,
+        "last_result": "fuel/point_0004"
+      },
+      "checkpoint": "runs/apophis_new_full_psi_v1/routes_spawn/date_0108_branch_00/early_continue_checkpoint"
+    }
+  ]
+}

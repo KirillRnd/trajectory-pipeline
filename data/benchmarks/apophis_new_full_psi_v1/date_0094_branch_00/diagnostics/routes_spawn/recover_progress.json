@@ -1,0 +1,66 @@
+{
+  "events": [
+    {
+      "operation": "coupled",
+      "input_stage": "psi",
+      "input_days": 748.2145300499609,
+      "status": "partial",
+      "stopped_phase": "fuel",
+      "details": {
+        "status": "partial",
+        "phase": "fuel",
+        "reached_parameter": 0.025,
+        "last_result": "fuel/point_0003"
+      },
+      "checkpoint": "runs/apophis_new_full_psi_v1/routes_spawn/date_0094_branch_00/coupled_checkpoint"
+    },
+    {
+      "operation": "physical_admission",
+      "status": "failed",
+      "route": "alternative: coupled mass/thrust",
+      "error": "Physical PSI requires exact active/passive arcs"
+    },
+    {
+      "operation": "release_intermediate",
+      "bounds_days": [
+        374.10726502498045,
+        1095.75
+      ],
+      "input_days": 748.2145300499609,
+      "status": "failed",
+      "error": "RuntimeError: No independently verified changed-duration intermediate; see trials.json",
+      "checkpoint": "runs/apophis_new_full_psi_v1/routes_spawn/date_0094_branch_00/release_intermediate_checkpoint"
+    },
+    {
+      "operation": "release_early",
+      "bounds_days": [
+        374.10726502498045,
+        1095.75
+      ],
+      "input_days": 748.2145300499609,
+      "status": "failed",
+      "error": "RuntimeError: No independently verified changed-duration intermediate; see trials.json",
+      "checkpoint": "runs/apophis_new_full_psi_v1/routes_spawn/date_0094_branch_00/release_early_checkpoint"
+    },
+    {
+      "operation": "early_continue",
+      "input_stage": "departure",
+      "input_days": 748.2145300499609,
+      "status": "partial",
+      "stopped_phase": "fuel",
+      "details": {
+        "status": "partial",
+        "phase": "fuel",
+        "reached_parameter": 0.043750000000000004,
+        "last_result": "fuel/point_0005"
+      },
+      "checkpoint": "runs/apophis_new_full_psi_v1/routes_spawn/date_0094_branch_00/early_continue_checkpoint"
+    },
+    {
+      "operation": "physical_admission",
+      "status": "failed",
+      "route": "early duration -> Pazov(.3) -> coupled mass/thrust -> fuel",
+      "error": "Physical PSI requires exact active/passive arcs"
+    }
+  ]
+}

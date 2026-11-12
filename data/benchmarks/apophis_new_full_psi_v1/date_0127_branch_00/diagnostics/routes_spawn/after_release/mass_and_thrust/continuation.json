@@ -1,0 +1,235 @@
+{
+  "profile": {
+    "stage": "mass_and_thrust",
+    "mission": {
+      "case_id": "date_0127_branch_00",
+      "departure": "Earth",
+      "target": "Apophis",
+      "launch_tdb": "2029-06-08T00:00:00",
+      "tof_days": 238.82687943062956,
+      "center": "Sun",
+      "mode": "rendezvous",
+      "position_tolerance_m": 1000,
+      "velocity_tolerance_m_s": 0.01,
+      "mass_kg": 204,
+      "departure_mode": "bounded_norm",
+      "vinf_max_m_s": 3000,
+      "vinf_vector_m_s": null,
+      "spacecraft": {
+        "thrust_N": 0.036,
+        "exhaust_velocity_m_s": 11767.98,
+        "dry_mass_kg": 140
+      },
+      "solver": {
+        "budget_s": 35,
+        "compare_seeds": false,
+        "departure_budget_s": 45,
+        "limit_budget_s": 60,
+        "pazov_budget_s": 60,
+        "psi_budget_s": 90,
+        "bounded_attempt_s": 15,
+        "irt_entry": "fixed_time",
+        "attempt_budget_s": 35,
+        "iltt_budget_s": 60,
+        "iltt_max_abs_k": 5,
+        "iltt_branch": 0,
+        "iltt_duration_bounds_days": [
+          1e-08,
+          1095.75
+        ],
+        "iltt_coordinate_reference": [
+          -0.598199628980797,
+          -1.6863291168706425,
+          3.5531513971342843,
+          4.799183125618435,
+          1.0865155624118328,
+          0.40245585616783636
+        ],
+        "max_nfev": 120,
+        "irt_coordinates": "costates",
+        "exact_attempt_s": 25,
+        "pipeline_pazov_alpha": 0.5,
+        "psi_mass_alpha": 0.5,
+        "intermediate_allow_below_dry_mass": true
+      },
+      "lunar": null,
+      "orbit_sources": {
+        "earth": {
+          "kind": "ephemerides"
+        },
+        "apophis": {
+          "kind": "ephemerides"
+        }
+      }
+    },
+    "start_model": {
+      "a_max": 0.09565950514506667,
+      "alpha": 0.5,
+      "beta": 1.0,
+      "q": 0.24031800556097288,
+      "variable_mass": true,
+      "gravity_spec": null
+    },
+    "budget_s": 90,
+    "min_step": 0.0001,
+    "max_step": 0.2
+  },
+  "last_point": "point_0011",
+  "sessions": [
+    {
+      "started_utc": "2026-11-12T10:34:05.890574+00:00",
+      "source_sha256": {
+        "trajectory_pipeline/__init__.py": "b5d69a20b137a938a28e2478dbae0068c3e29e5f6dad0cc95672c5107c6b4842",
+        "trajectory_pipeline/__main__.py": "ab931fa51377ef49a0575a9d0d752e1e09de9d7fc3103809dd2d980739d9e85e",
+        "trajectory_pipeline/accepted_irt_report.py": "b699d8d56a66ea97edb88b7904b33a1343e2de04afc208a52bc6f6a1608861e2",
+        "trajectory_pipeline/accepted_irt_routes.py": "ccd244db35404dfc4f9cf489bdfe7341d4809d7af5312b015983ba701748bbc9",
+        "trajectory_pipeline/angular_capture.py": "97dcbd78260bdd41f214fa64b436ed06e3b78317236367487e6bbffb3499e909",
+        "trajectory_pipeline/bangbang.py": "39b465a8cfc60c3086ea11ce8f697217091f2c85e0b0a6dcebf591064a6c1ec9",
+        "trajectory_pipeline/bounded.py": "b2eaa39ca42816a5c323bbe10239bcdea852f15cff28a1917debe41e455daa63",
+        "trajectory_pipeline/bounded_derivatives.py": "bb2f18f6202ea1ff072930b1887951a26a840112dbb0feff3c8cf063863b3e79",
+        "trajectory_pipeline/bounded_model.py": "ac847de889d96c6b343276f22972c3c9211cf815cd8605212a951c86c381ddd0",
+        "trajectory_pipeline/capture_control.py": "56b511b672de53896f53a4aab6f13726961d3fc96083ddc9585dd5fb0c30c8b7",
+        "trajectory_pipeline/capture_pipeline.py": "230455e145b22d045e1b646b1e8cc947ec78c67bc293e6aa05153d576f671201",
+        "trajectory_pipeline/capture_search.py": "6b6c9a5fe0d4076484f8c0cf28160125e78194eeaa6692e9bd06ec911e777397",
+        "trajectory_pipeline/composed_time.py": "240d1dfcc62bd21aa85910caf42de7369c89ab016236ce3a59fc29f586ecf23e",
+        "trajectory_pipeline/continuation.py": "14700fe3c5bc32044119902b40f266929439b8901f3455f4105b52ac1957e2a7",
+        "trajectory_pipeline/contract.py": "8559e253b08b5b305df251ed67d0d0b77b32f228d10588dbe821bfadcdcf5a0c",
+        "trajectory_pipeline/coordinate_matrix.py": "3da94280ed9d83dec18086942f06e3ed9c87d0067bfba7de473baecf911e9e83",
+        "trajectory_pipeline/coordinate_pipeline.py": "91990b666a6b737d18cc8d538fd0eebbed5d7b01af20af8826135140a1844a64",
+        "trajectory_pipeline/cr3bp.py": "81821102917370aa6ee00878d6534bbbf90a0e417c9474f720f46de820eead33",
+        "trajectory_pipeline/data.py": "aebdc031ea5379bcf840081747f2adb833f918588510c8d9b4e81558d495e972",
+        "trajectory_pipeline/date_sweep.py": "0a498edb1a41fd855c892b49492c2a63cae560d30f0695ff7922929fdfd0ba2b",
+        "trajectory_pipeline/departure.py": "64ac75cd2650c1872f89a929743ff9ba124db09ba68f698c79adc8979f4daca1",
+        "trajectory_pipeline/diagnostics.py": "866511081da87b50e23c45fdba3ea017b96e119bc3e75ca08ceb28047bdd01d3",
+        "trajectory_pipeline/ephemerides.py": "95e176915cc462a4748a624e643f527c2d0be2eb74290c16f036197b06ec5948",
+        "trajectory_pipeline/free_time.py": "7ecb85b8ea504e6aa9c33b113343e324cbad0069cfb164a3d6e19b16851a132d",
+        "trajectory_pipeline/free_time_report.py": "1e5f778d7ae0b394b3fab0fb10417b65a9e15469799b9530ef965f09ec3d2120",
+        "trajectory_pipeline/gravity.py": "716b7dda8f5268c7c65c4014cb7d96bf8008140c6633dcbb0ee6594364d658ab",
+        "trajectory_pipeline/iltt_coordinates.py": "9e94a22d4807f727ae3f964f87bc8c488dbd3e48c29f29bebf318189c5b8bb44",
+        "trajectory_pipeline/iltt_entry.py": "60c39f72c99d48430da48e05edee1595f6a0771cf73c99e347d71a4a2c4dc3ea",
+        "trajectory_pipeline/intermediate_time.py": "1a4a8cbd30c73e6b8182e0295ed67f78eaa488e392f6ae6729079cf9a0dca336",
+        "trajectory_pipeline/irt.py": "94183e19367bb31bb60b1deaaf3d3ca5ab6147b42e533bd1cd92b685ffc4edbd",
+        "trajectory_pipeline/irt_entry_routes.py": "8e345b36677a64348ca1604cabc1e6ea129e2ff0c15cebec41cb8ee9c6dd8ea6",
+        "trajectory_pipeline/kiam_verification.py": "08bc4b66d22208063de9e2c194821d963cfa9af3731d30ce4845b4a52e06a61a",
+        "trajectory_pipeline/launch_pipeline.py": "359c88b61f1c2d559ddde5ef1b323c37b4d4fb7dde0ab16b7ccba9a7fae74d39",
+        "trajectory_pipeline/lunar.py": "721ee63036e945c1d6dd767985b9b32c0f48de23fbda78814e2c9fba970de904",
+        "trajectory_pipeline/matrix_report.py": "b11a950417c2a7e2205e1fb92556d09e36c7d81869c89a7d32360d01f6145ce8",
+        "trajectory_pipeline/orbit_sources.py": "9883c02052726c90aa04d6a51d599832bb09f55951d23205df79e1613d89a76b",
+        "trajectory_pipeline/orbit_sources_benchmark.py": "54708fcb5abea4ba483aea656138ade3d2406c3f327b4d0fa43590ca90da5d18",
+        "trajectory_pipeline/orbit_transition.py": "d47dd2a610e4734600e247481f1c8ef3aecc5abc46b6a803505abaa5e889a4a0",
+        "trajectory_pipeline/orbital_maneuvers.py": "c3d1520f17ff038d3e1d548c5b0a752cc9b498ff9e418f1d3c02404b61f8e404",
+        "trajectory_pipeline/orbital_pipeline.py": "d743b4031f21e0a158ef8a7986f043c3dcda3e68318f786c2b1e369005fe06ff",
+        "trajectory_pipeline/orbital_visualization.py": "2f80460d775db066560d3ca724de52d4de5315fca514a6239a78718325f12826",
+        "trajectory_pipeline/outcomes.py": "09b53a8b190f5c2d57ef50a64f7883f26e09ffc2e3b91252505612c47f482cc3",
+        "trajectory_pipeline/parameter_study.py": "68efd2d25c52b1db5179616bbc272a6d0afbd25f514b8297bdc3561619238ce4",
+        "trajectory_pipeline/parking_departure.py": "3f7c2858904e30cd47a287d0f1d735f30c6e92faaf894f70a51b8c20cbd984a7",
+        "trajectory_pipeline/pazov.py": "907bff7913bfd981ddcfa7d3878188d357eba84e5b26847a0319aec541f6b682",
+        "trajectory_pipeline/physical_transfer_routes.py": "c3f37698e47e94e8493f1a9b5e78c9957c046f1b4a2d940493e28c5ab795ef47",
+        "trajectory_pipeline/planetary_capture.py": "ff942642b2642f81a00dd5c3b96d6eafde3e07cbfbaf056ae89ee17825162fec",
+        "trajectory_pipeline/problem.py": "a46fbbfcbee095e338823ce00bdecc254c4fa3c62e79c4057dfd9e51712bf119",
+        "trajectory_pipeline/psi.py": "eafb8a8469e789428eba9dfb6a9281097831d76357c1bd1c9ad7bf36bff73e10",
+        "trajectory_pipeline/r_study.py": "0e875dc91b0c92e21c3d4b28fa41fc75a010e82f85dbd105357ff459d8df0f45",
+        "trajectory_pipeline/r_transform.py": "6f97b68230db35c04cc4903735f3ca8bf875572da068676d19734321ec668880",
+        "trajectory_pipeline/reference.py": "8408fc0ce798a2147a5602c4d23a24536e90905b855a894ad7495e842caa062c",
+        "trajectory_pipeline/runner.py": "edc5a532615f025635b9072ad6e6ac4fa2862a184d5fbed02e0ebd8a66fcc423",
+        "trajectory_pipeline/runtime.py": "81dfded64ae214fc00e611dff44b66a9298edfc0cef367368792860c64eafdbb",
+        "trajectory_pipeline/search_graph.py": "eb4304278e9ae7247910a5848d4591f75cf47bca2d15aca916c6383161897e45",
+        "trajectory_pipeline/seed_sweep.py": "7edc646f39d346450c7cae9c347431a3771fe3886af99586932bad042e0a18a2",
+        "trajectory_pipeline/source_pipeline.py": "157215f11803af843285de5a88c3318cba14b97c15f6c1822b20d39a70125b46",
+        "trajectory_pipeline/stage_journal.py": "7d9734d236bc2e3347e26cad268cba669e4c015db81e94c5a4bb0c0c1b99f119",
+        "trajectory_pipeline/ummp.py": "6fc8d237688692394937e63c193129caa11d6a3fbd1f8262db82338c3b67de63",
+        "trajectory_pipeline/ummp_benchmark.py": "2f1f0de7a1947f3a8514f1efc76f2351794564ba7d94787dbeac02a01c581a54",
+        "trajectory_pipeline/ummp_model.py": "bba0098c8c8363877254c2b3c7ef1e014425f287df0198cb50c33167ea5b8c6a",
+        "trajectory_pipeline/verification.py": "8a5b095f825c462569767052372d5ec8c086338419a319212d330c101dc388ea",
+        "trajectory_pipeline/visualization.py": "3a72c99cf9f5823dfb38b4701b0898a4115e89056398595926136f3bda4ba422",
+        "ILTT/continuation_methods.py": "288680b2703460a0a9b67c3f33a00fc6f6ee908c33f9024c1fba0020dba77d6f"
+      }
+    }
+  ],
+  "status": "partial",
+  "reached_parameter": 0.8546875,
+  "next_step": 0.0035156250000000005,
+  "history": [
+    {
+      "parameter": 0.2,
+      "step": 0.2,
+      "accepted": true,
+      "accepted_parameter": 0.2
+    },
+    {
+      "parameter": 0.4,
+      "step": 0.2,
+      "accepted": true,
+      "accepted_parameter": 0.4
+    },
+    {
+      "parameter": 0.6000000000000001,
+      "step": 0.2,
+      "accepted": true,
+      "accepted_parameter": 0.6000000000000001
+    },
+    {
+      "parameter": 0.8,
+      "step": 0.2,
+      "accepted": true,
+      "accepted_parameter": 0.8
+    },
+    {
+      "parameter": 1.0,
+      "step": 0.2,
+      "accepted": false,
+      "message": "RuntimeError: active: Bounded collocation budget reached; active shooting: Bounded shooting budget reached; free: Inactive departure branch is outside the allowed excess ball"
+    },
+    {
+      "parameter": 0.9,
+      "step": 0.1,
+      "accepted": false,
+      "message": "RuntimeError: active: The maximum number of mesh nodes is exceeded.; active shooting: Bounded shooting budget reached; free: Inactive departure branch is outside the allowed excess ball"
+    },
+    {
+      "parameter": 0.8500000000000001,
+      "step": 0.05,
+      "accepted": true,
+      "accepted_parameter": 0.8500000000000001
+    },
+    {
+      "parameter": 0.925,
+      "step": 0.07500000000000001,
+      "accepted": false,
+      "message": "RuntimeError: active: Bounded collocation budget reached; active shooting: Bounded shooting budget reached; free: Inactive departure branch is outside the allowed excess ball"
+    },
+    {
+      "parameter": 0.8875000000000001,
+      "step": 0.037500000000000006,
+      "accepted": false,
+      "message": "RuntimeError: active: Bounded collocation budget reached; active shooting: Bounded shooting budget reached; free: Inactive departure branch is outside the allowed excess ball"
+    },
+    {
+      "parameter": 0.8687500000000001,
+      "step": 0.018750000000000003,
+      "accepted": false,
+      "message": "RuntimeError: active: The maximum number of mesh nodes is exceeded.; active shooting: Bounded shooting budget reached; free: Inactive departure branch is outside the allowed excess ball"
+    },
+    {
+      "parameter": 0.8593750000000001,
+      "step": 0.009375000000000001,
+      "accepted": false,
+      "message": "RuntimeError: active: The maximum number of mesh nodes is exceeded.; active shooting: Bounded shooting budget reached; free: Inactive departure branch is outside the allowed excess ball"
+    },
+    {
+      "parameter": 0.8546875,
+      "step": 0.004687500000000001,
+      "accepted": true,
+      "accepted_parameter": 0.8546875
+    },
+    {
+      "parameter": 0.8617187500000001,
+      "step": 0.007031250000000001,
+      "accepted": false,
+      "message": "RuntimeError: active: Bounded collocation budget reached; active shooting: Bounded shooting budget reached; free: Bounded collocation budget reached"
+    }
+  ],
+  "elapsed_s_current_session": 90.01899698999841,
+  "attempts_current_session": 13,
+  "stop_reason": "time_budget"
+}

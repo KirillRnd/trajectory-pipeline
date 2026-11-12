@@ -60,7 +60,7 @@ def validate_design(design, base):
     if axis=='duration_factors' and base.tof_days is None:raise ValueError('Fixed-time design requires tof_days')
     required = {'date_offsets_days',axis,'engines','mass_alphas','routes',
                 'population','generations','seed','wall_budget_s','node_budget_s','release_budget_s','time_bounds_factors'}
-    optional={'intermediate_release_budget_s','physical_continue_budget_s','intermediate_rounds','terminal_models','ummp_budget_s'}
+    optional={'intermediate_release_budget_s','physical_continue_budget_s','intermediate_rounds','terminal_models','ummp_budget_s','orbital_maneuvers','orbital_budget_s','orbital_release_time'}
     if not required<=set(design) or set(design)-required-optional:raise ValueError('Search design keys differ: '+str(set(design)^required))
     for key in ('date_offsets_days',axis,'mass_alphas','time_bounds_factors'):
         values=design[key]
@@ -80,8 +80,13 @@ def validate_design(design, base):
         if type(design[key]) is not int or design[key] < (0 if key=='seed' else 1):raise ValueError('Invalid '+key)
     for key in ('wall_budget_s','node_budget_s','release_budget_s'):
         if type(design[key]) not in (int,float) or not math.isfinite(design[key]) or design[key]<=0:raise ValueError('Invalid '+key)
-    if any(x!='ummp' for x in design.get('terminal_models',[])):raise ValueError('Unknown terminal model')
-    for key in optional-{'intermediate_rounds','terminal_models'}:
+    terminal=design.get('terminal_models',[])
+    if not isinstance(terminal,list) or any(x not in ('ummp','orbital') for x in terminal):raise ValueError('Unknown terminal model')
+    if 'orbital' in terminal:
+        from .orbital_maneuvers import validate_maneuvers
+        validate_maneuvers(design.get('orbital_maneuvers'))
+    if 'orbital_release_time' in design and type(design['orbital_release_time']) is not bool:raise ValueError('orbital_release_time must be boolean')
+    for key in optional-{'intermediate_rounds','terminal_models','orbital_maneuvers','orbital_release_time'}:
         if key in design and (type(design[key]) not in (int,float) or not math.isfinite(design[key]) or design[key]<=0):raise ValueError('Invalid '+key)
     if not design['engines']:raise ValueError('Declare at least one engine')
     for engine in design['engines']:
@@ -226,6 +231,22 @@ def worker(request_path):
             path=Path(request['parent_artifact'])
             if sha256(path/'trajectory.npz')!=request['parent_sha256'] or sha256(path/'trajectory.json')!=request['parent_metadata_sha256']:
                 raise ValueError('Parent artifact changed')
+        if operation=='orbital':
+            from .runner import run_pipeline
+            from .orbital_pipeline import verify_orbital_mission
+            source=Trajectory.load(request['parent_artifact']);check_result(source,mission)
+            composed=replace(mission,orbital_maneuvers=request['orbital_maneuvers'],mass_reference='initial_orbit',
+                solver=dict(mission.solver,orbital_seed_path=request['parent_artifact']))
+            result,state=run_pipeline(composed,folder/'orbital',release_time=request.get('orbital_release_time',False),time_bounds_days=request.get('bounds_days'))
+            if state['status']!='completed':
+                write_json(folder/'result.json',dict(status='partial',phase='orbital',details=state));return
+            check=verify_orbital_mission(folder/'orbital')
+            if not check['passed']:raise ValueError('Orbital replay failed')
+            result.save(folder/'final')
+            write_json(folder/'result.json',dict(status='completed',phase='orbital',target_model='orbital',mission=result.metadata['mission'],
+                fuel_kg=float(composed.mass_kg-result.arrays['mass_kg'][-1]),verification=check,mission_artifact=str(folder/'orbital'),
+                artifact=str(folder/'final'),metadata_sha256=sha256(folder/'final/trajectory.json'),arrays_sha256=sha256(folder/'final/trajectory.npz')))
+            return
         if operation=='ummp':
             from .ummp import run_ummp,verify_ummp
             source=Trajectory.load(request['parent_artifact']);check_result(source,mission)
@@ -379,6 +400,7 @@ def run_search(mission_path, design_path, history_roots, output, resume=False):
         if operation=='intermediate_release':request['budget_s']=design.get('intermediate_release_budget_s',design['release_budget_s'])
         if operation=='physical_continue':request['budget_s']=design.get('physical_continue_budget_s',design['node_budget_s'])
         if operation=='ummp':request['budget_s']=design.get('ummp_budget_s',design['node_budget_s'])
+        if operation=='orbital':request.update(budget_s=design.get('orbital_budget_s',design['node_budget_s']),orbital_maneuvers=design['orbital_maneuvers'],orbital_release_time=design.get('orbital_release_time',False))
         key=digest(request)[:24]
         if key in state['nodes']:
             cached=state['nodes'][key]
@@ -397,8 +419,8 @@ def run_search(mission_path, design_path, history_roots, output, resume=False):
             except subprocess.TimeoutExpired:
                 result=dict(status='failed',phase=operation,error='Worker wall-time budget reached')
         state['nodes'][key]=dict(result,request=request)
-        if result['status']=='completed' and operation=='ummp':
-            state.setdefault('terminal_solutions',[]).append(dict(node=key,model='ummp',artifact=result['artifact']))
+        if result['status']=='completed' and operation in ('ummp','orbital'):
+            state.setdefault('terminal_solutions',[]).append(dict(node=key,model=operation,artifact=result['artifact']))
         elif result['status']=='completed':
             actual=Mission(**result['mission']);delta=changes(base,actual)
             solution=dict(node=key,artifact=result['artifact'],changes=delta,original_conditions=not delta,

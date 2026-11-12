@@ -10,6 +10,8 @@ def exit_code(status):
 def main():
     parser = argparse.ArgumentParser(description='Shared trajectory tools')
     sub = parser.add_subparsers(dest='command', required=True)
+    skill_audit=sub.add_parser('audit-skill',help='Check component commands, tests and skill links; record source hashes')
+    skill_audit.add_argument('--output',required=True)
     transition=sub.add_parser('reconcile-irt',help='Correct a verified IRT onto explicitly selected orbit sources')
     transition.add_argument('source')
     transition.add_argument('--sources',required=True,help='JSON per-body orbit_sources object')
@@ -135,6 +137,11 @@ def main():
     parameter_report.add_argument('source')
     parameter_report.add_argument('--output',required=True)
     args = parser.parse_args()
+    if args.command=='audit-skill':
+        from .skill_audit import save_audit
+        result=save_audit(args.output)
+        print(json.dumps(dict(passed=result['passed'],issues=result['issues']),ensure_ascii=False,indent=2))
+        return 0 if result['passed'] else 1
     if args.command=='search':
         from .search_graph import run_search
         summary=run_search(args.mission,args.design,args.history,args.output,resume=args.resume)

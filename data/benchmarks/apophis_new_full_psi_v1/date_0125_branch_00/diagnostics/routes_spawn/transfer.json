@@ -1,0 +1,140 @@
+{
+  "case_id": "date_0125_branch_00",
+  "status": "completed",
+  "phase": "transfer",
+  "bounds_days": [
+    1.0,
+    1095.75
+  ],
+  "artifact": "runs/apophis_new_full_psi_v1/routes_spawn/date_0125_branch_00/transfer_physical",
+  "route": "broad early duration -> coupled physical continuation",
+  "verification": {
+    "passed": true,
+    "position_residual_m": 2.6541673001405326,
+    "velocity_residual_m_s": 5.824068047013995e-07,
+    "parameter_audit": {
+      "passed": true,
+      "configuration_sha256": "3ca3a0110839b1a81f2d072c8aefe54c24a155d3758d9f68f57347cd7671b0f3",
+      "configuration_hash_version": 2,
+      "requested": {
+        "mass_kg": 204,
+        "thrust_N": 0.036,
+        "exhaust_velocity_m_s": 11767.98,
+        "dry_mass_kg": 140,
+        "launch_tdb": "2029-05-25T00:00:00",
+        "tof_days": 419.1273198820741,
+        "departure": "Earth",
+        "target": "Apophis",
+        "mode": "rendezvous"
+      },
+      "recovered_model": {
+        "model_thrust_N": 0.036,
+        "thrust_to_requested_ratio": 1.0,
+        "alpha": 1.0,
+        "beta": 1,
+        "variable_mass": true,
+        "hardware_limit_reached": true,
+        "exhaust_velocity_m_s": 11767.980000000001
+      },
+      "geometry": null,
+      "final_admission": true
+    },
+    "trajectory_difference_m": 2.63853403310564,
+    "velocity_difference_m_s": 5.870232773234802e-07,
+    "stored_throttle_error": 0.0,
+    "stored_throttle_minimum": 0.0,
+    "stored_throttle_maximum": 1.0,
+    "canonical_boundary_residual": 2.6346348970413837e-11,
+    "method": "LSODA with independent bounded/mass equations",
+    "scope": "Numerical extremal and constraints; no global optimality proof",
+    "departure_norm_m_s": 3000.0000000001583,
+    "switching_sign_violation": 2.0976425784014893e-11,
+    "switching_node_residual": 2.0976653102979797e-11,
+    "minimum_mass_kg": 176.762322628331,
+    "fuel_kg": 27.23767737166901,
+    "mass_difference_kg": 2.0383694732117874e-13,
+    "stored_thrust_error_N": 0.0,
+    "dry_mass_constraint_enforced": true,
+    "mass_balance_error_kg": 2.0250467969162855e-13
+  },
+  "kiam_verification": {
+    "passed": true,
+    "source": "Unmodified KIAM Astro compiled Fortran equations and published control API",
+    "package_version": "6.1.6",
+    "samples": 101,
+    "maximum_dimensionless_rhs_error": 8.881784197001252e-16,
+    "maximum_dimensionless_force_error": 6.938893903907228e-18,
+    "maximum_third_body_decomposition_error": 0.0,
+    "nbody_gravity": {
+      "passed": true,
+      "applicable": false
+    },
+    "costate_map": "p_r,v(KIAM)=p_r,v/vex; p_m(KIAM)=1+p_m/vex; normalized initial mass=1",
+    "scope": "KIAM central mass-optimal equations/control, plus independent third-body decomposition when present; not a separate global optimization"
+  },
+  "parameter_audit": {
+    "passed": true,
+    "configuration_sha256": "3ca3a0110839b1a81f2d072c8aefe54c24a155d3758d9f68f57347cd7671b0f3",
+    "configuration_hash_version": 2,
+    "requested": {
+      "mass_kg": 204,
+      "thrust_N": 0.036,
+      "exhaust_velocity_m_s": 11767.98,
+      "dry_mass_kg": 140,
+      "launch_tdb": "2029-05-25T00:00:00",
+      "tof_days": 419.1273198820741,
+      "departure": "Earth",
+      "target": "Apophis",
+      "mode": "rendezvous"
+    },
+    "recovered_model": {
+      "model_thrust_N": 0.036,
+      "thrust_to_requested_ratio": 1.0,
+      "alpha": 1.0,
+      "beta": 1,
+      "variable_mass": true,
+      "hardware_limit_reached": true,
+      "exhaust_velocity_m_s": 11767.980000000001
+    },
+    "geometry": {
+      "epoch_jd": 2462281.5,
+      "arrival_jd": 2462700.627319882,
+      "departure_position_difference_m": 0.0,
+      "arrival_position_difference_m": 0.0
+    },
+    "final_admission": true
+  },
+  "tof_days": 419.1273198820741,
+  "fuel_kg": 27.237677371668838,
+  "final_mass_kg": 176.76232262833116,
+  "departure_m_s": 3000.0000000001583,
+  "events": [
+    {
+      "operation": "R_fixed",
+      "reference": "runs/apophis_new_full_psi_v1/routes_spawn/date_0127_branch_00/recover_physical",
+      "tof_days": 320.1496977279314,
+      "status": "failed",
+      "error": "active: Exact independent replay failed: {'passed': False, 'position_residual_m': 2.854849551821774, 'velocity_residual_m_s': 4.3111259979434496e-07, 'parameter_audit': {'passed': True, 'configuration_sha256': 'a3c91c99bdb8a9a084b0ecb728e9678a35eb677ab46c96f5442482431ea0dd6a', 'configuration_hash_version': 2, 'requested': {'mass_kg': 204, 'thrust_N': 0.036, 'exhaust_velocity_m_s': 11767.98, 'dry_mass_kg': 140, 'launch_tdb': '2029-05-25T00:00:00', 'tof_days': 320.1496977279314, 'departure': 'Earth', 'target': 'Apophis', 'mode': 'rendezvous'}, 'recovered_model': {'model_thrust_N': np.float64(0.036), 'thrust_to_requested_ratio': np.float64(1.0), 'alpha': 1.0, 'beta': 1.0, 'variable_mass': True, 'hardware_limit_reached': True, 'exhaust_velocity_m_s': np.float64(11767.979999999996)}, 'geometry': None, 'final_admission': True}, 'trajectory_difference_m': 2.861036458346493, 'velocity_difference_m_s': 4.305681769520895e-07, 'stored_throttle_error': 0.0, 'stored_throttle_minimum': 0.0, 'stored_throttle_maximum': 1.0, 'canonical_boundary_residual': 2.3816441471632955e-11, 'method': 'LSODA with independent bounded/mass equations', 'scope': 'Numerical extremal and constraints; no global optimality proof', 'departure_norm_m_s': 3000.0000000003247, 'switching_sign_violation': 0.01780226927534168, 'switching_node_residual': 1.0038632809166716e-11, 'minimum_mass_kg': 157.96035236305218, 'fuel_kg': 46.03964763694781, 'mass_difference_kg': 3.397282455352979e-13, 'stored_thrust_error_N': 0.0, 'dry_mass_constraint_enforced': True, 'mass_balance_error_kg': np.float64(7.105427357601002e-14)}; free: Exact independent replay failed: {'passed': False, 'position_residual_m': 0.12153408254319471, 'velocity_residual_m_s': 2.5139427039799357e-08, 'parameter_audit': {'passed': True, 'configuration_sha256': 'a3c91c99bdb8a9a084b0ecb728e9678a35eb677ab46c96f5442482431ea0dd6a', 'configuration_hash_version': 2, 'requested': {'mass_kg': 204, 'thrust_N': 0.036, 'exhaust_velocity_m_s': 11767.98, 'dry_mass_kg': 140, 'launch_tdb': '2029-05-25T00:00:00', 'tof_days': 320.1496977279314, 'departure': 'Earth', 'target': 'Apophis', 'mode': 'rendezvous'}, 'recovered_model': {'model_thrust_N': np.float64(0.036), 'thrust_to_requested_ratio': np.float64(1.0), 'alpha': 1.0, 'beta': 1.0, 'variable_mass': True, 'hardware_limit_reached': True, 'exhaust_velocity_m_s': np.float64(11767.979999999996)}, 'geometry': None, 'final_admission': True}, 'trajectory_difference_m': 0.19806135785124812, 'velocity_difference_m_s': 4.637317578831588e-08, 'stored_throttle_error': 0.0, 'stored_throttle_minimum': 0.0, 'stored_throttle_maximum': 1.0, 'canonical_boundary_residual': 1.1689733004309755e-12, 'method': 'LSODA with independent bounded/mass equations', 'scope': 'Numerical extremal and constraints; no global optimality proof', 'departure_norm_m_s': 5209.690594028697, 'switching_sign_violation': 2.7810850025519403e-10, 'switching_node_residual': 2.7810850025519403e-10, 'minimum_mass_kg': 176.84642193295593, 'fuel_kg': 27.15357806704407, 'mass_difference_kg': 9.059419880941277e-14, 'stored_thrust_error_N': 0.0, 'dry_mass_constraint_enforced': True, 'mass_balance_error_kg': np.float64(3.552713678800501e-14)}"
+    },
+    {
+      "operation": "R_free",
+      "reference": "runs/apophis_new_full_psi_v1/routes_spawn/date_0127_branch_00/recover_physical",
+      "status": "failed",
+      "error": "Free-duration integration budget reached"
+    },
+    {
+      "operation": "broad_early_time",
+      "bounds_days": [
+        1.0,
+        1095.75
+      ],
+      "status": "completed",
+      "details": {
+        "status": "completed",
+        "phase": "final",
+        "reached_parameter": 1.0,
+        "last_result": "fuel/point_0013"
+      }
+    }
+  ]
+}

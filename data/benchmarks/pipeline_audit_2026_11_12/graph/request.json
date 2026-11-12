@@ -1,0 +1,192 @@
+{
+  "mission": {
+    "case_id": "earth_apophis_2029_d-90",
+    "departure": "Earth",
+    "target": "Apophis",
+    "launch_tdb": "2028-11-16T12:00:00",
+    "tof_days": 548.1354059978634,
+    "center": "Sun",
+    "mode": "rendezvous",
+    "position_tolerance_m": 1000,
+    "velocity_tolerance_m_s": 0.01,
+    "mass_kg": 156,
+    "departure_mode": "bounded_norm",
+    "vinf_max_m_s": 3000,
+    "vinf_vector_m_s": null,
+    "spacecraft": {
+      "thrust_N": 0.025,
+      "exhaust_velocity_m_s": 20000,
+      "dry_mass_kg": 90
+    },
+    "solver": {
+      "budget_s": 20,
+      "compare_seeds": false,
+      "departure_budget_s": 45,
+      "limit_budget_s": 60,
+      "pazov_budget_s": 60,
+      "psi_budget_s": 90,
+      "bounded_attempt_s": 15,
+      "iltt_budget_s": 8,
+      "iltt_branch": 0,
+      "iltt_coordinate_reference": [
+        -0.598199628980797,
+        -1.2607584751347787,
+        3.5531513971342847,
+        4.799183125709705,
+        1.116870174267109,
+        1.4069874243172373
+      ],
+      "attempt_budget_s": 20,
+      "max_nfev": 70,
+      "irt_coordinates": [
+        "iltt",
+        "costates"
+      ],
+      "exact_attempt_s": 25,
+      "pipeline_pazov_alpha": 0.5,
+      "psi_mass_alpha": 0.5,
+      "irt_entry": "fixed_time"
+    },
+    "lunar": null,
+    "orbit_sources": {
+      "earth": {
+        "kind": "ephemerides"
+      },
+      "apophis": {
+        "kind": "ephemerides"
+      }
+    }
+  },
+  "design": {
+    "engines": [
+      {
+        "name": "declared",
+        "exhaust_velocity_m_s": 20000,
+        "thrust_N": 0.025
+      }
+    ],
+    "terminal_models": [
+      "ummp"
+    ],
+    "generations": 1,
+    "time_bounds_factors": [
+      0.5,
+      1.5
+    ],
+    "mass_alphas": [
+      0.5
+    ],
+    "release_budget_s": 90,
+    "population": 1,
+    "seed": 7,
+    "duration_factors": [
+      1
+    ],
+    "date_offsets_days": [
+      0
+    ],
+    "routes": [
+      "fixed"
+    ],
+    "node_budget_s": 120,
+    "ummp_budget_s": 180,
+    "wall_budget_s": 300
+  },
+  "history_roots": [
+    "data/benchmarks/accepted42_psi_v1/earth_apophis_2029_d-90/physical"
+  ],
+  "runtime": {
+    "python": "3.12.16",
+    "executable": "/usr/local/bin/python",
+    "system": "Linux",
+    "machine": "x86_64",
+    "libc": [
+      "glibc",
+      "2.41"
+    ],
+    "kernel": "6.6.87.2-microsoft-standard-WSL2",
+    "container": true,
+    "runtime": "docker-linux",
+    "image_id": "unrecorded",
+    "dependencies": {
+      "numpy": "2.2.5",
+      "scipy": "1.15.1",
+      "matplotlib": "3.10.0",
+      "pandas": "2.2.3",
+      "kiam-astro": "6.1.6",
+      "daceypy": "1.4.0",
+      "pillow": "13.0.0"
+    },
+    "thread_limits": {
+      "OPENBLAS_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1"
+    }
+  },
+  "code": {
+    "__init__.py": "b5d69a20b137a938a28e2478dbae0068c3e29e5f6dad0cc95672c5107c6b4842",
+    "__main__.py": "e064090dc9c96594e57de53c895e74839ae5b72f5eb2d5fef2f4032f7eecd5bf",
+    "accepted_irt_report.py": "1853af16371ec0f0b22f7b8830eb5ace67b6cb3279672700e868ca89029e9620",
+    "accepted_irt_routes.py": "8c18a8d62cf4ee329cc82cf9ad3d996a24f050f89169bedb90c09c373246d91d",
+    "angular_capture.py": "97dcbd78260bdd41f214fa64b436ed06e3b78317236367487e6bbffb3499e909",
+    "bangbang.py": "39b465a8cfc60c3086ea11ce8f697217091f2c85e0b0a6dcebf591064a6c1ec9",
+    "bounded.py": "b2eaa39ca42816a5c323bbe10239bcdea852f15cff28a1917debe41e455daa63",
+    "bounded_derivatives.py": "bb2f18f6202ea1ff072930b1887951a26a840112dbb0feff3c8cf063863b3e79",
+    "bounded_model.py": "ac847de889d96c6b343276f22972c3c9211cf815cd8605212a951c86c381ddd0",
+    "capture_control.py": "56b511b672de53896f53a4aab6f13726961d3fc96083ddc9585dd5fb0c30c8b7",
+    "capture_pipeline.py": "230455e145b22d045e1b646b1e8cc947ec78c67bc293e6aa05153d576f671201",
+    "capture_search.py": "6b6c9a5fe0d4076484f8c0cf28160125e78194eeaa6692e9bd06ec911e777397",
+    "composed_time.py": "068a5bdc537b8a1612bfcacb8c77bebb440e66ebe39a5e6e7e122250d62ea781",
+    "continuation.py": "14700fe3c5bc32044119902b40f266929439b8901f3455f4105b52ac1957e2a7",
+    "contract.py": "8559e253b08b5b305df251ed67d0d0b77b32f228d10588dbe821bfadcdcf5a0c",
+    "coordinate_matrix.py": "8def890c49b59559b92026d9f8b247fb0c7eaf4d200c9a17ba9c731de0147e63",
+    "coordinate_pipeline.py": "91990b666a6b737d18cc8d538fd0eebbed5d7b01af20af8826135140a1844a64",
+    "cr3bp.py": "81821102917370aa6ee00878d6534bbbf90a0e417c9474f720f46de820eead33",
+    "data.py": "aebdc031ea5379bcf840081747f2adb833f918588510c8d9b4e81558d495e972",
+    "date_sweep.py": "0a498edb1a41fd855c892b49492c2a63cae560d30f0695ff7922929fdfd0ba2b",
+    "departure.py": "64ac75cd2650c1872f89a929743ff9ba124db09ba68f698c79adc8979f4daca1",
+    "diagnostics.py": "866511081da87b50e23c45fdba3ea017b96e119bc3e75ca08ceb28047bdd01d3",
+    "ephemerides.py": "60b5f3eb891596541d357f3eb6b6a48ba0c4be3ade5f5cee86c5deff0d6cdf6e",
+    "free_time.py": "7ecb85b8ea504e6aa9c33b113343e324cbad0069cfb164a3d6e19b16851a132d",
+    "free_time_report.py": "1e5f778d7ae0b394b3fab0fb10417b65a9e15469799b9530ef965f09ec3d2120",
+    "gravity.py": "2d439cf0e206ca0d3378f4033000a24bda8b573aa438e50662a3b05e157418b3",
+    "iltt_coordinates.py": "9e94a22d4807f727ae3f964f87bc8c488dbd3e48c29f29bebf318189c5b8bb44",
+    "iltt_entry.py": "60c39f72c99d48430da48e05edee1595f6a0771cf73c99e347d71a4a2c4dc3ea",
+    "intermediate_time.py": "1a4a8cbd30c73e6b8182e0295ed67f78eaa488e392f6ae6729079cf9a0dca336",
+    "irt.py": "94183e19367bb31bb60b1deaaf3d3ca5ab6147b42e533bd1cd92b685ffc4edbd",
+    "irt_entry_routes.py": "8e345b36677a64348ca1604cabc1e6ea129e2ff0c15cebec41cb8ee9c6dd8ea6",
+    "kiam_verification.py": "08bc4b66d22208063de9e2c194821d963cfa9af3731d30ce4845b4a52e06a61a",
+    "launch_pipeline.py": "359c88b61f1c2d559ddde5ef1b323c37b4d4fb7dde0ab16b7ccba9a7fae74d39",
+    "lunar.py": "721ee63036e945c1d6dd767985b9b32c0f48de23fbda78814e2c9fba970de904",
+    "matrix_report.py": "b11a950417c2a7e2205e1fb92556d09e36c7d81869c89a7d32360d01f6145ce8",
+    "orbit_sources.py": "9883c02052726c90aa04d6a51d599832bb09f55951d23205df79e1613d89a76b",
+    "orbit_sources_benchmark.py": "54708fcb5abea4ba483aea656138ade3d2406c3f327b4d0fa43590ca90da5d18",
+    "orbit_transition.py": "d47dd2a610e4734600e247481f1c8ef3aecc5abc46b6a803505abaa5e889a4a0",
+    "orbital_maneuvers.py": "c3d1520f17ff038d3e1d548c5b0a752cc9b498ff9e418f1d3c02404b61f8e404",
+    "orbital_pipeline.py": "83321c47728f249a4ce079daae94d50d816414077c45e20c95c330794fd0763f",
+    "orbital_visualization.py": "2f80460d775db066560d3ca724de52d4de5315fca514a6239a78718325f12826",
+    "outcomes.py": "09b53a8b190f5c2d57ef50a64f7883f26e09ffc2e3b91252505612c47f482cc3",
+    "parameter_study.py": "68efd2d25c52b1db5179616bbc272a6d0afbd25f514b8297bdc3561619238ce4",
+    "parking_departure.py": "3f7c2858904e30cd47a287d0f1d735f30c6e92faaf894f70a51b8c20cbd984a7",
+    "pazov.py": "907bff7913bfd981ddcfa7d3878188d357eba84e5b26847a0319aec541f6b682",
+    "physical_transfer_routes.py": "9ca3e6ae5a3884a4d84d74f573856d98899cdf515a9ea66b22d98f061f790c28",
+    "planetary_capture.py": "ff942642b2642f81a00dd5c3b96d6eafde3e07cbfbaf056ae89ee17825162fec",
+    "problem.py": "a46fbbfcbee095e338823ce00bdecc254c4fa3c62e79c4057dfd9e51712bf119",
+    "psi.py": "eafb8a8469e789428eba9dfb6a9281097831d76357c1bd1c9ad7bf36bff73e10",
+    "r_study.py": "0e875dc91b0c92e21c3d4b28fa41fc75a010e82f85dbd105357ff459d8df0f45",
+    "r_transform.py": "6f97b68230db35c04cc4903735f3ca8bf875572da068676d19734321ec668880",
+    "reference.py": "8408fc0ce798a2147a5602c4d23a24536e90905b855a894ad7495e842caa062c",
+    "runner.py": "d0c79335da52f885fd8fb61bb56675c3ec4ca2f6de15c94690fdb80d4e51f6bc",
+    "runtime.py": "81dfded64ae214fc00e611dff44b66a9298edfc0cef367368792860c64eafdbb",
+    "search_graph.py": "a2e0115439547cd9ce83f1e78c00386ee2fa3b1807b8bf94423c7a600854aebd",
+    "seed_sweep.py": "98927aa4f9d924d4c824018448c167c1ad22965373ba791a9203a5cad41bc5ee",
+    "skill_audit.py": "e89a90c166518513ff37ac0d59dd356d7bd7346d7c3153b527971f8a759f0f54",
+    "source_pipeline.py": "1795a31acb76a5cc73303765f9b225300a47faeb696933f1757c910239dd819b",
+    "stage_journal.py": "4cda4e0d2536befdaa2f692f3242cf6dacd865512c69671305728bf54b9915bf",
+    "ummp.py": "6fc8d237688692394937e63c193129caa11d6a3fbd1f8262db82338c3b67de63",
+    "ummp_benchmark.py": "2f1f0de7a1947f3a8514f1efc76f2351794564ba7d94787dbeac02a01c581a54",
+    "ummp_model.py": "bba0098c8c8363877254c2b3c7ef1e014425f287df0198cb50c33167ea5b8c6a",
+    "verification.py": "8a5b095f825c462569767052372d5ec8c086338419a319212d330c101dc388ea",
+    "visualization.py": "3a72c99cf9f5823dfb38b4701b0898a4115e89056398595926136f3bda4ba422"
+  }
+}

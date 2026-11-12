@@ -1,0 +1,253 @@
+{
+  "passed": true,
+  "checked_utc": "2026-11-12T11:05:31.781522+00:00",
+  "issues": [],
+  "components": [
+    {
+      "component": "ephemerides",
+      "commands": [
+        "coverage",
+        "cache"
+      ],
+      "tests": [
+        "test_pipeline_foundation.py",
+        "test_orbit_sources.py"
+      ],
+      "scope": "Kepler or full ephemerides; extrapolation allowed"
+    },
+    {
+      "component": "iltt_irt",
+      "commands": [
+        "solve-irt",
+        "sweep-irt",
+        "recoordinate-irt"
+      ],
+      "tests": [
+        "test_iltt_date_entry.py",
+        "test_iltt_coordinates.py"
+      ],
+      "scope": "date/phase/angular branch; costates first, ILTT fallback and back"
+    },
+    {
+      "component": "departure",
+      "commands": [
+        "departure"
+      ],
+      "tests": [
+        "test_pipeline_departure.py"
+      ],
+      "scope": "hyperbolic excess continuation"
+    },
+    {
+      "component": "physical_psi",
+      "commands": [
+        "pazov",
+        "psi",
+        "solve"
+      ],
+      "tests": [
+        "test_pipeline_physical.py",
+        "test_audit_routes.py"
+      ],
+      "scope": "intermediate reserve differs from final physical admission"
+    },
+    {
+      "component": "source_transition",
+      "commands": [
+        "reconcile-irt",
+        "solve"
+      ],
+      "tests": [
+        "test_orbit_sources.py"
+      ],
+      "scope": "early Kepler IRT -> reconciled full ephemerides -> physical models"
+    },
+    {
+      "component": "orbital",
+      "commands": [
+        "solve",
+        "verify-orbital",
+        "render-orbital"
+      ],
+      "tests": [
+        "test_orbital_modes.py",
+        "test_angular_capture.py"
+      ],
+      "scope": "four maneuver combinations; full re-stitching per duration trial"
+    },
+    {
+      "component": "ummp",
+      "commands": [
+        "ummp",
+        "verify-ummp"
+      ],
+      "tests": [
+        "test_ummp.py"
+      ],
+      "scope": "verified central PSI -> historical engine law; separate terminal graph edge"
+    },
+    {
+      "component": "r_transform",
+      "commands": [
+        "sweep-psi"
+      ],
+      "tests": [
+        "test_r_transform.py"
+      ],
+      "scope": "independent transfers, costate coordinates and sensitivity"
+    },
+    {
+      "component": "search",
+      "commands": [
+        "search"
+      ],
+      "tests": [
+        "test_search_graph.py",
+        "test_intermediate_time.py"
+      ],
+      "scope": "central search plus optional orbital/UMMP terminal edges; preserve PSI parent"
+    },
+    {
+      "component": "recovery",
+      "commands": [],
+      "tests": [
+        "test_audit_routes.py"
+      ],
+      "scope": "immutable stage checkpoints, replay, bound input and bounded retries"
+    },
+    {
+      "component": "visualization",
+      "commands": [
+        "render",
+        "render-orbital"
+      ],
+      "tests": [
+        "test_pipeline_visualization.py",
+        "test_visualization_labels.py"
+      ],
+      "scope": "saved arrays, no reoptimization"
+    },
+    {
+      "component": "cr3bp",
+      "commands": [],
+      "tests": [
+        "test_cr3bp_component.py"
+      ],
+      "scope": "standalone normalized approximation API; no heliocentric splice or lunar mission claim"
+    }
+  ],
+  "source_sha256": {
+    ".agents/skills/trajectory-pipeline/SKILL.md": "2f9b124bfbf4ed9c789255285bbe15b11a6ebae5cd51cd9b327be27baaf3ea5f",
+    ".agents/skills/trajectory-pipeline/references/accepted-irt-routes.md": "753b6840531adf6d38d9021d0133ac3972611ef84f6b2f5ae20c3cf9d0b4fdab",
+    ".agents/skills/trajectory-pipeline/references/angular-capture.md": "659d687e5f8a9daf55313876bd148fe0b987259f74b1fae966e437297e56f896",
+    ".agents/skills/trajectory-pipeline/references/cr3bp.md": "43bb4e0af392691f75066d67beff4dcab3cc51c2a794dc89d72bfdae0c8b70b7",
+    ".agents/skills/trajectory-pipeline/references/ephemerides.md": "c6cbe2a2cb6fbda3f33fac9734eda73aa69c02478c2a949223fa27ae39449f9f",
+    ".agents/skills/trajectory-pipeline/references/free-flight-time.md": "a1fcad1bd541b98f4aa8d95582cef836cbf0f2afe8968097d7b1859d38a318f6",
+    ".agents/skills/trajectory-pipeline/references/iltt-coordinates.md": "8f29c32a8054c19baecee402ddfe00b18e3ab05fa63eae160cb7d8e741a895a1",
+    ".agents/skills/trajectory-pipeline/references/kiam-toolbox.md": "d668d34cdbc2c4e88f6330551aa5250d452f532d279d8da3dc12e1413c73d72b",
+    ".agents/skills/trajectory-pipeline/references/orbit-sources.md": "a37222d9e999d6fd80110ca5b0d737893e4b8419c50c41166eea727604f52700",
+    ".agents/skills/trajectory-pipeline/references/planetary-interfaces.md": "20624262df254aa0529eb1e983909a522eba80201c70ccc487b29bca8d8139c6",
+    ".agents/skills/trajectory-pipeline/references/propulsion.md": "cc4abe63734001108a08e47f6abd3cc9bbde5579ce1ae1a72cf01b3dfdcb73db",
+    ".agents/skills/trajectory-pipeline/references/search-graph.md": "21cc082f4a9ce2e2fe786b4fd1ac761359cd34eeb5b4d588af180926560c69c3",
+    ".agents/skills/trajectory-pipeline/references/seed.md": "68457d11c0994dc0fcfc4667bc499755ab87454b1097a439ca9293fade3cc04d",
+    ".agents/skills/trajectory-pipeline/references/visualization.md": "873974d1e010b564a4cc1eed06a901ec2a11e1606d7aff98a22e7ca6a4736ef7",
+    ".agents/skills/trajectory-pipeline/references/workflows.md": "ccfefb0ad397f67137a1c28d1553ce1522a91e47a67ece4eb80017d3e5b57c40",
+    "tests/test_accepted_irt_routes.py": "725a1f8b1a9e1c0786475f4db7f8688f321b9bd265fcf1c1b2a625a5d4e6e774",
+    "tests/test_angular_capture.py": "101f87b77885580ab3636fc8a5bc59b50798c6565294900ad79f6450cac2d71c",
+    "tests/test_audit_routes.py": "805be97bd8e46c2a907d76bafb4ddff4a653ada66ab3add468a16e604bf1e0cd",
+    "tests/test_bounded_derivatives.py": "81c0df71fd3590be1f85603b292fc43c8bf9998285955eb55c6255a41f194016",
+    "tests/test_capture_control.py": "db0317a02b642959076690f7dd5c73890c5420dae7d5d56d04c57b08bb7425cd",
+    "tests/test_cr3bp_component.py": "751ed3fcd617c1a2b733680c26383546065d4db5f98b56adefc500a0c3acac74",
+    "tests/test_date_sweep.py": "8cbc5d8f84694e1c524c7b9f5425ab4b85d21b17e880fc96b22cafc782665ac8",
+    "tests/test_free_time.py": "7f4e0dbbd43d912a737759c88cfce5316bfd9dcc8cf5d705318213f80e51ea81",
+    "tests/test_free_time_report.py": "fcb239f1ec3b6f92e17c1eb6c16c5692a4a1f18cadf56f675fd360370afeac04",
+    "tests/test_iltt_coordinates.py": "534aa05cad219831d8914f368554b119b7f0f1058306afe9ef7cabcde6a6d14e",
+    "tests/test_iltt_date_entry.py": "2a470155e5fd48a8b8f08ebcf7f052252d12948dd198750c80b0110f221bb4f2",
+    "tests/test_intermediate_time.py": "2905585c1db2a5dcea458db47491433def71a9dfbea16b97259d3cfbc2e5adff",
+    "tests/test_orbit_sources.py": "3273eebc9318f83bebc96767c156cb7382fd06ef84c4d36236fc57a293bd8a65",
+    "tests/test_orbital_modes.py": "6470844e9010616f8bfe1fb373566351c16beffb95d8896c1793d33815887a20",
+    "tests/test_parameter_design.py": "42cf57a25b63c6a7838fbe2d2a10ecec49ab0c709bc0276e2da04b7adc5fe3cf",
+    "tests/test_parking_departure.py": "7f77bf67c1a8eb651cbb8212f8f0cc5cc44bffe6c9d76a100867c105dea39261",
+    "tests/test_pipeline_contract.py": "ef29b6c992a53c63a58dec7d22652d334863dc6eebedda14faaf181b2d78dc1e",
+    "tests/test_pipeline_departure.py": "589c05ac3733a1790e77414c3305b88147105f4ba445e3f4887b7a65b1e26992",
+    "tests/test_pipeline_diagnostics.py": "8b5bf3d70ccc915a222392a5d9da728369c05932573286632ad4c30c28dd7906",
+    "tests/test_pipeline_foundation.py": "f1e24fcdef56af30e7373a61d66bca258d94da0e1c63a97462c078d95538e64f",
+    "tests/test_pipeline_irt.py": "cb8877b8a7a1e269701c1b68608deb2447d8bd1ec899556cd5c14abdce27102d",
+    "tests/test_pipeline_lunar.py": "bb9f10c72fb5ffe0787e611f24074ae58faaf848ca264580888a9a3098d64fbb",
+    "tests/test_pipeline_outcomes.py": "5e85533370bece77990aff851d418ac99f13c302f58a61b6620f426ad955c469",
+    "tests/test_pipeline_physical.py": "a168554b5dda88db0ededc96aa304984d3d3cf92faf592adcfc2187f8dea6b32",
+    "tests/test_pipeline_supervision.py": "00892ebcf7edc14d2351a1f3d2079d670db8b252e1974d0ab9a15e6634f9da1d",
+    "tests/test_pipeline_visualization.py": "052bb90e8016ecb7eac34e1d9409302028faebd844ae3e9b49cee7a8ce74a5aa",
+    "tests/test_planetary_capture.py": "ed2a8b3515f00d4f2fc80302617517725b64f25955b20163ac09c395a1440970",
+    "tests/test_r_transform.py": "1ff8d3eb4721210e6b1429a03fdd54aecbc21c55eafe35c669e2b528281724c0",
+    "tests/test_search_graph.py": "ba801d972e32f3889050cc8f6a3794527b34d71ff83973875fdab2499925d358",
+    "tests/test_seed_sweep.py": "d24cc2a11f203d688fde62b0b313985e85fca024b134271b1ed568763ca42bf8",
+    "tests/test_ummp.py": "148bb7a1c28012d3b6fc2c8fb9e9147ac966c5369f7ad1aaa08c38284ee9fb30",
+    "tests/test_visualization_labels.py": "cfff0a36c97d7be36c42224db7b2391d04fb89ec5c52992e4e0d2bd98bee7868",
+    "trajectory_pipeline/__init__.py": "b5d69a20b137a938a28e2478dbae0068c3e29e5f6dad0cc95672c5107c6b4842",
+    "trajectory_pipeline/__main__.py": "e064090dc9c96594e57de53c895e74839ae5b72f5eb2d5fef2f4032f7eecd5bf",
+    "trajectory_pipeline/accepted_irt_report.py": "1853af16371ec0f0b22f7b8830eb5ace67b6cb3279672700e868ca89029e9620",
+    "trajectory_pipeline/accepted_irt_routes.py": "8c18a8d62cf4ee329cc82cf9ad3d996a24f050f89169bedb90c09c373246d91d",
+    "trajectory_pipeline/angular_capture.py": "97dcbd78260bdd41f214fa64b436ed06e3b78317236367487e6bbffb3499e909",
+    "trajectory_pipeline/bangbang.py": "39b465a8cfc60c3086ea11ce8f697217091f2c85e0b0a6dcebf591064a6c1ec9",
+    "trajectory_pipeline/bounded.py": "b2eaa39ca42816a5c323bbe10239bcdea852f15cff28a1917debe41e455daa63",
+    "trajectory_pipeline/bounded_derivatives.py": "bb2f18f6202ea1ff072930b1887951a26a840112dbb0feff3c8cf063863b3e79",
+    "trajectory_pipeline/bounded_model.py": "ac847de889d96c6b343276f22972c3c9211cf815cd8605212a951c86c381ddd0",
+    "trajectory_pipeline/capture_control.py": "56b511b672de53896f53a4aab6f13726961d3fc96083ddc9585dd5fb0c30c8b7",
+    "trajectory_pipeline/capture_pipeline.py": "230455e145b22d045e1b646b1e8cc947ec78c67bc293e6aa05153d576f671201",
+    "trajectory_pipeline/capture_search.py": "6b6c9a5fe0d4076484f8c0cf28160125e78194eeaa6692e9bd06ec911e777397",
+    "trajectory_pipeline/composed_time.py": "068a5bdc537b8a1612bfcacb8c77bebb440e66ebe39a5e6e7e122250d62ea781",
+    "trajectory_pipeline/continuation.py": "14700fe3c5bc32044119902b40f266929439b8901f3455f4105b52ac1957e2a7",
+    "trajectory_pipeline/contract.py": "8559e253b08b5b305df251ed67d0d0b77b32f228d10588dbe821bfadcdcf5a0c",
+    "trajectory_pipeline/coordinate_matrix.py": "8def890c49b59559b92026d9f8b247fb0c7eaf4d200c9a17ba9c731de0147e63",
+    "trajectory_pipeline/coordinate_pipeline.py": "91990b666a6b737d18cc8d538fd0eebbed5d7b01af20af8826135140a1844a64",
+    "trajectory_pipeline/cr3bp.py": "81821102917370aa6ee00878d6534bbbf90a0e417c9474f720f46de820eead33",
+    "trajectory_pipeline/data.py": "aebdc031ea5379bcf840081747f2adb833f918588510c8d9b4e81558d495e972",
+    "trajectory_pipeline/date_sweep.py": "0a498edb1a41fd855c892b49492c2a63cae560d30f0695ff7922929fdfd0ba2b",
+    "trajectory_pipeline/departure.py": "64ac75cd2650c1872f89a929743ff9ba124db09ba68f698c79adc8979f4daca1",
+    "trajectory_pipeline/diagnostics.py": "866511081da87b50e23c45fdba3ea017b96e119bc3e75ca08ceb28047bdd01d3",
+    "trajectory_pipeline/ephemerides.py": "60b5f3eb891596541d357f3eb6b6a48ba0c4be3ade5f5cee86c5deff0d6cdf6e",
+    "trajectory_pipeline/free_time.py": "7ecb85b8ea504e6aa9c33b113343e324cbad0069cfb164a3d6e19b16851a132d",
+    "trajectory_pipeline/free_time_report.py": "1e5f778d7ae0b394b3fab0fb10417b65a9e15469799b9530ef965f09ec3d2120",
+    "trajectory_pipeline/gravity.py": "2d439cf0e206ca0d3378f4033000a24bda8b573aa438e50662a3b05e157418b3",
+    "trajectory_pipeline/iltt_coordinates.py": "9e94a22d4807f727ae3f964f87bc8c488dbd3e48c29f29bebf318189c5b8bb44",
+    "trajectory_pipeline/iltt_entry.py": "60c39f72c99d48430da48e05edee1595f6a0771cf73c99e347d71a4a2c4dc3ea",
+    "trajectory_pipeline/intermediate_time.py": "1a4a8cbd30c73e6b8182e0295ed67f78eaa488e392f6ae6729079cf9a0dca336",
+    "trajectory_pipeline/irt.py": "94183e19367bb31bb60b1deaaf3d3ca5ab6147b42e533bd1cd92b685ffc4edbd",
+    "trajectory_pipeline/irt_entry_routes.py": "8e345b36677a64348ca1604cabc1e6ea129e2ff0c15cebec41cb8ee9c6dd8ea6",
+    "trajectory_pipeline/kiam_verification.py": "08bc4b66d22208063de9e2c194821d963cfa9af3731d30ce4845b4a52e06a61a",
+    "trajectory_pipeline/launch_pipeline.py": "359c88b61f1c2d559ddde5ef1b323c37b4d4fb7dde0ab16b7ccba9a7fae74d39",
+    "trajectory_pipeline/lunar.py": "721ee63036e945c1d6dd767985b9b32c0f48de23fbda78814e2c9fba970de904",
+    "trajectory_pipeline/matrix_report.py": "b11a950417c2a7e2205e1fb92556d09e36c7d81869c89a7d32360d01f6145ce8",
+    "trajectory_pipeline/orbit_sources.py": "9883c02052726c90aa04d6a51d599832bb09f55951d23205df79e1613d89a76b",
+    "trajectory_pipeline/orbit_sources_benchmark.py": "54708fcb5abea4ba483aea656138ade3d2406c3f327b4d0fa43590ca90da5d18",
+    "trajectory_pipeline/orbit_transition.py": "d47dd2a610e4734600e247481f1c8ef3aecc5abc46b6a803505abaa5e889a4a0",
+    "trajectory_pipeline/orbital_maneuvers.py": "c3d1520f17ff038d3e1d548c5b0a752cc9b498ff9e418f1d3c02404b61f8e404",
+    "trajectory_pipeline/orbital_pipeline.py": "83321c47728f249a4ce079daae94d50d816414077c45e20c95c330794fd0763f",
+    "trajectory_pipeline/orbital_visualization.py": "2f80460d775db066560d3ca724de52d4de5315fca514a6239a78718325f12826",
+    "trajectory_pipeline/outcomes.py": "09b53a8b190f5c2d57ef50a64f7883f26e09ffc2e3b91252505612c47f482cc3",
+    "trajectory_pipeline/parameter_study.py": "68efd2d25c52b1db5179616bbc272a6d0afbd25f514b8297bdc3561619238ce4",
+    "trajectory_pipeline/parking_departure.py": "3f7c2858904e30cd47a287d0f1d735f30c6e92faaf894f70a51b8c20cbd984a7",
+    "trajectory_pipeline/pazov.py": "907bff7913bfd981ddcfa7d3878188d357eba84e5b26847a0319aec541f6b682",
+    "trajectory_pipeline/physical_transfer_routes.py": "9ca3e6ae5a3884a4d84d74f573856d98899cdf515a9ea66b22d98f061f790c28",
+    "trajectory_pipeline/planetary_capture.py": "ff942642b2642f81a00dd5c3b96d6eafde3e07cbfbaf056ae89ee17825162fec",
+    "trajectory_pipeline/problem.py": "a46fbbfcbee095e338823ce00bdecc254c4fa3c62e79c4057dfd9e51712bf119",
+    "trajectory_pipeline/psi.py": "eafb8a8469e789428eba9dfb6a9281097831d76357c1bd1c9ad7bf36bff73e10",
+    "trajectory_pipeline/r_study.py": "0e875dc91b0c92e21c3d4b28fa41fc75a010e82f85dbd105357ff459d8df0f45",
+    "trajectory_pipeline/r_transform.py": "6f97b68230db35c04cc4903735f3ca8bf875572da068676d19734321ec668880",
+    "trajectory_pipeline/reference.py": "8408fc0ce798a2147a5602c4d23a24536e90905b855a894ad7495e842caa062c",
+    "trajectory_pipeline/runner.py": "d0c79335da52f885fd8fb61bb56675c3ec4ca2f6de15c94690fdb80d4e51f6bc",
+    "trajectory_pipeline/runtime.py": "81dfded64ae214fc00e611dff44b66a9298edfc0cef367368792860c64eafdbb",
+    "trajectory_pipeline/search_graph.py": "a2e0115439547cd9ce83f1e78c00386ee2fa3b1807b8bf94423c7a600854aebd",
+    "trajectory_pipeline/seed_sweep.py": "98927aa4f9d924d4c824018448c167c1ad22965373ba791a9203a5cad41bc5ee",
+    "trajectory_pipeline/skill_audit.py": "e89a90c166518513ff37ac0d59dd356d7bd7346d7c3153b527971f8a759f0f54",
+    "trajectory_pipeline/source_pipeline.py": "1795a31acb76a5cc73303765f9b225300a47faeb696933f1757c910239dd819b",
+    "trajectory_pipeline/stage_journal.py": "4cda4e0d2536befdaa2f692f3242cf6dacd865512c69671305728bf54b9915bf",
+    "trajectory_pipeline/ummp.py": "6fc8d237688692394937e63c193129caa11d6a3fbd1f8262db82338c3b67de63",
+    "trajectory_pipeline/ummp_benchmark.py": "2f1f0de7a1947f3a8514f1efc76f2351794564ba7d94787dbeac02a01c581a54",
+    "trajectory_pipeline/ummp_model.py": "bba0098c8c8363877254c2b3c7ef1e014425f287df0198cb50c33167ea5b8c6a",
+    "trajectory_pipeline/verification.py": "8a5b095f825c462569767052372d5ec8c086338419a319212d330c101dc388ea",
+    "trajectory_pipeline/visualization.py": "3a72c99cf9f5823dfb38b4701b0898a4115e89056398595926136f3bda4ba422"
+  },
+  "scope": "Static routing consistency; numerical acceptance requires the separate Docker audit report"
+}

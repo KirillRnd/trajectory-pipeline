@@ -22,6 +22,10 @@ def verify_selection(folder,verify):
     lo,hi=requested.time_policy['bounds_days']
     if not lo<=actual.tof_days<=hi:raise ValueError('Composed time outside requested bounds')
     if sha256(child/'final/trajectory.npz')!=selected['arrays_sha256']:raise ValueError('Selected mission changed')
+    if sha256(folder/'final/trajectory.npz')!=selected['arrays_sha256']:raise ValueError('Composed final arrays changed')
+    from .stage_journal import identity
+    if identity(Trajectory.load(folder/'final'))!=identity(Trajectory.load(child/'final')):
+        raise ValueError('Composed final metadata differs from selected child')
     result=verify(child)
     result['duration_search']=selected
     return result
@@ -42,7 +46,12 @@ def run_composed_time(mission,output,resume=False):
     if (root/'time_selection.json').exists():
         check=verify(root)
         if not check['passed']:raise ValueError('Selected mission failed replay')
-        return Trajectory.load(root/'final'),json.loads((root/'summary.json').read_text())
+        summary_path=root/'summary.json'
+        summary=json.loads(summary_path.read_text()) if summary_path.exists() else dict(
+            case_id=mission.case_id,status='completed',phase='orbital_time',last_result='final',
+            duration_released=True,selected=check['duration_search'],verification=check)
+        write_json(summary_path,summary)
+        return Trajectory.load(root/'final'),summary
     history=json.loads((root/'time_trials.json').read_text()) if (root/'time_trials.json').exists() else []
     lo,hi=mission.time_policy['bounds_days'];accepted=[]
     for event in history:
@@ -57,9 +66,14 @@ def run_composed_time(mission,output,resume=False):
         folder=root/f'time_trial_{len(history):03d}'
         while folder.exists():folder=folder.with_name(folder.name+'_retry')
         settings=dict(mission.solver,irt_entry='fixed_time');settings.pop('iltt_resolved',None)
-        if accepted and mission.orbital_maneuvers is not None:
-            nearest=min(accepted,key=lambda r:abs(r['tof_days']-duration))
-            seed=deepcopy(Trajectory.load(root/nearest['artifact']/'outer'))
+        if mission.orbital_maneuvers is not None and (accepted or settings.get('orbital_seed_path')):
+            if accepted:
+                nearest=min(accepted,key=lambda r:abs(r['tof_days']-duration))
+                seed_path=root/nearest['artifact']/'outer'
+            else:
+                seed_path=Path(settings['orbital_seed_path'])
+                if not (seed_path/'trajectory.json').exists():seed_path=seed_path/'outer'
+            seed=deepcopy(Trajectory.load(seed_path))
             ratio=duration/seed.metadata['mission']['tof_days']
             seed.arrays['t_s']*=ratio
             if 'switch_times_s' in seed.metadata:seed.metadata['switch_times_s']=(np.asarray(seed.metadata['switch_times_s'])*ratio).tolist()
@@ -89,12 +103,18 @@ def run_composed_time(mission,output,resume=False):
     except TimeoutError as exc:error=str(exc)
     changed=[e for e in accepted if abs(e['tof_days']-mission.tof_days)>1e-7]
     summary=dict(case_id=mission.case_id,status='completed' if changed else 'partial',phase='orbital_time',
-                 completion_scope='initial_orbit_to_final_orbit',duration_released=bool(changed),optimizer_success=optimized,
+                 completion_scope=('initial_orbit_to_final_orbit' if mission.orbital_maneuvers else
+                                   'parking_to_planetary_orbit' if mission.parking_departure and mission.capture else
+                                   'parking_to_target' if mission.parking_departure else 'planetary_orbit'),
+                 duration_released=bool(changed),optimizer_success=optimized,
                  error=error,trials=len(history),time_reference='interplanetary duration; both local segments re-stitched')
     result=None
     if changed:
         best=min(accepted,key=lambda e:e['fuel_kg'])
-        result=Trajectory.load(root/best['artifact']/'final');result.save(root/'final')
+        result=Trajectory.load(root/best['artifact']/'final')
+        if not (root/'final').exists():result.save(root/'final')
+        elif sha256(root/'final/trajectory.npz')!=sha256(root/best['artifact']/'final/trajectory.npz'):
+            raise ValueError('Composed final differs from selected verified child')
         selection=dict(artifact=best['artifact'],tof_days=best['tof_days'],bounds_days=[lo,hi],
                        arrays_sha256=sha256(root/best['artifact']/'final/trajectory.npz'),optimizer_success=optimized)
         write_json(root/'time_selection.json',selection)

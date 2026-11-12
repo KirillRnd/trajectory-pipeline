@@ -1,0 +1,119 @@
+{
+  "case_id": "date_0096_branch_00",
+  "status": "completed",
+  "phase": "transfer",
+  "bounds_days": [
+    1.0,
+    1095.75
+  ],
+  "artifact": "runs/apophis_new_full_psi_v1/routes_spawn/date_0096_branch_00/transfer_physical",
+  "route": "exact physical arcs in cartesian costate coordinates",
+  "verification": {
+    "passed": true,
+    "position_residual_m": 15.343905722248419,
+    "velocity_residual_m_s": 3.1933098183054403e-06,
+    "parameter_audit": {
+      "passed": true,
+      "configuration_sha256": "304de9efefa2279ec4cb946a19102d0c5cdf5bc851887a000b07f869d9bba2a3",
+      "configuration_hash_version": 2,
+      "requested": {
+        "mass_kg": 204,
+        "thrust_N": 0.036,
+        "exhaust_velocity_m_s": 11767.98,
+        "dry_mass_kg": 140,
+        "launch_tdb": "2028-11-03T00:00:00",
+        "tof_days": 642.6404882275367,
+        "departure": "Earth",
+        "target": "Apophis",
+        "mode": "rendezvous"
+      },
+      "recovered_model": {
+        "model_thrust_N": 0.036,
+        "thrust_to_requested_ratio": 1.0,
+        "alpha": 1.0,
+        "beta": 1,
+        "variable_mass": true,
+        "hardware_limit_reached": true,
+        "exhaust_velocity_m_s": 11767.979999999998
+      },
+      "geometry": null,
+      "final_admission": true
+    },
+    "trajectory_difference_m": 15.344074797676516,
+    "velocity_difference_m_s": 3.1933147773262683e-06,
+    "stored_throttle_error": 0.0,
+    "stored_throttle_minimum": 0.0,
+    "stored_throttle_maximum": 1.0,
+    "canonical_boundary_residual": 1.48924689808305e-10,
+    "method": "LSODA with independent bounded/mass equations",
+    "scope": "Numerical extremal and constraints; no global optimality proof",
+    "departure_norm_m_s": 3000.0000000000014,
+    "switching_sign_violation": 1.217785872308138e-09,
+    "switching_node_residual": 1.2177857538254662e-09,
+    "minimum_mass_kg": 173.89266013182691,
+    "fuel_kg": 30.107339868173092,
+    "mass_difference_kg": 1.2456702336294256e-12,
+    "stored_thrust_error_N": 0.0,
+    "dry_mass_constraint_enforced": true,
+    "mass_balance_error_kg": 1.1013412404281553e-12
+  },
+  "kiam_verification": {
+    "passed": true,
+    "source": "Unmodified KIAM Astro compiled Fortran equations and published control API",
+    "package_version": "6.1.6",
+    "samples": 101,
+    "maximum_dimensionless_rhs_error": 1.3322676295501878e-15,
+    "maximum_dimensionless_force_error": 6.938893903907228e-18,
+    "maximum_third_body_decomposition_error": 0.0,
+    "nbody_gravity": {
+      "passed": true,
+      "applicable": false
+    },
+    "costate_map": "p_r,v(KIAM)=p_r,v/vex; p_m(KIAM)=1+p_m/vex; normalized initial mass=1",
+    "scope": "KIAM central mass-optimal equations/control, plus independent third-body decomposition when present; not a separate global optimization"
+  },
+  "parameter_audit": {
+    "passed": true,
+    "configuration_sha256": "304de9efefa2279ec4cb946a19102d0c5cdf5bc851887a000b07f869d9bba2a3",
+    "configuration_hash_version": 2,
+    "requested": {
+      "mass_kg": 204,
+      "thrust_N": 0.036,
+      "exhaust_velocity_m_s": 11767.98,
+      "dry_mass_kg": 140,
+      "launch_tdb": "2028-11-03T00:00:00",
+      "tof_days": 642.6404882275367,
+      "departure": "Earth",
+      "target": "Apophis",
+      "mode": "rendezvous"
+    },
+    "recovered_model": {
+      "model_thrust_N": 0.036,
+      "thrust_to_requested_ratio": 1.0,
+      "alpha": 1.0,
+      "beta": 1,
+      "variable_mass": true,
+      "hardware_limit_reached": true,
+      "exhaust_velocity_m_s": 11767.979999999998
+    },
+    "geometry": {
+      "epoch_jd": 2462078.5,
+      "arrival_jd": 2462721.1404882274,
+      "departure_position_difference_m": 0.0,
+      "arrival_position_difference_m": 0.0
+    },
+    "final_admission": true
+  },
+  "tof_days": 642.6404882275367,
+  "fuel_kg": 30.107339868172062,
+  "final_mass_kg": 173.89266013182794,
+  "departure_m_s": 3000.0000000000014,
+  "events": [
+    {
+      "operation": "exact_arcs_cartesian",
+      "parent": "runs/apophis_new_full_psi_v1/routes_spawn/date_0096_branch_00/coupled_checkpoint",
+      "alpha_seed": 0.9175000000000001,
+      "status": "completed"
+    }
+  ]
+}

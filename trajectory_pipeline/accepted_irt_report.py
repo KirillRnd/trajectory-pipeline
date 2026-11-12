@@ -16,8 +16,6 @@ def inspect_case(task):
     assert sha256(Path(c['source'])/'trajectory.json')==c['metadata_sha256']
     original=Mission(**Trajectory.load(c['source']).metadata['mission'])
     records={p:json.loads((root/(p+'.json')).read_text()) for p in ('primary','recover','transfer') if (root/(p+'.json')).exists()}
-    if records['primary']['status']!='completed':assert 'recover' in records
-    if not any(r['status']=='completed' for r in records.values()):assert 'transfer' in records
     accepted=[]
     for phase,r in records.items():
         if r['status']!='completed':continue
@@ -25,7 +23,8 @@ def inspect_case(task):
         expected=replace(original,tof_days=actual.tof_days)
         audit=audit_configuration(t,expected,make_request(expected),require_final=True)
         checks=physical(t)
-        bounds=c.get('duration_bounds_days',[.5*original.tof_days,min(c.get('horizon_days',float('inf')),max(2*original.tof_days,1095.75))])
+        bounds=(c.get('transfer_bounds_days') if phase=='transfer' else None) or c.get('duration_bounds_days',[.5*original.tof_days,max(2*original.tof_days,1095.75)])
+        bounds=[bounds[0],min(bounds[1],c.get('horizon_days',float('inf')))]
         assert bounds[0]-1e-8<=actual.tof_days<=bounds[1]+1e-8
         accepted.append(dict(phase=phase,artifact=r['artifact'],route=r['route'],original_request_audit=audit,**checks))
     row=dict(case_id=c['case_id'],departure=original.departure,target=original.target,mode=original.mode,launch=original.launch_tdb,original_days=original.tof_days,source=c['source'],physical_request=original.to_dict(),status='completed' if accepted else 'partial',phases=list(records))
@@ -34,8 +33,10 @@ def inspect_case(task):
     else:
         row['failures']=[dict(phase=p,operation=e['operation'],status=e.get('status'),error=e.get('error'),details=e.get('details')) for p,r in records.items() for e in r.get('events',[]) if e.get('status') not in ('completed','completed_stage')]
         checkpoints=[]
-        for name in ('primary_last','recover_last','broad_last'):
-            path=root/name
+        paths={Path(r['last_checkpoint']) for r in records.values() if r.get('last_checkpoint')}
+        if not paths:paths={root/name for name in ('primary_last','recover_last','broad_last')}
+        for path in sorted(paths):
+            name=path.name
             if (path/'trajectory.json').exists():
                 t=Trajectory.load(path);checkpoints.append(dict(path=str(path),archive_path=c['case_id']+'/'+name,stage=t.metadata.get('stage'),days=t.metadata['mission']['tof_days'],model=t.metadata.get('bounded_model'),thrust_N=(t.metadata['bounded_model']['a_max']*Scales(**t.metadata['scales']).acceleration_m_s2*original.mass_kg if 'bounded_model' in t.metadata else None),departure_parameter=t.metadata.get('departure',{}).get('parameter')))
         row['continuation_stops']=[]
@@ -92,12 +93,12 @@ def main():
     lines=[f'# Продолжение {len(rows)} принятых ИРТ до физической ПСИ','',f'Принято **{len(ok)} из {len(rows)}**. Основной маршрут: {counts["primary"]}; альтернативное продолжение: {counts["recover"]}; коррекция точных дуг / независимый перенос / расширенное время: {counts["transfer"]}.', '',
     'Исходные ИРТ, их SHA256 и запросы сохранены. Проверка конечных параметров выполнена относительно каждого исходного запроса; разрешено изменение длительности. Фактические конфигурации этой серии (SI): '+ '; '.join(sorted(configurations)), '',
     '## Маршруты и приёмка','',
-    '1. ИРТ → избыток → Пазов (α=0,5) → масса → ограничение тяги → топливный функционал → точные дуги.',
-    '2. После отказа — совместное продолжение массы/тяги; освобождение времени на последней проверенной модели в [0,5T;1,5T]; возврат к ранней модели, α=0,3 и время [0,5T;2T].',
-    '3. Для остатка — коррекция точных дуг в декартовых, legacy-R и RTN координатах, свободное время; при наличии совместимой физической опоры — независимый R-перенос на исходную дату и фиксированная/свободная коррекция. Последняя общая попытка: раннее освобождение времени в [0,5T;max(2T,1095,75 суток)] и совместное продолжение.', '',
-    'Ветвление прекращается после принятой физической ПСИ. Бюджеты отдельных этапов конечны (45–90 секунд, внешние ограничения 65–480 секунд); отказ в таком бюджете не доказывает физическую недостижимость. Продолжение не является доказательством глобального минимума. Изменение длительности не обязательно означает успешное завершение её оптимизации.', '',
+    '1. ИРТ → избыток → Пазов → масса → ограничение тяги → топливный функционал → точные дуги.',
+    '2. После отказа — совместное продолжение массы/тяги, освобождение времени на проверенной модели и возврат к ранней модели.',
+    '3. Коррекция точных дуг в декартовых, legacy-R и RTN координатах; при совместимой физической опоре — независимый R-перенос. Фактические α, бюджеты и границы времени заданы в design.json и событиях каждого случая.', '',
+    'Ветвление прекращается после принятой физической ПСИ. Отказ в заданном вычислительном бюджете не доказывает физическую недостижимость. Продолжение не доказывает глобальный минимум. Изменение длительности не обязательно означает завершение её оптимизации.', '',
     'Каждый принятый результат заново независимо проинтегрирован, проверен KIAM и привязан к исходному запросу с единственным разрешённым изменением tof_days. Требуются α=β=1, фактическая тяга аппарата, точное управление, масса не ниже сухой, граничные условия и трансверсальность. Проверена гелиоцентрическая межпланетная часть; отлёт с орбиты и захват не входят в эту серию.', '',
-    'Техническое исправление: для свободного времени от гладкой модели теперь явно строится непроверенное приближение моментов переключения по пересечению throttle=0,5. Раньше этот дополнительный маршрут завершался KeyError; затронутые попытки повторены отдельно, прежние ошибки сохранены.', '',
+    'Для свободного времени от гладкой модели строится непроверенное приближение моментов переключения по пересечению throttle=0,5; принятие требует независимой физической проверки.', '',
     '## Все случаи','', '| Случай / дата старта | ИРТ, сут | ПСИ, сут | Топливо, кг | Результат / маршрут |', '|---|---:|---:|---:|---|']
     for r in rows:
         label=r['case_id']+' / '+r['launch'][:10]

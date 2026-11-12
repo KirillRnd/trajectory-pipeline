@@ -1,0 +1,105 @@
+{
+  "status": "completed",
+  "phase": "ummp",
+  "target_model": "ummp",
+  "mission": {
+    "case_id": "earth_apophis_2029_d-90",
+    "departure": "Earth",
+    "target": "Apophis",
+    "launch_tdb": "2028-11-16T12:00:00",
+    "tof_days": 548.1354059978634,
+    "center": "Sun",
+    "mode": "rendezvous",
+    "position_tolerance_m": 1000,
+    "velocity_tolerance_m_s": 0.01,
+    "mass_kg": 156,
+    "departure_mode": "bounded_norm",
+    "vinf_max_m_s": 3000,
+    "vinf_vector_m_s": null,
+    "spacecraft": {
+      "thrust_N": 0.025,
+      "exhaust_velocity_m_s": 20000,
+      "dry_mass_kg": 90
+    },
+    "solver": {
+      "budget_s": 20,
+      "compare_seeds": false,
+      "departure_budget_s": 45,
+      "limit_budget_s": 60,
+      "pazov_budget_s": 60,
+      "psi_budget_s": 90,
+      "bounded_attempt_s": 15,
+      "irt_entry": "fixed_time",
+      "iltt_budget_s": 8,
+      "iltt_branch": 0,
+      "iltt_coordinate_reference": [
+        -0.598199628980797,
+        -1.2607584751347787,
+        3.5531513971342847,
+        4.799183125709705,
+        1.116870174267109,
+        1.4069874243172373
+      ],
+      "attempt_budget_s": 20,
+      "max_nfev": 70,
+      "irt_coordinates": [
+        "iltt",
+        "costates"
+      ],
+      "exact_attempt_s": 25,
+      "pipeline_pazov_alpha": 0.5,
+      "psi_mass_alpha": 0.5
+    },
+    "lunar": null,
+    "orbit_sources": {
+      "earth": {
+        "kind": "ephemerides"
+      },
+      "apophis": {
+        "kind": "ephemerides"
+      }
+    }
+  },
+  "fuel_kg": 30.793808476954126,
+  "verification": {
+    "passed": true,
+    "method": "independent segmented LSODA and quadrature of compensated mass flow",
+    "parameter_audit": {
+      "passed": true,
+      "configuration_sha256": "2e18d34d6b5e396d048e43e2b24a5e90c6ac674854fafbeab9051fcac09c2a43",
+      "configuration_hash_version": 2,
+      "requested": {
+        "mass_kg": 156,
+        "thrust_N": 0.025,
+        "exhaust_velocity_m_s": 20000,
+        "dry_mass_kg": 90,
+        "launch_tdb": "2028-11-16T12:00:00",
+        "tof_days": 548.1354059978634,
+        "departure": "Earth",
+        "target": "Apophis",
+        "mode": "rendezvous"
+      },
+      "recovered_model": null,
+      "geometry": null,
+      "final_admission": false,
+      "scope": "mission and PSI baseline; UMMP hardware verified separately"
+    },
+    "position_residual_m": 6.656021057017014,
+    "velocity_residual_m_s": 1.1466369519486617e-06,
+    "replay_position_error_m": 6.658385701659094,
+    "replay_velocity_error_m_s": 1.1474133293010226e-06,
+    "canonical_boundary_residual": 5.938041186730982e-11,
+    "terminal_mass_costate": -5.999029268530499e-12,
+    "switching_sign_violation": 4.727898702835934e-10,
+    "switching_node_residual": 4.727890825131743e-10,
+    "minimum_mass_kg": 125.20619152302658,
+    "fuel_kg": 30.79380847697343,
+    "mass_replay_error_kg": 1.9311219290329973e-11,
+    "mass_balance_error_kg": 1.9490187241899548e-11,
+    "minimum_available_power_W": 347.6297437450924,
+    "maximum_thrust_N": 0.0252817
+  },
+  "artifact": "runs/audit_integrations_v2/graph_ummp/final",
+  "metadata_sha256": "75f9c50998232cf74dbaf0a89aea5dd74be06d8af63d876f55f19ebdf041bd8a",
+  "arrays_sha256": "c8998c578f76d9be08a306d071217d590c5ca133021faab0f2254592a93418af"
+}

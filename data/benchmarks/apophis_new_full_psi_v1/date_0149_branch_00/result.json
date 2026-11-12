@@ -1,0 +1,791 @@
+{
+  "case_id": "date_0149_branch_00",
+  "launch_tdb": "2029-11-09T00:00:00",
+  "initial_days": 111.25134915186908,
+  "source": "data/benchmarks/apophis_new_early_sweep_2027_2033_v1/date_0149_branch_00/irt",
+  "source_sha256": "dad0c38d55b227c7981ff789b2ac58fc73f0682434af98cac35d7aab331bcd10",
+  "metadata_sha256": "6f8bdcd5144db861c621b880ddd7ff516e93ecd2284ab7ff3e75faadbb40cc4e",
+  "status": "completed_stage",
+  "attempts": [
+    {
+      "chart": "costates",
+      "budget_s": 240,
+      "output": "runs/apophis_new_full_psi_v1/reconcile/date_0149_branch_00/costates",
+      "summary": {
+        "status": "completed_stage",
+        "stage": "orbit_source_transition",
+        "from_sources": {
+          "earth": {
+            "kind": "kepler",
+            "preset": "EarthSimple"
+          },
+          "apophis": {
+            "kind": "kepler",
+            "preset": "ApophisNew"
+          }
+        },
+        "to_sources": {
+          "earth": {
+            "kind": "ephemerides"
+          },
+          "apophis": {
+            "kind": "ephemerides"
+          }
+        },
+        "launch_tdb": "2029-11-09T00:00:00",
+        "tof_days": 111.25134915186908,
+        "initial_shift_m": 6729428631.066722,
+        "target_shift_m": 369013100.4042527,
+        "target_shift_m_s": 50.31438381150806,
+        "attempts": [
+          {
+            "alpha": 1.0,
+            "diagnostics": {
+              "status": "solved_extremal",
+              "attempts": [
+                {
+                  "source": "orbit-source boundary correction",
+                  "route": "shooting",
+                  "last_costates": [
+                    0.5743330192964767,
+                    1.0262804603496312,
+                    -0.048121006837471524,
+                    0.473068977979017,
+                    0.6613438590605273,
+                    -0.08144252071790184
+                  ],
+                  "independent_check": {
+                    "position_residual_m": 0.5371409141539221,
+                    "velocity_residual_m_s": 2.3018664326978243e-07,
+                    "free_velocity_transversality": 0.4694161454664962,
+                    "difference_r_m": 0.5297822494075964,
+                    "difference_v_m_s": 2.2297540399001105e-07
+                  },
+                  "nfev": 4,
+                  "integrations": 4,
+                  "optimizer_success": true,
+                  "residual_norm": 1.9855189016801102e-15,
+                  "coordinates": "costates",
+                  "conversion": {},
+                  "position_residual_m": 0.019945283255057147,
+                  "velocity_residual_m_s": 8.746460100677126e-09,
+                  "free_velocity_transversality": 0.46941614545796256,
+                  "accepted": true,
+                  "elapsed_s": 0.10282782099966425
+                }
+              ],
+              "elapsed_s": 0.11546588399869506
+            },
+            "accepted": true,
+            "verification": {
+              "passed": true,
+              "method": "LSODA, independently implemented Hamiltonian RHS",
+              "position_residual_m": 0.5371341859034191,
+              "velocity_residual_m_s": 2.3018615080881234e-07,
+              "trajectory_difference_m": 0.5297896725735675,
+              "velocity_difference_m_s": 2.2297560442593395e-07,
+              "free_velocity_transversality": 0.4694161454664962,
+              "scope": "Numerical extremal and endpoint consistency; not proof of local/global optimality or N-body fidelity"
+            }
+          }
+        ],
+        "last_result": "irt",
+        "verification": {
+          "passed": true,
+          "method": "LSODA, independently implemented Hamiltonian RHS",
+          "position_residual_m": 0.5371341859034191,
+          "velocity_residual_m_s": 2.3018615080881234e-07,
+          "trajectory_difference_m": 0.5297896725735675,
+          "velocity_difference_m_s": 2.2297560442593395e-07,
+          "free_velocity_transversality": 0.4694161454664962,
+          "scope": "Numerical extremal and endpoint consistency; not proof of local/global optimality or N-body fidelity"
+        },
+        "reached_alpha": 1.0
+      }
+    }
+  ],
+  "full_source": "runs/apophis_new_full_psi_v1/reconcile/date_0149_branch_00/costates/irt",
+  "physical": null,
+  "physical_attempts": [
+    {
+      "case_id": "date_0149_branch_00",
+      "phase": "primary",
+      "status": "partial",
+      "source": "runs/apophis_new_full_psi_v1/reconcile/date_0149_branch_00/costates/irt",
+      "events": [
+        {
+          "operation": "departure",
+          "input_stage": "irt",
+          "input_days": 111.25134915186908,
+          "status": "completed_stage",
+          "stopped_phase": null,
+          "details": {
+            "profile": {
+              "stage": "departure",
+              "mission": {
+                "case_id": "date_0149_branch_00",
+                "departure": "Earth",
+                "target": "Apophis",
+                "launch_tdb": "2029-11-09T00:00:00",
+                "tof_days": 111.25134915186908,
+                "center": "Sun",
+                "mode": "rendezvous",
+                "position_tolerance_m": 1000,
+                "velocity_tolerance_m_s": 0.01,
+                "mass_kg": 204,
+                "departure_mode": "bounded_norm",
+                "vinf_max_m_s": 3000,
+                "vinf_vector_m_s": null,
+                "spacecraft": {
+                  "thrust_N": 0.036,
+                  "exhaust_velocity_m_s": 11767.98,
+                  "dry_mass_kg": 140
+                },
+                "solver": {
+                  "budget_s": 35,
+                  "compare_seeds": false,
+                  "departure_budget_s": 45,
+                  "limit_budget_s": 60,
+                  "pazov_budget_s": 60,
+                  "psi_budget_s": 90,
+                  "bounded_attempt_s": 15,
+                  "irt_entry": "fixed_time",
+                  "attempt_budget_s": 35,
+                  "iltt_budget_s": 60,
+                  "iltt_max_abs_k": 5,
+                  "iltt_branch": 0,
+                  "iltt_duration_bounds_days": [
+                    1e-08,
+                    1095.75
+                  ],
+                  "iltt_coordinate_reference": [
+                    -0.598199628980797,
+                    -1.282795921598282,
+                    3.5531513971342847,
+                    4.79918312631262,
+                    1.1149649542116509,
+                    0.283919063612158
+                  ],
+                  "max_nfev": 120,
+                  "irt_coordinates": "costates",
+                  "exact_attempt_s": 25,
+                  "pipeline_pazov_alpha": 0.5,
+                  "psi_mass_alpha": 0.5,
+                  "intermediate_allow_below_dry_mass": true
+                },
+                "lunar": null,
+                "orbit_sources": {
+                  "earth": {
+                    "kind": "ephemerides"
+                  },
+                  "apophis": {
+                    "kind": "ephemerides"
+                  }
+                }
+              },
+              "source_arrays_sha256": "316da9c1c91c5fd8fcb99aa045ba71e20a1f16401fe441fc19c7082b7086258e",
+              "budget_s": 45,
+              "min_step": 0.001,
+              "max_step": 0.25
+            },
+            "last_point": "point_0004",
+            "sessions": [
+              {
+                "started_utc": "2026-11-12T10:20:50.966600+00:00",
+                "source_sha256": {
+                  "trajectory_pipeline/__init__.py": "b5d69a20b137a938a28e2478dbae0068c3e29e5f6dad0cc95672c5107c6b4842",
+                  "trajectory_pipeline/__main__.py": "ab931fa51377ef49a0575a9d0d752e1e09de9d7fc3103809dd2d980739d9e85e",
+                  "trajectory_pipeline/accepted_irt_report.py": "8420aae2c3a8f49b0fd0e9fdeda6ffe8fa70c2c39310c201f6bd80a5a2d7862e",
+                  "trajectory_pipeline/accepted_irt_routes.py": "5dda77a64e8d46d1848a484fbb85591a3897841d1ef7ddd97e57e557a636540e",
+                  "trajectory_pipeline/angular_capture.py": "97dcbd78260bdd41f214fa64b436ed06e3b78317236367487e6bbffb3499e909",
+                  "trajectory_pipeline/bangbang.py": "39b465a8cfc60c3086ea11ce8f697217091f2c85e0b0a6dcebf591064a6c1ec9",
+                  "trajectory_pipeline/bounded.py": "e44b6c136e1ee598e57b20088b2db35d27ed5d735d316c0b3ebfc44e93e27382",
+                  "trajectory_pipeline/bounded_derivatives.py": "bb2f18f6202ea1ff072930b1887951a26a840112dbb0feff3c8cf063863b3e79",
+                  "trajectory_pipeline/bounded_model.py": "ac847de889d96c6b343276f22972c3c9211cf815cd8605212a951c86c381ddd0",
+                  "trajectory_pipeline/capture_control.py": "56b511b672de53896f53a4aab6f13726961d3fc96083ddc9585dd5fb0c30c8b7",
+                  "trajectory_pipeline/capture_pipeline.py": "c4e47597e4db7324caf388c18b7066b7a542c12f15570bd64dee225cf7a0b101",
+                  "trajectory_pipeline/capture_search.py": "6b6c9a5fe0d4076484f8c0cf28160125e78194eeaa6692e9bd06ec911e777397",
+                  "trajectory_pipeline/continuation.py": "14700fe3c5bc32044119902b40f266929439b8901f3455f4105b52ac1957e2a7",
+                  "trajectory_pipeline/contract.py": "83bb972ca419ed5fbc0fe4daa0bf6a801750787ddffc1dbda0b78724400aac2d",
+                  "trajectory_pipeline/coordinate_matrix.py": "3da94280ed9d83dec18086942f06e3ed9c87d0067bfba7de473baecf911e9e83",
+                  "trajectory_pipeline/coordinate_pipeline.py": "91990b666a6b737d18cc8d538fd0eebbed5d7b01af20af8826135140a1844a64",
+                  "trajectory_pipeline/cr3bp.py": "81821102917370aa6ee00878d6534bbbf90a0e417c9474f720f46de820eead33",
+                  "trajectory_pipeline/data.py": "aebdc031ea5379bcf840081747f2adb833f918588510c8d9b4e81558d495e972",
+                  "trajectory_pipeline/date_sweep.py": "5538611968d9f9a128dbf4e8f788b7d584d8ed150422f2f1ed063e30deb89690",
+                  "trajectory_pipeline/departure.py": "64ac75cd2650c1872f89a929743ff9ba124db09ba68f698c79adc8979f4daca1",
+                  "trajectory_pipeline/diagnostics.py": "866511081da87b50e23c45fdba3ea017b96e119bc3e75ca08ceb28047bdd01d3",
+                  "trajectory_pipeline/ephemerides.py": "01b6f771b4adf3e7bac893d619787d4bbb823946cc0dce49b5f588dd8ffa8c95",
+                  "trajectory_pipeline/free_time.py": "e5c4d1bfecf8f437b9d81c11320c7b8049446b39b3c9dd78ae1105979e2680e2",
+                  "trajectory_pipeline/free_time_report.py": "1e5f778d7ae0b394b3fab0fb10417b65a9e15469799b9530ef965f09ec3d2120",
+                  "trajectory_pipeline/gravity.py": "716b7dda8f5268c7c65c4014cb7d96bf8008140c6633dcbb0ee6594364d658ab",
+                  "trajectory_pipeline/iltt_coordinates.py": "9e94a22d4807f727ae3f964f87bc8c488dbd3e48c29f29bebf318189c5b8bb44",
+                  "trajectory_pipeline/iltt_entry.py": "5c418f06b219f55cb6a98ac621dce7ca46d8b4cb9cec0c5660db86aa14017c70",
+                  "trajectory_pipeline/intermediate_time.py": "13a07f8f834bc80028f9ec4c010b1c3838c2154db8b748b2f2f6a0068660fe38",
+                  "trajectory_pipeline/irt.py": "94183e19367bb31bb60b1deaaf3d3ca5ab6147b42e533bd1cd92b685ffc4edbd",
+                  "trajectory_pipeline/irt_entry_routes.py": "8e345b36677a64348ca1604cabc1e6ea129e2ff0c15cebec41cb8ee9c6dd8ea6",
+                  "trajectory_pipeline/kiam_verification.py": "08bc4b66d22208063de9e2c194821d963cfa9af3731d30ce4845b4a52e06a61a",
+                  "trajectory_pipeline/launch_pipeline.py": "f2e0cf7e67c012d9778e92c93aca9f8c9737875ce075cf66b86f4460c9c8887c",
+                  "trajectory_pipeline/lunar.py": "721ee63036e945c1d6dd767985b9b32c0f48de23fbda78814e2c9fba970de904",
+                  "trajectory_pipeline/matrix_report.py": "b11a950417c2a7e2205e1fb92556d09e36c7d81869c89a7d32360d01f6145ce8",
+                  "trajectory_pipeline/orbit_sources.py": "9883c02052726c90aa04d6a51d599832bb09f55951d23205df79e1613d89a76b",
+                  "trajectory_pipeline/orbit_sources_benchmark.py": "54708fcb5abea4ba483aea656138ade3d2406c3f327b4d0fa43590ca90da5d18",
+                  "trajectory_pipeline/orbit_transition.py": "d47dd2a610e4734600e247481f1c8ef3aecc5abc46b6a803505abaa5e889a4a0",
+                  "trajectory_pipeline/orbital_maneuvers.py": "c3d1520f17ff038d3e1d548c5b0a752cc9b498ff9e418f1d3c02404b61f8e404",
+                  "trajectory_pipeline/orbital_pipeline.py": "ed7e9343937cfa1c0e1c257f0961c7e8089fc88729ac31a6b00de531e5b3bc95",
+                  "trajectory_pipeline/orbital_visualization.py": "3fc8f294e555f2f1701d91d810756c11f581be0c5aa2080eb4c3e804e75abfb2",
+                  "trajectory_pipeline/outcomes.py": "09b53a8b190f5c2d57ef50a64f7883f26e09ffc2e3b91252505612c47f482cc3",
+                  "trajectory_pipeline/parameter_study.py": "68efd2d25c52b1db5179616bbc272a6d0afbd25f514b8297bdc3561619238ce4",
+                  "trajectory_pipeline/parking_departure.py": "3f7c2858904e30cd47a287d0f1d735f30c6e92faaf894f70a51b8c20cbd984a7",
+                  "trajectory_pipeline/pazov.py": "907bff7913bfd981ddcfa7d3878188d357eba84e5b26847a0319aec541f6b682",
+                  "trajectory_pipeline/physical_transfer_routes.py": "c3f37698e47e94e8493f1a9b5e78c9957c046f1b4a2d940493e28c5ab795ef47",
+                  "trajectory_pipeline/planetary_capture.py": "ff942642b2642f81a00dd5c3b96d6eafde3e07cbfbaf056ae89ee17825162fec",
+                  "trajectory_pipeline/problem.py": "a46fbbfcbee095e338823ce00bdecc254c4fa3c62e79c4057dfd9e51712bf119",
+                  "trajectory_pipeline/psi.py": "eafb8a8469e789428eba9dfb6a9281097831d76357c1bd1c9ad7bf36bff73e10",
+                  "trajectory_pipeline/r_study.py": "0e875dc91b0c92e21c3d4b28fa41fc75a010e82f85dbd105357ff459d8df0f45",
+                  "trajectory_pipeline/r_transform.py": "6f97b68230db35c04cc4903735f3ca8bf875572da068676d19734321ec668880",
+                  "trajectory_pipeline/reference.py": "8408fc0ce798a2147a5602c4d23a24536e90905b855a894ad7495e842caa062c",
+                  "trajectory_pipeline/runner.py": "edc5a532615f025635b9072ad6e6ac4fa2862a184d5fbed02e0ebd8a66fcc423",
+                  "trajectory_pipeline/runtime.py": "81dfded64ae214fc00e611dff44b66a9298edfc0cef367368792860c64eafdbb",
+                  "trajectory_pipeline/search_graph.py": "604b387628e33e5564ce1c7a6a4c9f3a47168cac69687024bf7f9ea5e5af88fe",
+                  "trajectory_pipeline/seed_sweep.py": "9e34946f6c0ed056f61f89d5c505940035caa9b21bcab7f426fb9686834adc1c",
+                  "trajectory_pipeline/source_pipeline.py": "f36c5900dd4f78025ba40a371241141711a6c6b98bb25512e04fdcdf8d488ac9",
+                  "trajectory_pipeline/ummp.py": "6fc8d237688692394937e63c193129caa11d6a3fbd1f8262db82338c3b67de63",
+                  "trajectory_pipeline/ummp_benchmark.py": "2f1f0de7a1947f3a8514f1efc76f2351794564ba7d94787dbeac02a01c581a54",
+                  "trajectory_pipeline/ummp_model.py": "bba0098c8c8363877254c2b3c7ef1e014425f287df0198cb50c33167ea5b8c6a",
+                  "trajectory_pipeline/verification.py": "8a5b095f825c462569767052372d5ec8c086338419a319212d330c101dc388ea",
+                  "trajectory_pipeline/visualization.py": "3a72c99cf9f5823dfb38b4701b0898a4115e89056398595926136f3bda4ba422",
+                  "ILTT/continuation_methods.py": "288680b2703460a0a9b67c3f33a00fc6f6ee908c33f9024c1fba0020dba77d6f"
+                }
+              }
+            ],
+            "status": "completed_stage",
+            "reached_parameter": 1.0,
+            "next_step": 0.25,
+            "history": [
+              {
+                "parameter": 0.2,
+                "step": 0.2,
+                "accepted": true,
+                "accepted_parameter": 0.2
+              },
+              {
+                "parameter": 0.45,
+                "step": 0.25,
+                "accepted": true,
+                "accepted_parameter": 0.45
+              },
+              {
+                "parameter": 0.7,
+                "step": 0.25,
+                "accepted": true,
+                "accepted_parameter": 0.7
+              },
+              {
+                "parameter": 0.95,
+                "step": 0.25,
+                "accepted": true,
+                "accepted_parameter": 0.95
+              },
+              {
+                "parameter": 1.0,
+                "step": 0.25,
+                "accepted": true,
+                "accepted_parameter": 1.0
+              }
+            ],
+            "elapsed_s_current_session": 1.2904702739979257,
+            "attempts_current_session": 5,
+            "stop_reason": "target_reached"
+          },
+          "checkpoint": "runs/apophis_new_full_psi_v1/routes_spawn/date_0149_branch_00/departure_checkpoint"
+        },
+        {
+          "operation": "pazov",
+          "input_stage": "departure",
+          "input_days": 111.25134915186908,
+          "status": "partial",
+          "stopped_phase": "thrust_limit",
+          "details": {
+            "status": "partial",
+            "phase": "thrust_limit",
+            "hardware_limit_reached": false,
+            "reached_parameter": 0.46875,
+            "last_result": "limit/point_0007"
+          },
+          "checkpoint": "runs/apophis_new_full_psi_v1/routes_spawn/date_0149_branch_00/pazov_checkpoint"
+        },
+        {
+          "operation": "psi",
+          "input_stage": "pazov_limit",
+          "input_days": 111.25134915186908,
+          "status": "partial",
+          "stopped_phase": "physical_thrust_limit",
+          "details": {
+            "status": "partial",
+            "phase": "physical_thrust_limit",
+            "hardware_limit_reached": false,
+            "reached_parameter": 0.47578125,
+            "last_result": "limit/point_0010"
+          },
+          "checkpoint": "runs/apophis_new_full_psi_v1/routes_spawn/date_0149_branch_00/psi_checkpoint"
+        },
+        {
+          "operation": "physical_admission",
+          "status": "failed",
+          "route": "standard: departure -> Pazov(.5) -> mass -> thrust -> fuel",
+          "error": "Physical PSI requires exact active/passive arcs"
+        }
+      ],
+      "last_checkpoint": "runs/apophis_new_full_psi_v1/routes_spawn/date_0149_branch_00/primary_last",
+      "last_stage": "psi_limit",
+      "last_model": {
+        "a_max": 0.17634191789058884,
+        "alpha": 0.5,
+        "beta": 1.0,
+        "q": 0.4484322137956608,
+        "variable_mass": true,
+        "gravity_spec": null
+      },
+      "last_days": 111.25134915186908,
+      "elapsed_s": 182.26456743100061
+    },
+    {
+      "case_id": "date_0149_branch_00",
+      "phase": "recover",
+      "status": "partial",
+      "source": "runs/apophis_new_full_psi_v1/reconcile/date_0149_branch_00/costates/irt",
+      "events": [
+        {
+          "operation": "coupled",
+          "input_stage": "psi_limit",
+          "input_days": 111.25134915186908,
+          "status": "partial",
+          "stopped_phase": "mass_and_thrust",
+          "details": {
+            "status": "partial",
+            "phase": "mass_and_thrust",
+            "reached_parameter": 0.00625,
+            "last_result": "mass_and_thrust/point_0005"
+          },
+          "checkpoint": "runs/apophis_new_full_psi_v1/routes_spawn/date_0149_branch_00/coupled_checkpoint"
+        },
+        {
+          "operation": "physical_admission",
+          "status": "failed",
+          "route": "alternative: coupled mass/thrust",
+          "error": "Physical PSI requires exact active/passive arcs"
+        },
+        {
+          "operation": "release_intermediate",
+          "bounds_days": [
+            55.62567457593454,
+            166.87702372780362
+          ],
+          "input_days": 111.25134915186908,
+          "status": "completed_stage",
+          "output_days": 140.61414273939894,
+          "details": {
+            "method": "bounded_scalar_with_BVP_correction",
+            "seed_tof_days": 111.25134915186908,
+            "resolved_tof_days": 140.61414273939894,
+            "bounds_days": [
+              55.62567457593454,
+              166.87702372780362
+            ],
+            "requested_bounds_days": [
+              55.62567457593454,
+              166.87702372780362
+            ],
+            "objective": "current_model_functional",
+            "seed_objective": 0.18349659649250058,
+            "objective_value": 0.14162846652788624,
+            "optimizer_success": false,
+            "stop_reason": "Intermediate duration budget reached",
+            "trials": 7,
+            "physical_solution": false,
+            "global_optimality": false
+          },
+          "checkpoint": "runs/apophis_new_full_psi_v1/routes_spawn/date_0149_branch_00/release_intermediate_checkpoint"
+        },
+        {
+          "operation": "after_release",
+          "input_stage": "psi_limit",
+          "input_days": 140.61414273939894,
+          "status": "partial",
+          "stopped_phase": "mass_and_thrust",
+          "details": {
+            "status": "partial",
+            "phase": "mass_and_thrust",
+            "reached_parameter": 0.2875,
+            "last_result": "mass_and_thrust/point_0005"
+          },
+          "checkpoint": "runs/apophis_new_full_psi_v1/routes_spawn/date_0149_branch_00/after_release_checkpoint"
+        },
+        {
+          "operation": "physical_admission",
+          "status": "failed",
+          "route": "intermediate duration -> coupled mass/thrust -> fuel",
+          "error": "Physical PSI requires exact active/passive arcs"
+        },
+        {
+          "operation": "release_early",
+          "bounds_days": [
+            55.62567457593454,
+            222.50269830373816
+          ],
+          "input_days": 111.25134915186908,
+          "status": "completed_stage",
+          "output_days": 222.50269830373816,
+          "details": {
+            "method": "bounded_scalar_with_BVP_correction",
+            "seed_tof_days": 111.25134915186908,
+            "resolved_tof_days": 222.50269830373816,
+            "bounds_days": [
+              55.62567457593454,
+              222.50269830373816
+            ],
+            "requested_bounds_days": [
+              55.62567457593454,
+              222.50269830373816
+            ],
+            "objective": "current_model_functional",
+            "seed_objective": 0.06671726882149394,
+            "objective_value": 0.019107606035580735,
+            "optimizer_success": true,
+            "stop_reason": "Solution found.",
+            "trials": 20,
+            "physical_solution": false,
+            "global_optimality": false
+          },
+          "checkpoint": "runs/apophis_new_full_psi_v1/routes_spawn/date_0149_branch_00/release_early_checkpoint"
+        },
+        {
+          "operation": "early_continue",
+          "input_stage": "departure",
+          "input_days": 222.50269830373816,
+          "status": "partial",
+          "stopped_phase": "mass_and_thrust",
+          "details": {
+            "status": "partial",
+            "phase": "mass_and_thrust",
+            "reached_parameter": 0.025,
+            "last_result": "mass_and_thrust/point_0003"
+          },
+          "checkpoint": "runs/apophis_new_full_psi_v1/routes_spawn/date_0149_branch_00/early_continue_checkpoint"
+        },
+        {
+          "operation": "physical_admission",
+          "status": "failed",
+          "route": "early duration -> Pazov(.3) -> coupled mass/thrust -> fuel",
+          "error": "Physical PSI requires exact active/passive arcs"
+        }
+      ],
+      "last_checkpoint": "runs/apophis_new_full_psi_v1/routes_spawn/date_0149_branch_00/recover_last",
+      "last_stage": "psi_limit",
+      "last_model": {
+        "a_max": 0.11443804132571862,
+        "alpha": 0.0,
+        "beta": 0.025,
+        "q": 0.291012510400229,
+        "variable_mass": true,
+        "gravity_spec": null
+      },
+      "last_days": 222.50269830373816,
+      "elapsed_s": 399.28414909000276
+    },
+    {
+      "case_id": "date_0149_branch_00",
+      "status": "partial",
+      "phase": "transfer",
+      "bounds_days": [
+        1.0,
+        1095.75
+      ],
+      "events": [
+        {
+          "operation": "R_fixed",
+          "reference": "runs/apophis_new_full_psi_v1/routes_spawn/date_0147_branch_00/recover_physical",
+          "tof_days": 362.2001870636115,
+          "status": "failed",
+          "error": "Exact arc integration budget reached"
+        },
+        {
+          "operation": "R_free",
+          "reference": "runs/apophis_new_full_psi_v1/routes_spawn/date_0147_branch_00/recover_physical",
+          "status": "failed",
+          "error": "Independent bounded replay budget reached"
+        },
+        {
+          "operation": "broad_early_time",
+          "bounds_days": [
+            1.0,
+            1095.75
+          ],
+          "status": "partial",
+          "details": {
+            "status": "partial",
+            "phase": "fuel",
+            "reached_parameter": 0.2625,
+            "last_result": "fuel/point_0007"
+          }
+        }
+      ]
+    }
+  ],
+  "reconciliation_replay": {
+    "passed": true,
+    "method": "LSODA, independently implemented Hamiltonian RHS",
+    "position_residual_m": 0.5371341859034191,
+    "velocity_residual_m_s": 2.3018615080881234e-07,
+    "trajectory_difference_m": 0.5297896725735675,
+    "velocity_difference_m_s": 2.2297560442593395e-07,
+    "free_velocity_transversality": 0.4694161454664962,
+    "scope": "Numerical extremal and endpoint consistency; not proof of local/global optimality or N-body fidelity"
+  },
+  "reconciliation_shifts": {
+    "departure": {
+      "position_m": 6729428631.066722,
+      "velocity_m_s": 1343.8745631273803,
+      "state_delta_si": [
+        5078992902.134094,
+        -4414634003.096634,
+        -6886174.192593987,
+        903.1307111055212,
+        995.1644086746965,
+        -1.2489139218485537
+      ]
+    },
+    "target": {
+      "position_m": 369013100.4042527,
+      "velocity_m_s": 50.31438381150806,
+      "state_delta_si": [
+        -191898156.00134277,
+        -314912337.8004761,
+        13265952.44534874,
+        17.74818184020114,
+        -47.0271570998957,
+        2.2328803820687426
+      ]
+    }
+  },
+  "final_status": "partial",
+  "checkpoints": [
+    {
+      "path": "runs/apophis_new_full_psi_v1/reconcile/date_0149_branch_00/costates/irt",
+      "archive_path": "date_0149_branch_00/full_irt",
+      "stage": "irt",
+      "days": 111.25134915186908,
+      "alpha": null,
+      "beta": null,
+      "thrust_N": null,
+      "variable_mass": null,
+      "minimum_mass_kg": null,
+      "departure_parameter": null
+    },
+    {
+      "path": "runs/apophis_new_full_psi_v1/routes_spawn/date_0149_branch_00/after_release_checkpoint",
+      "archive_path": "date_0149_branch_00/routes_spawn/after_release_checkpoint",
+      "stage": "psi_limit",
+      "days": 140.61414273939894,
+      "alpha": 0.5,
+      "beta": 1.0,
+      "thrust_N": 0.16443517118737322,
+      "variable_mass": true,
+      "minimum_mass_kg": 35.89586423168405,
+      "departure_parameter": null
+    },
+    {
+      "path": "runs/apophis_new_full_psi_v1/routes_spawn/date_0149_branch_00/broad_last",
+      "archive_path": "date_0149_branch_00/routes_spawn/broad_last",
+      "stage": "psi",
+      "days": 1095.716568731808,
+      "alpha": 0.48375,
+      "beta": 1,
+      "thrust_N": 0.036,
+      "variable_mass": true,
+      "minimum_mass_kg": 84.99336358150163,
+      "departure_parameter": null
+    },
+    {
+      "path": "runs/apophis_new_full_psi_v1/routes_spawn/date_0149_branch_00/broad_time_checkpoint",
+      "archive_path": "date_0149_branch_00/routes_spawn/broad_time_checkpoint",
+      "stage": "departure",
+      "days": 1095.716568731808,
+      "alpha": null,
+      "beta": null,
+      "thrust_N": null,
+      "variable_mass": null,
+      "minimum_mass_kg": null,
+      "departure_parameter": 0.0
+    },
+    {
+      "path": "runs/apophis_new_full_psi_v1/routes_spawn/date_0149_branch_00/coupled_checkpoint",
+      "archive_path": "date_0149_branch_00/routes_spawn/coupled_checkpoint",
+      "stage": "psi_limit",
+      "days": 111.25134915186908,
+      "alpha": 0.5,
+      "beta": 1.0,
+      "thrust_N": 0.21625988938578694,
+      "variable_mass": true,
+      "minimum_mass_kg": 28.884508641944496,
+      "departure_parameter": null
+    },
+    {
+      "path": "runs/apophis_new_full_psi_v1/routes_spawn/date_0149_branch_00/departure_checkpoint",
+      "archive_path": "date_0149_branch_00/routes_spawn/departure_checkpoint",
+      "stage": "departure",
+      "days": 111.25134915186908,
+      "alpha": null,
+      "beta": null,
+      "thrust_N": null,
+      "variable_mass": null,
+      "minimum_mass_kg": null,
+      "departure_parameter": 1.0
+    },
+    {
+      "path": "runs/apophis_new_full_psi_v1/routes_spawn/date_0149_branch_00/early_continue_checkpoint",
+      "archive_path": "date_0149_branch_00/routes_spawn/early_continue_checkpoint",
+      "stage": "psi_limit",
+      "days": 222.50269830373816,
+      "alpha": 0.0,
+      "beta": 0.025,
+      "thrust_N": 0.1410787520494754,
+      "variable_mass": true,
+      "minimum_mass_kg": 198.34045236375422,
+      "departure_parameter": null
+    },
+    {
+      "path": "runs/apophis_new_full_psi_v1/routes_spawn/date_0149_branch_00/pazov_checkpoint",
+      "archive_path": "date_0149_branch_00/routes_spawn/pazov_checkpoint",
+      "stage": "pazov_limit",
+      "days": 111.25134915186908,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "thrust_N": 0.38202653831425143,
+      "variable_mass": false,
+      "minimum_mass_kg": null,
+      "departure_parameter": null
+    },
+    {
+      "path": "runs/apophis_new_full_psi_v1/routes_spawn/date_0149_branch_00/primary_last",
+      "archive_path": "date_0149_branch_00/routes_spawn/primary_last",
+      "stage": "psi_limit",
+      "days": 111.25134915186908,
+      "alpha": 0.5,
+      "beta": 1.0,
+      "thrust_N": 0.21739359938192396,
+      "variable_mass": true,
+      "minimum_mass_kg": 30.04641484034323,
+      "departure_parameter": null
+    },
+    {
+      "path": "runs/apophis_new_full_psi_v1/routes_spawn/date_0149_branch_00/psi_checkpoint",
+      "archive_path": "date_0149_branch_00/routes_spawn/psi_checkpoint",
+      "stage": "psi_limit",
+      "days": 111.25134915186908,
+      "alpha": 0.5,
+      "beta": 1.0,
+      "thrust_N": 0.21739359938192396,
+      "variable_mass": true,
+      "minimum_mass_kg": 30.04641484034323,
+      "departure_parameter": null
+    },
+    {
+      "path": "runs/apophis_new_full_psi_v1/routes_spawn/date_0149_branch_00/recover_last",
+      "archive_path": "date_0149_branch_00/routes_spawn/recover_last",
+      "stage": "psi_limit",
+      "days": 222.50269830373816,
+      "alpha": 0.0,
+      "beta": 0.025,
+      "thrust_N": 0.1410787520494754,
+      "variable_mass": true,
+      "minimum_mass_kg": 198.34045236375422,
+      "departure_parameter": null
+    },
+    {
+      "path": "runs/apophis_new_full_psi_v1/routes_spawn/date_0149_branch_00/release_early_checkpoint",
+      "archive_path": "date_0149_branch_00/routes_spawn/release_early_checkpoint",
+      "stage": "departure",
+      "days": 222.50269830373816,
+      "alpha": null,
+      "beta": null,
+      "thrust_N": null,
+      "variable_mass": null,
+      "minimum_mass_kg": null,
+      "departure_parameter": 1.0
+    },
+    {
+      "path": "runs/apophis_new_full_psi_v1/routes_spawn/date_0149_branch_00/release_intermediate_checkpoint",
+      "archive_path": "date_0149_branch_00/routes_spawn/release_intermediate_checkpoint",
+      "stage": "psi_limit",
+      "days": 140.61414273939894,
+      "alpha": 0.5,
+      "beta": 1.0,
+      "thrust_N": 0.21625988938578694,
+      "variable_mass": true,
+      "minimum_mass_kg": 68.57511405160852,
+      "departure_parameter": null
+    }
+  ],
+  "route_stops": [
+    "pazov: thrust_limit",
+    "psi: physical_thrust_limit",
+    "coupled: mass_and_thrust",
+    "after_release: mass_and_thrust",
+    "early_continue: mass_and_thrust",
+    "R_fixed: Exact arc integration budget reached",
+    "R_free: Independent bounded replay budget reached",
+    "broad_early_time: partial"
+  ],
+  "continuation_stops": [
+    {
+      "path": "date_0149_branch_00/diagnostics/routes_spawn/after_release/mass_and_thrust/continuation.json",
+      "stage": "mass_and_thrust",
+      "reached": 0.2875,
+      "reason": "time_budget",
+      "last_rejection": "RuntimeError: active: Bounded collocation budget reached; active shooting: Bounded shooting budget reached; free: Bounded collocation budget reached"
+    },
+    {
+      "path": "date_0149_branch_00/diagnostics/routes_spawn/broad_continue/fuel/continuation.json",
+      "stage": "fuel",
+      "reached": 0.2625,
+      "reason": "time_budget",
+      "last_rejection": "RuntimeError: active: Bounded collocation budget reached; active shooting: Bounded shooting budget reached; free: Bounded collocation budget reached"
+    },
+    {
+      "path": "date_0149_branch_00/diagnostics/routes_spawn/coupled/mass_and_thrust/continuation.json",
+      "stage": "mass_and_thrust",
+      "reached": 0.00625,
+      "reason": "time_budget",
+      "last_rejection": "RuntimeError: active: Bounded collocation budget reached; active shooting: Bounded shooting budget reached; free: Bounded collocation budget reached"
+    },
+    {
+      "path": "date_0149_branch_00/diagnostics/routes_spawn/early_continue/mass_and_thrust/continuation.json",
+      "stage": "mass_and_thrust",
+      "reached": 0.025,
+      "reason": "time_budget",
+      "last_rejection": "RuntimeError: active: The maximum number of mesh nodes is exceeded.; active shooting: Bounded shooting budget reached; free: Bounded collocation budget reached"
+    },
+    {
+      "path": "date_0149_branch_00/diagnostics/routes_spawn/early_continue/pazov/limit/continuation.json",
+      "stage": "pazov_limit",
+      "reached": 0.5515625,
+      "reason": "time_budget",
+      "last_rejection": "RuntimeError: active: Bounded collocation budget reached; free: Bounded collocation budget reached"
+    },
+    {
+      "path": "date_0149_branch_00/diagnostics/routes_spawn/pazov/limit/continuation.json",
+      "stage": "pazov_limit",
+      "reached": 0.46875,
+      "reason": "time_budget",
+      "last_rejection": "RuntimeError: active: The maximum number of mesh nodes is exceeded.; active shooting: Bounded shooting budget reached; free: Bounded collocation budget reached"
+    },
+    {
+      "path": "date_0149_branch_00/diagnostics/routes_spawn/psi/limit/continuation.json",
+      "stage": "psi_limit",
+      "reached": 0.47578125,
+      "reason": "time_budget",
+      "last_rejection": "RuntimeError: active: Bounded collocation budget reached; free: Bounded collocation budget reached"
+    }
+  ]
+}

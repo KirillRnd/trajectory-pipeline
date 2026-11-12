@@ -1,0 +1,43 @@
+{
+  "cases": [
+    {
+      "case_id": "apophis204",
+      "source": "runs/audit_integrations_v2/source/resolved_irt",
+      "source_sha256": "09b04bd676fef9994b605e90fd7c8176a0420bb2ca11896e4a85666aa23caa00",
+      "metadata_sha256": "9c92f8386cbf3c3c04b7bcf53350d2894cd7689177ef36012b782be6f5ed6b98",
+      "settings": {
+        "departure_budget_s": 60,
+        "limit_budget_s": 90,
+        "pazov_budget_s": 90,
+        "psi_budget_s": 180,
+        "bounded_attempt_s": 25
+      },
+      "horizon_days": 1095.75
+    }
+  ],
+  "settings": {
+    "departure_budget_s": 45,
+    "limit_budget_s": 60,
+    "pazov_budget_s": 60,
+    "psi_budget_s": 90,
+    "bounded_attempt_s": 15,
+    "exact_attempt_s": 25,
+    "pipeline_pazov_alpha": 0.5,
+    "psi_mass_alpha": 0.5
+  },
+  "release_factors": [
+    [
+      0.5,
+      1.5
+    ],
+    [
+      0.5,
+      2.0
+    ]
+  ],
+  "changed_physical_parameters": [
+    "tof_days only"
+  ],
+  "source_archive": "runs/audit_generic204/sources.json",
+  "scope": "heliocentric physical PSI; no parking or capture spirals"
+}

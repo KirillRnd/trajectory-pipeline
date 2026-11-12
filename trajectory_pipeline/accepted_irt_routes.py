@@ -59,10 +59,22 @@ def save_version(result,path):
     result.save(candidate);return candidate
 
 
+def verify_stage(result):
+    """Stage checkpoints may be either smooth intermediates or exact PSI."""
+    if result.metadata.get('stage')=='psi':return physical(result)
+    return verify_intermediate(result)
+
+
 def run_case(request):
     case,rootstr,phase=request;root=Path(rootstr)/case['case_id'];root.mkdir(parents=True,exist_ok=True)
     path=root/(phase+'.json')
-    if path.exists():return json.loads(path.read_text())
+    if path.exists():
+        cached=json.loads(path.read_text())
+        if cached['status']=='completed':
+            source=Trajectory.load(case['source'])
+            final=Trajectory.load(cached['artifact'])
+            physical(final,replace(Mission(**source.metadata['mission']),tof_days=final.metadata['mission']['tof_days']))
+            return cached
     source=Trajectory.load(case['source']);original=Mission(**source.metadata['mission'])
     audit_configuration(source,original,make_request(original))
     if not verify_irt(source)['passed']:raise ValueError('Input IRT replay failed')
@@ -83,20 +95,24 @@ def run_case(request):
             try:
                 # An interrupted non-IRT checkpoint resumes its remaining model
                 # instead of resetting continuation parameters to zero.
-                action=continue_physical_model if name=='departure' and seed.metadata.get('stage')!='irt' else fn
+                action=continue_physical_model if 'bounded_model' in seed.metadata else fn
+                if seed.metadata.get('stage')=='psi':
+                    physical(seed);return seed,dict(event,status='completed_stage')
                 result,state=timed_call(budget,action,seed,out)
                 event.update(status=state['status'],stopped_phase=state.get('phase'),details=state)
             except Exception as exc:
                 event.update(status='exception',error=type(exc).__name__+': '+str(exc))
                 result=checked_checkpoint(out,seed)
             return result,event
-        current,event=stage(root,name,current,execute,verify_intermediate,recover=checked_checkpoint)
+        current,event=stage(root,name,current,execute,verify_stage,recover=checked_checkpoint)
         event['checkpoint']=str(root/(name+'_checkpoint'));log(event)
         return event
     def accept(label):
         try:
             days=current.metadata['mission']['tof_days']
             if not 0<days<=horizon:raise ValueError('Duration exceeds requested horizon')
+            if 'duration_bounds_days' in case and not case['duration_bounds_days'][0]<=days<=case['duration_bounds_days'][1]:
+                raise ValueError('Duration exceeds declared bounds')
             check=physical(current,replace(original,tof_days=days))
         except (ValueError,RuntimeError,KeyError) as exc:
             log(dict(operation='physical_admission',status='failed',route=label,error=str(exc)))
@@ -126,7 +142,7 @@ def run_case(request):
                 operation('pazov',lambda s,o:run_pazov(s,o,target_alpha=settings['pipeline_pazov_alpha']),settings['limit_budget_s']+settings['pazov_budget_s']+25)
                 if current.metadata.get('stage') in ('pazov','pazov_limit'):
                     operation('psi',lambda s,o:run_psi(s,o),phase_budget)
-            accept('standard: departure -> Pazov(.5) -> mass -> thrust -> fuel')
+            accept(f"standard: departure -> Pazov({settings['pipeline_pazov_alpha']}) -> mass -> thrust -> fuel")
         elif phase=='recover':
             previous=json.loads((root/'primary.json').read_text())
             if previous['status']=='completed':return dict(case_id=case['case_id'],phase=phase,status='skipped_physical_parent')

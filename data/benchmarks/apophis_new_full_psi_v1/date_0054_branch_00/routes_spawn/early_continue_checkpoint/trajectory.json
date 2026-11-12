@@ -1,0 +1,431 @@
+{
+  "case_id": "date_0054_branch_00",
+  "epoch_jd": 2461784.5,
+  "time_scale": "TDB",
+  "center": "Sun",
+  "frame": "ECLIPJ2000",
+  "model": "Pazov bounded acceleration / mass homotopy",
+  "status": "verified_extremal",
+  "stage": "psi_limit",
+  "mission": {
+    "case_id": "date_0054_branch_00",
+    "departure": "Earth",
+    "target": "Apophis",
+    "launch_tdb": "2028-01-14T00:00:00",
+    "tof_days": 769.583680047638,
+    "center": "Sun",
+    "mode": "rendezvous",
+    "position_tolerance_m": 1000,
+    "velocity_tolerance_m_s": 0.01,
+    "mass_kg": 204,
+    "departure_mode": "bounded_norm",
+    "vinf_max_m_s": 3000,
+    "vinf_vector_m_s": null,
+    "spacecraft": {
+      "thrust_N": 0.036,
+      "exhaust_velocity_m_s": 11767.98,
+      "dry_mass_kg": 140
+    },
+    "solver": {
+      "budget_s": 35,
+      "compare_seeds": false,
+      "departure_budget_s": 45,
+      "limit_budget_s": 60,
+      "pazov_budget_s": 60,
+      "psi_budget_s": 90,
+      "bounded_attempt_s": 15,
+      "irt_entry": "fixed_time",
+      "attempt_budget_s": 35,
+      "iltt_budget_s": 60,
+      "iltt_max_abs_k": 5,
+      "iltt_branch": 0,
+      "iltt_duration_bounds_days": [
+        1e-08,
+        1095.75
+      ],
+      "iltt_coordinate_reference": [
+        -0.5377656946237547,
+        -1.2029970337298848,
+        3.5531513971342847,
+        4.799183124824677,
+        1.1217420870337238,
+        1.9824038903854586
+      ],
+      "max_nfev": 120,
+      "irt_coordinates": "costates",
+      "exact_attempt_s": 25,
+      "pipeline_pazov_alpha": 0.3,
+      "psi_mass_alpha": 0.3,
+      "intermediate_allow_below_dry_mass": true
+    },
+    "lunar": null,
+    "orbit_sources": {
+      "earth": {
+        "kind": "ephemerides"
+      },
+      "apophis": {
+        "kind": "ephemerides"
+      }
+    }
+  },
+  "scales": {
+    "distance_m": 147132556414.45493,
+    "mu_m3_s2": 1.32712440018e+20
+  },
+  "initial_state_si": [
+    -57330426151.28038,
+    135503547284.6446,
+    -8224562.591531274,
+    -24926.277986180707,
+    -11399.772802914396,
+    42.57539667812504
+  ],
+  "target_state_si": [
+    -95374588852.33849,
+    166532276462.81064,
+    -7398603921.713185,
+    -19625.991714842443,
+    -13875.053243846893,
+    189.14371537543843
+  ],
+  "costate_convention": "dimensionless [p_r,p_v,p_m] for normalized remaining mass",
+  "costates_initial": [
+    0.19829410654757884,
+    -0.23815489301906262,
+    -0.020975567328326207,
+    0.31534769223948517,
+    0.032786387554191394,
+    0.004278455851729173,
+    -0.007804230004634271
+  ],
+  "functional_dimensionless": 0.009114031268206462,
+  "chosen_seed": {
+    "source": "orbit-source boundary correction",
+    "route": "shooting",
+    "last_costates": [
+      0.051335524007385655,
+      -0.07194177709643075,
+      -0.006683508024791574,
+      0.09576937762581574,
+      0.017868300992829232,
+      0.0006571140881179301
+    ],
+    "independent_check": {
+      "position_residual_m": 90.52036142633256,
+      "velocity_residual_m_s": 1.3084024472033143e-05,
+      "free_velocity_transversality": 0.0732695307744311,
+      "difference_r_m": 43.96256271930365,
+      "difference_v_m_s": 9.26220943163156e-06
+    },
+    "nfev": 24,
+    "integrations": 24,
+    "optimizer_success": true,
+    "residual_norm": 7.296566194682847e-14,
+    "coordinates": "costates",
+    "conversion": {},
+    "position_residual_m": 46.8711994316468,
+    "velocity_residual_m_s": 7.015342646541274e-06,
+    "free_velocity_transversality": 0.07326953075236356,
+    "accepted": true
+  },
+  "title": "Earth → Apophis: ограниченное ускорение",
+  "ephemerides": {
+    "Earth": {
+      "body": "earth",
+      "start_jd": 2287184.5,
+      "stop_jd": 2688976.5,
+      "source": "KIAM 6.1.6 / bundled JPLEPH",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "center": "requested",
+      "interpolation": "KIAM native ephemeris",
+      "representation": "body center"
+    },
+    "Apophis": {
+      "body": "apophis",
+      "source": "https://ssd.jpl.nasa.gov/api/horizons.api",
+      "parameters": {
+        "format": "json",
+        "COMMAND": "'99942;'",
+        "CENTER": "'500@10'",
+        "EPHEM_TYPE": "'VECTORS'",
+        "REF_PLANE": "'ECLIPTIC'",
+        "REF_SYSTEM": "'ICRF'",
+        "OUT_UNITS": "'KM-S'",
+        "VEC_CORR": "'NONE'",
+        "CSV_FORMAT": "'YES'",
+        "VEC_TABLE": "'2'",
+        "TIME_TYPE": "'TDB'",
+        "OBJ_DATA": "'YES'",
+        "START_TIME": "'2020-01-01'",
+        "STOP_TIME": "'2080-01-01'",
+        "STEP_SIZE": "'12 h'"
+      },
+      "center": "Sun",
+      "frame": "ECLIPJ2000",
+      "time_scale": "TDB",
+      "units": "m,m/s",
+      "start_jd": 2458849.5,
+      "stop_jd": 2480764.5,
+      "knots": 48607,
+      "max_step_days": 0.5,
+      "interpolation": "cubic Hermite, position and velocity from the same polynomial",
+      "arrays_sha256": "c47aac3d726adc53c1d9802513259d592d6c238d05c2aac6ee43f3d58f35760e",
+      "raw_sha256": "dd531d761d528f05fe37415eaf1b9e28257c5d8eee0ccd41554c24f01520e5d8",
+      "refinements": [
+        {
+          "parameters": {
+            "format": "json",
+            "COMMAND": "'99942;'",
+            "CENTER": "'500@10'",
+            "EPHEM_TYPE": "'VECTORS'",
+            "REF_PLANE": "'ECLIPTIC'",
+            "REF_SYSTEM": "'ICRF'",
+            "OUT_UNITS": "'KM-S'",
+            "VEC_CORR": "'NONE'",
+            "CSV_FORMAT": "'YES'",
+            "VEC_TABLE": "'2'",
+            "TIME_TYPE": "'TDB'",
+            "OBJ_DATA": "'YES'",
+            "START_TIME": "'2029-04-01'",
+            "STOP_TIME": "'2029-04-25'",
+            "STEP_SIZE": "'1 h'"
+          },
+          "raw": "horizons_refinement_1.txt",
+          "raw_sha256": "c7b3d41fd5387255f448ef2823d3510fdadabe926210ab61cc2e15158d7a979e"
+        },
+        {
+          "parameters": {
+            "format": "json",
+            "COMMAND": "'99942;'",
+            "CENTER": "'500@10'",
+            "EPHEM_TYPE": "'VECTORS'",
+            "REF_PLANE": "'ECLIPTIC'",
+            "REF_SYSTEM": "'ICRF'",
+            "OUT_UNITS": "'KM-S'",
+            "VEC_CORR": "'NONE'",
+            "CSV_FORMAT": "'YES'",
+            "VEC_TABLE": "'2'",
+            "TIME_TYPE": "'TDB'",
+            "OBJ_DATA": "'YES'",
+            "START_TIME": "'2029-04-12'",
+            "STOP_TIME": "'2029-04-15'",
+            "STEP_SIZE": "'1 m'"
+          },
+          "raw": "horizons_refinement_2.txt",
+          "raw_sha256": "763bd6b2508030c15d2aea55860a1102beafb93a1724911c1fc05b9d0a1c0d62"
+        }
+      ]
+    }
+  },
+  "overlays": [
+    {
+      "array": "departure_orbit_m",
+      "label": "Орбита Earth"
+    },
+    {
+      "array": "target_orbit_m",
+      "label": "Орбита Apophis",
+      "linestyle": "-.",
+      "color": ".65"
+    }
+  ],
+  "markers": [
+    {
+      "label": "Earth, старт",
+      "r_m": [
+        -57330426151.28038,
+        135503547284.6446,
+        -8224562.591531274
+      ]
+    },
+    {
+      "label": "Earth, прибытие",
+      "r_m": [
+        -131307076830.30978,
+        68177826756.986694,
+        -3477454.8880952834
+      ],
+      "hollow": true
+    },
+    {
+      "label": "Apophis",
+      "r_m": [
+        -95374588852.33849,
+        166532276462.81064,
+        -7398603921.713185
+      ],
+      "color": "#df1111",
+      "role": "target"
+    }
+  ],
+  "configuration_sha256": "0711afc01126832fcb7931ad6ab8fcf458377e7346f1b6ebf5695b0755d226b5",
+  "configuration_hash_version": 2,
+  "verification": {
+    "passed": true,
+    "position_residual_m": 356.4766031566333,
+    "velocity_residual_m_s": 7.026387914370209e-05,
+    "parameter_audit": {
+      "passed": true,
+      "configuration_sha256": "0711afc01126832fcb7931ad6ab8fcf458377e7346f1b6ebf5695b0755d226b5",
+      "configuration_hash_version": 2,
+      "requested": {
+        "mass_kg": 204,
+        "thrust_N": 0.036,
+        "exhaust_velocity_m_s": 11767.98,
+        "dry_mass_kg": 140,
+        "launch_tdb": "2028-01-14T00:00:00",
+        "tof_days": 769.583680047638,
+        "departure": "Earth",
+        "target": "Apophis",
+        "mode": "rendezvous"
+      },
+      "recovered_model": {
+        "model_thrust_N": 0.046395263265843215,
+        "thrust_to_requested_ratio": 1.2887573129400893,
+        "alpha": 0.0,
+        "beta": 0.0765625,
+        "variable_mass": true,
+        "hardware_limit_reached": false,
+        "exhaust_velocity_m_s": 11767.98
+      },
+      "geometry": null,
+      "final_admission": false
+    },
+    "trajectory_difference_m": 388.92362405802976,
+    "velocity_difference_m_s": 0.0001174293928018152,
+    "stored_throttle_error": 0.0,
+    "stored_throttle_minimum": 0.5203251135971337,
+    "stored_throttle_maximum": 1.0,
+    "canonical_boundary_residual": 3.3680372504970994e-09,
+    "method": "LSODA with independent bounded/mass equations",
+    "scope": "Numerical extremal and constraints; no global optimality proof",
+    "departure_norm_m_s": 2999.9999999999995,
+    "minimum_mass_kg": 184.22803361918827
+  },
+  "orbit_source_transition": {
+    "status": "completed_stage",
+    "stage": "orbit_source_transition",
+    "from_sources": {
+      "earth": {
+        "kind": "kepler",
+        "preset": "EarthSimple"
+      },
+      "apophis": {
+        "kind": "kepler",
+        "preset": "ApophisNew"
+      }
+    },
+    "to_sources": {
+      "earth": {
+        "kind": "ephemerides"
+      },
+      "apophis": {
+        "kind": "ephemerides"
+      }
+    },
+    "launch_tdb": "2028-01-14T00:00:00",
+    "tof_days": 769.583680047638,
+    "initial_shift_m": 6866252606.924936,
+    "target_shift_m": 351317731.81723917,
+    "target_shift_m_s": 47.87554192564294,
+    "attempts": [
+      {
+        "alpha": 1.0,
+        "diagnostics": {
+          "status": "solved_extremal",
+          "attempts": [
+            {
+              "source": "orbit-source boundary correction",
+              "route": "shooting",
+              "last_costates": [
+                0.051335524007385655,
+                -0.07194177709643075,
+                -0.006683508024791574,
+                0.09576937762581574,
+                0.017868300992829232,
+                0.0006571140881179301
+              ],
+              "independent_check": {
+                "position_residual_m": 90.52036142633256,
+                "velocity_residual_m_s": 1.3084024472033143e-05,
+                "free_velocity_transversality": 0.0732695307744311,
+                "difference_r_m": 43.96256271930365,
+                "difference_v_m_s": 9.26220943163156e-06
+              },
+              "nfev": 24,
+              "integrations": 24,
+              "optimizer_success": true,
+              "residual_norm": 7.296566194682847e-14,
+              "coordinates": "costates",
+              "conversion": {},
+              "position_residual_m": 46.8711994316468,
+              "velocity_residual_m_s": 7.015342646541274e-06,
+              "free_velocity_transversality": 0.07326953075236356,
+              "accepted": true,
+              "elapsed_s": 5.738401464997878
+            }
+          ],
+          "elapsed_s": 5.75008775400056
+        },
+        "accepted": true,
+        "verification": {
+          "passed": true,
+          "method": "LSODA, independently implemented Hamiltonian RHS",
+          "position_residual_m": 90.52037800500226,
+          "velocity_residual_m_s": 1.3084024874317477e-05,
+          "trajectory_difference_m": 43.96256500340778,
+          "velocity_difference_m_s": 9.262209598236522e-06,
+          "free_velocity_transversality": 0.0732695307744311,
+          "scope": "Numerical extremal and endpoint consistency; not proof of local/global optimality or N-body fidelity"
+        }
+      }
+    ],
+    "last_result": "irt",
+    "verification": {
+      "passed": true,
+      "method": "LSODA, independently implemented Hamiltonian RHS",
+      "position_residual_m": 90.52037800500226,
+      "velocity_residual_m_s": 1.3084024874317477e-05,
+      "trajectory_difference_m": 43.96256500340778,
+      "velocity_difference_m_s": 9.262209598236522e-06,
+      "free_velocity_transversality": 0.0732695307744311,
+      "scope": "Numerical extremal and endpoint consistency; not proof of local/global optimality or N-body fidelity"
+    },
+    "reached_alpha": 1.0
+  },
+  "schema_version": 1,
+  "arrays_sha256": "17b98afc67d1c0d8511e5569500206645336a8e36524931b77e94c982cc8f83e",
+  "departure": {
+    "mode": "bounded_norm",
+    "bound_active": true,
+    "vector_m_s": [
+      2983.644288374777,
+      310.2065446168381,
+      40.480367160514824
+    ],
+    "norm_m_s": 2999.9999999999995,
+    "bound_m_s": 3000
+  },
+  "bounded_model": {
+    "a_max": 0.03709790661516715,
+    "alpha": 0.0,
+    "beta": 0.0765625,
+    "q": 0.09467796368490541,
+    "variable_mass": true,
+    "gravity_spec": null
+  },
+  "body_initial_state_si": [
+    -57330426151.28038,
+    135503547284.6446,
+    -8224562.591531274,
+    -27909.922274555483,
+    -11709.979347531234,
+    2.0950295176102145
+  ],
+  "hardware_limit_reached": false,
+  "collocation_tolerance": 2e-08,
+  "collocation_derivatives": "analytic central-field",
+  "collocation_nodes": 3201,
+  "collocation_iterations": 11
+}

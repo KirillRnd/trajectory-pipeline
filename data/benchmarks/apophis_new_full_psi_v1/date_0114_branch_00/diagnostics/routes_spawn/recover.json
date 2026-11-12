@@ -1,0 +1,144 @@
+{
+  "case_id": "date_0114_branch_00",
+  "phase": "recover",
+  "status": "partial",
+  "source": "runs/apophis_new_full_psi_v1/reconcile/date_0114_branch_00/costates/irt",
+  "events": [
+    {
+      "operation": "coupled",
+      "input_stage": "psi_limit",
+      "input_days": 48.273526713097674,
+      "status": "partial",
+      "stopped_phase": "mass_and_thrust",
+      "details": {
+        "status": "partial",
+        "phase": "mass_and_thrust",
+        "reached_parameter": 0.0125,
+        "last_result": "mass_and_thrust/point_0004"
+      },
+      "checkpoint": "runs/apophis_new_full_psi_v1/routes_spawn/date_0114_branch_00/coupled_checkpoint"
+    },
+    {
+      "operation": "physical_admission",
+      "status": "failed",
+      "route": "alternative: coupled mass/thrust",
+      "error": "Physical PSI requires exact active/passive arcs"
+    },
+    {
+      "operation": "release_intermediate",
+      "bounds_days": [
+        24.136763356548837,
+        72.4102900696465
+      ],
+      "input_days": 48.273526713097674,
+      "status": "completed_stage",
+      "output_days": 72.26037083888484,
+      "details": {
+        "method": "bounded_scalar_with_BVP_correction",
+        "seed_tof_days": 48.273526713097674,
+        "resolved_tof_days": 72.26037083888484,
+        "bounds_days": [
+          24.136763356548837,
+          72.4102900696465
+        ],
+        "requested_bounds_days": [
+          24.136763356548837,
+          72.4102900696465
+        ],
+        "objective": "current_model_functional",
+        "seed_objective": 0.10265952589177263,
+        "objective_value": 0.04550501790586031,
+        "optimizer_success": false,
+        "stop_reason": "Intermediate duration budget reached",
+        "trials": 15,
+        "physical_solution": false,
+        "global_optimality": false
+      },
+      "checkpoint": "runs/apophis_new_full_psi_v1/routes_spawn/date_0114_branch_00/release_intermediate_checkpoint"
+    },
+    {
+      "operation": "after_release",
+      "input_stage": "psi_limit",
+      "input_days": 72.26037083888484,
+      "status": "partial",
+      "stopped_phase": "mass_and_thrust",
+      "details": {
+        "status": "partial",
+        "phase": "mass_and_thrust",
+        "reached_parameter": 0.6250000000000001,
+        "last_result": "mass_and_thrust/point_0006"
+      },
+      "checkpoint": "runs/apophis_new_full_psi_v1/routes_spawn/date_0114_branch_00/after_release_checkpoint"
+    },
+    {
+      "operation": "physical_admission",
+      "status": "failed",
+      "route": "intermediate duration -> coupled mass/thrust -> fuel",
+      "error": "Physical PSI requires exact active/passive arcs"
+    },
+    {
+      "operation": "release_early",
+      "bounds_days": [
+        24.136763356548837,
+        96.54705342619535
+      ],
+      "input_days": 48.273526713097674,
+      "status": "completed_stage",
+      "output_days": 96.54705342619535,
+      "details": {
+        "method": "bounded_scalar_with_BVP_correction",
+        "seed_tof_days": 48.273526713097674,
+        "resolved_tof_days": 96.54705342619535,
+        "bounds_days": [
+          24.136763356548837,
+          96.54705342619535
+        ],
+        "requested_bounds_days": [
+          24.136763356548837,
+          96.54705342619535
+        ],
+        "objective": "current_model_functional",
+        "seed_objective": 0.036863254113233664,
+        "objective_value": 0.0030230449382112126,
+        "optimizer_success": true,
+        "stop_reason": "Solution found.",
+        "trials": 19,
+        "physical_solution": false,
+        "global_optimality": false
+      },
+      "checkpoint": "runs/apophis_new_full_psi_v1/routes_spawn/date_0114_branch_00/release_early_checkpoint"
+    },
+    {
+      "operation": "early_continue",
+      "input_stage": "departure",
+      "input_days": 96.54705342619535,
+      "status": "partial",
+      "stopped_phase": "mass_and_thrust",
+      "details": {
+        "status": "partial",
+        "phase": "mass_and_thrust",
+        "reached_parameter": 0.0,
+        "last_result": "mass_and_thrust/initial"
+      },
+      "checkpoint": "runs/apophis_new_full_psi_v1/routes_spawn/date_0114_branch_00/early_continue_checkpoint"
+    },
+    {
+      "operation": "physical_admission",
+      "status": "failed",
+      "route": "early duration -> Pazov(.3) -> coupled mass/thrust -> fuel",
+      "error": "Physical PSI requires exact active/passive arcs"
+    }
+  ],
+  "last_checkpoint": "runs/apophis_new_full_psi_v1/routes_spawn/date_0114_branch_00/recover_last",
+  "last_stage": "psi_mass",
+  "last_model": {
+    "a_max": 0.07132392811980796,
+    "alpha": 0.0,
+    "beta": 0,
+    "q": 0.18117112738832866,
+    "variable_mass": true,
+    "gravity_spec": null
+  },
+  "last_days": 96.54705342619535,
+  "elapsed_s": 397.75722005699936
+}

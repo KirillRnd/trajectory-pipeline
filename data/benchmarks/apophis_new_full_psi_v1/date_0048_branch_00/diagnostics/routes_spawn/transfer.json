@@ -1,0 +1,125 @@
+{
+  "case_id": "date_0048_branch_00",
+  "status": "completed",
+  "phase": "transfer",
+  "bounds_days": [
+    1.0,
+    1095.75
+  ],
+  "artifact": "runs/apophis_new_full_psi_v1/routes_spawn/date_0048_branch_00/transfer_physical",
+  "route": "independent R transfer + free duration",
+  "verification": {
+    "passed": true,
+    "position_residual_m": 0.5664399526036997,
+    "velocity_residual_m_s": 1.4296552793859463e-07,
+    "parameter_audit": {
+      "passed": true,
+      "configuration_sha256": "f2101f186292173fd4034514acbf4fe4455b0b5658c526e35c6d069fc5ba9058",
+      "configuration_hash_version": 2,
+      "requested": {
+        "mass_kg": 204,
+        "thrust_N": 0.036,
+        "exhaust_velocity_m_s": 11767.98,
+        "dry_mass_kg": 140,
+        "launch_tdb": "2027-12-03T00:00:00",
+        "tof_days": 556.9648881682594,
+        "departure": "Earth",
+        "target": "Apophis",
+        "mode": "rendezvous"
+      },
+      "recovered_model": {
+        "model_thrust_N": 0.036,
+        "thrust_to_requested_ratio": 1.0,
+        "alpha": 1.0,
+        "beta": 1.0,
+        "variable_mass": true,
+        "hardware_limit_reached": true,
+        "exhaust_velocity_m_s": 11767.98
+      },
+      "geometry": null,
+      "final_admission": true
+    },
+    "trajectory_difference_m": 1.7886074956123559,
+    "velocity_difference_m_s": 2.478507891168314e-07,
+    "stored_throttle_error": 0.0,
+    "stored_throttle_minimum": 0.0,
+    "stored_throttle_maximum": 1.0,
+    "canonical_boundary_residual": 6.802075146453819e-12,
+    "method": "LSODA with independent bounded/mass equations",
+    "scope": "Numerical extremal and constraints; no global optimality proof",
+    "departure_norm_m_s": 2999.9999999999995,
+    "switching_sign_violation": 2.4237965924474937e-11,
+    "switching_node_residual": 2.4237965924474937e-11,
+    "minimum_mass_kg": 164.19738057285272,
+    "fuel_kg": 39.802619427147285,
+    "mass_difference_kg": 3.397282455352979e-13,
+    "stored_thrust_error_N": 0.0,
+    "dry_mass_constraint_enforced": true,
+    "mass_balance_error_kg": 3.197442310920451e-13
+  },
+  "kiam_verification": {
+    "passed": true,
+    "source": "Unmodified KIAM Astro compiled Fortran equations and published control API",
+    "package_version": "6.1.6",
+    "samples": 101,
+    "maximum_dimensionless_rhs_error": 1.0130785099704553e-15,
+    "maximum_dimensionless_force_error": 6.938893903907228e-18,
+    "maximum_third_body_decomposition_error": 0.0,
+    "nbody_gravity": {
+      "passed": true,
+      "applicable": false
+    },
+    "costate_map": "p_r,v(KIAM)=p_r,v/vex; p_m(KIAM)=1+p_m/vex; normalized initial mass=1",
+    "scope": "KIAM central mass-optimal equations/control, plus independent third-body decomposition when present; not a separate global optimization"
+  },
+  "parameter_audit": {
+    "passed": true,
+    "configuration_sha256": "f2101f186292173fd4034514acbf4fe4455b0b5658c526e35c6d069fc5ba9058",
+    "configuration_hash_version": 2,
+    "requested": {
+      "mass_kg": 204,
+      "thrust_N": 0.036,
+      "exhaust_velocity_m_s": 11767.98,
+      "dry_mass_kg": 140,
+      "launch_tdb": "2027-12-03T00:00:00",
+      "tof_days": 556.9648881682594,
+      "departure": "Earth",
+      "target": "Apophis",
+      "mode": "rendezvous"
+    },
+    "recovered_model": {
+      "model_thrust_N": 0.036,
+      "thrust_to_requested_ratio": 1.0,
+      "alpha": 1.0,
+      "beta": 1.0,
+      "variable_mass": true,
+      "hardware_limit_reached": true,
+      "exhaust_velocity_m_s": 11767.98
+    },
+    "geometry": {
+      "epoch_jd": 2461742.5,
+      "arrival_jd": 2462299.464888168,
+      "departure_position_difference_m": 0.0,
+      "arrival_position_difference_m": 0.0
+    },
+    "final_admission": true
+  },
+  "tof_days": 556.9648881682594,
+  "fuel_kg": 39.80261942714759,
+  "final_mass_kg": 164.1973805728524,
+  "departure_m_s": 2999.9999999999995,
+  "events": [
+    {
+      "operation": "R_fixed",
+      "reference": "runs/apophis_new_full_psi_v1/routes_spawn/date_0097_branch_00/primary_physical",
+      "tof_days": 592.7249743615989,
+      "status": "failed",
+      "error": "Exact arc integration budget reached"
+    },
+    {
+      "operation": "R_free",
+      "reference": "runs/apophis_new_full_psi_v1/routes_spawn/date_0097_branch_00/primary_physical",
+      "status": "completed"
+    }
+  ]
+}

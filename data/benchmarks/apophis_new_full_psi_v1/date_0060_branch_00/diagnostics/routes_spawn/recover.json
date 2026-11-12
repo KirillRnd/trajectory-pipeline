@@ -1,0 +1,73 @@
+{
+  "case_id": "date_0060_branch_00",
+  "phase": "recover",
+  "status": "partial",
+  "source": "runs/apophis_new_full_psi_v1/reconcile/date_0060_branch_00/costates/irt",
+  "events": [
+    {
+      "operation": "coupled",
+      "input_stage": "departure",
+      "input_days": 782.5680881094772,
+      "status": "partial",
+      "stopped_phase": "departure",
+      "details": {
+        "status": "partial",
+        "phase": "departure",
+        "last_result": "departure/point_0001"
+      },
+      "checkpoint": "runs/apophis_new_full_psi_v1/routes_spawn/date_0060_branch_00/coupled_checkpoint"
+    },
+    {
+      "operation": "physical_admission",
+      "status": "failed",
+      "route": "alternative: coupled mass/thrust",
+      "error": "Physical PSI requires exact active/passive arcs"
+    },
+    {
+      "operation": "release_intermediate",
+      "bounds_days": [
+        391.2840440547386,
+        1095.75
+      ],
+      "input_days": 782.5680881094772,
+      "status": "failed",
+      "error": "RuntimeError: No independently verified changed-duration intermediate; see trials.json",
+      "checkpoint": "runs/apophis_new_full_psi_v1/routes_spawn/date_0060_branch_00/release_intermediate_checkpoint"
+    },
+    {
+      "operation": "release_early",
+      "bounds_days": [
+        391.2840440547386,
+        1095.75
+      ],
+      "input_days": 782.5680881094772,
+      "status": "failed",
+      "error": "RuntimeError: No independently verified changed-duration intermediate; see trials.json",
+      "checkpoint": "runs/apophis_new_full_psi_v1/routes_spawn/date_0060_branch_00/release_early_checkpoint"
+    },
+    {
+      "operation": "early_continue",
+      "input_stage": "departure",
+      "input_days": 782.5680881094772,
+      "status": "partial",
+      "stopped_phase": "departure",
+      "details": {
+        "status": "partial",
+        "phase": "departure",
+        "last_result": "departure/point_0001"
+      },
+      "checkpoint": "runs/apophis_new_full_psi_v1/routes_spawn/date_0060_branch_00/early_continue_checkpoint"
+    },
+    {
+      "operation": "physical_admission",
+      "status": "failed",
+      "route": "early duration -> Pazov(.3) -> coupled mass/thrust -> fuel",
+      "error": "Physical PSI requires exact active/passive arcs"
+    }
+  ],
+  "last_checkpoint": "runs/apophis_new_full_psi_v1/routes_spawn/date_0060_branch_00/recover_last",
+  "last_stage": "departure",
+  "last_model": null,
+  "last_days": 782.5680881094772,
+  "elapsed_s": 211.14183337099894
+}
