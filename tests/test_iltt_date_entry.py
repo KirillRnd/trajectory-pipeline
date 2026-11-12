@@ -109,3 +109,20 @@ class DateFirstILTTTests(unittest.TestCase):
         result,diagnostic=solve_irt(resolved)
         self.assertIsNotNone(result,diagnostic)
         self.assertTrue(verify_irt(result)['passed'])
+
+    def test_real_apophis_out_of_coverage_trial_is_rejected_not_extrapolated(self):
+        from trajectory_pipeline.ephemerides import Ephemerides
+        mission=Mission.load(ROOT/'configs/apophis_spd50m_204.json')
+        mission=replace(mission,launch_tdb='2029-09-21T00:00:00',
+                        solver=dict(mission.solver,iltt_duration_bounds_days=[1e-8,1095.75]))
+        eph=Ephemerides();original=eph.state;coverage=eph.coverage('Apophis')
+        def checked(body,jd,center):
+            if body.lower()=='apophis':
+                self.assertGreaterEqual(jd,coverage['start_jd'])
+                self.assertLessEqual(jd,coverage['stop_jd'])
+            return original(body,jd,center)
+        with patch.object(eph,'state',side_effect=checked):
+            # This real date still has a nonzero boundary residual: the fix
+            # must recover trial handling without turning failure into success.
+            with self.assertRaisesRegex(ValueError,'phase/orbit correction failed:.*rejected_coverage_trials=1'):
+                resolve_date_mission(mission,eph)

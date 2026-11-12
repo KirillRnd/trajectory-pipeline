@@ -12,6 +12,10 @@ from .data import Scales, MU_SUN, DAY_S
 from .ephemerides import Ephemerides
 
 
+class _TrialOutsideCoverage(ValueError):
+    """A corrector trial, not the requested mission, left local ephemerides."""
+
+
 def date_entry(mission):
     mode=mission.solver.get('irt_entry','date')
     if mode not in ('date','fixed_time'):raise ValueError('irt_entry must be date or fixed_time')
@@ -59,13 +63,18 @@ def resolve_date_mission(mission,eph=None):
     F,x0=tb.make_F_function(initial[:3][None,:],initial[3:][None,:],lam,kappa,0,1,float(el[2]),float(el[3]),float(el[1]),float(el[8]))
     deadline=perf_counter()+float(mission.solver.get('iltt_budget_s',30))
     calls=0
+    rejected_coverage_trials=0
+    coverage=eph.coverage(mission.target)
     def evaluate(x):
         nonlocal calls
         if perf_counter()>deadline:raise TimeoutError('ILTT date/phase correction budget reached')
         calls+=1
         duration=float(2*np.pi*tb.T_a(float(x[5]),float(x[4]))*scale.time_s/DAY_S)
         if not np.isfinite(duration) or duration<=0:raise ValueError('Invalid ILTT-derived duration')
-        target=scale.normalize_state(eph.state(mission.target,mission.launch_jd+duration,mission.center))
+        arrival_jd=mission.launch_jd+duration
+        if not coverage['start_jd']<=arrival_jd<=coverage['stop_jd']:
+            raise _TrialOutsideCoverage(f'ILTT trial duration {duration:.6f} days outside target ephemeris coverage')
+        target=scale.normalize_state(eph.state(mission.target,arrival_jd,mission.center))
         result=F(x)
         desired=np.array([float(a[0]) for a in tb.rv2orb(target[:3,None],target[3:,None],1)])
         actual=np.array([float(a[0]) for a in tb.rv2orb(result['rf'][:,None],result['vf'][:,None],1)])
@@ -92,14 +101,24 @@ def resolve_date_mission(mission,eph=None):
         lo=np.array([-dm_limit,-30,-np.inf,-np.inf,.1,lower])
         hi=np.array([dm_limit,30,np.inf,np.inf,10,upper])
         seed=np.maximum(lo+1e-7,np.minimum(hi-1e-7,x0))
-        opt=least_squares(lambda x:evaluate(x)[0],seed,bounds=(lo,hi),
+        # TRF rejects nonfinite trial residuals and shrinks its trust region.
+        # Validate the starting point normally; only exploratory steps may be
+        # rejected this way. Never extrapolate or clamp the target epoch.
+        evaluate(seed)
+        def bounded_residual(x):
+            nonlocal rejected_coverage_trials
+            try:return evaluate(x)[0]
+            except _TrialOutsideCoverage:
+                rejected_coverage_trials+=1
+                return np.full(6,np.inf)
+        opt=least_squares(bounded_residual,seed,bounds=(lo,hi),
                           method='trf',x_scale='jac',diff_step=1e-5,
                           ftol=1e-11,xtol=1e-11,gtol=1e-11,max_nfev=200)
         residual,result,duration=evaluate(opt.x)
         attempts.append(dict(route='bounded_R',residual_norm=float(np.linalg.norm(residual)),message=str(opt.message),
                              trust_domain=dict(dm=[-dm_limit,dm_limit],j=[-30,30],kappa=[.1,10],lambda_turns=[lower,float(upper) if np.isfinite(upper) else None])))
     if not np.isfinite(residual).all() or np.linalg.norm(residual)>1e-7:
-        raise ValueError('ILTT phase/orbit correction failed: '+str(opt.message)+'; residual='+str(residual)+'; x='+str(opt.x)+'; x0='+str(x0))
+        raise ValueError('ILTT phase/orbit correction failed: '+str(opt.message)+'; residual='+str(residual)+'; x='+str(opt.x)+'; x0='+str(x0)+'; rejected_coverage_trials='+str(rejected_coverage_trials))
     if not lower<float(opt.x[5])<upper:raise ValueError('ILTT correction left its angular-distance branch')
     bounds=mission.solver.get('iltt_duration_bounds_days')
     if bounds is not None and not bounds[0]<=duration<=bounds[1]:
@@ -113,7 +132,7 @@ def resolve_date_mission(mission,eph=None):
                 x_initial=np.asarray(x0).tolist(),x_corrected=opt.x.tolist(),
                 tof_days=duration,initial_tof_days=float(2*np.pi*tb.T_a(chosen['lambda_initial'],float(el[0]))*scale.time_s/DAY_S),
                 costates=np.r_[pr,pv].tolist(),orbit_phase_residual=residual.tolist(),evaluations=calls,
-                initial_transform_saturated=saturated,correction_attempts=attempts,
+                initial_transform_saturated=saturated,correction_attempts=attempts,rejected_coverage_trials=rejected_coverage_trials,
                 source='ILTT/transfer_legacy.py: phase -> a_OM branches -> make_F_function -> moving-target orbit correction',
                 duration_role='derived from ILTT; input tof_days was not used')
     return replace(mission,tof_days=duration,solver=dict(mission.solver,iltt_resolved=record))
